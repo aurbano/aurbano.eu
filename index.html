@@ -1,1 +1,485 @@
-Migrating personal website to Github
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Alejandro Urbano Alvarez</title>
+<style type="text/css" media="all">
+html, body{
+	background:#f5f5f5 url(http://static.urbanoalvarez.es/img/body/bg.jpg);
+	color:#333;
+	margin:0;
+	padding:0;
+	width:100%;
+	height:100%;
+	font-family:Helvetica, Arial, sans-serif;
+	position:absolute;
+}
+body{
+	background:url(http://static.urbanoalvarez.es/img/body/fade.png) repeat-x top;	
+}
+a, a:visited, a:focus, a:link{
+	color:#3E9EFF;
+	text-decoration:none;	
+}
+a:hover{
+	text-decoration:underline;	
+}
+p{ line-height:23px}
+h1,h2,h3,h4{
+	margin:0;
+	padding:0;
+	text-shadow:#FFF 0 1px 0;
+}
+h1{
+	font-family:adelle, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size:42px;	
+}
+#top{ text-align:right;}
+#top p{ font-size:13px; }
+.content{
+	width:800px;
+	margin:20px auto;
+	text-shadow:#fff 0 1px 0;
+}
+h2{
+	border-bottom:#999 solid 1px;
+	position:relative;
+	margin-top:40px;
+	margin-bottom:30px;
+	text-shadow:#fff 0 1px 0;
+	box-shadow:0 1px 5px #CCC;
+	font-family:adelle, Helvetica, sans-serif;
+	font-weight:100;
+}
+h2 > span{
+	position:absolute;
+	top:-16px;
+	left:0px;
+	text-align:center;
+	width:100%;
+}
+h2 > span > span{ 
+	background:#f5f5f5 url(http://static.urbanoalvarez.es/img/body/bg.jpg);
+	padding:0 10px 0 10px;
+}
+h2 span a, h2 span a:focus, h2 span a:visited, h2 span a:link{ color:inherit; }
+h2 span a:hover{
+	text-decoration:none;
+	color:#3E9EFF;
+}
+h2 span a.selected{
+	color:#eb0000 !important;	
+}
+h3{
+	border-top:#CCC dashed 1px;
+	position:relative;
+	margin-top:40px;
+	margin-bottom:18px;
+	font-size:16px;
+	font-weight:100;
+}
+h3>span{
+	position:absolute;
+	left:0px;
+	top:0px;
+	background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(200,200,200,.1) 5px);
+	background-image: -webkit-repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(200,200,200,.1) 5px);
+	background-image: -moz-repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(200,200,200,.1) 5px);
+	background-image: -o-repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(200,200,200,.1) 5px);
+	display:block;
+	padding:15px;
+}
+h4{
+	margin:10px 0 10px 0;
+	padding:0;	
+}
+.indent{
+	margin-left:200px;	
+}
+ul, li{
+	margin:0;
+	padding:0;
+	list-style:none;	
+}
+li{ margin-left:15px; margin-bottom:10px; }
+ul.tags li{
+	display:inline;
+	padding:5px;
+	margin:0;
+}
+#social{
+	position:absolute;
+	top:15px;
+	left:5px;	
+}
+#social li{ display:inline-block; margin-right:15px}
+/* -------------------- SHOWCASE ------------------------ */
+#showcase{
+	background:#484848 url(http://static.urbanoalvarez.es/img/darkBG.gif);
+	border-top:#A9A9A9 solid 2px;
+	border-bottom:#A9A9A9 solid 2px;
+	color:#FFF;
+	box-shadow:inset #000 0 0 30px;
+	margin-top:50px;
+	position:relative;
+	height:500px;
+	width:100%;
+	overflow:hidden;
+}
+#showcase .item{
+	width:100%;
+	position:absolute;
+	top:30px;
+}
+#showcase .item .box{
+	width:80%;
+	max-width:1100px;
+	margin:0 auto;
+	position:relative;
+}
+#showcase .right{
+	position:absolute;
+	top:0;
+	left:600px;
+	width:auto;
+}
+#showcase .desc{
+	font-family:"Century Gothic", Helvetica, sans-serif;	
+	text-shadow:#000 0 -1px 0;
+	width:100%;
+}
+#showcase h2{
+	box-shadow:none;
+	border:none;
+	margin:0;
+	font-family:raleway, "Century Gothic", Helvetica, sans-serif !important;
+	font-weight:100;
+	text-shadow:#000 0 -1px 1px;
+}
+#showcase h2 small{ font-family:"Century Gothic", Helvetica, sans-serif; }
+#showcase .img{
+	height:427px;
+	width:584px;
+	overflow:hidden;
+	position:relative;
+	padding:2px;
+	border:#CCC solid 1px;
+	box-shadow: #222 0 0 30px;
+}
+#showcase .img img{
+	position:absolute;
+	top:2px;
+	z-index:1;
+	width:100%;
+	height:auto;	
+}
+#showcase .desc a{
+	color:#09F !important;	
+}
+#showcase a{ color:inherit !important; text-decoration:none; }
+#showcase a:hover{
+	color:#333 !important;
+	text-decoration:none;
+}
+#showcase .img .next, #showcase .img .prev{
+	color:#FFF;
+	text-shadow:0 0 3px #000;
+	font-size:50px;
+	position:absolute;
+	top:40%;
+	z-index:2;	
+}
+#showcase .img .next{ right:10px; }
+#showcase .img .prev{ left:10px; }
+#showcase .img .title, #showcase .img .description{
+	background:rgba(0,0,0,0.5);
+	color:#FFF;
+	position:absolute;
+	width:100%;
+	z-index:2;	
+}
+/* -------------------- MAIN PREV/NEXT ------------------ */
+#showcase > .next, #showcase > .prev{
+	color:#FFF;
+	font-size:70px;
+	position:absolute;
+	top:38%;
+	z-index:999;
+}
+#showcase > .next a, #showcase > .prev a{
+	text-shadow:#CCC 0 0 2px;	
+}
+#showcase > .next{ right:40px; }
+#showcase > .prev{ left:40px; }
+/* ------------------ FOOTER ---------------- */
+#footer{
+	background:#484848 url(http://static.urbanoalvarez.es/img/darkBG.gif);
+	text-align:center;
+	color:#EEE;
+	border-top:#A9A9A9 solid 2px;
+	padding:10px;
+	font-size:14px;
+	margin-top:100px;
+	box-shadow:inset 0 5px 30px #000;
+}
+/* ----------------- Forms ------------------- */
+label, small{
+	color:#999;
+	font-size:14px;
+}
+.input{
+	outline:#BBB solid 1px;
+	border-top:#F0F0F0 solid 3px;
+	padding:4px;
+	margin-bottom:10px;
+}
+input,textarea{
+	border:0;
+	padding:0;
+	margin:0;
+	background:#FFF;
+	color:#333;
+	width:100%;
+	outline:none;
+	font-size:16px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+textarea{
+	height:200px;	
+}
+.active{
+	outline:#71CAFF solid 1px;	
+}
+.btn{
+	border:#AAA 1px solid;
+	box-shadow:0 0 5px 0 #CCC;
+	padding:6px;
+	width:auto;
+	font-size:14px;
+	cursor:pointer;
+	background:#3E9EFF;
+	color:#FFF;
+}
+.btn:hover{ background:#06C; }
+#gravatar{
+	position: absolute;
+    height: 104px;
+    width: 104px;
+    right: 35px;
+    top: 0;
+    padding: 1px;
+    border: #ccc solid 1px;
+	border-radius:4px;
+}
+#gravatar img{
+	border:0;
+	border-radius:2px;
+}
+</style>
+</head>
+
+<body>
+<div id="social">
+	<ul>
+    	<li><a href="http://facebook.com/a.urbano.a" title="Facebook"><img src="http://static.urbanoalvarez.es/img/social/facebook.png" width="32" height="32" alt="Facebook" /></a></li>
+        <li><a href="http://twitter.com/chevi_" title="Twitter"><img src="http://static.urbanoalvarez.es/img/social/twitter.png" width="32" height="32" alt="Twitter" /></a></li>
+        <li><a href="http://www.linkedin.com/in/aurbano" title="LinkedIn"><img src="http://static.urbanoalvarez.es/img/social/linkedin.png" width="32" height="32" alt="LinkedIn" /></a></li>
+        <li><a href="http://youtube.com/argallaos" title="YouTube"><img src="http://static.urbanoalvarez.es/img/social/youtube.png" width="32" height="32" alt="YouTube" /></a></li>
+        <li><a href="https://github.com/aurbano" title="Github"><img src="http://static.urbanoalvarez.es/img/social/github.png" width="32" height="32" alt="github" /></a></li>
+    </ul>
+</div>
+<div id="wrap">
+	<div class="content">
+    <div id="top">
+        <h1>Alejandro U<span id="dot">.</span> Álvarez</h1>
+      	<p>Telecommunications engineer (2014), Universidad de Oviedo<br />Visit <a href="/blog">my blog</a></p>
+    </div>
+    	<h2><span><span>Introduction</span></span></h2>
+        <p>Hello! I'm Alejandro U. Alvarez, an engineering student at <a href="http://www.uniovi.es/inicio/">Universidad de Oviedo</a> (Spain). I started programming during my Freshman year in Brookline High School (Boston, MA), and then got more and more interested in web development. I'm currently involved in many projects, most of them related to social networking. I mainly develop the database schemas and back-end systems. I was inspired to redesign my website by my friend <a href="http://qimingfang.com">Qiming Fang</a></p>
+        <p>I love new ideas, trying new tools and working with new people. When it comes to work, I love <a href="https://github.com/aurbano">git</a> and apps like Teambox. I currently work with my friend <a href="http://jaicab.com">Jaime Caballero</a> in our little startup <a href="http://nuostudio.com">nuo studio</a></p>
+    </div>
+<div id="showcase">
+	<div class="prev" style="display:none"><a href="#prev" title="Previous project">&laquo;</a></div>
+	<div class="next"><a href="#next" title="Next project">&raquo;</a></div>
+	<div class="item" id="cloudclient" style="left:0"><div class="box">
+		<div class="img">
+			<div class="prev" style="display:none"><a href="#prev">&laquo;</a></div>
+			<div class="next"><a href="#next">&raquo;</a></div>
+			<img src="http://static.urbanoalvarez.es/img/portfolio/cloudclient.png" alt="Cloudclient screenshot" width="584" height="858" />
+		</div>
+		<div class="right">
+			<h2>Cloudclient <small>2012</small></h2>
+			<div class="desc">
+				<p>An open source client for cloud services like Dropbox. It is still under development, although it already has plenty of features. It works nicely on desktop and tablets.</p>
+				<p>The full source code for it can be found on its <a href="https://github.com/aurbano/Cloudclient">Github page</a>, if you want to help out fork it!</p>
+				<p>It's already online at <a href="http://cloudclient.es">Cloudclient.es</a>, if you want to try it</p>
+			</div>
+		</div>
+	</div></div>
+	<div class="item" id="quepiensas" style="left:2000px"><div class="box">
+		<div class="img">
+			<div class="prev" style="display:none"><a href="#prev">&laquo;</a></div>
+			<div class="next"><a href="#next">&raquo;</a></div>
+			<img src="http://static.urbanoalvarez.es/img/portfolio/quepiensas.gif" alt="QuePiensas screenshot" width="584" height="858" />
+		</div>
+		<div class="right">
+			<h2>Que Piensas <small>2011</small></h2>
+			<div class="desc">
+				<p>Spanish social network fully integrated with Facebook and Twitter. It alows users to express their opinion on their friends.</p>
+
+<p>It was build from scratch by Jaime Caballero and me. It uses jQuery, lots of AJAX and a PHP backend.</p>
+
+<p>Currently on closed private beta at <a href="http://quepiensas.es">Quepiensas.es</a>. If you want an invitation to take a look contact me</p>
+			</div>
+		</div>
+	</div></div>
+	<div class="item" id="chevismo" style="left:2000px;"><div class="box">
+		<div class="img">
+			<div class="prev" style="display:none"><a href="#prev">&laquo;</a></div>
+			<div class="next"><a href="#next">&raquo;</a></div>
+			<img src="http://static.urbanoalvarez.es/img/portfolio/chevismo.gif" alt="Chevismo screenshot" width="584" height="858" />
+		</div>
+		<div class="right">
+			<h2>Chevismo <small>2009</small></h2>
+			<div class="desc">
+				<p>Entertainment site featuring many popular tools and services. Also a chat, forum, and many other sections that users discover over time.</p>
+				<p>This was mostly done to experiment with some new things, but it got quite popular in Spain so I kept on working on it. Visit <a href="http://chevismo.com">Chevismo</a></p>
+			</div>
+		</div>
+	</div></div>
+	<div class="item" id="djsmusic" style="left:2000px;"><div class="box">
+		<div class="img">
+			<div class="prev" style="display:none"><a href="#prev">&laquo;</a></div>
+			<div class="next"><a href="#next">&raquo;</a></div>
+			<img src="http://static.urbanoalvarez.es/img/portfolio/djs-music.gif" alt="DJs Music screenshot" width="584" height="858" />
+		</div>
+		<div class="right">
+			<h2>DJs Music <small>2007</small></h2>
+			<div class="desc">
+				<p>Music sharing website where independent DJs upload their mixes and original songs, packed with features developed over the years.</p>
+				<p>The site is now translated in 5 languages, and is popular in many different countries.</p>
+				<p>The design is growing a bit old, and I already have some ideas for new things there, but I still need to get some free time! Visit <a href="http://djs-music.com">DJs Music</a></p>
+			</div>
+		</div>
+	</div></div>
+</div>
+	<div class="content">
+        <div id="tabs" style="margin-top:60px;">
+            <h2><span><span style="margin-right:50px;"><a href="#work" <?php selected(0); ?>>Work</a></span> <span style="margin-right:50px;"><a href="#courses" <?php selected(1); ?>>Courses</a></span> <span><a href="#contact" <?php selected(2); ?>>Contact</a></span></span></h2>
+            
+            <div id="work">
+            	<h3><span>Skills</span></h3>
+                <div class="indent">
+                    <h4>Programming:</h4>
+                    <ul class="tags">
+                        <li>PHP</li>
+                        <li>JavaScript</li>
+                        <li>SQL</li>
+                        <li>Python</li>
+                        <li>CSS</li>
+                        <li>HTML</li>
+                        <li>Java</li>
+                        <li>C++/C</li>
+                        <li>Objective-C</li>
+                    </ul>
+                    <h4>Frameworks:</h4>
+                    <ul class="tags">
+                        <li>jQuery</li>
+                        <li>Mootols</li>
+                        <li>Prototype</li>
+                        <li>CakePHP</li>
+                        <li>Zend</li>
+                        <li>Maven</li>
+                        <li>Hibernate</li>
+                    </ul>
+                </div>
+                <h3><span>Websites</span></h3>
+                <div class="indent">
+                   <p>Check out my latest projects in the slider above, I've done some websites for local businesses as well:</p>
+					<ul>
+						<li><a href="http://damianyeduardo.com">Damián y Eduardo</a></li>
+						<li><a href="http://cochesusadosasturias.es">Coches Usados Asturias</a></li>
+						<li><a href="http://miguelparte.com">Miguel Parte</a></li>
+						<li><a href="http://sanpedrogijon.es">San Pedro Gijón</a></li>
+						<li><a href="http://www.grupocerpa.com/">Grupo CERPA</a></li>
+						<li><a href="http://isabelparedes.com/">Isabel Paredes</a></li>
+						<li><a href="http://sanjosedepumarin.es/">San José de Pumarin</a></li>
+						<li style="margin-left:0"><h4>Currently under development:</h4></li>
+						<li><a href="https://github.com/aurbano/Wikiline">Wikiline</a></li>
+						<li><a href="http://uplei.com">Uplei</a></li>
+					</ul>
+                </div>
+				<h3><span>WordPress plugins</span></h3>
+				<div class="indent">
+					<p>I have developed some WP plugins over time, some of them were custom plugins for clients, and some were freely distributed by me. Here are a couple of them:</p>
+					<ul>
+						<li><a href="http://wordpress.org/extend/plugins/wp-sounds/">WP Sounds</a></li>
+						<li><a href="http://urbanoalvarez.es/blog/plugins/custom-fonts-plugin/">Custom Fonts</a> <small>(deprecated)</small></li>
+					</ul>
+				</div>
+            </div>
+            
+            <div id="courses">
+				<p>These are some of the courses I've taken that I consider relevant:</p>
+                <h3><span>Computer Science</span></h3>
+                <div class="indent">
+                    <ul>
+                        <li>Introduction to Computer Science <small>(2011)</small></li>
+                        <li>Programming <small>(2011)</small></li>
+                        <li>Introduction to telematics <small>(2011)</small></li>
+                        <li>Network and Systems Architecture <small>(2011)</small></li>
+                        <li>Network and Service Security <small>(2012)</small></li>
+                        <li>Basic Communication Services <small>(2012)</small></li>
+                        <li>Multimedia and Interactive Services <small>(2012)</small></li>
+                        <li>Computers <small>(2012)</small></li>
+                        <li>Telecommunication Networks Management <small>(2012)</small></li>
+                        <li>Network Engineering <small>(2012)</small></li>
+						<li>Microprocessors and Microcontrollers <small>(2012)</small></li>
+                    </ul>
+                </div>
+                
+                <h3><span>Signal theory</span></h3>
+                <div class="indent">
+                    <ul>
+                        <li>Propagation and Radiation <small>(2011)</small></li>
+                        <li>Signals and Systems <small>(2011)</small></li>
+                        <li>Communication Theory <small>(2011)</small></li>
+                        <li>Digital Communications <small>(2012)</small></li>
+                        <li>Telecommunication Systems <small>(2012)</small></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="contact">
+                <h3><span>Contact</span></h3>
+                <div class="indent">
+					<p>You may contact me through major social networks (See links at the top)</p>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<div id="footer"><p>Designed and developed by me &bull; Hosted on <a href="https://github.com/aurbano">Github</a> &bull; Check me out also at <a href="http://nuostudio.com">Nuo Studio</a></p><p>&copy; <a href="http://urbanoalvarez.es">Alejandro U. Alvarez</a> (<?php echo (date('Y')-1).' - '.(date('Y')+2); ?>)</p><div id="valid">Valid <a href="http://validator.w3.org/check/referer">
+HTML5</a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS3</a></div></div>
+
+<script type="text/javascript" src="http://use.typekit.net/olb0snj.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type="text/javascript" src="index.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3181088-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
