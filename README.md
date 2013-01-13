@@ -5,5 +5,8 @@ My personal website, hosted here on Github. I am planning on moving my blog too,
 I would like to run it on Jekyll, which should work better and faster.
 
 - - - -
+I have enabled http://github.urbanoalvarez.es at the moment for testing purposes
+
+- - - -
 
 Most of it is copyrighted material, please contact if you have any concern
