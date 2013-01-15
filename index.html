@@ -40,6 +40,7 @@ h1{
 	width:800px;
 	margin:20px auto;
 	text-shadow:#fff 0 1px 0;
+	position:relative;
 }
 h2{
 	border-bottom:#999 solid 1px;
@@ -290,13 +291,15 @@ textarea{
 </div>
 <div id="wrap">
 	<div class="content">
-    <div id="top">
-        <h1>Alejandro U<span id="dot">.</span> Álvarez</h1>
-      	<p>Telecommunications engineer (2014), Universidad de Oviedo<br />Visit <a href="/blog">my blog</a></p>
-    </div>
-    	<h2><span><span>Introduction</span></span></h2>
-        <p>Hello! I'm Alejandro U. Alvarez, an engineering student at <a href="http://www.uniovi.es/inicio/">Universidad de Oviedo</a> (Spain). I started programming during my Freshman year in Brookline High School (Boston, MA), and then got more and more interested in web development. I'm currently involved in many projects, most of them related to social networking. I mainly develop the database schemas and back-end systems. I was inspired to redesign my website by my friend <a href="http://qimingfang.com">Qiming Fang</a></p>
-        <p>I love new ideas, trying new tools and working with new people. When it comes to work, I love <a href="https://github.com/aurbano">git</a> and apps like Teambox. I currently work with my friend <a href="http://jaicab.com">Jaime Caballero</a> in our little startup <a href="http://nuostudio.com">nuo studio</a></p>
+		<div id="top">
+			<h1>Alejandro U<span id="dot">.</span> Álvarez</h1>
+			<p>Telecommunications engineer (2014), Universidad de Oviedo<br />Visit <a href="/blog">my blog</a></p>
+		</div>
+		<h2><span><span>Introduction</span></span></h2>
+		<p>Hello! I'm Alejandro U. Alvarez, an engineering student at <a href="http://www.uniovi.es/inicio/">Universidad de Oviedo</a> (Spain). I started programming during my Freshman year in Brookline High School (Boston, MA), and then got more and more interested in web development. I'm currently involved in many projects, most of them related to social networking. I mainly develop the database schemas and back-end systems. I was inspired to redesign my website by my friend <a href="http://qimingfang.com">Qiming Fang</a></p>
+		<p>I love new ideas, trying new tools and working with new people. When it comes to work, I love <a href="https://github.com/aurbano">git</a> and apps like Teambox. I currently work with my friend <a href="http://jaicab.com">Jaime Caballero</a> in our little startup <a href="http://nuostudio.com">nuo studio</a></p>
+		
+		<div style="position:absolute; z-index:2; bottom:-56px; left:-610px;"><canvas id="tree1" height="400" width="600"></canvas></div>
     </div>
 <div id="showcase">
 	<div class="prev" style="display:none"><a href="#prev" title="Previous project">&laquo;</a></div>
@@ -466,7 +469,8 @@ HTML5</a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS3<
 <script type="text/javascript" src="http://use.typekit.net/olb0snj.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/tree.js"></script>
 
 <script type="text/javascript">
 
