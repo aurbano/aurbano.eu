@@ -72,8 +72,6 @@ var TreeGen = function(canvasID){
 		// Continua la rama
 		if(w-lifetime*this.loss>=1) setTimeout(function(){ treeObj.branch(x,y,dx,dy,w,growthRate,++lifetime,branchColor, treeObj); },growthRate);
 	}
-	
-	this.resizeCanvas();
 }
 	
 $(document).ready(function(e) {
