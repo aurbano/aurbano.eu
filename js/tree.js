@@ -29,22 +29,6 @@ var TreeGen = function(canvasID){
 		s : {x:0, y:0},	// Mouse speed
 		p : {x:0, y:0}	// Mouse position
 	}
-	var fps = 0, now, lastUpdate = (new Date)*1 - 1,
-		fpsFilter = 100;
-	
-	this.fade = function() {
-		if(!this.fadeOut) return true;
-		this.canvas.ctx.fillStyle="rgba(0,0,0,"+this.fadeAmount+")";
-		this.canvas.ctx.fillRect(0, 0, this.canvas.WIDTH, this.canvas.HEIGHT);
-	}
-	
-	this.resizeCanvas = function() {
-		//this.canvas.WIDTH = window.innerWidth;
-		//this.canvas.HEIGHT = window.innerHeight;
-		
-		//$("#bg").attr('width',this.canvas.WIDTH);
-		//$("#bg").attr('height',this.canvas.HEIGHT);
-	}
 		
 	this.newColor = function(){
 		if(!this.colorful) return '#fff';
@@ -72,8 +56,6 @@ var TreeGen = function(canvasID){
 		// Change dir
 		dx = dx+Math.sin(Math.random()+lifetime)*this.speed;
 		dy = dy+Math.cos(Math.random()+lifetime)*this.speed;
-		// Check if branches are getting too low
-		//if(w<6 && y > this.canvas.HEIGHT-Math.random()*(0.3*this.canvas.HEIGHT)) w = w*0.8;
 		//
 		this.canvas.ctx.strokeStyle = branchColor;
 		this.canvas.ctx.lineTo(x,y);
@@ -111,7 +93,6 @@ $(document).ready(function(e) {
 	},6000);
 	
 	$(window).mousemove(function(e){ tree.mouseMove(e); });
-	$(window).resize(function(e){tree.resizeCanvas(); });
 	
 	// Branch adding:
 	$('canvas').click(function(e){
