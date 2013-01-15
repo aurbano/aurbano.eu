@@ -1,6 +1,6 @@
 var TreeGen = function(canvasID){
 	// CONFIGURATION
-	this.loss = 0.03;		// Width loss per cycle
+	this.loss = 0.04;		// Width loss per cycle
 	this.minSleep = 10;		// Min sleep time (For the animation)
 	this.branchLoss = 0.8;	// % width maintained for branches
 	this.mainLoss = 0.8;	// % width maintained after branching
@@ -39,11 +39,11 @@ var TreeGen = function(canvasID){
 	}
 	
 	this.resizeCanvas = function() {
-		this.canvas.WIDTH = window.innerWidth;
-		this.canvas.HEIGHT = window.innerHeight;
+		//this.canvas.WIDTH = window.innerWidth;
+		//this.canvas.HEIGHT = window.innerHeight;
 		
-		$("#bg").attr('width',this.canvas.WIDTH);
-		$("#bg").attr('height',this.canvas.HEIGHT);
+		//$("#bg").attr('width',this.canvas.WIDTH);
+		//$("#bg").attr('height',this.canvas.HEIGHT);
 	}
 		
 	this.newColor = function(){
@@ -73,7 +73,7 @@ var TreeGen = function(canvasID){
 		dx = dx+Math.sin(Math.random()+lifetime)*this.speed;
 		dy = dy+Math.cos(Math.random()+lifetime)*this.speed;
 		// Check if branches are getting too low
-		if(w<6 && y > this.canvas.HEIGHT-Math.random()*(0.3*this.canvas.HEIGHT)) w = w*0.8;
+		//if(w<6 && y > this.canvas.HEIGHT-Math.random()*(0.3*this.canvas.HEIGHT)) w = w*0.8;
 		//
 		this.canvas.ctx.strokeStyle = branchColor;
 		this.canvas.ctx.lineTo(x,y);
@@ -98,13 +98,24 @@ $(document).ready(function(e) {
 	
 	var tree = new TreeGen('#tree1');
 	
+	setTimeout(function(){
+		tree.branch(tree.canvas.WIDTH-100, tree.canvas.HEIGHT, 0, -1, Math.random()*tree.initialWidth,5,0,'#333',tree);
+	},500);
+	
+	setTimeout(function(){
+		tree.branch(tree.canvas.WIDTH-250, tree.canvas.HEIGHT, 0, -1, Math.random()*tree.initialWidth,5,0,'#333',tree);
+	},2000);
+	
+	setTimeout(function(){
+		tree.branch(tree.canvas.WIDTH-350, tree.canvas.HEIGHT, 0, -1, Math.random()*tree.initialWidth,5,0,'#333',tree);
+	},6000);
+	
 	$(window).mousemove(function(e){ tree.mouseMove(e); });
 	$(window).resize(function(e){tree.resizeCanvas(); });
 	
 	// Branch adding:
 	$('canvas').click(function(e){
 		e.preventDefault();
-		console.log(tree.mouse.p.x);
-		tree.branch(tree.mouse.p.x, tree.canvas.HEIGHT, 0, -Math.random()*3, Math.random()*tree.initialWidth,5,0,'#333',tree);
+		tree.branch(tree.mouse.p.x, tree.canvas.HEIGHT, 0, -1, Math.random()*tree.initialWidth,5,0,'#333',tree);
 	});
 });
