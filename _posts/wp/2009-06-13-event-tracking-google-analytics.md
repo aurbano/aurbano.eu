@@ -28,25 +28,16 @@ In simple terms, it logs events that happen on your site, for example rate a pos
 
 So finally, we can keep track of AJAX interactions with the server, we can log also normal POST requests that do some php processing, like posting a comment, or editing some data in our database.
 
-## Using Event Tracking:
-
-This step couldn’t be possible easier. First of all make sure you have the new code installed. The new code looks like this:
-
-    "));
-    
-    
-    
-
-That *var pageTracker* is what holds the tracking object.
-
 ### Example:
 
 Imagine we have a site where we feature some sort of mp3 downloads. And we want to track those with Analytics. In the link to the file we would put:
 
+	
     <a href="song_file.mp3" title="Download file">Download song</a>
     
-As you can see we use the function *_trackEvent*, from the pageTracker object. This function takes 4 parameters, Category name, action name and a label and value:
+As you can see we use the function *\_trackEvent*, from the pageTracker object. This function takes 4 parameters, Category name, action name and a label and value:
 
+	
     _trackEvent(category, action, optional_label, optional_value)
     
 

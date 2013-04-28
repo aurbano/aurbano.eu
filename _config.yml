@@ -20,7 +20,7 @@ author :
 description: Words from Alejandro U. Alvarez
 
 # Change markdown parser:
-markdown: rdiscount
+#markdown: rdiscount
   
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
