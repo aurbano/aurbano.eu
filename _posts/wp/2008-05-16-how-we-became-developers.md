@@ -2,7 +2,7 @@
 title: 'How we became web developers&#8230;'
 author: Alex
 layout: post
-permalink: /blog/2008/05/16/how-we-became-developers/
+permalink: /2008/05/16/how-we-became-developers/
 categories:
   - General talk
   - Tips
@@ -25,9 +25,7 @@ But today I got up feeling nostalgic I guess, or I just felt like remembering ba
 
  [1]: http://urbanoalvarez.es/blog/wp-content/uploads/2008/05/evolution-300x149.jpg "Evolution of web developers"
 
-So first you realize you want to do something that you think will make you rich and famous, and you realize that millions of people go in Internet everyday, so you believe that if you learn how to design a website you will have those millions of visits. Come on, all of us once believed that was true ![;)][2] 
-
- [2]: http://urbanoalvarez.es/blog/wp-includes/images/smilies/icon_wink.gif
+So first you realize you want to do something that you think will make you rich and famous, and you realize that millions of people go in Internet everyday, so you believe that if you learn how to design a website you will have those millions of visits. Come on, all of us once believed that was true !
 
 So from here some take on an html/Dreamweaver course or they buy a book. I’m more of the book buyer, but I know many signed up in a class. It is now that you learn the basics, and you design a table-based website, which is about… Your favorite computer game! (Or pet, or music group, but it is always of that sort… ) And from there you start Your Own Website! which is about you, and you make it sound “professional”, and you show it to your friends and they are totally amazed!  
 By now you feel like you are a genius, and suddenly, as you are in Dreamweaver doing some crappy tabled design, you look into the source code for any reason, and you find something that astonishes you, CSS styles at the top!  
