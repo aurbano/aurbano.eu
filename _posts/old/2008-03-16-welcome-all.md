@@ -10,7 +10,6 @@ tags:
   - presentation
   - welcome
 ---
- 
 
 Hi to all,
 

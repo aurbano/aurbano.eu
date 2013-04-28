@@ -12,7 +12,6 @@ tags:
   - iso
   - letter
 ---
- 
 
 ## This is the official list of locale country letter codes:
 
