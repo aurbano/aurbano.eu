@@ -6,7 +6,7 @@ permalink: /blog/2008/04/02/best-free-icons/
 categories:
   - Graphic Design
   - Icons
-  - Layout/Styling
+  - CSS
   - Web-related
 tags:
   - best

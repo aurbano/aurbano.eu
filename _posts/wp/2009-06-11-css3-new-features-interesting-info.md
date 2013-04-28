@@ -6,7 +6,7 @@ permalink: /blog/2009/06/11/css3-new-features-interesting-info/
 categories:
   - CSS
   - Graphic Design
-  - Layout/Styling
+  - CSS
   - Web-related
 tags:
   - corners

@@ -6,7 +6,7 @@ permalink: /blog/2008/04/29/reseting-css-default-browser-settings/
 categories:
   - CSS
   - Graphic Design
-  - Layout/Styling
+  - CSS
   - Reviews
   - Web-related
 tags:

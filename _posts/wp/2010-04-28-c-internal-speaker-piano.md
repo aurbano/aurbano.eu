@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2010/04/28/c-internal-speaker-piano/
 categories:
-  - C++
+  - Cpp
   - Programming
 tags:
   - cpp

@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2010/03/20/overloading-for-template-functions-in-c/
 categories:
-  - C++
+  - Cpp
   - Programming
 tags:
   - istream

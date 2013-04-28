@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2010/03/09/c-quick-help-for-begginers/
 categories:
-  - C++
+  - Cpp
 tags:
   - begginers
   - cpp

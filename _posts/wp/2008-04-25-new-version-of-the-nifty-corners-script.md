@@ -6,7 +6,7 @@ permalink: /blog/2008/04/25/new-version-of-the-nifty-corners-script/
 categories:
   - CSS
   - Javascript
-  - Layout/Styling
+  - CSS
   - Programming
   - Web-related
 tags:

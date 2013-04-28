@@ -7,7 +7,7 @@ categories:
   - Branding
   - CSS
   - Graphic Design
-  - Layout/Styling
+  - CSS
   - Photoshop
   - Web-related
 tags:

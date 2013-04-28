@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2010/03/21/c-quick-guide-stl-vector/
 categories:
-  - C++
+  - Cpp
   - Programming
 tags:
   - cpp

@@ -8,7 +8,7 @@ categories:
   - CSS
   - General talk
   - Graphic Design
-  - Layout/Styling
+  - CSS
   - Web-related
 tags:
   - design

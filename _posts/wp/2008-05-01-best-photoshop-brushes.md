@@ -6,7 +6,7 @@ permalink: /blog/2008/05/01/best-photoshop-brushes/
 categories:
   - General talk
   - Graphic Design
-  - Layout/Styling
+  - CSS
   - Photoshop
   - SEO
   - Web-related

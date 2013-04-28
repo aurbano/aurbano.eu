@@ -5,7 +5,7 @@ layout: post
 permalink: /blog/2008/05/14/beautiful-tab-design/
 categories:
   - CSS
-  - Layout/Styling
+  - CSS
 tags:
   - css
   - tabs

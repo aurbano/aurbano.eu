@@ -4,10 +4,9 @@ author: Alex
 layout: post
 permalink: /blog/2010/04/21/understanding-c-time-complexity/
 categories:
-  - C++
+  - Cpp
   - Programming
 tags:
-  - C++
   - constant
   - cpp
   - exponential
@@ -15,18 +14,7 @@ tags:
   - logarithmic
   - time
 ---
-# 
 
-What functions are faster? Which ones are the most efficient? Understanding this will help you optimise your code and impove it’s performance.
+I have decided to move my blog to Jekyll, [for several reasons](http://carlboettiger.info/2012/05/01/Jekyll-vs-Wordpress.html) and in the process of doing so I reviewed many of my older posts.
 
-Each C function has a run time, and knowing that will allow you to combine the best methods always.
-
-Here you have the different possible run times, explained and with an example of a function. *(Note that they are ordered from fastest to slowest)*
-
-## Constant time:
-
-This is the fastest a function can work. An example is to measure an array’s length:
-
-    // Using namespace std;
-    int a[32];
-    cout 
+I ended up deleting many posts that I considered not to be good enough, although I left this message to avoid generating tons of 404s... 

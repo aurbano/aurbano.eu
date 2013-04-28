@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2010/03/17/overloading-inputoutput-operators-c/
 categories:
-  - C++
+  - Cpp
   - Programming
 tags:
   - class

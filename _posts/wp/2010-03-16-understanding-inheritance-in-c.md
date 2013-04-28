@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2010/03/16/understanding-inheritance-in-c/
 categories:
-  - C++
+  - Cpp
   - Programming
 tags:
   - class

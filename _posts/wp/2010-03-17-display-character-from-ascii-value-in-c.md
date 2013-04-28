@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2010/03/17/display-character-from-ascii-value-in-c/
 categories:
-  - C++
+  - Cpp
   - Programming
 tags:
   - ascii
