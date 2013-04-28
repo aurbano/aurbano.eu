@@ -1,6 +1,6 @@
 # This is the default format. 
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink: /blog/:year/:month/:day/:title 
+permalink: /:categories/:year/:month/:day/:title
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md","export"]
 auto: true
@@ -18,6 +18,9 @@ author :
   github : aurbano
   twitter : alalex
 description: Words from Alejandro U. Alvarez
+
+# Change markdown parser:
+markdown: rdiscount
   
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -84,16 +87,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : jekyllbootstrap
-    livefyre :
-      site_id : 123
-    intensedebate :
-      account : 123abc
-    facebook :
-      appid : 123
-      num_posts: 5
-      width: 580
-      colorscheme: light
+      short_name : urbanoalvarez
    
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.
