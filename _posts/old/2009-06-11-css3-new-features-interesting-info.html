@@ -1,0 +1,120 @@
+---
+layout: post
+title: CSS3 New features - Interesting info ;)
+tags:
+- corners
+- css
+- CSS
+- css3
+- Graphic Design
+- Layout/Styling
+- rounded
+- transparency
+- Web-related
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+Hello fellow developers,
+I'm sure all of you have heard of the "new" CSS3 stuff, it's been around for a while now, and it certainly has some very interesting new features.
+
+First, I'll review some of the things that were the hardest to develop, yet they looked so damn well:
+<ul>
+	<li><strong>Rounded corners</strong> - We all love them, but how hard is to find a good way to do them?</li>
+	<li><strong>Alpha transparency</strong> - PNGs, JavaScript tweaks... I must admit they are hard...</li>
+</ul>
+<h3 style="text-align:center"><strong>Plus, I'll show you how to create rounded+transparent borders!</strong></h3>
+
+Conclusion: The world needs new CSS features:
+
+Solution: CSS3
+
+<h3>Let's get going</h3>
+Now before we get too exited, take into account that these new features "work" on major browsers, except obviously IE. So I would never use them for client sites... Meaning that you should only use these for personal designer portfolios, where you want to impress colleagues.
+
+So now that this was clear, let's see how the new stuff goes:
+
+<h2>Rounded corners:</h2>
+For this you only have to select the element and use the following CSS code:
+<pre lang="css">
+#example{
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+}
+</pre>
+<strong>Demonstration:</strong>
+
+<div style="background-color:#FFFFFF; border:#CCCCCC solid 2px; -moz-border-radius: 20px; -webkit-border-radius: 20px; padding:30px; text-align:center; margin:20px;">Example Div (CSS code for it below)</div>
+
+CSS for the example:
+<pre lang="css">
+	background-color:#FFFFFF;
+	border:#CCCCCC solid 2px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	padding:30px;
+	text-align:center;
+</pre>
+
+For more options go to the <a href="http://www.css3.info/preview/rounded-border/">official CSS3 specs page for rounded corners</a>
+
+<h2>Transparency</h2>
+This one is one of my favorites, combined with rounded corners :)
+
+The way it works is simple, you can make any background color transparent by using one of several methods, I will show you the one I consider the easiest.
+
+You know how in <em>normal</em> CSS we can select colors via the RGB color code, as in:
+<pre lang="css">
+color: rgb(0,0,0);
+</pre>
+Well, in CSS3 we can now add a fourth parameter, that will contain the alpha information, from 0 to 1.
+
+<strong>Demonstration:</strong>
+<div style="background:rgba(0,0,0,0.5); color:#000; padding:30px; margin:20px; border:#CCCCCC solid 2px; text-align:center;">Example div. CSS for it below</div>
+
+CSS for the example above:
+<pre lang="css">
+	background-color:rgba(0,0,0,0.5);
+	color:#000;
+	padding:30px;
+	margin:20px;
+	border:#CCCCCC solid 2px;
+	text-align:center;
+</pre>
+
+This effect won't look as cool here, because the background is a plain color. Use it over textured backgrounds for a great effect!
+
+<h2>Rounded+transparent borders!</h2>
+These really look amazing, rounded, transparent borders! <a href="http://apuntalo.djs-music.com/">Take a look at a live example</a>
+
+Unluckily, we cannot use rbga() colors on borders, but there is a simple workaround, embed the div you want with another one, with a padding of the size of the border (It looks better with larger borders)
+
+<strong>Demonstration:</strong>
+<div style="margin:20px; padding:20px; background-color:rgba(0,0,0,0.5); -moz-border-radius: 30px; -webkit-border-radius: 30px; "><div style="padding:20px; text-align:center; background-color:#FFFFFF; color:#333333; -moz-border-radius: 20px; -webkit-border-radius: 20px;">Example CSS below</div></div>
+
+CSS for the example above:
+DIV 1 (Outer div) - Note the bigger radius
+<pre lang="css">
+margin:20px;
+padding:20px;
+background-color:rgba(0,0,0,0.5);
+-moz-border-radius: 30px;
+-webkit-border-radius: 30px; 
+</pre>
+DIV 2 (Inner div)
+<pre lang="css">
+padding:20px;
+text-align:center;
+background-color:#FFFFFF;
+color:#333333;
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+</pre>
+
+Well, I hope you found this interesting!
+
+<h2>Show us your uses!</h2>
+Have you already implemented any of these techniques? Please show us!
+Comment below with the URL of the site where you used the new features of CSS3

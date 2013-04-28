@@ -1,0 +1,115 @@
+---
+layout: page
+title: Custom Fonts WordPress Plugin (v 5)
+tags: []
+status: publish
+type: page
+published: true
+meta:
+  _edit_last: '1'
+---
+Welcome to the official page of the Custom Fonts Plugin.
+<h3 align="center">Plugin development discontinued!</h3>
+<div align="center" id="main-download"><a href="[download(custom_fonts)]"><img src="http://urbanoalvarez.es/img/blog/cf/download.gif" alt="Download Custom Fonts plugin (sIFR)" /></a></div>
+<h2>The Plugin</h2>
+<strong>sIFR</strong> is an acronym that stands for “Scalable Inman Flash Replacement” and doesn’t that sound like some real gobble-de-geek! In lay terms: It’s a technology that lets you use customized typography on your website, creating unique design options closed until now.
+
+IF you are using WordPress, we can help you to correctly implement <strong>sIFR typesetting</strong> in your WordPress website. We offer two simple products on this page. Please note that these are flat rate prices and that means we have specific limits in this Service Offering. If you need more, we offer other personal consulting options, so feel free to<a href="http://urbanoalvarez.es/blog/contact-me/"> contact us</a>.
+
+<strong>Self Service</strong>: As long as you have some skills and time… just use the <a href="http://urbanoalvarez.es/blog/plugins/custom-fonts-plugin/#main-download">sIRF Plugin for WordPress</a>. The tricky part of this is working with specific WordPress themes. We would try to offer a guide, but the variations of themes in the wild is just too great.
+<strong>Or</strong>...
+<strong>We do it for you</strong>: $75
+For installing a single typeface/font for a one WordPress Install using a single theme. We make it work correctly with the CSS in your current theme. For US customers, we will call you on the phone and spend the few minutes making sure that the sizes of the fonts work right with YOUR installation. Your eyeballs approve our coding tweaks. No training: We just ask you yes or no for each font element in your specific theme.
+We also offer phone consulting for European customers, simply <a href="http://urbanoalvarez.es/blog/contact-me/">contact us</a> for more details.
+
+<strong>We do it for you–plus We Train You</strong>: $225
+We do the installation and the configuration, then we teach you (Either by phone for US or European customers or by email for other countries) how to correctly use the plugin with ALL themes and how to further tweak it and adjust it.
+
+The Limits of This Service Offering:
+
+<ol>
+	<li>You must already own the rights to use the font or it must be public domain (It is your responsibility to ensure that this condition is met)</li>
+</ol>
+
+Required to Order this Service Offering:
+
+<ol>
+	<li>FTP access to your server (only the plugin directory).</li>
+	<li>An admin account to your WordPress install, which will be needed only for the intial tweaks and customization details.</li>
+	<li>Your promise to consider contributing to the development of the plugin by donating.</li>
+</ol>
+
+<h2 id="cf_download">Download:</h2>
+<ol>
+	<li><a href="[download(custom_fonts)]">Download Custom Fonts v. 5</a> (<a href="#chlog">See the changelog below</a>)</li>
+</ol>
+
+<h2 id="chlog">Changelog</h2>
+<ol>
+	<li><strong>5</strong> (30-December-2008) Added the option to disable it for IE, later on in this version I will add detection of other browsers and the option to change the options depending on the browser. Now removed the need to list the fonts in an array!</li>
+<li><strong>4</strong> (19-October-2008) Added PDA and iPhone detection, so that it doesn't display the Custom Fonts, thus preventing compatibility issues. (Thanks to <a href="www.designfocusstudio.com">Theresa Stanton</a> for pointing it out)</li>
+<li><strong>3.1</strong> (14-September-2008) Fixed jQuery script call problem. Thanks to <a href="http://li-ping.com/bhutan/">Ping</a> for the tip. Also added another font to the list: Olympiques (The font used on this blog's headers (At the time of writing) )</li>
+	<li><strong>3</strong> (17-June-2008) A new major version has been released, with increased functionality and features. Greatly improved design, algorithms, and added advanced options, although they won't be fully functional until version 3.4</li>
+	<li><strong>2.4</strong> (17-June-2008) The transparent background finally does work! It was not that hard to fix, but I wasn't able to find it! But well, now it is working so no worries. As you may be able to see I've put Custom Fonts in this blog titles to test it, so you can see the transparent background working nicely!</li>
+	<li><strong>2.3</strong> (16-June-2008) Completely fixed bugs concerning transparent backgrounds and upgraded database structure to version 3 to allow this changes. Thanks to <a href="http://gason.com.ar">Gasón</a> to point out this problems.</li>
+	<li><strong>2.2</strong> (16-June-2008) Minor adjustments, improved version check and transparent background issues.</li>
+	<li><strong>2.1</strong> (15-June-2008) Improved documentation, added a version check in the configuration page</li>
+	<li><strong>2.0</strong> - New Improved version: Improved Database interaction, improved design (Tabbed interface) and improved generation algorithm to save up load time (3x faster)</li>
+	<li><strong>1.0.1</strong> (08-May-2008) Minor database handling changes</li>
+	<li><strong>1.0</strong> (07-May-2008) First stable release.</li>
+</ol>
+
+<h2>Support:</h2>
+<h3>Adding fonts in version 5!</h3>
+Now since version 5 you no longer have to list the fonts in an array as in previous versions, simply create sIFR compliant .swf font files and add them to the fonts folder, and they will be instantly recognized!
+<h3>Version 4 hasn't got any known issues. If you find any please report them</h3>
+<h3><strong>Known issues in version 3</strong></h3>
+<strong>UPDATE: This is fixed in versions 3.1 and later!</strong>
+There is a repeated call to jQuery which breaks JavaScript functionality with other JavaScript dependent plugins.
+To fix this issue go to the file custom_fonts.php and remove line 272. Then after line 269 add the following:
+<pre>wp_enqueue_script(’jquery’);</pre>
+<h3 id="install">Installation</h3>
+Follow this simple guide to install:
+<ul>
+	<li>Download, unzip, and upload to your server the folder `custom_fonts` to the `/wp-content/plugins/` directory.</li>
+	<li>Activate the plugin through the 'Plugins' menu in WordPress.</li>
+	<li>Go to `Design->Custom fonts` to configure it and have it working.</li>
+</ul>
+
+For Spanish talking users, you can read <a href="http://ceslava.com/blog/reemplazar-imgenes-y-texto-html-con-flash-tutorial-sifr-3-y-swfir/">this full guide on the plugin</a>, @ ceslava's blog.
+
+Done! 
+<h3>Adding fonts:</h3>
+You can either download the fonts from online services such as <a href="http://www.fontsmack.com/">Font Smack</a>, or create them yourselve.
+
+New in version 5:
+Add them to the folder fonts, and you are DONE, they will be automatically recognized!
+
+<pre>Older versions:
+To create your own fonts for the Custom Fonts Plugin open the main plugin file ("custom_fonts.php") and at the top, right after the license notice you'll see "//FONT ARRAY DEFINITIONS"
+After a block of commented instructions on adding fonts you'll see a list of font names, all part of an array.
+To add your own font add a new line to that array like so:
+</pre><pre lang="php">
+$cf_fonts[] = 'New Font Name';
+</pre>
+And you are done with this part.
+
+
+Now for this to work you have to add the actual font file to the <em>fonts/</em> folder. To do this you are going to need Flash. If you don't have it, consider downloading already prepared fonts for sIFR.
+If you have Flash, keep reading:
+<ul>
+	<li>Download <a href="http://urbanoalvarez.es/blog/wp-content/uploads/2008/05/sifr.zip">this <ip file</a>, and unzip it anywhere you want. It contains all you need to create custom fonts.</ip></a></li>
+	<li>Now right click on create_sIFR.jsfl and select edit with... whatever text editor you want.</li>
+	<li>At the beginning edit the location of the files (Remember to use the appropriate one, PC or Mac) both for the current folder and the fla file that goes in the zip file.</li>
+	<li>Now go to where it says <strong>var fonts="..."</strong> and put in that comma separated list all the fonts you want (They must be installed in your computer), and when you are done save and close the file</li>
+	<li>Open up Flash and click on Command->Run Command and browse to the file you just edited, click on run and if all goes well you should see all the fonts you selected on that folder. Simply upload them to your blog (wp-content/plugins/custom_fonts/sifr/fonts/) and if you have already added them to the array (See the beginning of this guide), you are done!</li>
+</ul>
+
+
+<h3>Bug tracking</h3>
+If you have found a bug in the plugin comment here or send an email to alejandro@urbanoalvarez.es
+
+<h3>Feature requests</h3>
+If you want to request a feature comment here or send an email to alejandro@urbanoalvarez.es
+
+Thanks for using Custom Fonts Plugin :)

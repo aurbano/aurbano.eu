@@ -1,0 +1,89 @@
+---
+layout: post
+title: Understanding C++ time complexity
+tags:
+- C++
+- constant
+- cpp
+- exponential
+- factorial
+- logarithmic
+- Programming
+- time
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+What functions are faster? Which ones are the most efficient? Understanding this will help you optimise your code and impove it's performance.
+
+Each C++ function has a run time, and knowing that will allow you to combine the best methods always.
+
+Here you have the different possible run times, explained and with an example of a function. <em>(Note that they are ordered from fastest to slowest)</em>
+<h2>Constant time:</h2>
+This is the fastest a function can work. An example is to measure an array's length:
+<pre>// Using namespace std;
+int a[32];
+cout &lt;&lt; a.size();</pre>
+What this means is that no matter how large a is, it will always take the same amount of time to perform this operation.
+<h2>Logarithmic time:</h2>
+This is also in the <em>fast</em> group of times, there is a formula to get how much time it will actually take (That involves the logarithm of the size of the input)
+
+An example of this would be a function that looks for a key in an array, returning it's index if found:
+<pre>int binarySearch(int sortedArray[], int first, int last, int key) {
+   // function:
+   //   Searches sortedArray[first]..sortedArray[last] for key. 
+   // returns: index of the matching element if it finds key,
+   //         otherwise  -(index where it could be inserted)-1.
+   // parameters:
+   //   sortedArray in  array of sorted (ascending) values.
+   //   first, last in  lower and upper subscript bounds
+   //   key         in  value to search for.
+   // returns:
+   //   index of key, or -insertion_position -1 if key is not
+   //                 in the array. This value can easily be
+   //                 transformed into the position to insert it.
+
+   while (first &lt;= last) {
+       int mid = (first + last) / 2;  // compute mid point.
+       if (key &gt; sortedArray[mid])
+           first = mid + 1;  // repeat search in top half.
+       else if (key &lt; sortedArray[mid])
+           last = mid - 1; // repeat search in bottom half.
+       else
+           return mid;     // found it. return position /////
+   }
+   return -(first + 1);    // failed to find key
+}</pre>
+<address>Source: <a href="http://www.fredosaurus.com/notes-cpp/algorithms/searching/binarysearch.html">Fredosaurus.com</a></address>
+<h2>Linear time:</h2>
+A bit slower than logarithmic time, but still fast. Functions that run in this type of time take a time proportional to the size of the input.
+
+An example of this would be to iterate through an array:
+<pre>int a[40];
+// Fill a with data...
+for(int i=0;i&lt;40;i++){
+     std::cout &lt;&lt; a[i];
+}</pre>
+<h2>Linearithmic time:<img class="alignright" title="Quick Sort method" src="http://upload.wikimedia.org/wikipedia/commons/6/6a/Sorting_quicksort_anim.gif" alt="Quick Sort method" width="280" height="214" /></h2>
+Well this one is a bit tricky, it's still fast, and it's run time depends on the size of the input but both linearly and logarithmically. All logarithmic functions that sort work this way, they are also linear because they depend on the size of the array to sort:
+
+There are a lot of different ways of implementing the algorithm quicksort, here you have <a href="http://www.cplusplus.happycodings.com/Data_Structures/code11.html">one sample demonstration of how it works</a>.
+<h2>Polynomial time:</h2>
+This one is the slowest time inside the fast run times. It is the one that take up comparison sorts (Functions like insert, sort, select... )
+
+Here you have a sample implementation of the function sort for arrays:
+<pre>int array[] = { 23, 5, -10, 0, 0, 321, 1, 2, 99, 30 };
+int elements = sizeof(array) / sizeof(array[0]);
+std::sort(array, array + elements);
+for (int i=0; i&lt;elements; ++i)
+     std::cout &lt;&lt; array[i] &lt;&lt; ' ';</pre>
+<h2>Exponential time:</h2>
+Algorithms and functions that run in this type of time are considered slow. This are algorithms of the type brute force, that is, algorithms that try all possibilities, like a<a href="http://www.wrongway.org/work/solver.tar.gz"> solver for a Rubik Cube</a>.
+<h2>Factorial time:</h2>
+This is the slowest of all, it corresponds to complex brute force algorithms, like an algorithm to solve the <a href="http://en.wikipedia.org/wiki/Travelling_salesman_problem">Travelling Salesman Problem</a> by brute force.
+
+I will probably add a bit more to this examples over time, but well to get a grasp of what these times mean I think this will be more than enough,
+
+Alex

@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
+title: Alejandro U. Alvarez
+tagline: Hello world!
 ---
 {% include JB/setup %}
 

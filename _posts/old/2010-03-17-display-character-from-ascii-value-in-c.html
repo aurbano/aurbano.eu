@@ -1,0 +1,38 @@
+---
+layout: post
+title: Display character from ASCII value in C++
+tags:
+- ascii
+- C++
+- cpp
+- Programming
+- static_cast
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+I don't know whether this is useful or merely entertaining, but it is quite simple to display the character representation of any ASCII number in C++
+
+We will use the static_cast function to perform this operation, converting from int to char.
+Let me show you this sample program that does just that (Looping until you enter 0)
+<pre lang="cpp" lineno="1">#include <iostream>
+using namespace std;
+
+int main(){
+    int r;
+    cout < < "Enter a number to see its character: \n" << "Number: ";
+    cin >> r;
+    while(r!=0){
+        cout < < "\nCharacter: " << static_cast<char>(r);
+        cin.get();
+        cout < < "\nNumber: ";
+        cin >> r;
+    }
+    return 0;
+}</iostream></pre>
+As you can see we simply ask for a number, and while that number is not 0 we keep on asking for more, as well as displaying its character representation by using the static_cast function.
+
+Hope you enjoyed this ;)
+Alex

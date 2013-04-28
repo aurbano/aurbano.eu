@@ -1,0 +1,62 @@
+---
+layout: post
+title: Display time since last visit in PHP
+tags:
+- last
+- PHP
+- since
+- time
+- visit
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+Have you ever seen those social networking sites that display the time since your last visit? They do it in a very neat way actually, that is a lot more friendlier that simply "Last login date..."
+
+Well, this little php snippet will allow you to display messages like "Last visit was 4 days ago" or "2 weeks ago" or whatever it was, up to a year.
+
+To use simply include the function in your code and then you'll need two timestamps to compare. One is the one that should be in the database,  and it should be the date of the last user activity on the site, or the last time user logged in. The other would be normally the current time ( time() )
+
+<pre lang="php">
+function timeBetween($start,$end,$after=' ago',$color=1){
+	//both times must be in seconds
+	$time = $end - $start;
+	if($time < = 60){
+		if($color==1){
+			return '<span style="color:#009900;">Online';
+		}else{
+			return 'Online';
+		}
+	}
+	if(60 < $time && $time <= 3600){
+		return round($time/60,0).' minutes'.$after;
+	}
+	if(3600 < $time && $time <= 86400){
+		return round($time/3600,0).' hours'.$after;
+	}
+	if(86400 < $time && $time <= 604800){
+		return round($time/86400,0).' days'.$after;
+	}
+	if(604800 < $time && $time <= 2592000){
+		return round($time/604800,0).' weeks'.$after;
+	}
+	if(2592000 < $time && $time <= 29030400){
+		return round($time/2592000,0).' months'.$after;
+	}
+	if($time > 29030400){
+		return 'More than a year'.$after;
+	}
+}
+</pre>
+
+And here an example of usage:
+<pre lang="php">
+echo timeBetween($timeFromDatabase,time());
+</pre>
+And an example output for that could be: 4 minutes ago
+
+There are two configuration variables, $after and $color. $color sets online to a nice green color, and $after is what is displayed after the time. Default is " ago". But you can set it to anything you want.
+
+Well I hope you find this useful ;)

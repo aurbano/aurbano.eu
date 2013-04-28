@@ -1,0 +1,145 @@
+---
+layout: post
+title: Google AJAX search API
+tags:
+- ajax
+- api
+- General talk
+- google
+- Javascript
+- Programming
+- Reviews
+- search
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _oembed_156e8c18040c359cc55702800139b617: '{{unknown}}'
+  _oembed_bf9c065a81d65a118e57d16319689286: '{{unknown}}'
+  _oembed_5a1b54d352a3d8dc77056692c435742a: '{{unknown}}'
+  _oembed_0918fb3463aca30f5f8a7593a2186291: '{{unknown}}'
+  _oembed_d27bf9f7a2ed0dbf784f207df407353c: '{{unknown}}'
+  _oembed_30e970d27a7a26deb7dee3ecb8ab9c9e: '{{unknown}}'
+  _oembed_7b5c7f27a36db7de3f4028ffd596a65b: '{{unknown}}'
+  _oembed_1d2b342501ae35d6e62b4f483ff78a81: '{{unknown}}'
+  _oembed_6b3c9b3b3c69f56145bd8f1ebcdfb1ff: '{{unknown}}'
+---
+Discover a great way to embed really customized searches in your site, use the Google search API (Using AJAX)
+
+Here I'll show you how to develop a simple "Hello world" sort of program, using the Google API and AJAX to search.
+There are 2 requirements though you need to fulfill in order to access the API:
+<ol>
+	<li>Your web site must be freely accessible to end users. </li>
+	<li>Google will upgrade this API periodically, and you must update your site to use new versions of the API as they become available. The Gogle AJAX Search API team will post notifications of updates on the Google AJAX Search API Blog. (http://googleajaxsearchapi.blogspot.com/). </li>
+</ol>
+
+The second one is not that much of a requirement, but something you must take care of for your search to work properly...
+So <a href="http://code.google.com/apis/ajaxsearch/signup.html">apply for your API key</a>, and take into account that a single AJAX Search API key is valid within a single directory on your web server, including any subdirectories.
+<a href="http://code.google.com/apis/ajaxsearch/">More information on the subject</a>
+
+So let's get going:
+This is the HTML code of a website running the AJAX search:
+<pre lang="html4strict">
+< !DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Hello World - Google AJAX Search API Sample</title>
+    <link href="http://www.google.com/uds/css/gsearch.css"
+        type="text/css" rel="stylesheet"/>
+    <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0"
+        type="text/javascript"></script>
+    <script language="Javascript" type="text/javascript">
+    //< ![CDATA[
+
+    function OnLoad() {
+      // Create a search control
+      var searchControl = new GSearchControl();
+
+      // Add in a full set of searchers
+      var localSearch = new GlocalSearch();
+      searchControl.addSearcher(localSearch);
+      searchControl.addSearcher(new GwebSearch());
+      searchControl.addSearcher(new GvideoSearch());
+      searchControl.addSearcher(new GblogSearch());
+      searchControl.addSearcher(new GnewsSearch());
+      searchControl.addSearcher(new GimageSearch());
+      searchControl.addSearcher(new GbookSearch());
+
+      // Set the Local Search center point
+      localSearch.setCenterPoint("New York, NY");
+
+      // tell the searcher to draw itself and tell it where to attach
+      searchControl.draw(document.getElementById("searchcontrol"));
+
+      // execute an inital search
+      searchControl.execute("Urbano's Blog");
+    }
+    GSearch.setOnLoadCallback(OnLoad);
+
+    //]]>
+    </script>
+  </head>
+  <body>
+    <div id="searchcontrol">Loading</div>
+  </body>
+</html></pre>
+
+So that is a simple page using the search, I'll now go through the code explaining it:
+
+First of all, we import Google's CSS style sheet from its location:
+http://www.google.com/uds/css/gsearch.css
+
+Next we import the Google AJAX search library from its location:
+http://www.google.com/uds/api?file=uds.js&amp;v=1.0
+
+And now with the search controls:
+For the configuration we will create a function, in this case OnLoad(). This function sets up the controls for our search, and draws the searcher inside the specified div.
+
+To start, we need a new search control, which we set up as follows:
+<pre lang="javascript">
+var searchControl = new GSearchControl();
+</pre>
+
+So we have initialized the searcher, now define which areas we want to search in, in this case most of them:
+<pre lang="javascript">
+      searchControl.addSearcher(localSearch);
+      searchControl.addSearcher(new GwebSearch());
+      searchControl.addSearcher(new GvideoSearch());
+      searchControl.addSearcher(new GblogSearch());
+      searchControl.addSearcher(new GnewsSearch());
+      searchControl.addSearcher(new GimageSearch());
+      searchControl.addSearcher(new GbookSearch());
+</pre>
+We are using local, web, video, blog, news, image, and book searchers.
+
+For the local search to work you need to set a "center point". For it to work perfectly you could use php for example and geoip to detect the location of the user and use that as center point... In the example we'll be using NY:
+<pre lang="javascript">
+localSearch.setCenterPoint("New York, NY");
+</pre>
+
+Now display the searcher in the specified div (This could be any div in your site, simply reference it and it will draw the searcher inside it). In this case "searchcontrol":
+<pre lang="javascript">
+searchControl.draw(document.getElementById("searchcontrol"));
+</pre>
+
+This is optional, but if you want to see it working you can set up an initial search. If you want this to work from your own search text fields, use GET or POST vars and php to set up the script to search for a given variable...
+In this case we will be searching for "Urbano's Blog":
+<pre lang="javascript">
+searchControl.execute("Urbano's Blog");
+</pre>
+Be careful with the above to always strip ", because it would brake your script!
+
+And you are basically done, simply call the OnLoad function and you are good to go!
+<pre lang="javascript">
+GSearch.setOnLoadCallback(OnLoad);
+</pre>
+
+Hope you enjoyed it!
+Read more about this:
+<ul>
+	<li><a href="http://code.google.com/apis/ajaxsearch/documentation/">Developer Documentation</a> @ Google Code</li>
+	<li><a href="http://code.google.com/apis/ajaxsearch/documentation/reference.html">Class and function reference</a> @ Google Code</li>
+</ul>

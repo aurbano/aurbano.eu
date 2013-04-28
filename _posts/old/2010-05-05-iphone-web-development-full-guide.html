@@ -1,0 +1,149 @@
+---
+layout: post
+title: iPhone web development [Part 1]
+tags:
+- apple
+- compatible
+- CSS
+- design
+- development
+- iPhone
+- ipod
+- mobile
+- smartphone
+- web
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+<a href="http://urbanoalvarez.es/blog/wp-content/uploads/2010/04/iphone3g.jpg"><img class="alignright size-medium wp-image-426" title="iPhone" src="http://urbanoalvarez.es/blog/wp-content/uploads/2010/04/iphone3g-249x300.jpg" alt="" width="249" height="300" /></a>Even if websites look great when seen on iPhones, having an iPhone-specific website improves a lot your site's usability, and in spite of what you may think, it doesn't take that long to develop it, here I will show all the necessary steps to develop a great site for iPhones, and making it look as if it were just another iPhone App.
+<h2>How to differentiate both versions:</h2>
+There are several ways of setting up the iPhone version, the most common one is by using a subdomain like m.urbanoalvarez.es, iphone.urbanoalvarez.es... etc
+
+You could also use a subdirectory like urbanoalvarez.es/iphone/ or simply do nothing, and just change the display. This last option is no recommended because it won't allow your users to easily switch between iPhone version and full version when on their phones.
+
+For this example I will go with a subdomain, of the sort iphone.urbanoalvarez.es. The next thing we need is to send iPhone users directly there, here is the PHP code for that:
+<pre lang="php">if(ereg('iPhone',$_SERVER['HTTP_USER_AGENT']) || ereg('iPod',$_SERVER['HTTP_USER_AGENT'])) {
+     header('Location: iphone.urbanoalvarez.es');
+}</pre>
+Basically we are searching for iPhone or iPod in the <a href="http://wikipedia.org/wiki/Agente_de_usuario">user agent</a> which for the iPhone is "<em>Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3</em>" and if we find that one, or the iPod one, we send them over to the mobile version.
+<h2>The basic HTML:</h2>
+[caption id="attachment_455" align="alignleft" width="320" caption="iPhone screenshot"]<a href="http://urbanoalvarez.es/blog/wp-content/uploads/2010/05/IMG_0983.png"><img src="http://urbanoalvarez.es/blog/wp-content/uploads/2010/05/IMG_0983.png" alt="iPhone screenshot" title="iPhone screenshot" width="320" height="480" class="size-full wp-image-455" /></a>[/caption]
+For an iPhone version of a website, I think the best idea is to make it look as if our website is just a regular App. So we won't allow Zoom, or horizontal scroll. This part is very easy, as Apple has enabled a meta tag that does just that:
+<pre>&lt;meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" /&gt;</pre>
+I don't think there is much need to explain each variable as their names are pretty self-explanatory. This was the only real "iPhone-specific code" we will be using, except for a few CSS tricks I'll show you below.
+
+Now that we have that set up, let's go with the body content, as you may have noticed in iPhone Apps, there is a header bar, with the Website name and/or logo, and usually a "back" navigation button. Then in the center we find a background and the content displayed in nice white boxes with rounded corners. And at the bottom of the screen we see a secondary bar with navigation items, usually the main categories. This is nice, but when using Mobile Safari, that would create a duplicated bar, since Safari has it's one one at the bottom.
+
+So I suggest we keep the top bar for the website name and/or logo, and we put the navigation right below it. With a bit of clever JavaScript we will be able to keep that nav bar always at the top of the screen solving the problem of navigation.
+
+This is a little preview of the HTML structure:
+<pre lang="html4strict"><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+<title>iPhone version</title>
+</head>
+
+<body>
+	<h1 id="header">My Website</h1>
+    <div id="wrap">
+    	<h2>About this website:</h2>
+    	<div class="box">
+            <div class="text">Some text in a nice rounded box</div>
+        </div>
+        <h2>Some links:</h2>
+        <div class="box">
+            <ul>
+                <li><a href="#">Element 1</a></li>
+                <li><a href="#">Element 2</a></li>
+                <li><a href="#">Element 3</a></li>
+                <li><a href="#">Element 4</a></li>
+                <li><a href="#">Element 5</a></li>
+            </ul>
+        </div>
+        <p align="center">&copy; UrbanoAlvarez.es</p>
+    </div>
+</body>
+</html></pre>
+Here you can see a very simple HTML markup, with all the content inside a wrap, and then inside boxes. To create the effects such as rounded corners, shadows... etc we can make use of Webkit's advanced <a href="http://www.css3.info/">CSS3</a> features, which all work on the iPhone luckily!
+
+So let's start styling all of that!
+<h2>The CSS:</h2>
+If we want to stay with an iPhone-like design, we will have a top bar with the logo, and maybe a search button, and below that with a light background our content. Each "box" of content will be of white background and with nice rounded corners. This will make our website resemble a lot the look of a real iPhone.
+<pre lang="css"><style type="text/css">
+<!--
+body{
+	background:#D5DCE1 url(images/pinstripes-classic.gif);
+	margin:0;
+	padding:0;
+	font: 13px Helvetica;
+	-webkit-text-size-adjust: none;
+}
+h1{
+	display:block;
+	background:#000000;
+	color:#FFFFFF;
+	padding:10px;
+	margin:0;
+}
+h2{
+	color:#333333;
+	text-shadow:#FFFFFF 0 1px;
+	padding:0;
+	margin:10px 0 10px 0;
+}
+#wrap{
+	margin:10px;	
+}
+.box{
+	margin:10px 0 10px 0;
+	display:block;
+	-webkit-border-radius: 10px;
+	background:#FFFFFF;
+	padding:1px;
+}
+.box .text{
+	padding:10px;
+}
+.box ul{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+.box ul li{
+	margin:0;
+	padding:10px 3px 10px 3px;
+	background:url(images/arrow.png) right 50% no-repeat;
+	display:block;
+}
+.box ul li a{
+	display:block;
+	text-decoration:none;
+	color:#333333;
+}
+.box ul li:first-child{
+	margin-top:10px;
+}
+.box ul li:last-child{
+	margin-bottom:10px;
+}
+.box ul li:nth-child(odd){
+	background:#F9F9F9 url(images/arrow.png) right 50% no-repeat;
+}
+-->
+</style></pre>
+As you can see this CSS code uses a lot of CSS3 selectors and properties, since they are fully supported on the iPhone. This makes our live a lot easier, specially when dealing with rounded corners, shadows, alternating row colors... etc
+
+I have just designed <a href="http://urbanoalvarez.es/blog/iphone/index.htm">a very simple site</a> to show you how this can be achieved.
+The background image and the arrows are from the great <a href="http://www.bravenewcode.com/products/wptouch/">WP Touch plugin</a>.
+
+<h2>Next release:</h2>
+This was Part 1 of my Full guide to web development on the iPhone, and it was the basics. In my next part we will add some JavaScript functionality to ensure a smooth user interaction with the site, different CSS rules for landscape and portrait mode, and some other advanced things we can do to make our site stand out from the crowd,
+
+Take care!
+Alex
+<script name="a94f5626-5d47-11df-b2eb-1231390f74c1" src="http://izearanks.com/itk/show/urbanoalvarez-es-blog" type="text/javascript"></script>

@@ -1,0 +1,54 @@
+---
+layout: post
+title: JW Player Captions
+tags:
+- captions
+- flash
+- Javascript
+- jw player
+- stream
+- translate
+- video
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _s2mail: 'yes'
+---
+[caption id="attachment_481" align="alignright" width="400" caption="JW Player with captions"]<a href="http://chevismo.com/pic/17.jpg"><img src="http://chevismo.com/pic/1-17.jpg" alt="JW Player with captions" title="JW Player with captions" width="400" height="229" class="size-full wp-image-481" /></a>[/caption]
+Captions are a great way to offer multi-lingual media content on your site, but they don't seem easy to add right? Well with the right tools and guidance, it will be very easy:
+<h2>Setting everything up:</h2>
+In order for captions to work flawlessly on every major browser, we will be using JW Player version <strong>4.5</strong> (At the time of writing, version 5 and 5.1 don't seem to work well in Internet Explorer)
+
+Once you have that version ready, add the following Flashvars:
+<pre lang="html4strict">
+<param name="flashvars" value="plugins=captions-1&amp;captions=/captions.xml" />
+</pre>
+Of course you may leave all the other Flashvars you had before (Specially <em>file</em> ;) )
+
+<h2>The XML file:</h2>
+Now that the player is ready, we need to setup the XML file with the captions, so create <em>captions.xml</em> and write the following:
+<pre lang="xml">
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/10/ttaf1" xmlns:tts="http://www.w3.org/2006/10/ttaf1#style">
+  <body>
+    <div xml:id="captions">
+      <p begin="00:00:00" end="00:00:4">Subtitle 1</ p>
+      <p begin="00:00:4" end="00:00:6">Subtitle 2</ p>
+      <p begin="00:00:10" end="00:00:12">Subtitle 3</ p>
+    </div>
+  </body>
+</tt>
+</pre>
+As you can see, all we need is to change the Subtitle text, and the begin and end times of each, to set those up.
+<h3>Generate the XML file with PHP:</h3>
+If you want to change the language dynamically, you could use PHP to generate the XML using the following headers:
+<pre lang="php">
+header("Content-type: text/xml");
+header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past (no cache)
+// And now all the XML data as before
+</pre>
+If you want to learn how to easily translate your website read <a href="http://urbanoalvarez.es/blog/2010/03/22/best-website-translation-method/">my article on that </a>too!
+
+Hope you found this useful!

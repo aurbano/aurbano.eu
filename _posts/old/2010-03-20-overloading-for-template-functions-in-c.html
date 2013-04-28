@@ -1,0 +1,101 @@
+---
+layout: post
+title: Overloading > for template functions in C++
+tags:
+- C++
+- istream
+- operators
+- ostream
+- overload
+- Programming
+- stl
+- templates
+- vector
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+You probably know that the ostream and istream operators (&lt;&lt; and &gt;&gt;) can be overloaded for your custom classes, but let's take a look at how to overload them for template classes like the vector class.
+<h2>Overloading for template functions</h2>
+The way this is done is by placing the keyword <em>template </em>before the function. After template we have to specify the type, or we can use a generic type T. Let me illustrate this with an example:
+<pre lang="cpp">// Overloading for a template of type int. For example vector&lt;int&gt;
+template<int> myFunction(){}
+
+// Overloading for any type
+template<typename T> myFunction(){}</pre>
+Alright so now that you know how to overload a template function, let's see how to overload them for the ostream and istream operators.
+
+For this example I will assume we are working with the STL Vector library, and the way I will modify the operators is the following:
+<ul>
+	<li>For the ostream operator (&lt;&lt;) I will display first the size of the vector and then it's elements</li>
+	<li>For the istream operator (&gt;&gt;) I will ask first for the size and then each of it's elements.</li>
+</ul>
+Let's see those functions:
+<pre lang="cpp">
+template<typename T> ostream & operator < <(ostream & o,vector<T> & v){
+      int s = v.size();
+      o < < s << endl;
+      for(int i=0;i<s;i++){
+           o << v[i] << endl;
+      }
+      return o; 
+}
+template<typename T> istream & operator >>(istream & i,vector<t> & v){
+      int s;
+      i >> s;
+      T holder;
+      for(int a=0;a<s ;a++){
+           i >> holder;
+           v.push_back(holder);
+      }
+      return i; 
+}</pre>
+The only thing to take into account here is the holder variable I have created in the istream overloaded operator. Instead of directly using i &gt;&gt; v[a]; because that would throw an error, I created a variable holder of type T (The same as the vector) and then we "hold" the vector element before adding it to the vector v.
+
+Notice that in the istream operator we don't create the vector and then return it, because we already have it's reference in v. We use push_back because v could have no elements.
+<h2>In practice:</h2>
+Let me show you a rather simple main using this two operators with two vectors of type int and float to show you that it works with any type of data.
+<pre lang="cpp">#include <iostream>
+#include <vector>
+using namespace std;
+
+template<typename T> ostream & operator < <(ostream & o,vector<T> & v){
+      int s = v.size();
+      o < < s << endl;
+      for(int i=0;i<s;i++){
+           o << v[i] << endl;
+      }
+      return o; 
+}
+template<typename T> istream & operator >>(istream & i,vector<t> & v){
+      int s;
+      i >> s;
+      T holder;
+      for(int a=0;a<s ;a++){
+           i >> holder;
+           v.push_back(holder);
+      }
+      return i; 
+}
+
+int main(){
+    // Creamos dos vectores a y b
+    vector<int> a;
+    vector<float> b;
+    
+    // Usando el operador sobrecargado de extraccion les damos valores:
+    cout < < "Please enter the size of a vector of integers, then its elements: ";
+    cin >> a;
+    cout < < "\nNow the same with floats for another vector: ";
+    cin >> b;
+    
+    // Y finalmente los mostramos por pantalla:
+    cout < < "\nThe values of both vectors (First the size then the elements): ";
+    cout << "\nIntegers: " << a << "\nFloating point: " << b;
+    
+    cin.get();cin.get();
+    return 0;    
+}</pre>
+<div>And there you go, I hope you could understand this little guide ;)</div>
