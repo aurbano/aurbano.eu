@@ -8,5 +8,11 @@
 	</buildSpec>
 	<natures>
 		<nature>com.aptana.projects.webnature</nature>
-	</natures>
+
+		<buildCommand>
+			<name>com.aptana.ide.core.unifiedBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+      </natures>
 </projectDescription>
