@@ -14,12 +14,8 @@ tags:
   - tabs
   - ui
 ---
-# 
 
-[![The Programmers Hierarchy][2]][2]
-The Programmers Hierarchy
 
-I hope you enjoy this ![;)][2] 
+I have decided to move my blog to Jekyll, [for several reasons](http://carlboettiger.info/2012/05/01/Jekyll-vs-Wordpress.html) and in the process of doing so I reviewed many of my older posts.
 
- []: http://urbanoalvarez.es/blog/wp-content/uploads/2009/11/hierarchy.jpg
- [2]: http://urbanoalvarez.es/blog/wp-includes/images/smilies/icon_wink.gif
+I ended up deleting many posts that I considered not to be good enough, although I left this message to avoid generating tons of 404s... 

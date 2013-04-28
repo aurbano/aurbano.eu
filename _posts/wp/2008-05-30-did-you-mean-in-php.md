@@ -30,7 +30,7 @@ It is the [Levenshtein ][2]algorithm, which basically finds the number of charac
 
  [2]: http://www.php.net/manual/en/function.levenshtein.php
 
-    < ?php
+    <?php
     // input misspelled word
     $input = 'carrrot';
     
@@ -79,7 +79,7 @@ For example, the following code:
  [3]: http://www.php.net/manual/en/function.soundex.php
  [4]: http://www.php.net/manual/en/function.metaphone.php
 
-    < ?php
+    <?php
     echo soundex('beard').'  
     ';
     echo soundex('bird').'  

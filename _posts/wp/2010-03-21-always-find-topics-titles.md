@@ -14,12 +14,9 @@ tags:
 ---
 # 
 
-[![Google Insights preview][2]][2]
-Google Insights Search
+##Google Insights Search
 
 You probably struggle to find new topics, and once you do, it’s really hard to know how to title them. We want them *good, concise, and “juicy”*, and that is not easy.
-
- []: http://urbanoalvarez.es/blog/wp-content/uploads/2010/03/search-stats.gif
 
 Well, there are lot’s of people that read guides on writing, that use this “amazing” titles that “grab” people’s attention. But well, who wants to spend that much time only for that?
 

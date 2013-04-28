@@ -16,22 +16,15 @@ tags:
 
 This is what you will achieve at the end of the tutorial:
 
-[![GTA-like photo][2]][2]
+![GTA-like photo](http://urbanoalvarez.es/blog/wp-content/uploads/2008/06/paul.jpg)
 
-[Click to enlarge][2]
-
- []: http://urbanoalvarez.es/blog/wp-content/uploads/2008/06/paul.jpg
- [2]: http://urbanoalvarez.es/blog/wp-content/uploads/2008/06/paul.jpg
 
 ## The Tutorial
 
 To start things up you’ll need several things, first of course Photoshop, then look for a picture of yourself or a friend looking “GTA-style”. I found this one in a friends’ profile:
 
-[![Beach photo][4]][4]
-
 [Click for full-res photo][4]
 
- []: http://urbanoalvarez.es/blog/wp-content/uploads/2008/06/img_0087.jpg
  [4]: http://urbanoalvarez.es/blog/wp-content/uploads/2008/06/img_0087.jpg
 
 ### Starting up
@@ -48,12 +41,11 @@ You’ll get something like this:
 
 Now it’s time to get a nice background for our pic. I recommend for this getting a real screenshot of the game, to make it more realistic. Searching in Google Images I found this one:
 
-[![GTA Background][7]][7]
+[Click for full-res photo][4]
 
 Put it behind the guy’s pic, and move it, resize it, retouch it, until you get it looking nice.  
 At this stage I’ve got this:
 
- []: http://www.joergspielt.de/wp-content/uploads/gta-san-andreas.jpg
  [7]: http://www.joergspielt.de/wp-content/uploads/gta-san-andreas.jpg
 
 ![With background][8]

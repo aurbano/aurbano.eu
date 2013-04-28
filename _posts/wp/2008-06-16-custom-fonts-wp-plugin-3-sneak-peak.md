@@ -12,11 +12,10 @@ Some of you might already have heard of my plugin, [Custom Fonts][1], and others
 
  [1]: http://urbanoalvarez.es/blog/plugins/custom-fonts-plugin/
 
-[![Custom fonts plugin - version 3][3]][3][Click to enlarge][3]
+[Custom fonts plugin - version 3][3]
 
 As you can see, the design has been greatly improved, while still using tabbed interface. Here I will detail the new features:
 
- []: http://urbanoalvarez.es/blog/wp-content/uploads/2008/06/custom_fonts_3.jpg
  [3]: http://urbanoalvarez.es/blog/wp-content/uploads/2008/06/custom_fonts_3.jpg
 
 *   It uses the latest version of sIFR (3) and all of the new capabilities it offers

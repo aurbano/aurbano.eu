@@ -12,11 +12,10 @@ I was tirelessly wasting some time on a redesign for a client’s website yester
 
 ![Web Designer Font][1] 
 
-Anyway, you may download and use the font (It is really useful sometimes ![:)][2] )
+Anyway, you may download and use the font (It is really useful sometimes !)
 
  [1]: http://urbanoalvarez.es/blog/wp-content/uploads/2008/05/webfont.gif "Web Designer Font"
- [2]: http://urbanoalvarez.es/blog/wp-includes/images/smilies/icon_smile.gif
 
-*   [Download zip file][3] – 18,2Kb ([downloadcounter(webfont)] downloads)
+*   [Download zip file][3] – 18,2Kb
 
- [3]: [download(webfont)]
+ [3]: http://urbanoalvarez.es

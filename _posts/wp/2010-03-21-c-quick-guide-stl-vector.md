@@ -135,6 +135,4 @@ We also have some functions to work on iterators. I will keep on using the previ
     // To get the value of the element the iterator is pointing to we can simply access the pointed memory spot:
     int value = *iter;
 
-And this is the basics of the Vector STL, hope you enjoyed it ![;)][2] 
-
- [2]: http://urbanoalvarez.es/blog/wp-includes/images/smilies/icon_wink.gif
+And this is the basics of the Vector STL, hope you enjoyed it !

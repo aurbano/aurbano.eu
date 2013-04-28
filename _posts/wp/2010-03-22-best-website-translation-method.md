@@ -10,7 +10,7 @@ tags:
   - gettext
   - localisation
   - translate
-  - _()
+  - \_()
 ---
 # 
 
@@ -83,12 +83,12 @@ Go to the root of your website and create a new folder called *locale*, inside t
 
 Now inside each of these folders (In my example inside the folder es\_ES) you will have to create another folder called LC\_MESSAGES. So your folder structure for the example would look like this:
 
-./
-
-*   locale 
-    *   es_ES 
-        *   LC_MESSAGES
-*   Other folders and files in your root…
+	./
+	
+	locale 
+    	es_ES 
+        	LC_MESSAGES
+	Other folders and files in your root…
 
 Now that the folder structure is set up, we need to get a gettext translation program. Download and install [Poedit][5] (Note that it has Windows, Mac and Linux versions, and that it’s free)
 
@@ -131,7 +131,7 @@ Alright so let me walk you through all the steps you should have taken:
 1.  Create the file local.php and include it in every file you want to translate
 2.  Create the subdomains and point them to the root
 3.  Configure all the variables in local.php
-4.  Wrap all the text you want to translate in _(‘*Your text here*‘)
+4.  Wrap all the text you want to translate in \_(‘*Your text here*‘)
 5.  Create the folder structure and the messages.mo files using Poedit
 6.  Upload everything to the server
 

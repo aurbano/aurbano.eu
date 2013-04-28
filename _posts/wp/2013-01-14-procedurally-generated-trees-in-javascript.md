@@ -143,12 +143,10 @@ So off we go, just for now I will test the idea with a loop that draws small seg
     	}
     
 
-[![Generated tree step 1][5]][5]
+[![Generated tree step 1](http://urbanoalvarez.es/blog/2013/01/14/procedurally-generated-trees-in-javascript/tree1/)][5]
 Figure 1: Initial developmentTo execute we simply need to call 
 
 **branch(WIDTH/2,HEIGHT,0,-1,15,0)**, although you can change however you want the first 4 arguments. **lifetime** should start in 0, since it is the cycle counter. I’ve used the **sleep** variable to control how long it waits before drawing the next line, this way you get a sense of real drawing. If you set it to 0 the tree simply appears.
-
- []: http://urbanoalvarez.es/blog/2013/01/14/procedurally-generated-trees-in-javascript/tree1/
 
 As you can see in Figure 1 the technique of stacking lines works very well, it even gives a little texture to the tree. We should now add some branches, the idea here is to treat the branches as new “trees”, thus reusing the function branch.
 
@@ -165,12 +163,10 @@ After some testing I’ve ended up with this condition: **w-lifetime*loss < 9**.
     }
     
 
-[![Step two][6]][6]
+[![Step two](http://urbanoalvarez.es/blog/2013/01/14/procedurally-generated-trees-in-javascript/tree2/)][6]
 Figure 2: Fully developed treeI have added some randomness to the direction in which branches start to grow by using a sine and cosine along with a random number and the current lifetime. That should give us a random direction from -1 to 1 in both axis. 
 
 **mainLoss** is a coefficient that determines how much width is lost by the main branch.
-
- []: http://urbanoalvarez.es/blog/2013/01/14/procedurally-generated-trees-in-javascript/tree2/
 
 We should now have a working tree generator, although some variable tweaking is required to get the shape right. Once I got the variables and function a little improved I moved everything to an object, so that I could use [dat.gui][6] and control the variables more easily (and also because JS people love experiments with dat.gui)
 
@@ -196,6 +192,4 @@ One thing that JavaScript is still lacking, a lot, is thread support, which woul
 
 HTML5 canvas is an amazing technology, and after working with it for a while you realize that it probably is the future of graphics on the web.
 
-[![A colorful forest][10]][10]
-
- []: http://lab.nuostudio.com/treegenerator
+[![A colorful forest](http://lab.nuostudio.com/treegenerator)][10]

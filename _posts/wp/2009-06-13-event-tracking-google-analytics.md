@@ -43,11 +43,8 @@ That *var pageTracker* is what holds the tracking object.
 
 Imagine we have a site where we feature some sort of mp3 downloads. And we want to track those with Analytics. In the link to the file we would put:
 
-    [Download song][2]
+    <a href="song_file.mp3" title="Download file">Download song</a>
     
-
- [2]: song_file.mp3 "Download file"
-
 As you can see we use the function *_trackEvent*, from the pageTracker object. This function takes 4 parameters, Category name, action name and a label and value:
 
     _trackEvent(category, action, optional_label, optional_value)

@@ -57,12 +57,12 @@ It has compromised servers in Republic of Korea, Taiwan and some other countries
 
 The bot basically tries to insert the following PHP line:
 
-    < ?php /* Fx29ID */ echo("FeeL"."CoMz"); die("FeeL"."CoMz"); /* Fx29ID */ ?>
+    <?php /* Fx29ID */ echo("FeeL"."CoMz"); die("FeeL"."CoMz"); /* Fx29ID */ ?>
     
 
 Although there is another variation which inserts:
 
-    < ?php
+    <?php
         function ConvertBytes($number) {
         $len = strlen($number);
         if($len < 4) {

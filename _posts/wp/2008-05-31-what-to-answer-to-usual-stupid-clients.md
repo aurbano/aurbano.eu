@@ -30,7 +30,7 @@ This is a compilation of REALLY stupid client quotes, and what you or your compa
     Us: “Can you give us your definition of ‘edgy’”?
 7.  **CLIENT**: “I need to get a website, but I don’t have a computer or the internet.”  
     Us: “If you want to have us design a website, please at least have access to the internet. We can not fax you mock ups.”
-8.  **CLIENT**: “We want our site to look exactly like \*\*\*|\\*\**|.com. Can you just copy that site?”  
+8.  **CLIENT**: “We want our site to look exactly like \*\*\*.com. Can you just copy that site?”  
     Us: “Please do not ask us to procure images and/or information straight off an existing website or copy the design of an existing website exactly. We do not work like that and each one of the products we undertake is unique and original.”
 9.  **CLIENT** “Can I have some nice animations, blinking text, and flashy stuff to ‘Catch the eye’ of my customers? I just want to have something original”:  
     “No, you really don’t want to use multiple frames, big animated gifs, flashing text, a cute wav that starts playing when your page opens, cryptic and “artsy” menus, “splash” pages with lengthy Flash movies or have every page of your site look “just a little different”. You don’t. Really. Now stop asking.”

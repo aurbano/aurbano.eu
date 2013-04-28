@@ -25,11 +25,11 @@ First of all we have [cForms][2] which if I had to explain it to someone that kn
 
 So if you just want a contact form, good and simple, there are many good plugins out there that do the job perfectly,
 
-## [Contact Form ][][3]:
+## [Contact Form ][3]:
 
  [3]: http://chip.cuccio.us/projects/contact-form-ii/
 
-Which, as they say, "[it] is a WordPress plugin, that offers a simple drop-in contact form in any new/existing post/page”. It is a nice plugin although you will never get any support from the author, so be careful on this one.
+Which, as they say, "\[it\] is a WordPress plugin, that offers a simple drop-in contact form in any new/existing post/page”. It is a nice plugin although you will never get any support from the author, so be careful on this one.
 
 ## [Contact Form Plugin][4]:
 

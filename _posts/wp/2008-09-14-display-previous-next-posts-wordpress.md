@@ -20,12 +20,12 @@ This is a really good option in WordPress, yet very few know how to do it. Well 
 
 If you want to plainly display the next post after the one the user is reading, use the following function:
 
-    < ?php next_post_link(); ?>
+    <?php next_post_link(); ?>
     
 
 Now this function has several (very useful) parameters, which are:
 
-    < ?php next_post_link('format', 'link', in_same_cat, 
+    <?php next_post_link('format', 'link', in_same_cat, 
                              'excluded_categories'); ?> 
     
 
@@ -33,14 +33,14 @@ Now this function has several (very useful) parameters, which are:
 
 **Link:** To display a custom text instead of the post title, for example if you want “Next post” use:
 
-    < ?php next_post_link('%link', 'Next post in category', TRUE); ?> 
+    <?php next_post_link('%link', 'Next post in category', TRUE); ?> 
     
 
 **in\_same\_cat:** A very handy parameter if you want to display only the next post of the same category. Set to TRUE if you want it that way, or FALSE if you simply want the next post.
 
 You can use one more parameter to exclude categories, for example:
 
-    < ?php next_post_link('%link', 'Next post in category', TRUE, '13'); ?>
+    <?php next_post_link('%link', 'Next post in category', TRUE, '13'); ?>
     
 
 And now the next post will be from the same category, unless that category is 13 (The id, check in the administration panel)

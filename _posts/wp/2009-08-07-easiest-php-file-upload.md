@@ -26,7 +26,7 @@ I want to share with all of you a file upload class I have developed, that makes
 
 First of all, here is the PHP class you will need:
 
-    < ?php
+    <?php
     //Uploader class, by Alex
     // This class is meant to handle all kinds of file uploads for DJs Music
     // Images, music... all here
@@ -124,7 +124,6 @@ First of all, here is the PHP class you will need:
     //Initialize the object:
     $up = new Uploader;
     ?>
-    
 
 Alright this is the code. You shouldn’t have to modify it, simply include it where you process the upload and the class will initiate itself inside the variable *$up*
 
@@ -140,7 +139,7 @@ In the file process.php we will first include the upload handler, then configure
 
 process.php:
 
-    < ?php
+    <?php
     //include the class:
     include('handleUpload.php');
     $up->config('2000000','jpg,gif,png');
