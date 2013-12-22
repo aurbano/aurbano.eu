@@ -18,6 +18,7 @@ tags:
 --- 
 
 > This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+> All images were stripped from the post in the process, I'll try to get them back as soon as I can.
 
 Over the past year I\'ve been more and more interested in HTML5 canvas, since it allows very fast development of graphical animations using JavaScript.
 
@@ -35,6 +36,8 @@ Before we move any further let me say that this article is aimed at people with 
 
 I don\'t have any template for starting a new canvas project, but I do have some guidelines I like to follow. Below is the usual starting point
 
+
+{% highlight javascript linenos %}
     $(document).ready(function(e) {
     	var ctx;
     	var WIDTH;
@@ -102,7 +105,7 @@ I don\'t have any template for starting a new canvas project, but I do have some
     	$(document).mousemove(mouseMove);
     	$(window).resize(resizeCanvas);
     });
-    
+{% endhighlight %}
 
 I know this is not optimized, and defines all variables inside the global namespace, but I like to start with a very quick prototype before I improve code design. I also use jQuery, although only for event binding such as window resize. As for the HTML, I simply start with a blank page containing a canvas element.
 
@@ -118,31 +121,32 @@ Another requirement is that we start with a thick line, until we reach final bra
 
 So off we go, just for now I will test the idea with a loop that draws small segments all in a row, introducing a little variation on the next point\'s coordinates, with an initial width of 20 for example, and reducing it by a small quantity on each iteration. We should get a long wiggly line getting thinner until it \"dies\" at the end. I have extracted all useful variables to outside the function so that we can easily configure it.
 
+{% highlight ruby linenos %}
     var loss = 0.1;		// Width loss per cycle
-    	var sleep = 10;		// Min sleep time (For the animation)
-    	var branchLoss = 0.9;	// % width maintained for branches
-    	var mainLoss = 0.9;	// % width maintained after branching
-    	var speed = 0.3;	// Movement speed
-    	var scatterRange = 5;	// Area around point where leaf scattering should occur
-    	
-    	// Starts a new branch from x,y. w is initial w
-    	// lifetime is the number of computed cycles
-    	function branch(x,y,dx,dy,w,lifetime){
-    		ctx.lineWidth = w-lifetime*loss;
-    		ctx.beginPath();
-    		ctx.moveTo(x,y);
-    		// Calculate new coords
-    		x = x dx;
-    		y = y dy;
-    		// Change dir
-    		dx = dx Math.sin(Math.random() lifetime)*speed;
-    		dy = dy Math.cos(Math.random() lifetime)*speed;
-    		//
-    		ctx.lineTo(x,y);
-    		ctx.stroke();
-    		if(w-lifetime*loss>=1) setTimeout(function(){ branch(x,y,dx,dy,w,  lifetime); },sleep);
-    	}
-    
+	var sleep = 10;		// Min sleep time (For the animation)
+	var branchLoss = 0.9;	// % width maintained for branches
+	var mainLoss = 0.9;	// % width maintained after branching
+	var speed = 0.3;	// Movement speed
+	var scatterRange = 5;	// Area around point where leaf scattering should occur
+	
+	// Starts a new branch from x,y. w is initial w
+	// lifetime is the number of computed cycles
+	function branch(x,y,dx,dy,w,lifetime){
+		ctx.lineWidth = w-lifetime*loss;
+		ctx.beginPath();
+		ctx.moveTo(x,y);
+		// Calculate new coords
+		x = x dx;
+		y = y dy;
+		// Change dir
+		dx = dx Math.sin(Math.random() lifetime)*speed;
+		dy = dy Math.cos(Math.random() lifetime)*speed;
+		//
+		ctx.lineTo(x,y);
+		ctx.stroke();
+		if(w-lifetime*loss>=1) setTimeout(function(){ branch(x,y,dx,dy,w,  lifetime); },sleep);
+	}
+{% endhighlight %}
 
 [![Generated tree step 1](http://urbanoalvarez.es/blog/2013/01/14/procedurally-generated-trees-in-javascript/tree1/)]
 Figure 1: Initial developmentTo execute we simply need to call 
@@ -193,5 +197,3 @@ JavaScript provides an amazing engine for graphic development, on most computers
 One thing that JavaScript is still lacking, a lot, is thread support, which would be really useful for a project like this.
 
 HTML5 canvas is an amazing technology, and after working with it for a while you realize that it probably is the future of graphics on the web.
-
-[![A colorful forest](http://lab.nuostudio.com/treegenerator)]

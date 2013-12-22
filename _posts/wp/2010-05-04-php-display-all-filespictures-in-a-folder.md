@@ -18,12 +18,14 @@ If we want to create a quick gallery of files/pictures, it is quite a pain to do
 
 Let\'s suppose we are in the base directory (*www.mysite.com/gallery.php*) and the pictures are in a folder named pictures (*www.mysite.com/pictures/*), open gallery.php and where you want the pictures to appear, use this code:
 
+{% highlight php linenos %}
     $handle = opendir(dirname(realpath(__FILE__)).'/pictures/');
-    		while($file = readdir($handle)){
-    			if($file !== '.' &#038;&#038; $file !== '..'){
-    				echo 'pictures/'.$file;
-    			}
-    		}
+	while($file = readdir($handle)){
+		if($file !== '.' &#038;&#038; $file !== '..'){
+			echo 'pictures/'.$file;
+		}
+	}
+{% endhighlight %}
 
 This code is really easy to understand, we first define a variable \"$handle\", which will contain the handle to the absolute path of the folder (I always go for absolute paths since I find them much safer)  
 *dirname(realpath(\_\_FILE\_\_))* returns the absolute path to the current file (gallery.php) and then we add to the end of it /pictures/

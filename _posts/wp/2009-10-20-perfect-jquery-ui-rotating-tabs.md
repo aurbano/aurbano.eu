@@ -36,35 +36,6 @@ With [jQuery][2] and [jQuery UI][3] it is dead simple. First, load the JS librar
 
 Remember to include also the *CSS files* for the UI Theme! Otherwise the tabs won\'t seem to work!
 
-### The HTML for the tabs:
-
-We need a little HTML for our tabs to work:  
-A wrapper, a few divs with the content, and an unordered list with the tabs:
-
-    
-    
-    	
-    *   [Tab 1][4]
-    	
-    *   [Tab 2][5]
-    	
-    *   [Tab 3][6]
-    
-    
-    
-    Tab 1 content
-    
-    
-    Tab 2 content
-    
-    
-    Tab 3 content
-    
-
- [4]: #tab1
- [5]: #tab2
- [6]: #tab3
-
 ### The JavaScript:
 
 Now comes the cool part, basically we want to have tabs. But although tabs are nice, people may not realize there is more content, or they might be just too lazy to browse through it, so, why not *rotate* through the tabs?  
@@ -72,6 +43,7 @@ jQuery UI does that by itself with a very simple commant, but it is **not** perf
 
 So here is how this is achieved:
 
+{% highlight javascript linenos %}
     $(document).ready(function(){
     	$("#tabs-rotate").tabs({ fx: { opacity: 'toggle' } }).tabs('rotate', 3000);
     	$('#tabs-rotate').hover(function(){
@@ -81,6 +53,7 @@ So here is how this is achieved:
     		}
     	);
     });
+{% endhighlight %}
 
 First we instruct jQuery UI to set up tabs in that div, and to rotate them. Then we use a hover event to control the rotation. On hover no rotation, and on out resume rotation.
 
@@ -90,11 +63,12 @@ Now you may want to stop rotation completely when a tab is clicked. This can be 
 
  [7]: http://api.jquery.com/unbind/
 
+{% highlight javascript linenos %}
     $('#tabs').click(function(){
     	$(this).tabs('rotate', 0, false);
     	$(this).unbind('hover');
     });
-    
+{% endhighlight %}
 
 ## See it in action
 
