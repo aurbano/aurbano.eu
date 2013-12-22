@@ -13,6 +13,8 @@ tags:
   - tutorial
 --- 
 
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
 This is what you will achieve at the end of the tutorial:
 
 ![GTA-like photo](http://urbanoalvarez.es/blog/wp-content/uploads/2008/06/paul.jpg)

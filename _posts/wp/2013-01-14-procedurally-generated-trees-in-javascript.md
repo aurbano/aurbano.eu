@@ -17,6 +17,8 @@ tags:
   - tree
 --- 
 
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
 Over the past year I\'ve been more and more interested in HTML5 canvas, since it allows very fast development of graphical animations using JavaScript.
 
 Another thing that has always amazed me was procedurally generated content. Check out [Steven Wittens\' \"Making worlds\"][1], a wonderful article on generating planets from orbit to aerial zoom.

@@ -16,6 +16,8 @@ tags:
   - suggestion
 --- 
 
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
 In a new website I am developing for a client I had to add the usual \"Did you mean... ?\" in the search results for her. Si I started thinking for the easiest way to do this.
 
 There are actually a lot of php functions out there to look for similar text. The most obvious one?  

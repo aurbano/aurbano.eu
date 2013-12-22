@@ -18,6 +18,8 @@ tags:
   - upload
 --- 
 
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
 If you ever wanted to calculate someone\'s age in PHP from a birth timestamp, you must take into account that the age is more than the number of years, since days and months are also important, so I wrote a simple function that will return the exact age for a given timestamp:
 
     function getAge($birth){

@@ -11,6 +11,8 @@ tags:
   - google chrome
 --- 
 
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
 ![Google Chrome][1]Well, it was time for web-giant Google to jump the gap between being the world leader in providing web-based services to actually providing... the web.
 
  [1]: http://www.google.com/chrome/intl/es/images/logo_sm.jpg

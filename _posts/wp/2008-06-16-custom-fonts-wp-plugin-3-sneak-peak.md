@@ -7,6 +7,8 @@ categories:
   - General talk
 --- 
 
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
 Some of you might already have heard of my plugin, [Custom Fonts][1], and others might even have tried it. Well, after many feature requests and many hours of development the next major release (version 3) is almost ready to be made public, here is a screenshot:
 
  [1]: http://urbanoalvarez.es/blog/plugins/custom-fonts-plugin/

@@ -15,6 +15,8 @@ tags:
   - virtual dj
 --- 
 
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
 Hi guys,  
 I\'m sure someday we will work for someone who wants an online radio statio, well, this is a quick guide to those
 

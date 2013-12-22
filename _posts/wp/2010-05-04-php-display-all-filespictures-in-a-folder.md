@@ -12,6 +12,8 @@ tags:
   - opendir
 --- 
 
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
 If we want to create a quick gallery of files/pictures, it is quite a pain to do so manually. And since this is some code I\'m always reusing I thought I might share it here with everyone else:
 
 Let\'s suppose we are in the base directory (*www.mysite.com/gallery.php*) and the pictures are in a folder named pictures (*www.mysite.com/pictures/*), open gallery.php and where you want the pictures to appear, use this code:

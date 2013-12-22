@@ -12,7 +12,8 @@ tags:
   - tables
   - wp
 ---
- 
+
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
 
 As a security tip you should always change the default table prefix \"wp_\", mainly to avoid zero-day vulnerabilities (Vulnerabilities that haven\'t been discovered yet), or JavaScript SQL injection.
 

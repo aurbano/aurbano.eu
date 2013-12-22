@@ -13,7 +13,8 @@ tags:
   - flash
   - password
 ---
-# 
+
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors. 
 
 Have you ever tried to access a computer\'s BIOS settings to find they are protected? Or maybe it was you and forgot the password. Either way don\'t worry since bypassing this simple password is as simple as following the following solutions:
 

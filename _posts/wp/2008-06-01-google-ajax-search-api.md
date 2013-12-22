@@ -14,7 +14,8 @@ tags:
   - google
   - search
 ---
-# 
+
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
 
 Discover a great way to embed really customized searches in your site, use the Google search API (Using AJAX)
 

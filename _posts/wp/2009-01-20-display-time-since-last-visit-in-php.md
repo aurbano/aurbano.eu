@@ -11,7 +11,8 @@ tags:
   - time
   - visit
 ---
-# 
+
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors. 
 
 Have you ever seen those social networking sites that display the time since your last visit? They do it in a very neat way actually, that is a lot more friendlier that simply \"Last login date...\"
 

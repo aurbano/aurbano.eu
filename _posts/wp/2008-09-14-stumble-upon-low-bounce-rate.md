@@ -10,6 +10,8 @@ tags:
   - stumble upon
 --- 
 
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
 This might seem strange, but the lowest bounce rate in my blog comes from Stumble Upon visitors. And this is not surprising, since I think that Stumble Upon is the most accurate way of getting your blog to your exact target audience.
 
 ![Stumble Upon Bounce Rate][1]

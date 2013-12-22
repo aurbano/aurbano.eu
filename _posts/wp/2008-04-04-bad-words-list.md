@@ -16,7 +16,8 @@ tags:
   - seo
   - words
 ---
- 
+
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
 
 Are you creating a new forum, IRC channel, or pretty much any kind of website where users can submit links and you need to control bad words?  
 Well I was in that situation a few days ago, and it took a very long time until I managed to find some resources, so here I\'ll try to post a bad words list that I\'ll keep on building on as I find more sources.

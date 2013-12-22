@@ -14,6 +14,8 @@ tags:
   - WordPress
 --- 
 
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
 Have you ever wondered how to assign an image to a certain post using WordPress? Surely there are some plugins that try to do this, and maybe they accomplish it, but probably slowing down your blog.
 
 Well, here is a way of doing it without slowing the blog or installing any sort of additional plugins. When you are done writing your post, upload an image to a directory that you will use for this, for example: \"www.yoursite.com/post_images/\". And I recommned that you name the image something that has to do with the post, it will help you if you need to edit it.

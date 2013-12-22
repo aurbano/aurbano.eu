@@ -15,6 +15,8 @@ tags:
   - restore
 --- 
 
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
 ![Recovery mode][1]
 Recovery mode
 
