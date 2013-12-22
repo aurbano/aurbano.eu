@@ -17,18 +17,18 @@ tags:
 ---
 # 
 
-In a new website I am developing for a client I had to add the usual “Did you mean… ?” in the search results for her. Si I started thinking for the easiest way to do this.
+In a new website I am developing for a client I had to add the usual \"Did you mean... ?\" in the search results for her. Si I started thinking for the easiest way to do this.
 
 There are actually a lot of php functions out there to look for similar text. The most obvious one?  
 [similar_text()][1]  
-You must pass 2 parameters plus an optional third. The two first are the strings to compare, and the optional one is the percentage of “closeness” you want them to have. It is quite useful, although it is too expensive in terms of time to use with huge database searches, so I wouldn’t recommend it.
+You must pass 2 parameters plus an optional third. The two first are the strings to compare, and the optional one is the percentage of \"closeness\" you want them to have. It is quite useful, although it is too expensive in terms of time to use with huge database searches, so I wouldn\'t recommend it.
 
- [1]: http://www.php.net/manual/en/function.similar-text.php
+[1]: http://www.php.net/manual/en/function.similar-text.php
 
-There are two other methods that might be good for some cases, and another function that is just the best. I’ll show you first the best way to achieve this:  
-It is the [Levenshtein ][2]algorithm, which basically finds the number of characters you must add, edit, or remove from a string to make it match another one. At first it doesn’t sound too useful, but take a look at this example:
+There are two other methods that might be good for some cases, and another function that is just the best. I\'ll show you first the best way to achieve this:  
+It is the [Levenshtein ][2]algorithm, which basically finds the number of characters you must add, edit, or remove from a string to make it match another one. At first it doesn\'t sound too useful, but take a look at this example:
 
- [2]: http://www.php.net/manual/en/function.levenshtein.php
+[2]: http://www.php.net/manual/en/function.levenshtein.php
 
     <?php
     // input misspelled word
@@ -76,8 +76,6 @@ The other ways I said that could be used for this are [soudex ][3]and [metaphone
 [Soundex ][3]will create a key that is the same for all words that are pronounced the same.  
 For example, the following code:
 
- [3]: http://www.php.net/manual/en/function.soundex.php
- [4]: http://www.php.net/manual/en/function.metaphone.php
 
     <?php
     echo soundex('beard').'  
@@ -95,14 +93,17 @@ Will produce this output:
     B600
     
 
-Where beard and bird are the same. This could make suggestions fast if you have already created a column in the mysql tables with the soundex key of the tags for example, so that you could search not only for the string, but also for its soundex key…  
-**UPDATE:** You can use [MySQL’s built in function SOUNDEX()][5] to search both for the string as-is, or for the soundex too, to provide also misspelled words.
+Where beard and bird are the same. This could make suggestions fast if you have already created a column in the mysql tables with the soundex key of the tags for example, so that you could search not only for the string, but also for its soundex key...  
+**UPDATE:** You can use [MySQL\'s built in function SOUNDEX()][5] to search both for the string as-is, or for the soundex too, to provide also misspelled words.
 
- [5]: http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_soundex
 
-And finally, the [metaphone ][4]function, is a variation of the soundex key that produces also a key that is the same for all words pronounced the same, but more accurately than soundex, since metaphone actually knows the rules of English pronounciation.  
+And finally, the [metaphone][4] function, is a variation of the soundex key that produces also a key that is the same for all words pronounced the same, but more accurately than soundex, since metaphone actually knows the rules of English pronounciation.  
 The use would be exactly the same as soundex, and if you are going to use something of the sort I would recommend metaphone over soundex for its improved accuracy.  
-But bear in mind that both soundex and metaphone won’t probably work fine in most other languages, or at least for languages with phonemes that don’t exist in English.
+But bear in mind that both soundex and metaphone won\'t probably work fine in most other languages, or at least for languages with phonemes that don\'t exist in English.
 
 Hope you found this useful,  
 Alex
+
+[3]: http://www.php.net/manual/en/function.soundex.php
+[4]: http://www.php.net/manual/en/function.metaphone.php
+[5]: http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_soundex

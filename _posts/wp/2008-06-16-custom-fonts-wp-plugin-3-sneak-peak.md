@@ -25,9 +25,9 @@ As you can see, the design has been greatly improved, while still using tabbed i
 *   Improved generation algorithms to speed up the process.
 *   Many other minor adjustments that improve small things in the plugin
 
-Visit the [plugin’s homepage][1] to get the current version
+Visit the [plugin\'s homepage][1] to get the current version
 
-I might have missed some features, so feel free to go on and try it whenever it is ready. If you want to be notified when it is finished, email me at ” alejandro at urbanoalvarez dot es ” or use my [contact form][4] with this as subject “subscribe:custom_fonts” and your email in the body. If any of those are missing you won’t go into the notifications list!
+I might have missed some features, so feel free to go on and try it whenever it is ready. If you want to be notified when it is finished, email me at \" alejandro at urbanoalvarez dot es \" or use my [contact form][4] with this as subject \"subscribe:custom_fonts\" and your email in the body. If any of those are missing you won\'t go into the notifications list!
 
  [4]: http://urbanoalvarez.es/blog/contact/
 

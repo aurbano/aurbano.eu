@@ -21,7 +21,7 @@ Today Google launched the Beta version of [Google Chrome][2], which will be the 
  [2]: http://www.google.com/chrome/index.html?hl=es&brand=CHMG&utm_source=es-hpp&utm_medium=hpp&utm_campaign=es
  [3]: http://www.google.com/googlebooks/chrome/
 
-I am actually writing this post from Google Chrome, to test it out, and I have to say that it is impressive, fast, smart… and a very long list of good things, although it is not as intuitive as I would like it to be. We are used to browsers like Firefox, Safari… and others that share a basic layout and style that Chrome has overthrown completely. Suddenly there are no “File”, “Edit”, “View” and all the usual windows tabs, there are almost no configuration options, but there is simplicity and ease instead, which combined find the perfect balance.
+I am actually writing this post from Google Chrome, to test it out, and I have to say that it is impressive, fast, smart… and a very long list of good things, although it is not as intuitive as I would like it to be. We are used to browsers like Firefox, Safari... and others that share a basic layout and style that Chrome has overthrown completely. Suddenly there are no “File”, “Edit”, “View” and all the usual windows tabs, there are almost no configuration options, but there is simplicity and ease instead, which combined find the perfect balance.
 
 The main drawback though is the lack of Extensions or plugins. I miss Stumbling Upon the web, my Firebug, and other small things that add up to a lot… Although I guess It’ll be just a matter of time until they develop the extension system and main developers prepare the “Chrome” version of the add-ons.
 

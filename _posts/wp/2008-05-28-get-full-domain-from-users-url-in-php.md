@@ -6,10 +6,9 @@ permalink: /blog/2008/05/28/get-full-domain-from-users-url-in-php/
 categories:
   - General talk
 ---
-# 
 
-If you are still interested after having read that huge title, sorry, I just couldn’t put that in fewer words…  
-What I’m going to post here is a php function that will create a standard url from a user-inputted url so that any string will be converted to a functioning url.
+
+What I\'m going to post here is a php function that will create a standard url from a user-inputted url so that any string will be converted to a functioning url.
 
 First it will convert all characters to lowercase:
 
@@ -24,7 +23,7 @@ Now add http:// if it is not at the beggining:
     }
     
 
-What strncasecmp does is it takes a string, and then a number. It then checks to see if that string is contained within the first (That second parameter) characters contain it. It returns 0 if it is found.  
+What **strncasecmp** does is it takes a string, and then a number. It then checks to see if that string is contained within the first (That second parameter) characters contain it. It returns 0 if it is found.  
 So in the example it checks to see if http:// is there, and if it is not, it adds it.
 
 Now strip all folders (This is optional, but here I will show how to make sure only the main domain is left
@@ -36,8 +35,8 @@ Now strip all folders (This is optional, but here I will show how to make sure o
     	}
     
 
-So now we’ve got something like “http://{user_input}/”.  
-Let’s make sure it has (or not) www. And if not, let’s add it (Just for consistency)
+So now we\'ve got something like \"http://{user_input}/\".  
+Let\'s make sure it has (or not) www. And if not, let\'s add it (Just for consistency)
 
     if(strncasecmp('www.',$url,4) !== 0){
     	//There is no www.
@@ -47,8 +46,8 @@ Let’s make sure it has (or not) www. And if not, let’s add it (Just for cons
     }
     
 
-Now we have “http://www.{user input}/” , we are basically done!  
-If you really want to this this correctly you could check if the URL exists, but this is just a waste of traffic from my point of view…  
+Now we have \"http://www.{user input}/\" , we are basically done!  
+If you really want to this this correctly you could check if the URL exists, but this is just a waste of traffic from my point of view...  
 So if you want to do this, create the following function:
 
     function url_exists($strURL) {
@@ -137,4 +136,4 @@ So the whole thing would be something like this:
 So that is basically it!  
 (This function is used for example in [my SEO analysis tool SE Crawler][1], to search for all documents in your site)
 
- [1]: http://urbanoalvarez.es/crawler/test.php
+[1]: http://urbanoalvarez.es/crawler/test.php
