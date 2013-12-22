@@ -148,8 +148,10 @@ So off we go, just for now I will test the idea with a loop that draws small seg
 	}
 {% endhighlight %}
 
-[![Generated tree step 1](http://urbanoalvarez.es/blog/2013/01/14/procedurally-generated-trees-in-javascript/tree1/)]
-Figure 1: Initial developmentTo execute we simply need to call 
+<div style="float:right">
+<img src="http://i1.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree1.png?resize=216%2C311" /><br />
+Figure 1: Initial developmentTo execute we simply need to call
+</div> 
 
 **branch(WIDTH/2,HEIGHT,0,-1,15,0)**, although you can change however you want the first 4 arguments. **lifetime** should start in 0, since it is the cycle counter. I\'ve used the **sleep** variable to control how long it waits before drawing the next line, this way you get a sense of real drawing. If you set it to 0 the tree simply appears.
 
@@ -160,6 +162,7 @@ In order to generate a new branch we must wait until the tree has grown enough, 
 After some testing I\'ve ended up with this condition: **w-lifetime\*loss < 9**. If that is met we will start a new branch, although that would mean that after that point is reached we will always start a new branch. To avoid that we add a little randomness by using: **Math.random() > 0.7**, supposing Math.random() returns a real random number the chances of that being true are almost 30%.
 
 
+{% highlight ruby linenos %}
     if(w-lifetime*loss < 9 &#038;&#038; lifetime > 30 Math.random()*250){
     	setTimeout(function(){
     		branch(x,y,2*Math.sin(Math.random() lifetime),2*Math.cos(Math.random() lifetime),(w-lifetime*loss)*branchLoss,0);
@@ -167,10 +170,12 @@ After some testing I\'ve ended up with this condition: **w-lifetime\*loss < 9**.
     		w *= mainLoss;
     	},sleep*Math.random() sleep);
     }
-    
+{% endhighlight %}
 
-[![Step two](http://urbanoalvarez.es/blog/2013/01/14/procedurally-generated-trees-in-javascript/tree2/)]
-Figure 2: Fully developed treeI have added some randomness to the direction in which branches start to grow by using a sine and cosine along with a random number and the current lifetime. That should give us a random direction from -1 to 1 in both axis. 
+<div style="float:right" class="caption">
+	<img src="http://i1.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree2.png?resize=250%2C379" /><br />
+	Figure 2: Fully developed treeI have added some randomness to the direction in which branches start to grow by using a sine and cosine along with a random number and the current lifetime. That should give us a random direction from -1 to 1 in both axis. 
+</div> 
 
 **mainLoss** is a coefficient that determines how much width is lost by the main branch.
 
@@ -190,10 +195,4 @@ The next thing I\'d like to do would be to use some 3D library (probably [three.
 
 [8]: http://mrdoob.github.com/three.js/
 
-## Conclusion
-
-JavaScript provides an amazing engine for graphic development, on most computers it runs really fast, this generator in particular can handle 20-30 trees being generated simultaneously with almost no hiccups.
-
-One thing that JavaScript is still lacking, a lot, is thread support, which would be really useful for a project like this.
-
-HTML5 canvas is an amazing technology, and after working with it for a while you realize that it probably is the future of graphics on the web.
+![Colorful forest](http://i2.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree3.png "Colorful forest")
