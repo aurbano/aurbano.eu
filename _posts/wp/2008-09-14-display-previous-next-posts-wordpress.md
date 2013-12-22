@@ -29,9 +29,9 @@ Now this function has several (very useful) parameters, which are:
                              'excluded_categories'); ?> 
     
 
-**Format:** For example bold (‘**%link**‘), italics (‘*%link*‘)… And so on, you can add here divs, p, span or anything you want to apply css classes or ids.
+**Format:** For example bold (\'**%link**\'), italics (\'*%link*\')... And so on, you can add here divs, p, span or anything you want to apply css classes or ids.
 
-**Link:** To display a custom text instead of the post title, for example if you want “Next post” use:
+**Link:** To display a custom text instead of the post title, for example if you want \"Next post\" use:
 
     <?php next_post_link('%link', 'Next post in category', TRUE); ?> 
     
@@ -45,10 +45,10 @@ You can use one more parameter to exclude categories, for example:
 
 And now the next post will be from the same category, unless that category is 13 (The id, check in the administration panel)
 
-If you want to exclude multiple categories you’ll have to use the “and” separator. It will work like this:  
-*’1 and 5 and 15′*  
-Note: If you are using WordPress 2.2, the concatenation method was a comma (‘,’). So you would use:  
-*’1,5,15′*
+If you want to exclude multiple categories you\'ll have to use the \"and\" separator. It will work like this:  
+*\'1 and 5 and 15\'*  
+Note: If you are using WordPress 2.2, the concatenation method was a comma (\',\'). So you would use:  
+*\'1,5,15\'*
 
 Of course to display previous posts substitute next by previous, with everything else being the same.
 

@@ -10,12 +10,11 @@ tags:
   - gallery
   - handle
   - opendir
----
-# 
+--- 
 
-If we want to create a quick gallery of files/pictures, it is quite a pain to do so manually. And since this is some code I’m always reusing I thought I might share it here with everyone else:
+If we want to create a quick gallery of files/pictures, it is quite a pain to do so manually. And since this is some code I\'m always reusing I thought I might share it here with everyone else:
 
-Let’s suppose we are in the base directory (*www.mysite.com/gallery.php*) and the pictures are in a folder named pictures (*www.mysite.com/pictures/*), open gallery.php and where you want the pictures to appear, use this code:
+Let\'s suppose we are in the base directory (*www.mysite.com/gallery.php*) and the pictures are in a folder named pictures (*www.mysite.com/pictures/*), open gallery.php and where you want the pictures to appear, use this code:
 
     $handle = opendir(dirname(realpath(__FILE__)).'/pictures/');
     		while($file = readdir($handle)){
@@ -24,7 +23,7 @@ Let’s suppose we are in the base directory (*www.mysite.com/gallery.php*) and 
     			}
     		}
 
-This code is really easy to understand, we first define a variable “$handle”, which will contain the handle to the absolute path of the folder (I always go for absolute paths since I find them much safer)  
+This code is really easy to understand, we first define a variable \"$handle\", which will contain the handle to the absolute path of the folder (I always go for absolute paths since I find them much safer)  
 *dirname(realpath(\_\_FILE\_\_))* returns the absolute path to the current file (gallery.php) and then we add to the end of it /pictures/
 
 Then, we loop through all the files in the directory, that simple if statement I used is to prevent some the function returning . or .. as file names sometimes. We then display the image in standard html

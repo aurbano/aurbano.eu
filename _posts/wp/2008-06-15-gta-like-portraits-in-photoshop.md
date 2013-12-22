@@ -11,8 +11,7 @@ tags:
   - photoshop
   - portrait
   - tutorial
----
-# 
+--- 
 
 This is what you will achieve at the end of the tutorial:
 

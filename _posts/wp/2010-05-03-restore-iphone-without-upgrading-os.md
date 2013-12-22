@@ -13,17 +13,16 @@ tags:
   - iPhone
   - OS
   - restore
----
-# 
+--- 
 
 ![Recovery mode][1]
 Recovery mode
 
-If you need to restore your iPhone you’ll notice iTunes tells you that upon restoring it, the latest version will be installed. This will be just fine for regular iPhones of course, but for the people who have a Jailbroken iPhone, it’s not ok (At least until the newest version is ready for jailbreak)
+If you need to restore your iPhone you\'ll notice iTunes tells you that upon restoring it, the latest version will be installed. This will be just fine for regular iPhones of course, but for the people who have a Jailbroken iPhone, it\'s not ok (At least until the newest version is ready for jailbreak)
 
  [1]: http://www.iphoneheat.com/wp-content/uploads/2009/06/iphone-recovery-mode-2.jpg "Recovery mode"
 
-Well don’t panic since this is a **really simple** thing to do, first, download the [iPhone firmware][2] you want to restore into. For my example I will use the iPhone 3.1.2, so get the IPSW (*iPhone Software*) and then move on to the next step.
+Well don\'t panic since this is a **really simple** thing to do, first, download the [iPhone firmware][2] you want to restore into. For my example I will use the iPhone 3.1.2, so get the IPSW (*iPhone Software*) and then move on to the next step.
 
  [2]: http://www.quickpwn.com/2009/10/jailbreak-and-unlock-iphone-3-1-2.html
 

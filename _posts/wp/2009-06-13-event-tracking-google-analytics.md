@@ -12,19 +12,18 @@ tags:
   - event
   - google
   - tracking
----
-# 
+--- 
 
 Hello everyone,  
-As most people do, I’m sure you use [Google Analytics ][1]for the stat metrics for some of your sites, so you’ll love this new feature:
+As most people do, I\'m sure you use [Google Analytics ][1]for the stat metrics for some of your sites, so you\'ll love this new feature:
 
  [1]: http://www.google.com/analytics/
 
-If you use AJAX in your site, or if you want to track outbound links, or downloads… etc then this is really useful for you.
+If you use AJAX in your site, or if you want to track outbound links, or downloads... etc then this is really useful for you.
 
 ## What is event tracking?
 
-In simple terms, it logs events that happen on your site, for example rate a post (If you have post rating), download a file… or you do some sort of JavaScript processing that you want to measure.
+In simple terms, it logs events that happen on your site, for example rate a post (If you have post rating), download a file... or you do some sort of JavaScript processing that you want to measure.
 
 So finally, we can keep track of AJAX interactions with the server, we can log also normal POST requests that do some php processing, like posting a comment, or editing some data in our database.
 
@@ -41,12 +40,12 @@ As you can see we use the function *\_trackEvent*, from the pageTracker object. 
     _trackEvent(category, action, optional_label, optional_value)
     
 
-The category can be used to store different events that are similar, for example in the category music we could use the actions Download, Listen, Rate… And finally the label, that is normally used to refer to which specific object in that category you are referring to, in this case which song.
+The category can be used to store different events that are similar, for example in the category music we could use the actions Download, Listen, Rate... And finally the label, that is normally used to refer to which specific object in that category you are referring to, in this case which song.
 
 ### From the Analytics panel
 
-Wait for a day after you install this to see the data in Google Analytics, and then go to the stats panel, go to the Content tab, then you’ll see at the bottom Event Tracking:  
-I’ve created a sample profile with some events and I clicked a couple times to show you how it looks like:  
+Wait for a day after you install this to see the data in Google Analytics, and then go to the stats panel, go to the Content tab, then you\'ll see at the bottom Event Tracking:  
+I\'ve created a sample profile with some events and I clicked a couple times to show you how it looks like:  
 ![Screen capture of the Event Tracking page][3]
 Screen capture of the Event Tracking page
 

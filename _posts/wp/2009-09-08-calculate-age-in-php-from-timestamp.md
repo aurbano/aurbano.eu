@@ -16,10 +16,9 @@ tags:
   - php
   - remote
   - upload
----
-# 
+--- 
 
-If you ever wanted to calculate someone’s age in PHP from a birth timestamp, you must take into account that the age is more than the number of years, since days and months are also important, so I wrote a simple function that will return the exact age for a given timestamp:
+If you ever wanted to calculate someone\'s age in PHP from a birth timestamp, you must take into account that the age is more than the number of years, since days and months are also important, so I wrote a simple function that will return the exact age for a given timestamp:
 
     function getAge($birth){
     	$t = time();

@@ -12,8 +12,7 @@ tags:
   - rotate
   - tabs
   - ui
----
-# 
+--- 
 
 Tabs are nice. They create a very elegant interface, and jQuery UI does this marvelously, here we have a little preview of this:
 
@@ -33,7 +32,7 @@ With [jQuery][2] and [jQuery UI][3] it is dead simple. First, load the JS librar
 
     
 
-Remember to include also the *CSS files* for the UI Theme! Otherwise the tabs won’t seem to work!
+Remember to include also the *CSS files* for the UI Theme! Otherwise the tabs won\'t seem to work!
 
 ### The HTML for the tabs:
 
@@ -85,7 +84,7 @@ First we instruct jQuery UI to set up tabs in that div, and to rotate them. Then
 
 ## Further actions:
 
-Now you may want to stop rotation completely when a tab is clicked. This can be done “easily”: First we will add a new handler for the onclick event to the tabs-rotate, which will remove rotation. But we also have to unbind the hover handler we had setup, using the [unbind][7] jQuery function:
+Now you may want to stop rotation completely when a tab is clicked. This can be done \"easily\": First we will add a new handler for the onclick event to the tabs-rotate, which will remove rotation. But we also have to unbind the hover handler we had setup, using the [unbind][7] jQuery function:
 
  [7]: http://api.jquery.com/unbind/
 
@@ -101,7 +100,7 @@ You can see it working on the [DJs Music][8] homepage
 
  [8]: http://djs-music.com
 
-As with the best stuff, it’s terribly simple ![;)][9] 
+As with the best stuff, it\'s terribly simple ![;)][9] 
 
  [9]: http://urbanoalvarez.es/blog/wp-includes/images/smilies/icon_wink.gif
 

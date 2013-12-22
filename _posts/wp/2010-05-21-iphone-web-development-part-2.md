@@ -17,8 +17,7 @@ tags:
   - orientation
   - portrait
   - web development
----
-# 
+--- 
 
 I have decided to move my blog to Jekyll, [for several reasons](http://carlboettiger.info/2012/05/01/Jekyll-vs-Wordpress.html) and in the process of doing so I reviewed many of my older posts.
 

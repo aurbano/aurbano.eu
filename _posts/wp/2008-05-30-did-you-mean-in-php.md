@@ -14,8 +14,7 @@ tags:
   - similar_text
   - soundex
   - suggestion
----
-# 
+--- 
 
 In a new website I am developing for a client I had to add the usual \"Did you mean... ?\" in the search results for her. Si I started thinking for the easiest way to do this.
 

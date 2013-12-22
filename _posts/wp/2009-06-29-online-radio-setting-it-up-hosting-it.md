@@ -13,16 +13,15 @@ tags:
   - shoutcast
   - station
   - virtual dj
----
-# 
+--- 
 
 Hi guys,  
-I’m sure someday we will work for someone who wants an online radio statio, well, this is a quick guide to those
+I\'m sure someday we will work for someone who wants an online radio statio, well, this is a quick guide to those
 
 ## Online radios:
 
 Basically it is audio being broadcasted via the Internet. So that means that we generate an audio stream that listeners cannot control, other than pausing and resuming.  
-To launch one we need several things, to start off, we need a server with streaming capabilities. Since setting up a streaming server might be difficult, we will use a standard radio management program. The main ones are [SHOUTcast][1], [IceCast][2], [Live365][3]…
+To launch one we need several things, to start off, we need a server with streaming capabilities. Since setting up a streaming server might be difficult, we will use a standard radio management program. The main ones are [SHOUTcast][1], [IceCast][2], [Live365][3]...
 
  [1]: http://www.shoutcast.com/
  [2]: http://www.icecast.org/
@@ -35,7 +34,7 @@ I will focus on SHOUTcast, since it is the most extended among web hosts.
 First off, we need a server to host our radio. Radio servers are not the same as standard web hosting servers, since they require a static IP for the radio, and streaming capacity. Most radio servers use SHOUTcast to manage the radio, and I personally recommend it for its easy of use.  
 From the SHOUTcast documentation:
 
-> “The magic of the SHOUTcast Radio system happens inside the SHOUTcast Radio Distributed Network Audio Software (DNAS). This software runs on a server attached to your IP network with lots of bandwidth, and is responsible for receiving audio from a broadcast source, updating the SHOUTcast Radio directory with information about what the broadcaster is sending, and sending the broadcast feed to listeners”
+> \"The magic of the SHOUTcast Radio system happens inside the SHOUTcast Radio Distributed Network Audio Software (DNAS). This software runs on a server attached to your IP network with lots of bandwidth, and is responsible for receiving audio from a broadcast source, updating the SHOUTcast Radio directory with information about what the broadcaster is sending, and sending the broadcast feed to listeners\"
 
 ## Finding a good hosting solution:
 
@@ -76,16 +75,16 @@ When setting up an online radio station it is vital to ensure that there will be
 
  [10]: http://www.wavestreaming.com/servers/auto-dj/
 
-It is enabled in most radio hosts by default, and if it isn’t you can normally request it free of charge. Setting it up is very easy, and it only requires having some mp3 files in a folder, that’s why it is convenient to have enough disk space.
+It is enabled in most radio hosts by default, and if it isn\'t you can normally request it free of charge. Setting it up is very easy, and it only requires having some mp3 files in a folder, that\'s why it is convenient to have enough disk space.
 
 ## Playing the radio
 
-SHOUTcast and most radio software include a set of scripts that will play the radio online, as well as showing information about current song, listener number… But they are not the best.  
+SHOUTcast and most radio software include a set of scripts that will play the radio online, as well as showing information about current song, listener number... But they are not the best.  
 Ideally, you will include the radio in your website using a flash player, so that you can blend it nicely in the design. For this task I recommend the JW Player.
 
 ### JW Player for online radio
 
-In order to use it you must make sure SHOUTcast is set to stream in mp3. And then go to the link “Setup Flash Player”. In the code they give you, you will find the radio address for the mp3 stream, it will look like this:
+In order to use it you must make sure SHOUTcast is set to stream in mp3. And then go to the link \"Setup Flash Player\". In the code they give you, you will find the radio address for the mp3 stream, it will look like this:
 
     [Get the Flash Player][11] to see this player.
     
@@ -93,9 +92,9 @@ In order to use it you must make sure SHOUTcast is set to stream in mp3. And the
 
  [11]: http://www.macromedia.com/go/getflashplayer
 
-Where it says IP and PORT, the corresponding IP and PORT of your radio will appear. You can directly embed this, or customize it. In order to do so, you can use the skings in the JW Player’s website, or simply create yourself one, providing you have enough knowledge of Flash.
+Where it says IP and PORT, the corresponding IP and PORT of your radio will appear. You can directly embed this, or customize it. In order to do so, you can use the skings in the JW Player\'s website, or simply create yourself one, providing you have enough knowledge of Flash.
 
-## You’re done!
+## You\'re done!
 
 If you still have any problems setting it up, or broadcasting, feel free to ask in the comments section below ![:)][12] 
 

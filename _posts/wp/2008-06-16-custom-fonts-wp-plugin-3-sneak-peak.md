@@ -5,8 +5,7 @@ layout: post
 permalink: /blog/2008/06/16/custom-fonts-wp-plugin-3-sneak-peak/
 categories:
   - General talk
----
-# 
+--- 
 
 Some of you might already have heard of my plugin, [Custom Fonts][1], and others might even have tried it. Well, after many feature requests and many hours of development the next major release (version 3) is almost ready to be made public, here is a screenshot:
 
