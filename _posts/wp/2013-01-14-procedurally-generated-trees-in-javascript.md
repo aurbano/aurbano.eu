@@ -37,7 +37,7 @@ Before we move any further let me say that this article is aimed at people with 
 I don\'t have any template for starting a new canvas project, but I do have some guidelines I like to follow. Below is the usual starting point
 
 
-{% highlight javascript linenos %}
+{% highlight javascript %}
     $(document).ready(function(e) {
     	var ctx;
     	var WIDTH;
@@ -121,7 +121,7 @@ Another requirement is that we start with a thick line, until we reach final bra
 
 So off we go, just for now I will test the idea with a loop that draws small segments all in a row, introducing a little variation on the next point\'s coordinates, with an initial width of 20 for example, and reducing it by a small quantity on each iteration. We should get a long wiggly line getting thinner until it \"dies\" at the end. I have extracted all useful variables to outside the function so that we can easily configure it.
 
-{% highlight ruby linenos %}
+{% highlight javascript %}
     var loss = 0.1;		// Width loss per cycle
 	var sleep = 10;		// Min sleep time (For the animation)
 	var branchLoss = 0.9;	// % width maintained for branches
@@ -162,7 +162,7 @@ In order to generate a new branch we must wait until the tree has grown enough, 
 After some testing I\'ve ended up with this condition: **w-lifetime\*loss < 9**. If that is met we will start a new branch, although that would mean that after that point is reached we will always start a new branch. To avoid that we add a little randomness by using: **Math.random() > 0.7**, supposing Math.random() returns a real random number the chances of that being true are almost 30%.
 
 
-{% highlight ruby linenos %}
+{% highlight javascript %}
     if(w-lifetime*loss < 9 &#038;&#038; lifetime > 30 Math.random()*250){
     	setTimeout(function(){
     		branch(x,y,2*Math.sin(Math.random() lifetime),2*Math.cos(Math.random() lifetime),(w-lifetime*loss)*branchLoss,0);

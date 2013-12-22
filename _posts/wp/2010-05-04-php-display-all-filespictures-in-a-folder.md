@@ -18,7 +18,7 @@ If we want to create a quick gallery of files/pictures, it is quite a pain to do
 
 Let\'s suppose we are in the base directory (*www.mysite.com/gallery.php*) and the pictures are in a folder named pictures (*www.mysite.com/pictures/*), open gallery.php and where you want the pictures to appear, use this code:
 
-{% highlight php linenos %}
+{% highlight php  %}
     $handle = opendir(dirname(realpath(__FILE__)).'/pictures/');
 	while($file = readdir($handle)){
 		if($file !== '.' &#038;&#038; $file !== '..'){
