@@ -13,7 +13,8 @@ tags:
   - simulation
   - time
 ---
-
+ > This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+ 
 Completely off topic for this blog, but at the time it is the best place to write about this. Read through the whole thing before judging what you see, then think about it, and then express your opinion.
 
 ## The Unique Beings paradox
