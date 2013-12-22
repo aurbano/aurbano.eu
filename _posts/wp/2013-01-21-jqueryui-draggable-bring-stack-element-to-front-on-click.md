@@ -25,6 +25,7 @@ Exploring the jqueryUI [source code][2] for the Draggable widget we can extract 
 
 Here is the function (Tweaked to work as a standalone function)
 
+{% highlight ruby linenos %}
     function bringFront(elem, stack){
     	// Brings a file to the stack front
     	var min, group = $(stack);
@@ -38,9 +39,12 @@ Here is the function (Tweaked to work as a standalone function)
     	if(elem == undefined) return;
     	$(elem).css({'zIndex' : min   group.length});
     }
+{% endhighlight %}
 
 **elem** should be the clicked element and **stack** should be the same you put in jQueryUI draggable's options. If you wanted that to happen on click, you could use:
 
+{% highlight ruby linenos %}
     $('.drag').bind('click',function(){ bringFront($(this), '.drag'); });
+{% endhighlight %}
 
 I hope this helps
