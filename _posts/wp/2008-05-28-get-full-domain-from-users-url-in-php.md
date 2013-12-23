@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2008/05/28/get-full-domain-from-users-url-in-php/
 categories:
-  - General talk
+  - PHP
 ---
  > This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
 
@@ -83,7 +83,7 @@ And call it from our previous script:
     }else{
         return false;
     }
-    
+{% endhighlight  %}
 
 ### Full code now: 
 
