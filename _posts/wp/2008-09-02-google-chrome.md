@@ -13,7 +13,11 @@ tags:
 
 > This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
 
-![Google Chrome][1]Well, it was time for web-giant Google to jump the gap between being the world leader in providing web-based services to actually providing... the web.
+<div align="center">
+![Google Chrome][1]
+</div>
+
+Well, it was time for web-giant Google to jump the gap between being the world leader in providing web-based services to actually providing... the web.
 
  [1]: http://www.google.com/chrome/intl/es/images/logo_sm.jpg
 
@@ -28,4 +32,6 @@ The main drawback though is the lack of Extensions or plugins. I miss Stumbling 
 
 My rating, if I was faced from a 0-10 choice would be around a 7. But the lack of plugins will never allow it for more. Maybe a normal user will find it perfect, but a developer and a user that spends hours a day watching for new stuff all over the web needs more than \"The basics\".
 
-What do you think?
+**2013 Update**
+Interesting to see my opinion at launch. I currently use Chrome on a daily basis, it offers an incredible developer console, and grew to have a very comprehensive addon collection.
+I'll come back in a few more years.

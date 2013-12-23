@@ -26,25 +26,25 @@ Exploring the jqueryUI [source code][2] for the Draggable widget we can extract 
 Here is the function (Tweaked to work as a standalone function)
 
 {% highlight javascript %}
-    function bringFront(elem, stack){
-    	// Brings a file to the stack front
-    	var min, group = $(stack);
-    	
-    	if(group.length < 1) return;
-    	min = parseInt(group[0].style.zIndex, 10) || 0;
-    	$(group).each(function(i) {
-    		this.style.zIndex = min   i;
-    	});
-    	
-    	if(elem == undefined) return;
-    	$(elem).css({'zIndex' : min   group.length});
-    }
+function bringFront(elem, stack){
+	// Brings a file to the stack front
+	var min, group = $(stack);
+	
+	if(group.length < 1) return;
+	min = parseInt(group[0].style.zIndex, 10) || 0;
+	$(group).each(function(i) {
+		this.style.zIndex = min   i;
+	});
+	
+	if(elem == undefined) return;
+	$(elem).css({'zIndex' : min   group.length});
+}
 {% endhighlight %}
 
 **elem** should be the clicked element and **stack** should be the same you put in jQueryUI draggable's options. If you wanted that to happen on click, you could use:
 
 {% highlight javascript %}
-    $('.drag').bind('click',function(){ bringFront($(this), '.drag'); });
+$('.drag').bind('click',function(){ bringFront($(this), '.drag'); });
 {% endhighlight %}
 
 I hope this helps

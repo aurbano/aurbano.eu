@@ -107,11 +107,3 @@ Note that the version I was using for this tutorial was in Spanish, but you\'ll 
 Make sure you apply those setting to both text layers!
 
  [13]: http://urbanoalvarez.es/blog/wp-content/uploads/2008/06/6.jpg "Text Warp"
-
-[View the final result][14]
-
-And you are done!  
-Hope you enjoyed it, let me know how it went ![:)][15] 
-
- [14]: http://urbanoalvarez.es/blog/wp-content/uploads/2008/06/paul.jpg
- [15]: http://urbanoalvarez.es/blog/wp-includes/images/smilies/icon_smile.gif

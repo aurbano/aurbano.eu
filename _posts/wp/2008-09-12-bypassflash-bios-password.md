@@ -41,9 +41,6 @@ There shouldn\'t be any problem, except for the time and date (You\'ll have to s
 
 You can flash the BIOS using the jumper you\'ll find nearby, but it depends on the manufacturer so I won\'t go into detail.
 
-For other types of passwords you can check [ScratchDrive ][1]for some good information and free programs, although I won\'t go into detail here.  
-Any comments or problems you find ask them below.
+For other types of passwords you can check [ScratchDrive ][1] for some good information and free programs, although I won\'t go into detail here.  
 
  [1]: http://scratchdrive.com/downloads.php
-
-Cheers,

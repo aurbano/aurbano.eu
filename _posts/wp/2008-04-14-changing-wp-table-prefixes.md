@@ -59,7 +59,7 @@ There are some rows in your new tables that need to be updated:
 
 ### Finishing
 
-Upload the file wp-config.php if you haven\'t done so before, and check to see if it works.  
+Upload the file `wp-config.php` if you haven\'t done so before, and check to see if it works.  
 If it doesn\'t make sure that all of the tables have been correctly renamed, and all the rows listed above. If it doesn\'t work yet there might be some plugins that created a table containing in it\'s rows the wp_ table prefix. If that is the case check all your plugin-created tables to ensure that none of the fields containt the old prefix.
 
 If you still get problems replace your backup and wp-config.php and contact me through the comments of this post and I\'ll try to help you

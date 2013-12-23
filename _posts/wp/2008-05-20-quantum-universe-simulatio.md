@@ -13,7 +13,8 @@ tags:
   - simulation
   - time
 ---
- > This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+
+> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
  
 Completely off topic for this blog, but at the time it is the best place to write about this. Read through the whole thing before judging what you see, then think about it, and then express your opinion.
 
@@ -44,9 +45,7 @@ The final conclusion is that currently the probability of us belonging to a simu
 
 The reasoning for all of this has been omitted, since it is based on complex quantum calculations and simulation algorithms. If any of you readers knows anything about quantum physics will find this extremely interesting, just as I do. Please comment your opinion.
 
-To understand better this, you can [watch this video ][2]where several quantum scientists (Gregg Braden David Icke, David Lynch, Wayne Dyer, Deepak Chopra, David Wilcock, David Icke, Michael Talbot, Gregg Braden, James J Traitz, Robert Anton Wilson, Neil Kramer, Grant Morrison, Bill Hicks) talk about this subject. ([See the video][2])
-
-[2]: http://www.youtube.com/watch?v=Ym8qwiU2q3I
+To understand better this, you can [watch this video][2] where several quantum scientists (Gregg Braden David Icke, David Lynch, Wayne Dyer, Deepak Chopra, David Wilcock, David Icke, Michael Talbot, Gregg Braden, James J Traitz, Robert Anton Wilson, Neil Kramer, Grant Morrison, Bill Hicks) talk about this subject.
 
 This article expresses a hypothesis I\'ve been working on for some time now, and it shall not be copied without citing the source and author. Thanks to Reda Bouchami for clarifying this when I missed it.
 

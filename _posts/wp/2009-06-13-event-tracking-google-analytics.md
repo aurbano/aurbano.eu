@@ -17,7 +17,7 @@ tags:
 > This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
 
 Hello everyone,  
-As most people do, I\'m sure you use [Google Analytics ][1]for the stat metrics for some of your sites, so you\'ll love this new feature:
+As most people do, I\'m sure you use [Google Analytics ][1] for the stat metrics for some of your sites, so you\'ll love this new feature:
 
  [1]: http://www.google.com/analytics/
 
@@ -47,10 +47,13 @@ The category can be used to store different events that are similar, for example
 ### From the Analytics panel
 
 Wait for a day after you install this to see the data in Google Analytics, and then go to the stats panel, go to the Content tab, then you\'ll see at the bottom Event Tracking:  
-I\'ve created a sample profile with some events and I clicked a couple times to show you how it looks like:  
-![Screen capture of the Event Tracking page][3]
+I\'ve created a sample profile with some events and I clicked a couple times to show you how it looks like:
 
-Screen capture of the Event Tracking page
+<div align="center">
+	![Screen capture of the Event Tracking page][3]
+	
+	Screen capture of the Event Tracking page
+</div>
 
  [3]: http://urbanoalvarez.es/blog/wp-content/uploads/2009/06/analytics.gif "Analytics shot"
 

@@ -28,13 +28,11 @@ I won\'t post the bad words list as text, as some public might find it offensive
 
 The zip file contains a plain text file with one word per line, and a MySQL file to populate a database with id, word, and replacement.
 
-*   [Bad words list v. 2.0][1] - 3kb (65602 downloads)
+*   [Bad words list v. 2.0][1] - 3kb
 
  [1]: http://urbanoalvarez.es/blog/?download=badwords
 
-## Change log:
+### Change log:
 
 *   Added more words to the list and improved the MySQL one. The list now contains 458 unique words, sorted in alphabetical order.
 *   Public release: v. 1.0 - A standard bad words list in a txt file, containing 252 words, plus an SQL script that populates a MySQL database with badwords and their respective \"replacement\" euphemism.
-
-If you know of any good bad words list please comment its URL, so I can add them to this list!

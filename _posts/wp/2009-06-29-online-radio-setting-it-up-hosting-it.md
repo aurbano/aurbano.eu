@@ -86,13 +86,7 @@ Ideally, you will include the radio in your website using a flash player, so tha
 
 ### JW Player for online radio
 
-In order to use it you must make sure SHOUTcast is set to stream in mp3. And then go to the link \"Setup Flash Player\". In the code they give you, you will find the radio address for the mp3 stream, it will look like this:
-
-    [Get the Flash Player][11] to see this player.
-    
-    
-
- [11]: http://www.macromedia.com/go/getflashplayer
+In order to use it you must make sure SHOUTcast is set to stream in mp3. And then go to the link \"Setup Flash Player\". In the code they give you, you will find the radio address for the mp3 stream.
 
 Where it says IP and PORT, the corresponding IP and PORT of your radio will appear. You can directly embed this, or customize it. In order to do so, you can use the skings in the JW Player\'s website, or simply create yourself one, providing you have enough knowledge of Flash.
 

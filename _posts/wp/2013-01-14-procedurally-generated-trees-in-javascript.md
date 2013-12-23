@@ -38,73 +38,73 @@ I don\'t have any template for starting a new canvas project, but I do have some
 
 
 {% highlight javascript %}
-    $(document).ready(function(e) {
-    	var ctx;
-    	var WIDTH;
-    	var HEIGHT;
-    	
-    	var canvasMinX;
-    	var canvasMaxX;
-    	
-    	var canvasMinY;
-    	var canvasMaxY;
-    	
-    	var ms = {x:0, y:0}; // Mouse speed
-    	var mp = {x:0, y:0}; // Mouse position
-    	
-    	var fps = 0, now, lastUpdate = (new Date)*1 - 1;
-    	var fpsFilter = 100;
-    	
-    	ctx = $('#bg')[0].getContext("2d");
-    
-    	ctx.canvas.width  = window.innerWidth;
-      	ctx.canvas.height = window.innerHeight;
-    	
-    	WIDTH = $("#bg").width();
-      	HEIGHT = $("#bg").height();
-    	resizeCanvas();
-    	
-    	canvasMinX = $("#bg").offset().left;
-      	canvasMaxX = canvasMinX   WIDTH;
-    	
-    	canvasMinY = $("#bg").offset().top;
-      	canvasMaxY = canvasMinY   HEIGHT;
-    
-    	function clear() {
-    		ctx.clearRect(0, 0-HEIGHT/2, WIDTH, HEIGHT);
-    	}
-    	
-    	function circle(x,y,rad,color){
-    		ctx.fillStyle = color;
-    		ctx.beginPath();
-    		ctx.arc(x,y,rad,0,Math.PI*2,true);
-    		ctx.closePath();
-    		ctx.fill();
-    	}
-    	
-    	function fade() {
-    		ctx.fillStyle="rgba(0,0,0,0.01)";
-    		ctx.fillRect(0, 0, WIDTH, HEIGHT);
-    	}
-    	
-    	function resizeCanvas(e) {
-    		WIDTH = window.innerWidth;
-    		HEIGHT = window.innerHeight;
-    		
-    		$("#bg").attr('width',WIDTH);
-    		$("#bg").attr('height',HEIGHT);
-    	}
-    	
-    	function mouseMove(e) {
-    		ms.x = Math.max( Math.min( e.pageX - mp.x, 40 ), -40 );
-    		ms.y = Math.max( Math.min( e.pageY - mp.y, 40 ), -40 );
-    		
-    		mp.x = e.pageX - canvasMinX;
-    		mp.y = e.pageY - canvasMinY;
-    	}
-    	$(document).mousemove(mouseMove);
-    	$(window).resize(resizeCanvas);
-    });
+$(document).ready(function(e) {
+	var ctx;
+	var WIDTH;
+	var HEIGHT;
+	
+	var canvasMinX;
+	var canvasMaxX;
+	
+	var canvasMinY;
+	var canvasMaxY;
+	
+	var ms = {x:0, y:0}; // Mouse speed
+	var mp = {x:0, y:0}; // Mouse position
+	
+	var fps = 0, now, lastUpdate = (new Date)*1 - 1;
+	var fpsFilter = 100;
+	
+	ctx = $('#bg')[0].getContext("2d");
+
+	ctx.canvas.width  = window.innerWidth;
+  	ctx.canvas.height = window.innerHeight;
+	
+	WIDTH = $("#bg").width();
+  	HEIGHT = $("#bg").height();
+	resizeCanvas();
+	
+	canvasMinX = $("#bg").offset().left;
+  	canvasMaxX = canvasMinX   WIDTH;
+	
+	canvasMinY = $("#bg").offset().top;
+  	canvasMaxY = canvasMinY   HEIGHT;
+
+	function clear() {
+		ctx.clearRect(0, 0-HEIGHT/2, WIDTH, HEIGHT);
+	}
+	
+	function circle(x,y,rad,color){
+		ctx.fillStyle = color;
+		ctx.beginPath();
+		ctx.arc(x,y,rad,0,Math.PI*2,true);
+		ctx.closePath();
+		ctx.fill();
+	}
+	
+	function fade() {
+		ctx.fillStyle="rgba(0,0,0,0.01)";
+		ctx.fillRect(0, 0, WIDTH, HEIGHT);
+	}
+	
+	function resizeCanvas(e) {
+		WIDTH = window.innerWidth;
+		HEIGHT = window.innerHeight;
+		
+		$("#bg").attr('width',WIDTH);
+		$("#bg").attr('height',HEIGHT);
+	}
+	
+	function mouseMove(e) {
+		ms.x = Math.max( Math.min( e.pageX - mp.x, 40 ), -40 );
+		ms.y = Math.max( Math.min( e.pageY - mp.y, 40 ), -40 );
+		
+		mp.x = e.pageX - canvasMinX;
+		mp.y = e.pageY - canvasMinY;
+	}
+	$(document).mousemove(mouseMove);
+	$(window).resize(resizeCanvas);
+});
 {% endhighlight %}
 
 I know this is not optimized, and defines all variables inside the global namespace, but I like to start with a very quick prototype before I improve code design. I also use jQuery, although only for event binding such as window resize. As for the HTML, I simply start with a blank page containing a canvas element.
@@ -122,30 +122,30 @@ Another requirement is that we start with a thick line, until we reach final bra
 So off we go, just for now I will test the idea with a loop that draws small segments all in a row, introducing a little variation on the next point\'s coordinates, with an initial width of 20 for example, and reducing it by a small quantity on each iteration. We should get a long wiggly line getting thinner until it \"dies\" at the end. I have extracted all useful variables to outside the function so that we can easily configure it.
 
 {% highlight javascript %}
-    var loss = 0.1;		// Width loss per cycle
-	var sleep = 10;		// Min sleep time (For the animation)
-	var branchLoss = 0.9;	// % width maintained for branches
-	var mainLoss = 0.9;	// % width maintained after branching
-	var speed = 0.3;	// Movement speed
-	var scatterRange = 5;	// Area around point where leaf scattering should occur
-	
-	// Starts a new branch from x,y. w is initial w
-	// lifetime is the number of computed cycles
-	function branch(x,y,dx,dy,w,lifetime){
-		ctx.lineWidth = w-lifetime*loss;
-		ctx.beginPath();
-		ctx.moveTo(x,y);
-		// Calculate new coords
-		x = x dx;
-		y = y dy;
-		// Change dir
-		dx = dx Math.sin(Math.random() lifetime)*speed;
-		dy = dy Math.cos(Math.random() lifetime)*speed;
-		//
-		ctx.lineTo(x,y);
-		ctx.stroke();
-		if(w-lifetime*loss>=1) setTimeout(function(){ branch(x,y,dx,dy,w,  lifetime); },sleep);
-	}
+var loss = 0.1;		// Width loss per cycle
+var sleep = 10;		// Min sleep time (For the animation)
+var branchLoss = 0.9;	// % width maintained for branches
+var mainLoss = 0.9;	// % width maintained after branching
+var speed = 0.3;	// Movement speed
+var scatterRange = 5;	// Area around point where leaf scattering should occur
+
+// Starts a new branch from x,y. w is initial w
+// lifetime is the number of computed cycles
+function branch(x,y,dx,dy,w,lifetime){
+	ctx.lineWidth = w-lifetime*loss;
+	ctx.beginPath();
+	ctx.moveTo(x,y);
+	// Calculate new coords
+	x = x dx;
+	y = y dy;
+	// Change dir
+	dx = dx Math.sin(Math.random() lifetime)*speed;
+	dy = dy Math.cos(Math.random() lifetime)*speed;
+	//
+	ctx.lineTo(x,y);
+	ctx.stroke();
+	if(w-lifetime*loss>=1) setTimeout(function(){ branch(x,y,dx,dy,w,  lifetime); },sleep);
+}
 {% endhighlight %}
 
 <div style="float:right">
@@ -153,23 +153,23 @@ So off we go, just for now I will test the idea with a loop that draws small seg
 Figure 1: Initial developmentTo execute we simply need to call
 </div> 
 
-**branch(WIDTH/2,HEIGHT,0,-1,15,0)**, although you can change however you want the first 4 arguments. **lifetime** should start in 0, since it is the cycle counter. I\'ve used the **sleep** variable to control how long it waits before drawing the next line, this way you get a sense of real drawing. If you set it to 0 the tree simply appears.
+`branch(WIDTH/2,HEIGHT,0,-1,15,0)`, although you can change however you want the first 4 arguments. `lifetime` should start in 0, since it is the cycle counter. I\'ve used the `sleep` variable to control how long it waits before drawing the next line, this way you get a sense of real drawing. If you set it to 0 the tree simply appears.
 
 As you can see in Figure 1 the technique of stacking lines works very well, it even gives a little texture to the tree. We should now add some branches, the idea here is to treat the branches as new \"trees\", thus reusing the function branch.
 
 In order to generate a new branch we must wait until the tree has grown enough, branches usually start 1-2 meters above ground. Since this a recursive function we don\'t know much on each iteration, that\'s why I\'m using the variable lifetime. If we use lifetime along with the current width of the tree, we can know exactly the percentage of growth, in order to start a new branch.
 
-After some testing I\'ve ended up with this condition: **w-lifetime\*loss < 9**. If that is met we will start a new branch, although that would mean that after that point is reached we will always start a new branch. To avoid that we add a little randomness by using: **Math.random() > 0.7**, supposing Math.random() returns a real random number the chances of that being true are almost 30%.
+After some testing I\'ve ended up with this condition: `w-lifetime\*loss < 9`. If that is met we will start a new branch, although that would mean that after that point is reached we will always start a new branch. To avoid that we add a little randomness by using: `Math.random() > 0.7`, supposing Math.random() returns a real random number the chances of that being true are almost 30%.
 
 
 {% highlight javascript %}
-    if(w-lifetime*loss < 9 &#038;&#038; lifetime > 30 Math.random()*250){
-    	setTimeout(function(){
-    		branch(x,y,2*Math.sin(Math.random() lifetime),2*Math.cos(Math.random() lifetime),(w-lifetime*loss)*branchLoss,0);
-    		// When it branches, it loses a bit of width
-    		w *= mainLoss;
-    	},sleep*Math.random() sleep);
-    }
+if(w-lifetime*loss < 9 &#038;&#038; lifetime > 30 Math.random()*250){
+	setTimeout(function(){
+		branch(x,y,2*Math.sin(Math.random() lifetime),2*Math.cos(Math.random() lifetime),(w-lifetime*loss)*branchLoss,0);
+		// When it branches, it loses a bit of width
+		w *= mainLoss;
+	},sleep*Math.random() sleep);
+}
 {% endhighlight %}
 
 <div style="float:right" class="caption">
@@ -177,7 +177,7 @@ After some testing I\'ve ended up with this condition: **w-lifetime\*loss < 9**.
 	Figure 2: Fully developed treeI have added some randomness to the direction in which branches start to grow by using a sine and cosine along with a random number and the current lifetime. That should give us a random direction from -1 to 1 in both axis. 
 </div> 
 
-**mainLoss** is a coefficient that determines how much width is lost by the main branch.
+`mainLoss` is a coefficient that determines how much width is lost by the main branch.
 
 We should now have a working tree generator, although some variable tweaking is required to get the shape right. Once I got the variables and function a little improved I moved everything to an object, so that I could use [dat.gui][6] and control the variables more easily (and also because JS people love experiments with dat.gui)
 
