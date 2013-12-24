@@ -45,12 +45,14 @@ As you can see under the tab Custom Fields there is [a link to the WordPress cod
 So here is the code to display the image (It must be inserted inside [the Loop][3]):
 
  [3]: http://codex.wordpress.org/The_Loop
-
-    if(get_post_meta($post->ID, 'post_image',true)){
-    	//There is an image assigned:
-    	echo '<img src="http://yourblog.com/post_images/'.get_post_meta($post-/>ID,'.
-    		 'post_image',true).'" />';
-    }
+ 
+{% highlight php linenos startinline %}
+if(get_post_meta($post->ID, 'post_image',true)){
+	//There is an image assigned:
+	echo '<img src="http://yourblog.com/post_images/'.get_post_meta($post-/>ID,'.
+		 'post_image',true).'" />';
+}
+{% endhighlight %}
 
 Note that if you copy and paste the code before you\'ll have to delete a / in `$post->ID` because WordPress is adding it automatically.  
 Of course this is the most basic approach, but hopefully you will understand the method and will be able to work on it.  
