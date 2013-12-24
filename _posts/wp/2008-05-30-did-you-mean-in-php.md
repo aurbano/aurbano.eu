@@ -78,7 +78,7 @@ if ($shortest == 0) {
 } else {
     echo "Did you mean: $closest?\n";
 }
-{% endhighlight  %}
+{% endhighlight %}
 
 This is an example where even a misspelled word can be found. It uses the Levenshtein to look for the word which is the most similar one, and then it is returned.  
 This is the output of the code before:
@@ -93,19 +93,18 @@ The use of this function is quite simple, although there are many optional param
 Other algorithms that could be used for this are [soudex][3] and [metaphone][4]. [Soundex][3] will create a key that is the same for all words that are pronounced in a similar way.  
 For example, the following code:
 
-{% highlight php  %}
-    echo soundex('beard');
-    echo soundex('bird');
-    echo soundex('bear');
-{% endhighlight  %} 
+{% highlight php linenos startinline %}
+echo soundex('beard');
+echo soundex('bird');
+echo soundex('bear');
 
-Will produce this output:
-
-
-    B630
-    B630
-    B600
-    
+/*
+ * Output:
+ * B630
+ * B630
+ * B600
+ */
+{% endhighlight  %}    
 
 Where `beard` and `bird` are the same. <del cite="http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_soundex">This could make suggestions fast if you have already created a column in the mysql tables with the soundex key of the tags for example, so that you could search not only for the string, but also for its soundex key...</del>
  
