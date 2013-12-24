@@ -148,7 +148,7 @@ function branch(x,y,dx,dy,w,lifetime){
 }
 {% endhighlight %}
 
-<div style="float:right">
+<div style="float:right" class="caption">
 <img src="http://i1.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree1.png?resize=216%2C311" /><br />
 Figure 1: Initial developmentTo execute we simply need to call
 </div> 
@@ -194,5 +194,8 @@ Please check out the final version at [nuostudio\'s lab][7], it has many options
 The next thing I\'d like to do would be to use some 3D library (probably [three.js][8]) to create a \"forest\", and probably improve the realism of the generated trees.
 
 [8]: http://mrdoob.github.com/three.js/
+
+<div style="clear:both"></div>
+<hr />
 
 ![Colorful forest](http://i2.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree3.png "Colorful forest")

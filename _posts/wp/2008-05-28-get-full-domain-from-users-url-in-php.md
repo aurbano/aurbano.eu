@@ -25,7 +25,7 @@ Now add http:// if it is not at the beggining:
     }
 {% endhighlight  %}  
 
-What **strncasecmp** does is it takes a string, and then a number. It then checks to see if that string is contained within the first (That second parameter) characters contain it. It returns 0 if it is found.  
+What `strncasecmp` does is it takes a string, and then a number. It then checks to see if that string is contained within the first (That second parameter) characters contain it. It returns 0 if it is found.  
 So in the example it checks to see if http:// is there, and if it is not, it adds it.
 
 Now strip all folders (This is optional, but here I will show how to make sure only the main domain is left
@@ -51,10 +51,10 @@ Let\'s make sure it has (or not) www. And if not, let\'s add it (Just for consis
 {% endhighlight  %}
 
 Now we have \"http://www.{user input}/\" , we are basically done!  
-If you really want to this this correctly you could check if the URL exists, but this is just a waste of traffic from my point of view...  
+If you really want to this this correctly you could check if the URL exists, but this is just a waste of bandwidth and opens a door for attacks from my point of view...  
 So if you want to do this, create the following function:
 
-{% highlight php  %}
+{% highlight php %}
     function url_exists($strURL) {
         $resURL = curl_init();
         curl_setopt($resURL, CURLOPT_URL, $strURL);
@@ -73,17 +73,17 @@ So if you want to do this, create the following function:
             return true ;
         }
     } 
-{% endhighlight  %}
+{% endhighlight %}
 
 And call it from our previous script:
 
-{% highlight php  %}
+{% highlight php %}
     If(url_exists($url)) {
          return true;
     }else{
         return false;
     }
-{% endhighlight  %}
+{% endhighlight %}
 
 ### Full code now: 
 
@@ -138,4 +138,4 @@ So the whole thing would be something like this:
 			}
 		}
 	}
-{% endhighlight  %}
+{% endhighlight %}

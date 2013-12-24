@@ -22,28 +22,28 @@ This is a really good option in WordPress, yet very few know how to do it. Well 
 If you want to plainly display the next post after the one the user is reading, use the following function:
 
 {% highlight php  %}
-    <?php next_post_link(); ?>
+    next_post_link();
 {% endhighlight %}   
 
 Now this function has several (very useful) parameters, which are:
 
 {% highlight php  %}
-    <?php next_post_link('format', 'link', in_same_cat, 'excluded_categories'); ?> 
+    next_post_link('format', 'link', in_same_cat, 'excluded_categories');
 {% endhighlight %}    
 
-- **Format:** For example bold (\'**%link**\'), italics (\'*%link*\')... And so on, you can add here divs, p, span or anything you want to apply css classes or ids.
-- **Link:** To display a custom text instead of the post title, for example if you want \"Next post\" use:
+- `Format` For example **bold**, *italics*... And so on, you can add here divs, p, span or anything you want to apply css classes or ids.
+- `Link` To display a custom text instead of the post title, for example if you want \"Next post\" use:
 
 {% highlight php  %}
-    <?php next_post_link('%link', 'Next post in category', TRUE); ?> 
+    next_post_link('%link', 'Next post in category', TRUE);
 {% endhighlight %}  
 
-- **in\_same\_cat:** A very handy parameter if you want to display only the next post of the same category. Set to TRUE if you want it that way, or FALSE if you simply want the next post.
+- `in_same_cat` A very handy parameter if you want to display only the next post of the same category. Set to TRUE if you want it that way, or FALSE if you simply want the next post.
 
 You can use one more parameter to exclude categories, for example:
 
 {% highlight php  %}
-    <?php next_post_link('%link', 'Next post in category', TRUE, '13'); ?>
+    next_post_link('%link', 'Next post in category', TRUE, '13');
 {% endhighlight %}  
 
 And now the next post will be from the same category, unless that category is 13 (The id, check in the administration panel)
