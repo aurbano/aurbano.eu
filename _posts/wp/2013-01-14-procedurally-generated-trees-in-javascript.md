@@ -58,17 +58,17 @@ $(document).ready(function(e) {
 	ctx = $('#bg')[0].getContext("2d");
 
 	ctx.canvas.width  = window.innerWidth;
-  	ctx.canvas.height = window.innerHeight;
+	ctx.canvas.height = window.innerHeight;
 	
 	WIDTH = $("#bg").width();
-  	HEIGHT = $("#bg").height();
+	HEIGHT = $("#bg").height();
 	resizeCanvas();
 	
 	canvasMinX = $("#bg").offset().left;
-  	canvasMaxX = canvasMinX   WIDTH;
+	canvasMaxX = canvasMinX   WIDTH;
 	
 	canvasMinY = $("#bg").offset().top;
-  	canvasMaxY = canvasMinY   HEIGHT;
+	canvasMaxY = canvasMinY   HEIGHT;
 
 	function clear() {
 		ctx.clearRect(0, 0-HEIGHT/2, WIDTH, HEIGHT);
@@ -173,8 +173,8 @@ if(w-lifetime*loss < 9 &#038;&#038; lifetime > 30 Math.random()*250){
 {% endhighlight %}
 
 <div style="float:right" class="caption">
-	<img src="http://i1.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree2.png?resize=250%2C379" /><br />
-	Figure 2: Fully developed tree
+<img src="http://i1.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree2.png?resize=250%2C379" /><br />
+Figure 2: Fully developed tree
 </div> 
 
 I have added some randomness to the direction in which branches start to grow by using a sine and cosine along with a random number and the current lifetime. That should give us a random direction from -1 to 1 in both axis. `mainLoss` is a coefficient that determines how much width is lost by the main branch.
@@ -195,7 +195,6 @@ The next thing I\'d like to do would be to use some 3D library (probably [three.
 
 [8]: http://mrdoob.github.com/three.js/
 
-<div style="clear:both"></div>
-<hr />
+<hr style="clear:both" />
 
 ![Colorful forest](http://i2.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree3.png "Colorful forest")

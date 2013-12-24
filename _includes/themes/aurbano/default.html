@@ -15,7 +15,7 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
     <link href="/assets/syntax.css" rel="stylesheet" type="text/css" media="all">
 
@@ -34,34 +34,48 @@
   </head>
 
   <body>
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container-narrow">
-          <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
-          <ul class="nav">
-            {% assign pages_list = site.pages %}
-            {% assign group = 'navigation' %}
-            {% include JB/pages_list %}
-          </ul>
+  	<div class="container" id="wrap">
+		<div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Alejandro U. Alvarez</a>
         </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+			<li><a href="/projects.html">Projects</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                {% assign pages_list = site.pages %}
+				{% assign group = 'navigation' %}
+				{% include JB/pages_list %}
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./">More</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
-    </div>
-
-    <div class="container-narrow">
-
-      <div class="content">
+		
+	  <div class="content">
         {{ content }}
       </div>
-      <hr>
-      <footer>
-        <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
-          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
-          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
-        </p>
-      </footer>
-
+      
     </div>
-
+    <footer>
+    	<div class="container">
+	    	<p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }} </p>
+	    </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
     {% include JB/analytics %}
   </body>
 </html>

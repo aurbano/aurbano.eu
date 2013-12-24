@@ -2,8 +2,8 @@
   <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
 </div>
 
-<div class="row-fluid post-full">
-  <div class="span12">
+<div class="row post-full">
+  <div class="col-md-12">
     <div class="date">
       <span>{{ page.date | date_to_long_string }}</span>
     </div>
@@ -13,7 +13,7 @@
 
   {% unless page.categories == empty %}
     <ul class="tag_box inline">
-      <li><i class="icon-folder-open"></i></li>
+      <li><i class="glyphicon glyphicon-folder-open"></i></li>
       {% assign categories_list = page.categories %}
       {% include JB/categories_list %}
     </ul>
@@ -21,15 +21,15 @@
 
   {% unless page.tags == empty %}
     <ul class="tag_box inline">
-      <li><i class="icon-tags"></i></li>
+      <li><i class="glyphicon glyphicon-tags"></i></li>
       {% assign tags_list = page.tags %}
       {% include JB/tags_list %}
     </ul>
   {% endunless %}  
 
-    <hr>
-    <div class="pagination">
-      <ul>
+    <hr />
+    <div style="text-align:center">
+      <ul class="pagination">
       {% if page.previous %}
         <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; Previous</a></li>
       {% else %}
@@ -44,6 +44,8 @@
       </ul>
     </div>
     <hr>
-    {% include JB/comments %}
+    <div class="row">
+    	{% include JB/comments %}
+    </div>
   </div>
 </div>

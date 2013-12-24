@@ -1,13 +1,28 @@
-/* Custom container */
-.container-narrow {
-  margin: 0 auto;
-  max-width: 700px; }
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
 
-.container-narrow > hr {
-  margin: 30px 0; }
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
 
-.navbar .nav {
-  float: right; }
+footer{
+	background: #efefef;
+	border-top: 1px solid #ccc;
+	height: 60px;
+}
+
+footer p{
+  margin: 20px 0;
+}
 
 /* posts index */
 .post > h3.title {
@@ -22,6 +37,13 @@
 .post > .more {
   margin: 10px 0;
   text-align: left; }
+  
+blockquote p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 1.25;
+	font-style: italic;
+}
 
 /* post-full*/
 .post-full .date {
@@ -77,16 +99,18 @@
 	display:block;
 	margin:0 auto;
 }
+.glyphicon:empty{
+	width:1.5em;
+}
 /* code */
 pre {
-    counter-reset: line-numbering;
     color: #fff;
     border: solid 1px #d9d9d9;
     border-radius: 4px;
     background: #222;
-    padding: 0;
-    line-height: 23px;
+    padding: 10px 10px 0 10px;
     margin-bottom: 30px;
+    line-height:19px;
     white-space: pre;
     overflow-x: auto;
     word-break: inherit;
@@ -95,14 +119,12 @@ pre {
 
 pre span.lineno{
   padding-right: 1em;
-  width: 25px;
   text-align: right;
-  opacity: 0.7;
   display: inline-block;
-  color: #aaa;
-  background: #000;
-  margin-right: 16px;
-  padding: 2px 10px;
+  color: #444;
+  background: #111;
+  margin:-10px 10px 0 -10px;
+  padding: 10px 5px 0 20px;
   font-size: 13px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -112,14 +134,15 @@ pre span.lineno{
   user-select: none;
 }
 
-pre span.lineno:first-of-type::before {
-  padding-top: 10px;
+pre .lineno ~ .lineno{
+	margin:0px 10px 0 -10px;
+	padding: 0px 5px 0 20px;
 }
 
-pre span.lineno:last-of-type::before {
-  padding-bottom: 10px;
+code{
+	border:1px #ccc solid;
 }
 
-pre span.lineno:only-of-type::before {
-  padding: 10px;
+pre code{
+	border:none;
 }
