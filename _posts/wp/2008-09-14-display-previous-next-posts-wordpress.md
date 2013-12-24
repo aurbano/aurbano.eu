@@ -21,20 +21,20 @@ This is a really good option in WordPress, yet very few know how to do it. Well 
 
 If you want to plainly display the next post after the one the user is reading, use the following function:
 
-{% highlight php  %}
+{% highlight php linenos startinline %}
     next_post_link();
 {% endhighlight %}   
 
 Now this function has several (very useful) parameters, which are:
 
-{% highlight php  %}
+{% highlight php linenos startinline %}
     next_post_link('format', 'link', in_same_cat, 'excluded_categories');
 {% endhighlight %}    
 
 - `Format` For example **bold**, *italics*... And so on, you can add here divs, p, span or anything you want to apply css classes or ids.
 - `Link` To display a custom text instead of the post title, for example if you want \"Next post\" use:
 
-{% highlight php  %}
+{% highlight php linenos startinline %}
     next_post_link('%link', 'Next post in category', TRUE);
 {% endhighlight %}  
 
@@ -42,7 +42,7 @@ Now this function has several (very useful) parameters, which are:
 
 You can use one more parameter to exclude categories, for example:
 
-{% highlight php  %}
+{% highlight php linenos startinline %}
     next_post_link('%link', 'Next post in category', TRUE, '13');
 {% endhighlight %}  
 

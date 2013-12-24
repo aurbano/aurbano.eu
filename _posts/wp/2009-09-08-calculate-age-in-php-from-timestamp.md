@@ -22,7 +22,7 @@ tags:
 
 If you ever wanted to calculate someone\'s age in PHP from a birth timestamp, you must take into account that the age is more than the number of years, since days and months are also important, so I wrote a simple function that will return the exact age for a given timestamp:
 
-{% highlight php  %}
+{% highlight php linenos startinline %}
 function getAge($birth){
 	$t = time();
 	$age = ($birth < 0) ? ( $t   ($birth * -1) ) : $t - $birth;

@@ -27,25 +27,25 @@ Well the idea is relatively simple: Add CSS-hidden fields that a user won\'t see
 The CSS would be something as simple as:
 
 {% highlight css linenos %}
-    .noshow { display:none; }
+.noshow { display:none; }
 {% endhighlight %}
 
 The HTML form should include something like this:
 
 {% highlight html linenos %}
-	<label for="leaveblank">Leave this blank</label>
-	<input type="text" class="noshow" id="leaveblank" name="leaveblank" /><br />
-	<label for="dontchange">Do not change this</label>
-	<input type="text" value="http://" class="noshow" id="dontchange" name="dontchange" />
+<label for="leaveblank">Leave this blank</label>
+<input type="text" class="noshow" id="leaveblank" name="leaveblank" /><br />
+<label for="dontchange">Do not change this</label>
+<input type="text" value="http://" class="noshow" id="dontchange" name="dontchange" />
 {% endhighlight %}     
     
 
 And finally the php would be simply:
 
-{% highlight php linenos %}
-    if ($_POST['leaveblank'] == '' &#038;&#038; $_POST['dontchange'] == 'http://') {
-     // accept form submission
-    }
+{% highlight php linenos startinline %}
+if ($_POST['leaveblank'] == '' &#038;&#038; $_POST['dontchange'] == 'http://') {
+ // accept form submission
+}
 {% endhighlight %}   
 
 The only possible drawback would be that some users with CSS disabled would see the \"hidden\" form fields, and thus would be quite puzzled.  

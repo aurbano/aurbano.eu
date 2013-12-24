@@ -46,7 +46,7 @@ jQuery UI does that by itself with a very simple command, but it is **not** perf
 
 So here is how this is achieved:
 
-{% highlight javascript  %}
+{% highlight javascript linenos %}
     $(document).ready(function(){
     	$("#tabs-rotate").tabs({ fx: { opacity: 'toggle' } }).tabs('rotate', 3000);
     	$('#tabs-rotate').hover(function(){
@@ -66,7 +66,7 @@ Now you may want to stop rotation completely when a tab is clicked. This can be 
 
  [7]: http://api.jquery.com/unbind/
 
-{% highlight javascript  %}
+{% highlight javascript linenos %}
     $('#tabs').click(function(){
     	$(this).tabs('rotate', 0, false);
     	$(this).unbind('hover');

@@ -18,8 +18,9 @@ If you maintain a website, you will surely know how important it is to never hav
 
 Well, there is a very simple way of doing so, simply copy the following javascript code and paste it into the address bar (On Google Chrome you may have to rewrite `javascript:`):
 
-    javascript:document.body.contentEditable='true'; document.designMode='on'; void 0
-    
+{% highlight javascript linenos %}
+javascript:document.body.contentEditable='true'; document.designMode='on'; void 0
+{% endhighlight %}
 
 If you find it useful, I recommend that you store that code as a bookmark, I call it Spell Check for example.
 
