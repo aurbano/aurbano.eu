@@ -28,7 +28,7 @@ while($file = readdir($handle)){
 {% endhighlight %}
 
 This code is really easy to understand, we first define a variable `$handle`, which will contain the handle to the absolute path of the folder (I always go for absolute paths since I find them much safer)  
-`dirname(realpath(\_\_FILE\_\_))` returns the absolute path to the current file (gallery.php) and then we add to the end of it /pictures/
+`dirname(realpath(__FILE__))` returns the absolute path to the current file (*gallery.php*) and then we add to the end of it /pictures/
 
 Then, we loop through all the files in the directory, that simple if statement I used is to prevent some the function returning . or .. as file names sometimes. We then display the image in standard html
 

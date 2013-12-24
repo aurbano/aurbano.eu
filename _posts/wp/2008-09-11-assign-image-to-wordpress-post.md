@@ -48,10 +48,11 @@ So here is the code to display the image (It must be inserted inside [the Loop][
 
     if(get_post_meta($post->ID, 'post_image',true)){
     	//There is an image assigned:
-    	echo '<img src="http://yourblog.com/post_images/'.get_post_meta($post-/>ID, 'post_image',true).'" />';
+    	echo '<img src="http://yourblog.com/post_images/'.get_post_meta($post-/>ID,'.
+    		 'post_image',true).'" />';
     }
 
-Note that if you copy and paste the code before you\'ll have to delete a / in $post->ID because WordPress is adding it automatically.  
+Note that if you copy and paste the code before you\'ll have to delete a / in `$post->ID` because WordPress is adding it automatically.  
 Of course this is the most basic approach, but hopefully you will understand the method and will be able to work on it.  
 At the moment I am using it to display thumbnails on the archive excerpts (They are not live yet, I\'m still testing) and it is a very easy and fast way of doing it.
 

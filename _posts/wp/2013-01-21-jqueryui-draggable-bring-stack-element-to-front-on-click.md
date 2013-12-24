@@ -41,7 +41,7 @@ function bringFront(elem, stack){
 }
 {% endhighlight %}
 
-**elem** should be the clicked element and **stack** should be the same you put in jQueryUI draggable's options. If you wanted that to happen on click, you could use:
+`elem` should be the clicked element and `stack` should be the same you put in jQueryUI draggable's options. If you wanted that to happen on click, you could use:
 
 {% highlight javascript linenos %}
 $('.drag').bind('click',function(){ bringFront($(this), '.drag'); });

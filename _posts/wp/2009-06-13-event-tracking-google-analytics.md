@@ -51,19 +51,11 @@ Wait for a day after you install this to see the data in Google Analytics, and t
 I\'ve created a sample profile with some events and I clicked a couple times to show you how it looks like:
 
 <div align="center">
-	![Screen capture of the Event Tracking page][3]
-	
-	Screen capture of the Event Tracking page
+<img src="http://urbanoalvarez.es/blog/wp-content/uploads/2009/06/analytics.gif" alt ="Google Analytics" />
+<br />
+Screen capture of the Event Tracking page
 </div>
-
- [3]: http://urbanoalvarez.es/blog/wp-content/uploads/2009/06/analytics.gif "Analytics shot"
 
 Well I hope you found this useful, more information on the [Google API][4]
 
  [4]: http://www.code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
-
-## How do you use this?
-
-Have you found any sort of smart uses for this? Please share with us ![:)][5] 
-
- [5]: http://urbanoalvarez.es/blog/wp-includes/images/smilies/icon_smile.gif

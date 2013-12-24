@@ -14,12 +14,12 @@ tags:
 > This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
 
 <div align="center">
-![Google Chrome][1]
+<img src="http://www.google.com/chrome/intl/es/images/logo_sm.jpg" alt="Google Chrome" />
 </div>
 
 Well, it was time for web-giant Google to jump the gap between being the world leader in providing web-based services to actually providing... the web.
 
- [1]: http://www.google.com/chrome/intl/es/images/logo_sm.jpg
+ [1]: 
 
 Today Google launched the Beta version of [Google Chrome][2], which will be the revolutionary browser nowadays, as Google claims. But what makes it so great? Well, Google announced in a [very entertaining comic-book][3] that it was going to provide a solution to every single problem in today\'s browsers, but is it true?
 
@@ -33,5 +33,6 @@ The main drawback though is the lack of Extensions or plugins. I miss Stumbling 
 My rating, if I was faced from a 0-10 choice would be around a 7. But the lack of plugins will never allow it for more. Maybe a normal user will find it perfect, but a developer and a user that spends hours a day watching for new stuff all over the web needs more than \"The basics\".
 
 **2013 Update**
+
 Interesting to see my opinion at launch. I currently use Chrome on a daily basis, it offers an incredible developer console, and grew to have a very comprehensive addon collection.
 I'll come back in a few more years.

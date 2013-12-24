@@ -159,7 +159,7 @@ As you can see in Figure 1 the technique of stacking lines works very well, it e
 
 In order to generate a new branch we must wait until the tree has grown enough, branches usually start 1-2 meters above ground. Since this a recursive function we don\'t know much on each iteration, that\'s why I\'m using the variable lifetime. If we use lifetime along with the current width of the tree, we can know exactly the percentage of growth, in order to start a new branch.
 
-After some testing I\'ve ended up with this condition: `w-lifetime\*loss < 9`. If that is met we will start a new branch, although that would mean that after that point is reached we will always start a new branch. To avoid that we add a little randomness by using: `Math.random() > 0.7`, supposing Math.random() returns a real random number the chances of that being true are almost 30%.
+After some testing I\'ve ended up with this condition: `w-lifetime*loss < 9`. If that is met we will start a new branch, although that would mean that after that point is reached we will always start a new branch. To avoid that we add a little randomness by using: `Math.random() > 0.7`, supposing Math.random() returns a real random number the chances of that being true are almost 30%.
 
 
 {% highlight javascript linenos %}
