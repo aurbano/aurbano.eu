@@ -36,6 +36,8 @@ footer a:hover{
 	color: #F60;
 }
 
+a:hover{color: #C00;}
+
 /* navbar */
 .navbar a{
 	color:inherit;
