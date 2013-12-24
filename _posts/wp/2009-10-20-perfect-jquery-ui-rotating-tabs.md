@@ -32,7 +32,7 @@ With [jQuery][2] and [jQuery UI][3] it is dead simple. First, load the libraries
 [2]: http://jquery.com/
 [3]: http://jqueryui.com/
 
-{% highlight html %}
+{% highlight html linenos %}
 	<script src="http://jqueryjs.googlecode.com/files/jquery-x.min.js" type="text/javascript"></script>
 	<script src="path/to/jquery UI" type="text/javascript"></script>
 {% endhighlight %}

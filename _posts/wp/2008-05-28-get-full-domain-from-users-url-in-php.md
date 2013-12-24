@@ -54,7 +54,7 @@ Now we have \"http://www.{user input}/\" , we are basically done!
 If you really want to this this correctly you could check if the URL exists, but this is just a waste of bandwidth and opens a door for attacks from my point of view...  
 So if you want to do this, create the following function:
 
-{% highlight php %}
+{% highlight php linenos %}
     function url_exists($strURL) {
         $resURL = curl_init();
         curl_setopt($resURL, CURLOPT_URL, $strURL);
@@ -77,7 +77,7 @@ So if you want to do this, create the following function:
 
 And call it from our previous script:
 
-{% highlight php %}
+{% highlight php linenos %}
     If(url_exists($url)) {
          return true;
     }else{

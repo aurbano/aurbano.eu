@@ -26,13 +26,13 @@ Well the idea is relatively simple: Add CSS-hidden fields that a user won\'t see
 
 The CSS would be something as simple as:
 
-{% highlight css %}
+{% highlight css linenos %}
     .noshow { display:none; }
 {% endhighlight %}
 
 The HTML form should include something like this:
 
-{% highlight html %}
+{% highlight html linenos %}
 	<label for="leaveblank">Leave this blank</label>
 	<input type="text" class="noshow" id="leaveblank" name="leaveblank" /><br />
 	<label for="dontchange">Do not change this</label>
@@ -42,7 +42,7 @@ The HTML form should include something like this:
 
 And finally the php would be simply:
 
-{% highlight php %}
+{% highlight php linenos %}
     if ($_POST['leaveblank'] == '' &#038;&#038; $_POST['dontchange'] == 'http://') {
      // accept form submission
     }
