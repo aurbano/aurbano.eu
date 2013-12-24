@@ -37,7 +37,7 @@ Imagine we have a site where we feature some sort of mp3 downloads. And we want 
 <a href="song_file.mp3" title="Download file">Download song</a>
 {% endhighlight %}
 
-As you can see we use the function *\_trackEvent*, from the pageTracker object. This function takes 4 parameters, Category name, action name and a label and value:
+As you can see we use the function `_trackEvent`, from the pageTracker object. This function takes 4 parameters, Category name, action name and a label and value:
 
 {% highlight javascript linenos %}
 _trackEvent(category, action, optional_label, optional_value)
@@ -55,6 +55,8 @@ I\'ve created a sample profile with some events and I clicked a couple times to 
 <br />
 Screen capture of the Event Tracking page
 </div>
+
+<hr />
 
 Well I hope you found this useful, more information on the [Google API][4]
 
