@@ -150,10 +150,10 @@ function branch(x,y,dx,dy,w,lifetime){
 
 <div style="float:right" class="caption">
 <img src="http://i1.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree1.png?resize=216%2C311" /><br />
-Figure 1: Initial developmentTo execute we simply need to call
+Figure 1: Initial development
 </div> 
 
-`branch(WIDTH/2,HEIGHT,0,-1,15,0)`, although you can change however you want the first 4 arguments. `lifetime` should start in 0, since it is the cycle counter. I\'ve used the `sleep` variable to control how long it waits before drawing the next line, this way you get a sense of real drawing. If you set it to 0 the tree simply appears.
+To execute we simply need to call `branch(WIDTH/2,HEIGHT,0,-1,15,0)`, although you can change however you want the first 4 arguments. `lifetime` should start in 0, since it is the cycle counter. I\'ve used the `sleep` variable to control how long it waits before drawing the next line, this way you get a sense of real drawing. If you set it to 0 the tree simply appears.
 
 As you can see in Figure 1 the technique of stacking lines works very well, it even gives a little texture to the tree. We should now add some branches, the idea here is to treat the branches as new \"trees\", thus reusing the function branch.
 
@@ -174,10 +174,10 @@ if(w-lifetime*loss < 9 &#038;&#038; lifetime > 30 Math.random()*250){
 
 <div style="float:right" class="caption">
 	<img src="http://i1.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree2.png?resize=250%2C379" /><br />
-	Figure 2: Fully developed treeI have added some randomness to the direction in which branches start to grow by using a sine and cosine along with a random number and the current lifetime. That should give us a random direction from -1 to 1 in both axis. 
+	Figure 2: Fully developed tree
 </div> 
 
-`mainLoss` is a coefficient that determines how much width is lost by the main branch.
+I have added some randomness to the direction in which branches start to grow by using a sine and cosine along with a random number and the current lifetime. That should give us a random direction from -1 to 1 in both axis. `mainLoss` is a coefficient that determines how much width is lost by the main branch.
 
 We should now have a working tree generator, although some variable tweaking is required to get the shape right. Once I got the variables and function a little improved I moved everything to an object, so that I could use [dat.gui][6] and control the variables more easily (and also because JS people love experiments with dat.gui)
 
