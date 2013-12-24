@@ -71,6 +71,7 @@
 	background: #efefef;
 	border: #ccc solid 1px;
 	margin: 10px;
+	margin-right:0;
 }
 .caption img{
 	display:block;
