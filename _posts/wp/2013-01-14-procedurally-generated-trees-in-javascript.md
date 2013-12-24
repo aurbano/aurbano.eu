@@ -37,7 +37,7 @@ Before we move any further let me say that this article is aimed at people with 
 I don\'t have any template for starting a new canvas project, but I do have some guidelines I like to follow. Below is the usual starting point
 
 
-{% highlight javascript linenos anchorlinenos %}
+{% highlight javascript linenos anchorlinenos=True %}
 $(document).ready(function(e) {
 	var ctx;
 	var WIDTH;
