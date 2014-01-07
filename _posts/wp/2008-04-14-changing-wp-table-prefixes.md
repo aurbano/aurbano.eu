@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2008/04/14/changing-wp-table-prefixes/
 categories:
-  - Web-related
+  - PHP
   - WordPress
 tags:
   - prefix

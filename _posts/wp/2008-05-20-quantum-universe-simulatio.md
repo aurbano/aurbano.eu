@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2008/05/20/quantum-universe-simulatio/
 categories:
-  - General talk
+  - General
 tags:
   - paradox
   - physics

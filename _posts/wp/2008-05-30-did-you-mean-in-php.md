@@ -5,8 +5,6 @@ layout: post
 permalink: /blog/2008/05/30/did-you-mean-in-php/
 categories:
   - PHP
-  - Programming
-  - Reviews
 tags:
   - levenshtein
   - metaphone

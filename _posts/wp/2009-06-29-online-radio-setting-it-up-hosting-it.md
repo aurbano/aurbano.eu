@@ -4,8 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2009/06/29/online-radio-setting-it-up-hosting-it/
 categories:
-  - Traffic building
-  - Web-related
+  - General
 tags:
   - broadcast
   - online

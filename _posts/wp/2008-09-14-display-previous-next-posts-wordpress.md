@@ -4,7 +4,6 @@ author: Alex
 layout: post
 permalink: /blog/2008/09/14/display-previous-next-posts-wordpress/
 categories:
-  - PHP
   - WordPress
 tags:
   - next

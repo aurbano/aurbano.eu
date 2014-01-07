@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2009/11/22/developing-more-intelligent-algorithms/
 categories:
-  - General talk
+  - General
 tags:
   - ai
   - ant

@@ -5,8 +5,7 @@ layout: post
 permalink: /blog/2013/01/14/procedurally-generated-trees-in-javascript/
 categories:
   - HTML5
-  - Javascript
-  - Programming
+  - JavaScript
 tags:
   - canvas
   - generator

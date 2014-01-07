@@ -4,8 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2013/01/21/jqueryui-draggable-bring-stack-element-to-front-on-click/
 categories:
-  - Javascript
-  - Programming
+  - JavaScript
 tags:
   - draggable
   - jquery

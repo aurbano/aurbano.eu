@@ -4,8 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2010/03/20/sync-issues-iphone-not-detected-by-itunes-windows/
 categories:
-  - iPhone
-  - Windows
+  - iOS
 tags:
   - iPhone
   - itunes

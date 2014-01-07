@@ -4,8 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2008/09/14/use-firefox-to-spell-check-your-website/
 categories:
-  - Browsers
-  - SEO
+  - Tips
 tags:
   - check
   - Firefox

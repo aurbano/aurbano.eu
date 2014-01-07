@@ -5,7 +5,6 @@ layout: post
 permalink: /blog/2010/05/04/php-display-all-filespictures-in-a-folder/
 categories:
   - PHP
-  - Programming
 tags:
   - gallery
   - handle

@@ -4,9 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2008/04/04/bad-words-list/
 categories:
-  - General talk
-  - SEO
-  - Web-related
+  - Resources
 tags:
   - bad
   - forums

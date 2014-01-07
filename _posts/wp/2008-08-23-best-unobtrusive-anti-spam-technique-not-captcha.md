@@ -5,7 +5,6 @@ layout: post
 permalink: /blog/2008/08/23/best-unobtrusive-anti-spam-technique-not-captcha/
 categories:
   - CSS
-  - PHP
 tags:
   - anti
   - captcha

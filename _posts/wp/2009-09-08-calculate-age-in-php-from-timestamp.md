@@ -5,7 +5,6 @@ layout: post
 permalink: /blog/2009/09/08/calculate-age-in-php-from-timestamp/
 categories:
   - PHP
-  - Programming
 tags:
   - ajax
   - chat

@@ -4,7 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2010/05/03/restore-iphone-without-upgrading-os/
 categories:
-  - iPhone
+  - iOS
 tags:
   - 3g
   - 3gs

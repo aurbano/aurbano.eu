@@ -4,8 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2008/09/02/google-chrome/
 categories:
-  - Browsers
-  - General talk
+  - General
 tags:
   - browser
   - google chrome

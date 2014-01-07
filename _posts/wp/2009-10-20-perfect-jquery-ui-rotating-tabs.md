@@ -4,8 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2009/10/20/perfect-jquery-ui-rotating-tabs/
 categories:
-  - CSS
-  - Javascript
+  - JavaScript
 tags:
   - javascript
   - jquery

@@ -4,9 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2009/06/13/event-tracking-google-analytics/
 categories:
-  - Javascript
-  - Tips
-  - Web-related
+  - JavaScript
 tags:
   - analytics
   - event

@@ -4,11 +4,7 @@ author: Alex
 layout: post
 permalink: /blog/2008/04/06/search-engine-position/
 categories:
-  - General talk
-  - PHP
-  - Programming
   - SEO
-  - Web-related
 tags:
   - advanced
   - analysis

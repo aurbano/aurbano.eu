@@ -4,7 +4,6 @@ author: Alex
 layout: post
 permalink: /blog/2008/09/11/assign-image-to-wordpress-post/
 categories:
-  - PHP
   - WordPress
 tags:
   - assign
