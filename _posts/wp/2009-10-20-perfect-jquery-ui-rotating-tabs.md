@@ -12,9 +12,7 @@ tags:
   - rotate
   - tabs
   - ui
---- 
-
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+---
 
 Tabs are nice. They create a very elegant interface, and jQuery UI does this marvelously, here we have a little preview of this:
 

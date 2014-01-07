@@ -14,8 +14,6 @@ tags:
   - thomas landauer
 ---
 
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
-
 I know you are probably thinking that this will be some silly thing, but this idea that [Thomas Landauer][1] came up with is by far the best I\'ve seen in a long time.
 
  [1]: http://www.landauer.at/preventing-spam-in-form-submissions-without-using-a-captcha.php

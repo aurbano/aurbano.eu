@@ -19,7 +19,6 @@ tags:
   - seo
   - tool
 ---
- 
 
 Hello!
 Although this was a nice script back then, it is now very outdated. There are APIs available now that weren't at the moment, so I decided to remove the post.

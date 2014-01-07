@@ -11,9 +11,7 @@ tags:
   - jquery
   - jqueryui
   - stack
---- 
-
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+---
 
 If you are developing window-like elements on HTML using jQueryUI Draggable, you are probably using the [stack][1] option to ensure that the dragged element will always be on top. But the actual goal would be for that element to be on top onFocus, and that means whenever the user clicks on the element.
 

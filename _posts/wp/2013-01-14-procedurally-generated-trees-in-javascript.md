@@ -15,10 +15,7 @@ tags:
   - procedural
   - procedurally
   - tree
---- 
-
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
-> All images were stripped from the post in the process, I'll try to get them back as soon as I can.
+---
 
 Over the past year I\'ve been more and more interested in HTML5 canvas, since it allows very fast development of graphical animations using JavaScript.
 

@@ -13,8 +13,6 @@ tags:
   - robot
 --- 
 
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
-
 First of all, what do we call intelligence when talking about algorithms? Well, if we have an algorithm that is able to forecast when it is going to rain and when it will be sunny, we might call that intelligent, but it depends on some other variable, the time and effort it took for it to get those results. Thus the faster and lower number of variables our algorithm needs to return the same or even better results, the more intelligent it is.  
 That is a rule of thumb, but how do we do that?
 

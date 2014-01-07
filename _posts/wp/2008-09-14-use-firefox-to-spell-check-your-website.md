@@ -12,8 +12,6 @@ tags:
   - spell
 --- 
 
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
-
 If you maintain a website, you will surely know how important it is to never have any spelling errors in your copy. And if you really care you will always run for sure a spell checker on all your text, but isn\'t that quite over work? Wouldn\'t it be much simpler if your browser did all the spell checking without you having to worry about anything?
 
 Well, there is a very simple way of doing so, simply copy the following javascript code and paste it into the address bar (On Google Chrome you may have to rewrite `javascript:`):

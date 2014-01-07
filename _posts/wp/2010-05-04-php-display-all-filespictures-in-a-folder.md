@@ -10,9 +10,7 @@ tags:
   - gallery
   - handle
   - opendir
---- 
-
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+---
 
 If we want to create a quick gallery of files/pictures, it is quite a pain to do so manually. And since this is some code I\'m always reusing I thought I might share it here with everyone else:
 

@@ -27,26 +27,60 @@ Usage:
     {% capture next_month %}{{ post.previous.date | date: "%B" }}{% endcapture %}
   
     {% if forloop.first %}
-      <h2>{{this_year}}</h2>
-      <h3>{{this_month}}</h3>
-      <ul>
+      <div class="row">
+        <div class="col-md-1" style="text-align:right">
+          <span class="label label-info">{{this_year}}</span>
+        </div>
+        <div class="col-md-1" style="text-align:right">
+          <span class="label label-info">{{next_month}}</span>
+        </div>
+      	<div class="col-md-10">
+          <div class="row">
     {% endif %}
   
-    <li><span>{{ post.date | date: "%B %e, %Y" }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+    <a href="{{ BASE_PATH }}{{ post.url }}" class="list-group-item">
+      <div class="row">
+	      <div class="col-md-1">
+	        <span class="badge">{{ post.date | date: "%a %e" }}</span>
+	      </div>
+	      <div class="col-md-11">
+	        <h4>{{ post.title }}</h4>
+	        <p>{{ post.excerpt }}</p>
+	      </div>
+      </div>
+    </a>
   
     {% if forloop.last %}
-      </ul>
+          </div>
+        </div>
+      </div>
     {% else %}
       {% if this_year != next_year %}
-        </ul>
-        <h2>{{next_year}}</h2>
-        <h3>{{next_month}}</h3>
-        <ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md-1" style="text-align:right">
+          <span class="label label-info">{{next_year}}</span>
+        </div>
+        <div class="col-md-1" style="text-align:right">
+          <span class="label label-info">{{next_month}}</span>
+        </div>
+      	<div class="col-md-10">
+          <div class="row">
       {% else %}    
         {% if this_month != next_month %}
-          </ul>
-          <h3>{{next_month}}</h3>
-          <ul>
+              </div>
+          </div>
+        </div>
+      	<div class="row"> &nbsp; </div>
+        <div class="row">
+          <div class="col-md-1 col-md-offset-1" style="text-align:right">
+            <span class="label label-info">{{next_month}}</span>
+          </div>
+          <div class="col-md-10">
+            <div class="row">
         {% endif %}
       {% endif %}
     {% endif %}

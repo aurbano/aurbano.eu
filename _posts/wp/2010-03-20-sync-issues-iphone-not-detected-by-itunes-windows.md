@@ -13,8 +13,6 @@ tags:
   - sync
 --- 
 
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
-
 Note that this is for Windows only!
 
 Some people have been experiencing this problem lately: You plugin in your iPhone, the Camera detected window pops up, iTunes may even open, but the iPhone doesn\'t sync or even show in the sidebar!

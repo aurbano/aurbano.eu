@@ -11,13 +11,11 @@ tags:
   - google chrome
 --- 
 
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+Well, it was time for web-giant Google to jump the gap between being the world leader in providing web-based services to actually providing... the web.
 
 <div align="center">
 <img src="http://www.google.com/chrome/intl/es/images/logo_sm.jpg" alt="Google Chrome" />
 </div>
-
-Well, it was time for web-giant Google to jump the gap between being the world leader in providing web-based services to actually providing... the web.
 
 Today Google launched the Beta version of [Google Chrome][2], which will be the revolutionary browser nowadays, as Google claims. But what makes it so great? Well, Google announced in a [very entertaining comic-book][3] that it was going to provide a solution to every single problem in today\'s browsers, but is it true?
 

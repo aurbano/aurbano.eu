@@ -15,8 +15,6 @@ tags:
   - WordPress
 ---
 
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors. 
-
 This is a really good option in WordPress, yet very few know how to do it. Well the code is relatively simple, and it gives a good navigation point for users that, if they liked your article, might want to keep reading your stuff.
 
 If you want to plainly display the next post after the one the user is reading, use the following function:

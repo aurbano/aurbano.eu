@@ -6,7 +6,6 @@ permalink: /blog/2008/05/28/get-full-domain-from-users-url-in-php/
 categories:
   - PHP
 ---
- > This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
 
 What I\'m going to post here is a php function that will create a standard url from a user-inputted url so that any string will be converted to a functioning url.
 

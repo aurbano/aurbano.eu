@@ -13,14 +13,7 @@ tags:
   - iPhone
   - OS
   - restore
---- 
-
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
-
-<div style="float:right" class="caption">
-	<img src="http://www.iphoneheat.com/wp-content/uploads/2009/06/iphone-recovery-mode-2.jpg" /><br />
-	Figure 1: Recovery mode
-</div> 
+---
 
 If you need to restore your iPhone you\'ll notice iTunes tells you that upon restoring it, the latest version will be installed. This will be just fine for regular iPhones of course, but for the people who have a Jailbroken iPhone, it\'s not ok (At least until the newest version is ready for jailbreak)
 

@@ -12,9 +12,7 @@ tags:
   - event
   - google
   - tracking
---- 
-
-> This article was imported to Jekyll from my old Wordpress blog using a plugin, and it may have some errors.
+---
 
 Hello everyone,  
 As most people do, I\'m sure you use [Google Analytics ][1] for the stat metrics for some of your sites, so you\'ll love this new feature:
