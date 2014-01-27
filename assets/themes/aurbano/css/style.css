@@ -2,8 +2,20 @@
 html,
 body {
 	height: 100%;
-	background: #f5f5f5 url(/assets/themes/aurbano/img/fade.png) repeat-x top;
-	color: #333;
+	color: #111;
+	background-color:#d0976d;
+	background-image:url("../img/bg.jpg");
+	background-repeat:no-repeat;
+ 	background-position:center center fixed;
+	background-size:cover;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-attachment:fixed;
+}
+
+a, a:hover{
+	color:#ffe7d6;
 }
 
 /* Wrapper for page content to push down footer */
@@ -41,6 +53,11 @@ footer a:hover{
 a:hover{color: #C00;}
 
 /* navbar */
+.navbar-default, .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a{
+	background:transparent;
+	border:none;
+	color:#fff;
+}
 .navbar a{
 	color:inherit;
 }
@@ -130,7 +147,7 @@ blockquote p {
 /* code */
 pre {
     color: #fff;
-    border: solid 1px #d9d9d9;
+    border: solid 1px #000;
     border-radius: 4px;
     background: #222;
     padding: 10px 10px 0 10px;
