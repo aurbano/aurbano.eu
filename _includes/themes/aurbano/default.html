@@ -32,51 +32,52 @@
   </head>
 
   <body>
-  	<div class="container" id="wrap">
-		<div class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Alejandro U. Alvarez</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-			<li><a href="/projects.html">Projects</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                {% assign pages_list = site.pages %}
-				{% assign group = 'navigation' %}
-				{% include JB/pages_list %}
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-          	<li><a href="http://facebook.com/a.urbano.a" title="This is a social network" style="color:#3b5998">
-          		<i class="fa fa-facebook fa-lg"></i></a></li>
-			<li><a href="http://twitter.com/chevi_" title="Twitter [es]" style="color:#00aced">
-				<i class="fa fa-twitter fa-lg"></i></a></li>
-			<li><a href="http://www.linkedin.com/in/aurbano" title="People use this?" style="color:#007bb6">
-				<i class="fa fa-linkedin fa-lg"></i></a></li>
-			<li><a href="http://youtube.com/argallaos" title="Some trips and adventures" style="color:#bb0000">
-				<i class="fa fa-youtube-play fa-lg"></i></a></li>
-			<li><a href="https://github.com/aurbano" title="Fork me on Github!" style="color:#333">
-				<i class="fa fa-github fa-lg"></i></a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-		
+  	<div id="wrap">
+		<div class="cover-bg navbar navbar-default" role="navigation">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="/">Alejandro U. Alvarez</a>
+	        </div>
+	        <div class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li><a href="/">Home</a></li>
+				<li><a href="/projects.html">Projects</a></li>
+	            <li class="dropdown">
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+	              <ul class="dropdown-menu">
+	                {% assign pages_list = site.pages %}
+					{% assign group = 'navigation' %}
+					{% include JB/pages_list %}
+	              </ul>
+	            </li>
+	          </ul>
+	          <ul class="nav navbar-nav navbar-right">
+	          	<li><a href="http://facebook.com/a.urbano.a" title="This is a social network" style="color:#3b5998">
+	          		<i class="fa fa-facebook fa-lg"></i></a></li>
+				<li><a href="http://twitter.com/chevi_" title="Twitter [es]" style="color:#00aced">
+					<i class="fa fa-twitter fa-lg"></i></a></li>
+				<li><a href="http://www.linkedin.com/in/aurbano" title="People use this?" style="color:#007bb6">
+					<i class="fa fa-linkedin fa-lg"></i></a></li>
+				<li><a href="http://youtube.com/argallaos" title="Some trips and adventures" style="color:#bb0000">
+					<i class="fa fa-youtube-play fa-lg"></i></a></li>
+				<li><a href="https://github.com/aurbano" title="Fork me on Github!" style="color:#333">
+					<i class="fa fa-github fa-lg"></i></a></li>
+	          </ul>
+	        </div><!--/.nav-collapse -->
+      	</div>
+	 <div class="container">
 	  <div class="content">
         {{ content }}
       </div>
+     </div>
       
     </div>
-    <footer>
+    <footer class="cover-bg">
     	<div class="container">
 	    	<p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }} &bull; Hosted on <a href="https://github.com/aurbano/aurbano.github.com">Github</a> &bull; Powered by <a href="http://jekyllrb.com/">Jekyll</a></p>
 	    </div>
