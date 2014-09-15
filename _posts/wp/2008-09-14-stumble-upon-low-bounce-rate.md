@@ -17,7 +17,7 @@ This might seem strange, but the lowest bounce rate in my blog comes from Stumbl
 
 For example in the picture above, from my Analytics reports for last month, Stumble Upon visitors\' bounce rate is 47.45% less than the blog\'s average. Demonstrating the accurateness of its interest/channel system.
 
- [1]: http://urbanoalvarez.es/img/blog/stumble_bounce_rate.gif
+ [1]: http://static.urbanoalvarez.es/img/blog/stumble_bounce_rate.gif
 
 In case you don\'t know what the bounce rate is, it is something quite meaningful for a blog\'s success, it is the percentage of visitors that only read/watch one page/article, so every blogger\'s aim should be to have a very low bounce rate, which would mean that users come, read one article, like it, and stay to read more.
 

@@ -24,7 +24,7 @@ Now in the writing are scroll down until you see the tab \"Custom fields\":
 
 And fill in the following information:
 
- [1]: http://urbanoalvarez.es/img/blog/assigning_images.gif
+ [1]: http://static.urbanoalvarez.es/img/blog/assigning_images.gif
 
     Key: post_image
     Value: image_name.jpg

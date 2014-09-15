@@ -23,6 +23,3 @@ Well don\'t panic since this is a **really simple** thing to do, first, download
  [2]: http://www.quickpwn.com/2009/10/jailbreak-and-unlock-iphone-3-1-2.html
 
 Now that we have the IPSW ready simple plug your iPhone to your computer, and when it shows up on iTunes Hold down the **Shift key** and press **Restore.** You will be asked for the location of your desired IPSW file, simply select the one you just downloaded and click Open. Your iPhone should now be restored without problems to that version. This is also how you could downgrade your iPhone OS if you accidentally updated it.
-
-Hope you found this useful,  
-Alex

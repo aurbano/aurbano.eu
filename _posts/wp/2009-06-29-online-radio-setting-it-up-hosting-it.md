@@ -15,12 +15,7 @@ tags:
   - virtual dj
 ---
 
-Hi guys,  
-I\'m sure someday we will work for someone who wants an online radio statio, well, this is a quick guide to those
-
-## Online radios:
-
-Basically it is audio being broadcasted via the Internet. So that means that we generate an audio stream that listeners cannot control, other than pausing and resuming.  
+Audio being broadcasted via the Internet. So that means that we generate an audio stream that listeners cannot control, other than pausing and resuming.  
 To launch one we need several things, to start off, we need a server with streaming capabilities. Since setting up a streaming server might be difficult, we will use a standard radio management program. The main ones are [SHOUTcast][1], [IceCast][2], [Live365][3]...
 
  [1]: http://www.shoutcast.com/
@@ -87,9 +82,3 @@ Ideally, you will include the radio in your website using a flash player, so tha
 In order to use it you must make sure SHOUTcast is set to stream in mp3. And then go to the link \"Setup Flash Player\". In the code they give you, you will find the radio address for the mp3 stream.
 
 Where it says IP and PORT, the corresponding IP and PORT of your radio will appear. You can directly embed this, or customize it. In order to do so, you can use the skings in the JW Player\'s website, or simply create yourself one, providing you have enough knowledge of Flash.
-
-## You\'re done!
-
-If you still have any problems setting it up, or broadcasting, feel free to ask in the comments section below ![:)][12] 
-
- [12]: http://urbanoalvarez.es/blog/wp-includes/images/smilies/icon_smile.gif

@@ -48,7 +48,7 @@ Wait for a day after you install this to see the data in Google Analytics, and t
 I\'ve created a sample profile with some events and I clicked a couple times to show you how it looks like:
 
 <div align="center">
-<img src="http://urbanoalvarez.es/blog/wp-content/uploads/2009/06/analytics.gif" alt ="Google Analytics" />
+s<img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2009/06/analytics.gif" alt ="Google Analytics" />
 <br />
 Screen capture of the Event Tracking page
 </div>

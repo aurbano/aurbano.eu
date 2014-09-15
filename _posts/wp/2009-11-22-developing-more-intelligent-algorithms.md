@@ -17,7 +17,7 @@ tags:
 First of all, what do we call intelligence when talking about algorithms? Well, if we have an algorithm that is able to forecast when it is going to rain and when it will be sunny, we might call that intelligent, but it depends on some other variable, the time and effort it took for it to get those results. Thus the faster and lower number of variables our algorithm needs to return the same or even better results, the more intelligent it is.  
 That is a rule of thumb, but how do we do that?
 
-Well, many scientists say \"Copy nature\", and that is indeed a good solution, why? Because nature know how to do perfect algorithms. I\'ll take simple animals to explain this, for example the ants. If we were to program ants, we would say it is too hard, but are we sure?  
+Well, many scientists say \"Copy nature\", and that is indeed a good solution, because nature knows how to do really well optimized algorithms. I\'ll take simple animals to explain this, for example the ants. If we were to program ants, we would say it is too hard, but are we sure?  
 How nature did them was by \"programming\" the simplest possible set of rules (Apart from the moving/eating/basic functions), which put together create the complex societies we see them live in.
 
 Say we want to program ourselves an animal, and we want it to always be safe. Then, instead of programming complex recognition software, or advanced algorithms that determine the surroundings, why don\'t we try nature\'s approach, the simplistic approach?  
@@ -31,6 +31,3 @@ Another requirement is that we give the robot the ability to store information, 
 This sounds ok right? Now from this base we could start building better intelligence, but the base is this. We need something basic, some sort of default behavior.
 
 If I have time I will build a java applet or something of the sort to test this out,
-
-Best regards,  
-Alex
