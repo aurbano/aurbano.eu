@@ -13,4 +13,11 @@
   {% include custom/comments %}
 {% endcase %}
 
+{% else if page.comments = false %}
+
+<div class="alert alert-info" role="alert">
+	Comments don't exist anymore. I never really read them, and most of them were usually spam.<br />
+	If you want to get in touch use any of the various social sites I'm in
+</div>
+
 {% endif %}
