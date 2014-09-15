@@ -17,7 +17,7 @@ tags:
 Tabs are nice. They create a very elegant interface, and jQuery UI does this marvelously, here we have a little preview of this:
 
 <div class="caption">
-	<img src="http://urbanoalvarez.es/blog/wp-content/uploads/2009/10/tabs.png" /><br />
+	<img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2009/10/tabs.png" /><br />
 	Figure 1: jQuery UI Tabs
 </div> 
 

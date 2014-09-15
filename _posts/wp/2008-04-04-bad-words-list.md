@@ -27,7 +27,7 @@ The zip file contains a plain text file with one word per line, and a MySQL file
 
 *   [Bad words list v. 2.0][1] - 3kb
 
- [1]: http://urbanoalvarez.es/blog/?download=badwords
+ [1]: http://static.urbanoalvarez.es/blog/?download=badwords
 
 ### Change log:
 

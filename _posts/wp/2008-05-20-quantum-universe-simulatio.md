@@ -44,9 +44,8 @@ The final conclusion is that currently the probability of us belonging to a simu
 
 The reasoning for all of this has been omitted, since it is based on complex quantum calculations and simulation algorithms. If any of you readers knows anything about quantum physics will find this extremely interesting, just as I do. Please comment your opinion.
 
-To understand better this, you can [watch this video][2] where several quantum scientists (Gregg Braden David Icke, David Lynch, Wayne Dyer, Deepak Chopra, David Wilcock, David Icke, Michael Talbot, Gregg Braden, James J Traitz, Robert Anton Wilson, Neil Kramer, Grant Morrison, Bill Hicks) talk about this subject.
+<del>To understand better this, you could watch this video where several quantum scientists (Gregg Braden David Icke, David Lynch, Wayne Dyer, Deepak Chopra, David Wilcock, David Icke, Michael Talbot, Gregg Braden, James J Traitz, Robert Anton Wilson, Neil Kramer, Grant Morrison, Bill Hicks) talk about this subject.</del> The video is unfortunately no longer available...
 
-[2]: http://www.youtube.com/watch?v=Ym8qwiU2q3I
 
 This article expresses a hypothesis I\'ve been working on for some time now, and it shall not be copied without citing the source and author. Thanks to Reda Bouchami for clarifying this when I missed it.
 
