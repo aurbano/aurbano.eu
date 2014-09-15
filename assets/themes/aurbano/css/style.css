@@ -116,19 +116,17 @@ blockquote p {
   background: #57A957;
   border: 1px solid #4c964d;
   color: #FFF; }
+
 .caption{
 	text-align:center;
-	width: 300px;
 	padding: 10px;
 	font-size: 10pt;
-	background: #efefef;
-	border: #ccc solid 1px;
-	margin: 10px;
-	margin-right:0;
+	margin: 10px 0;
 }
 .caption img{
-	display:block;
-	margin:0 auto;
+  padding:10px;
+  border:1px solid #ccc;
+  margin-bottom:15px;
 }
 .glyphicon:empty{
 	width:1.5em;
