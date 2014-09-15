@@ -3,6 +3,7 @@ title: 'Get full domain from user&#8217;s URL in php'
 author: Alex
 layout: post
 permalink: /blog/2008/05/28/get-full-domain-from-users-url-in-php/
+thumbnail: /assets/files/thumbnails/domain.jpg
 categories:
   - PHP
 ---
@@ -66,7 +67,7 @@ function url_exists($strURL) {
     $intReturnCode = curl_getinfo($resURL, CURLINFO_HTTP_CODE);
     curl_close ($resURL);
 
-    if ($intReturnCode != 200 &#038;&#038; $intReturnCode != 302 &#038;&#038; $intReturnCode != 304) {
+    if ($intReturnCode != 200 && $intReturnCode != 302 && $intReturnCode != 304) {
        return false;
     }Else{
         return true ;
@@ -102,7 +103,7 @@ function url_exists($strURL) {
     $intReturnCode = curl_getinfo($resURL, CURLINFO_HTTP_CODE);
     curl_close ($resURL);
 
-    if ($intReturnCode != 200 &#038;&#038; $intReturnCode != 302 &#038;&#038; $intReturnCode != 304) {
+    if ($intReturnCode != 200 && $intReturnCode != 302 && $intReturnCode != 304) {
        return false;
     }Else{
         return true ;

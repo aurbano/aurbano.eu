@@ -3,6 +3,7 @@ title: 'SEO Tool Search Engine position checker'
 author: Alex
 layout: post
 permalink: /blog/2008/04/06/search-engine-position/
+thumbnail: /assets/files/thumbnails/seo.png
 categories:
   - SEO
 tags:

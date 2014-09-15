@@ -3,6 +3,7 @@ title: Procedurally generated trees in JavaScript
 author: Alex
 layout: post
 permalink: /blog/2013/01/14/procedurally-generated-trees-in-javascript/
+thumbnail: /assets/files/thumbnails/trees.png
 categories:
   - HTML5
   - JavaScript

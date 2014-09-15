@@ -3,6 +3,7 @@ title: Restore iPhone without upgrading OS
 author: Alex
 layout: post
 permalink: /blog/2010/05/03/restore-iphone-without-upgrading-os/
+thumbnail: /assets/files/thumbnails/iphone_itunes.jpg
 categories:
   - iOS
 tags:

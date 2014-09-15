@@ -28,10 +28,6 @@ Usage:
   
     {% if forloop.first %}
       <div class="row">
-        <div class="col-md-12">
-            <h2>{{this_year}}</h2>
-            <h3>{{next_month}}</h3>
-            <div class="row">
     {% endif %}
 
     <a href="{{ BASE_PATH }}{{ post.url }}" class="col-md-3 text-center" style="color:inherit; height:300px">
@@ -41,28 +37,9 @@ Usage:
     </a>  
   
     {% if forloop.last %}
-          </div>
-        </div>
       </div>
-    {% else %}
-      {% if this_year != next_year %}
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="col-md-12">
-            <h2>{{this_year}}</h2>
-            <h3>{{next_month}}</h3>
-            <div class="row">
-      {% else %}    
-        {% if this_month != next_month %}
-          </div>
-            <h3>{{next_month}}</h3>
-            <div class="row">
-        {% endif %}
-      {% endif %}
     {% endif %}
+    
   {% endfor %}
 {% endif %}
 {% assign posts_collate = nil %}

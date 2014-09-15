@@ -3,6 +3,7 @@ title: 'Quantum Universe Simulation &#8211; The Unique beings paradox'
 author: Alex
 layout: post
 permalink: /blog/2008/05/20/quantum-universe-simulatio/
+thumbnail: /assets/files/thumbnails/quantum.png
 categories:
   - General
 tags:

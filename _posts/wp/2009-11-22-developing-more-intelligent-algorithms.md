@@ -3,6 +3,7 @@ title: Developing more intelligent algorithms
 author: Alex
 layout: post
 permalink: /blog/2009/11/22/developing-more-intelligent-algorithms/
+thumbnail: /assets/files/thumbnails/ai.jpg
 categories:
   - General
 tags:

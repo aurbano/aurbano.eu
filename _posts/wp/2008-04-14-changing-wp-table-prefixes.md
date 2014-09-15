@@ -3,6 +3,7 @@ title: Changing WP Table prefixes
 author: Alex
 layout: post
 permalink: /blog/2008/04/14/changing-wp-table-prefixes/
+thumbnail: /assets/files/thumbnails/wordpress.png
 categories:
   - PHP
   - WordPress

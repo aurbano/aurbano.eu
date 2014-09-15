@@ -3,6 +3,7 @@ title: 'Event tracking &#8211; Google Analytics'
 author: Alex
 layout: post
 permalink: /blog/2009/06/13/event-tracking-google-analytics/
+thumbnail: /assets/files/thumbnails/analytics.png
 categories:
   - JavaScript
 tags:

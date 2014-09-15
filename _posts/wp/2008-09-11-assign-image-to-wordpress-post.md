@@ -3,6 +3,7 @@ title: Easily assign an image to a post in WordPress
 author: Alex
 layout: post
 permalink: /blog/2008/09/11/assign-image-to-wordpress-post/
+thumbnail: /assets/files/thumbnails/wordpress.png
 categories:
   - WordPress
 tags:

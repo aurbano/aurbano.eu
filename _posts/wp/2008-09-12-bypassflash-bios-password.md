@@ -3,6 +3,7 @@ title: 'Bypass/Flash BIOS password:'
 author: Alex
 layout: post
 permalink: /blog/2008/09/12/bypassflash-bios-password/
+thumbnail: /assets/files/thumbnails/bios.jpg
 categories:
   - Computers
 tags:

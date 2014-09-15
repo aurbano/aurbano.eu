@@ -3,6 +3,7 @@ title: 'Sync issues: iPhone not detected by iTunes (Windows)'
 author: Alex
 layout: post
 permalink: /blog/2010/03/20/sync-issues-iphone-not-detected-by-itunes-windows/
+thumbnail: /assets/files/thumbnails/iphone_itunes.jpg
 categories:
   - iOS
 tags:

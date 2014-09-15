@@ -3,6 +3,7 @@ title: Use the browser to spell check your website
 author: Alex
 layout: post
 permalink: /blog/2008/09/14/use-firefox-to-spell-check-your-website/
+thumbnail: /assets/files/thumbnails/browsers.png
 categories:
   - Tips
 tags:

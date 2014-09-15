@@ -3,6 +3,7 @@ title: 'jQueryUI Draggable: Bring stack element to front on click'
 author: Alex
 layout: post
 permalink: /blog/2013/01/21/jqueryui-draggable-bring-stack-element-to-front-on-click/
+thumbnail: /assets/files/thumbnails/jqueryUI.png
 categories:
   - JavaScript
 tags:
@@ -22,26 +23,10 @@ Exploring the jqueryUI [source code][2] for the Draggable widget we can extract 
 
 Here is the function (Tweaked to work as a standalone function)
 
-{% highlight javascript linenos %}
-function bringFront(elem, stack){
-	// Brings a file to the stack front
-	var min, group = $(stack);
-	
-	if(group.length < 1) return;
-	min = parseInt(group[0].style.zIndex, 10) || 0;
-	$(group).each(function(i) {
-		this.style.zIndex = min   i;
-	});
-	
-	if(elem == undefined) return;
-	$(elem).css({'zIndex' : min   group.length});
-}
-{% endhighlight %}
+{% gist aurbano/9ce7e689d8138f341aea jqueryBringFront.js %}
 
 `elem` should be the clicked element and `stack` should be the same you put in jQueryUI draggable's options. If you wanted that to happen on click, you could use:
 
-{% highlight javascript linenos %}
-$('.drag').bind('click',function(){ bringFront($(this), '.drag'); });
-{% endhighlight %}
+{% gist aurbano/9ce7e689d8138f341aea demo.html %}
 
 I hope this helps

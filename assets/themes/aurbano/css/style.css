@@ -171,6 +171,16 @@ pre {
     word-wrap: inherit;
 }
 
+.file-data {
+  background: #222;
+}
+
+.gist-data .line-numbers{
+  color: #444 !important;
+  background: #111 !important;
+  border-right:none !important;
+}
+
 pre span.lineno{
   padding-right: 1em;
   text-align: right;

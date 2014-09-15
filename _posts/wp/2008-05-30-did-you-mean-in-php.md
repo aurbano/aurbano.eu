@@ -3,6 +3,7 @@ title: 'Did you mean&#8230; ? In php'
 author: Alex
 layout: post
 permalink: /blog/2008/05/30/did-you-mean-in-php/
+thumbnail: /assets/files/thumbnails/ai_php.png
 categories:
   - PHP
 tags:

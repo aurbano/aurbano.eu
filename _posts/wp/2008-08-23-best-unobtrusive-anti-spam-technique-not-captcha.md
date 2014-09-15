@@ -3,6 +3,7 @@ title: Best unobtrusive anti-spam technique (Not CAPTCHA)
 author: Alex
 layout: post
 permalink: /blog/2008/08/23/best-unobtrusive-anti-spam-technique-not-captcha/
+thumbnail: /assets/files/thumbnails/captcha.png
 categories:
   - CSS
 tags:

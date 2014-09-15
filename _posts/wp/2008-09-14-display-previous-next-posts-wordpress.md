@@ -3,6 +3,7 @@ title: 'Display previous/next posts in single, category&#8230; in WordPress'
 author: Alex
 layout: post
 permalink: /blog/2008/09/14/display-previous-next-posts-wordpress/
+thumbnail: /assets/files/thumbnails/wordpress.png
 categories:
   - WordPress
 tags:

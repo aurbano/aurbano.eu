@@ -3,6 +3,7 @@ title: 'Online radio &#8211; Setting it up &#038; hosting it'
 author: Alex
 layout: post
 permalink: /blog/2009/06/29/online-radio-setting-it-up-hosting-it/
+thumbnail: /assets/files/thumbnails/shoutcast.png
 categories:
   - General
 tags:

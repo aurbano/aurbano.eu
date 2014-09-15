@@ -10,10 +10,7 @@ title: Alejandro U. Alvarez
 <p>At the moment I'm in the process of migrating my blog to Jekyll (You are reading the result right now). It will still take a while until I am happy with the result though.</p>
 
 <h2>Posts</h2>
-<p>Below you can see the posts I have already imported from my old WordPress blog.</p>
+<p>Below are my latest posts, to see all head over to the <a href="archive.html">Archive</a></p>
 
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
+{% assign posts_collate = site.posts %}
+{% include JB/posts_bulk %}

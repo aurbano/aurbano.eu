@@ -3,6 +3,7 @@ title: Bad words list (458 words)
 author: Alex
 layout: post
 permalink: /blog/2008/04/04/bad-words-list/
+thumbnail: /assets/files/thumbnails/bad_words.png
 categories:
   - Resources
 tags:

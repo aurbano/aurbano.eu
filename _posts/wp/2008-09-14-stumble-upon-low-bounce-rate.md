@@ -3,6 +3,7 @@ title: Stumble Upon Low Bounce Rate
 author: Alex
 layout: post
 permalink: /blog/2008/09/14/stumble-upon-low-bounce-rate/
+thumbnail: /assets/files/thumbnails/stumbleupon.png
 categories:
   - SEO
 tags:
