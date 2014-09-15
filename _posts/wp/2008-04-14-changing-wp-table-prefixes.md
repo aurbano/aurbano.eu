@@ -7,6 +7,7 @@ thumbnail: /assets/files/thumbnails/wordpress.png
 categories:
   - PHP
   - WordPress
+  - Main
 tags:
   - prefix
   - sql

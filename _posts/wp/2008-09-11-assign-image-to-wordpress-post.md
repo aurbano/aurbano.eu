@@ -6,6 +6,7 @@ permalink: /blog/2008/09/11/assign-image-to-wordpress-post/
 thumbnail: /assets/files/thumbnails/wordpress.png
 categories:
   - WordPress
+  - Main
 tags:
   - assign
   - image

@@ -6,6 +6,7 @@ permalink: /blog/2008/04/06/search-engine-position/
 thumbnail: /assets/files/thumbnails/seo.png
 categories:
   - SEO
+  - Main
 tags:
   - advanced
   - analysis

@@ -6,6 +6,7 @@ permalink: /blog/2008/04/04/bad-words-list/
 thumbnail: /assets/files/thumbnails/bad_words.png
 categories:
   - Resources
+  - Main
 tags:
   - bad
   - forums

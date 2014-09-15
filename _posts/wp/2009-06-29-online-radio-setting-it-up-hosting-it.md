@@ -6,6 +6,7 @@ permalink: /blog/2009/06/29/online-radio-setting-it-up-hosting-it/
 thumbnail: /assets/files/thumbnails/shoutcast.png
 categories:
   - General
+  - Main
 tags:
   - broadcast
   - online

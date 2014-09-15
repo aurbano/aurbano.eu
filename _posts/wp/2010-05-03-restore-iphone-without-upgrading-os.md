@@ -6,6 +6,7 @@ permalink: /blog/2010/05/03/restore-iphone-without-upgrading-os/
 thumbnail: /assets/files/thumbnails/iphone_itunes.jpg
 categories:
   - iOS
+  - Main
 tags:
   - 3g
   - 3gs

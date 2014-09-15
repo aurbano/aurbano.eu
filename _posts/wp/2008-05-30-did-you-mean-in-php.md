@@ -6,6 +6,7 @@ permalink: /blog/2008/05/30/did-you-mean-in-php/
 thumbnail: /assets/files/thumbnails/ai_php.png
 categories:
   - PHP
+  - Main
 tags:
   - levenshtein
   - metaphone

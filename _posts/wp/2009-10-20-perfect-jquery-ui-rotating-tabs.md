@@ -6,6 +6,7 @@ permalink: /blog/2009/10/20/perfect-jquery-ui-rotating-tabs/
 thumbnail: /assets/files/thumbnails/jqueryUI.png
 categories:
   - JavaScript
+  - Main
 tags:
   - javascript
   - jquery

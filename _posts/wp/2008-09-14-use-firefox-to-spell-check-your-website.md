@@ -6,6 +6,7 @@ permalink: /blog/2008/09/14/use-firefox-to-spell-check-your-website/
 thumbnail: /assets/files/thumbnails/browsers.png
 categories:
   - Tips
+  - Main
 tags:
   - check
   - Firefox

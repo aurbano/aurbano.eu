@@ -6,6 +6,7 @@ permalink: /blog/2008/09/14/stumble-upon-low-bounce-rate/
 thumbnail: /assets/files/thumbnails/stumbleupon.png
 categories:
   - SEO
+  - Main
 tags:
   - bounce rate
   - stumble upon

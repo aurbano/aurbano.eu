@@ -6,6 +6,7 @@ permalink: /blog/2008/09/14/display-previous-next-posts-wordpress/
 thumbnail: /assets/files/thumbnails/wordpress.png
 categories:
   - WordPress
+  - Main
 tags:
   - next
   - post

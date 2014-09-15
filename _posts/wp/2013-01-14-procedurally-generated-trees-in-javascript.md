@@ -7,6 +7,7 @@ thumbnail: /assets/files/thumbnails/trees.png
 categories:
   - HTML5
   - JavaScript
+  - Main
 tags:
   - canvas
   - generator

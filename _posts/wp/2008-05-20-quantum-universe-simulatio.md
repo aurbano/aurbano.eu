@@ -6,6 +6,7 @@ permalink: /blog/2008/05/20/quantum-universe-simulatio/
 thumbnail: /assets/files/thumbnails/quantum.png
 categories:
   - General
+  - Main
 tags:
   - paradox
   - physics

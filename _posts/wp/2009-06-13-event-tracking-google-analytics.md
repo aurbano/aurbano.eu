@@ -6,6 +6,7 @@ permalink: /blog/2009/06/13/event-tracking-google-analytics/
 thumbnail: /assets/files/thumbnails/analytics.png
 categories:
   - JavaScript
+  - Main
 tags:
   - analytics
   - event

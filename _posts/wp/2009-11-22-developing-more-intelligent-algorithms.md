@@ -6,6 +6,7 @@ permalink: /blog/2009/11/22/developing-more-intelligent-algorithms/
 thumbnail: /assets/files/thumbnails/ai.jpg
 categories:
   - General
+  - Main
 tags:
   - ai
   - ant

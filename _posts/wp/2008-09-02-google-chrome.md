@@ -6,6 +6,7 @@ permalink: /blog/2008/09/02/google-chrome/
 thumbnail: /assets/files/thumbnails/chrome.png
 categories:
   - General
+  - Main
 tags:
   - browser
   - google chrome
