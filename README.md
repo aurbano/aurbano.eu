@@ -1,11 +1,9 @@
 Alejandro U. Alvarez
 ==================
 
-My personal website, hosted here on Github. I am planning on moving my blog too, which runs on WordPress at the moment.
-I would like to run it on Jekyll, which should work better and faster.
+My personal website, hosted here on Github. I have moved my blog here as well, using Jekyll for it's management. Migrating from Wordpress took a bit of time but using some plugins and spending a little time fixing things up it was easy.
 
-- - - -
-I have enabled http://github.urbanoalvarez.es at the moment for testing purposes
+The web/blog can be accessed with the usual address: http://urbanoalvarez.es
 
 - - - -
 
