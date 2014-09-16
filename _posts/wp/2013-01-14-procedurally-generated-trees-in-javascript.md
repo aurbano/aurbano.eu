@@ -109,9 +109,12 @@ I know this is not optimized, and defines all variables inside the global namesp
 
 ## The idea
 
-The goal is to have JavaScript generate 2D trees. At first I will generate only \"naked\" trees, with no leaves. Canvas doesn\'t really have many drawing methods, we can create lines, curves, and basic shapes. Since trees aren\'t really curvy but tend to suddenly turn and then go straight for a while (I am thinking of [this kind of tree][3]) I have decided to use lines.
+The goal is to have JavaScript generate 2D trees. At first I will generate only \"naked\" trees, with no leaves. Canvas doesn\'t really have many drawing methods, we can create lines, curves, and basic shapes. Since trees aren\'t really curvy but tend to suddenly turn and then go straight for a while (See inspiration below) I have decided to use lines.
 
-[3]: http://fanart.tv/fanart/music/ff6e677f-91dd-4986-a174-8db0474b1799/albumcover/in-between-dreams-4e5163ef8782f.jpg
+<div class="caption">
+	<img src="http://thumbs.dreamstime.com/x/naked-tree-14208046.jpg" alt="Inspiration" style="max-height:200px; display:inline" class="img-responsive" /><br />
+	Insipiration for the generator
+</div>
 
 Another requirement is that we start with a thick line, until we reach final branches which should be really thin. In order to fulfill these requirements and still use a simple method I have come up with the idea of stacking lines, as if they were rectangles. The nice thing about that is that we don\'t need to calculate the corners, only the initial and ending point, and if we use a very small length, stacking very thin rectangles, it will almost look line one long line that is twisting.
 
@@ -195,4 +198,8 @@ The next thing I\'d like to do would be to use some 3D library (probably [three.
 
 <hr style="clear:both" />
 
-![Colorful forest](http://i2.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree3.png "Colorful forest")
+Playing with the parameters of the tree generator you can generate some pretty cool things, below is simply a colorful forest, but you can end up having something similar to fireworks, or just random lines going everywhere...
+
+<img src="http://i2.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree3.png" alt="Colorful forest" class="img-responsive" />
+
+Take a look at the <a href="http://lab.nuostudio.com/treegenerator">live experiment</a> at nuostudio.

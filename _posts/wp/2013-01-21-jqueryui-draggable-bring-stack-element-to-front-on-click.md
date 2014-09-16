@@ -6,6 +6,7 @@ permalink: /blog/2013/01/21/jqueryui-draggable-bring-stack-element-to-front-on-c
 thumbnail: /assets/files/thumbnails/jqueryUI.png
 categories:
   - JavaScript
+  - Main
 tags:
   - draggable
   - jquery
@@ -28,5 +29,3 @@ Here is the function (Tweaked to work as a standalone function)
 `elem` should be the clicked element and `stack` should be the same you put in jQueryUI draggable's options. If you wanted that to happen on click, you could use:
 
 {% gist aurbano/9ce7e689d8138f341aea demo.html %}
-
-I hope this helps
