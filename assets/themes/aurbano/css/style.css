@@ -193,6 +193,16 @@ pre code{
   background-size: cover;
 }
 
+.photo.intro {
+    height: auto;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    text-shadow: 0 1px 2px #000;
+    display:block;
+}
+
 .block, .block-dark{
   text-align:center;
   color:#222;
@@ -275,12 +285,4 @@ pre code{
   100% {
     background-position: center 0;
   }
-}
-.photo.intro {
-    height: auto;
-    background-attachment: scroll;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center center;
-    text-shadow: 0 1px 2px #000;
 }

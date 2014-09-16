@@ -47,8 +47,11 @@
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   	<script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
   	<script src="{{ ASSET_PATH }}/lib/Paraxify.js-0.1/paraxify.min.js"></script>
+    <script src="{{ ASSET_PATH }}/lib/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript">
-      var myParaxify = paraxify('.paraxify');
+    if(!Modernizr.touch){
+      paraxify('.paraxify');
+    }
     </script>
     {% include JB/analytics %}
   </body>
