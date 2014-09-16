@@ -1,3 +1,4 @@
+{% include JB/setup %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,25 +28,28 @@
     <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
     <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 
+    <style type="text/css">
+      .navbar{ margin-bottom: 0; }
+    </style>
+
   </head>
 
   <body>
-  	<div id="wrap">
 		{% include themes/aurbano/navbar.html %}
-	 <div class="container">
-	  <div class="content">
-        {{ content }}
-      </div>
-     </div>
-      
-    </div>
+
+	   {{ content }}
+
     <footer>
     	<div class="container">
 	    	<p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }} &bull; Hosted on <a href="https://github.com/aurbano/aurbano.github.com">Github</a> &bull; Powered by <a href="http://jekyllrb.com/">Jekyll</a></p>
 	    </div>
     </footer>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
+  	<script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
+  	<script src="{{ ASSET_PATH }}/lib/Paraxify.js-0.1/paraxify.min.js"></script>
+    <script type="text/javascript">
+      var myParaxify = paraxify('.paraxify');
+    </script>
     {% include JB/analytics %}
   </body>
 </html>
