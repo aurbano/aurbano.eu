@@ -15,6 +15,10 @@ tags:
 
 If you maintain a website, you will surely know how important it is to never have any spelling errors in your copy. And if you really care you will always run for sure a spell checker on all your text, but isn\'t that quite over work? Wouldn\'t it be much simpler if your browser did all the spell checking without you having to worry about anything?
 
+<div class="text-center" style="margin:20px 0">
+	<a href="javascript:document.body.contentEditable='true'; document.designMode='on'; void 0" title="Drag to bookmarks bar" class="btn btn-primary">Spell check</a> Drag this button to the bookmarks bar and you'll have it.
+</div>
+
 Well, there is a very simple way of doing so, simply copy the following javascript code and paste it into the address bar (On Google Chrome you may have to rewrite `javascript:`):
 
 {% highlight javascript linenos %}
