@@ -101,14 +101,7 @@ JB :
   analytics :
     provider : google 
     google : 
-        tracking_id : 'UA-3181088'
-    getclicky :
-      site_id : 
-    mixpanel :
-        token : ''
-    piwik :
-        baseURL : '' # Piwik installation address (without protocol)
-        idsite : ''                   # the id of the site on Piwik
+        tracking_id : 'UA-3181088-4'
 
   # Settings for sharing helper. 
   # Sharing is for things like tweet, plusone, like, reddit buttons etc.
