@@ -149,8 +149,22 @@ The first actual flight was a bit shaky and absolutely terrifying, but luckily e
 
 <hr />
 
+##First crash
+
 After this flight I got myself a GoPro, and shot the following video (edited with the GoPro editor using a default template)
 
 <div class="embed-responsive embed-responsive-16by9">
   <iframe class="embed-responsive-item" src="//www.youtube.com/embed/shSnwfJcCrI" frameborder="0" allowfullscreen></iframe>
 </div>
+
+<hr />
+
+The crash happened because I flew even though the motor connectors were not 100% perfect. The left motor only worked when its connectors were in a very specific position, and even 1mm would be enough to make it stop. The flight lasted a lot longer than what's shown on the video, and at some point they became loose and the rest you've seen.
+
+I have ordered bullet connectors now, that should be much better and provide a more solid connection. 
+
+##Future plans
+
+David is releasing a new kit for the tricopter, that will probably improve the design greatly over my current wooden body. It will be released at 95$ so it's quite a good price for what you get, here is a preview:
+
+<img src="http://rcexplorer.se/wp-content/uploads/2014/09/Tricopter1.png" alt="Back arm and battery connector" class="img-responsive img-thumbnail" />
