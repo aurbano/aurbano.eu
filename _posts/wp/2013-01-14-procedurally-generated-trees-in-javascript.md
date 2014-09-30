@@ -27,7 +27,7 @@ Another thing that has always amazed me was procedurally generated content. Chec
 
 So I decided to create a 2D tree generator in JavaScript, you can [take a look at it][2] to know exactly what I am talking about.
 
-[2]: http://lab.nuostudio.com/treegenerator "Tree generator"
+[2]: http://urbanoalvarez.es/TreeGenerator/ "Tree generator"
 
 Before we move any further let me say that this article is aimed at people with experience using HTML5\'s canvas and JavaScript.
 
@@ -189,9 +189,10 @@ By now branches work fine (Figure 2), I\'ve added a little jQuery snippet that w
 
 Now that it is working pretty well I have finished improving the code, and ensuring that almost everything is configurable via variables controlled by dat.gui. In that sense it is a very good framework for prototyping and experimenting with your tests. I would like to use some sort of genetic algorithm to find the best combination of values for tree generation, but writing the fitness function is quite challenging in this case.
 
-Please check out the final version at [nuostudio\'s lab][7], it has many options that are quite fun to play with.
+Please check out the [final version][7], it has many options that are quite fun to play with. You can also browse [its source code][8] at Github.
 
-[7]: http://lab.nuostudio.com/treegenerator
+[7]: http://urbanoalvarez.es/TreeGenerator/
+[8]: https://github.com/aurbano/TreeGenerator
 
 The next thing I\'d like to do would be to use some 3D library (probably [three.js][8]) to create a \"forest\", and probably improve the realism of the generated trees.
 
@@ -203,4 +204,4 @@ Playing with the parameters of the tree generator you can generate some pretty c
 
 <div class="caption"><img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree3.png" alt="Colorful forest" class="img-responsive" /></div>
 
-Take a look at the <a href="http://lab.nuostudio.com/treegenerator">live experiment</a> at nuostudio.
+Take a look at the <a href="http://urbanoalvarez.es/TreeGenerator/">live experiment</a> on its repository.
