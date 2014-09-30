@@ -1,5 +1,6 @@
 ---
 title: Restore iPhone without upgrading OS
+tagline: "This probably doesn't work anymore"
 author: Alex
 layout: post
 permalink: /blog/2010/05/03/restore-iphone-without-upgrading-os/

@@ -1,5 +1,6 @@
 ---
 title: 'Tricopter v2.5 build and first flight'
+tagline: "My first try at a tricopter"
 author: Alex
 layout: post
 thumbnail: /assets/files/thumbnails/tricopter.jpg
@@ -13,7 +14,7 @@ After a lot of research on multirotors I decided to go with a tricopter after fi
 I started my plan with a Word document where I wrote all I could find on tricopters, fpv, parts... etc, so that when I actually decided to start I would be ready, my original list looked like this:
 
 <div class="row">
-	<div class="col-md-8">
+	<div class="col-md-12">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -99,40 +100,39 @@ I started my plan with a Word document where I wrote all I could find on tricopt
 			</tbody>
 		</table>
 	</div>
-	<div class="col-md-4">
-		<h3>Original list</h3>
-		<p>From the original list I changed a few things, it's also missing others I included as extras.</p>
-
-		<p>Most of the items were bought from Hobbyking, because they have almost everything. I bought everything I could locally, and the list doesn't show those things.</p>
-
-		<p>I ended up going for a bigger battery for flying, so now I use the 2200 mah for the 9xr, and a bigger 4500 mah for flying.</p>
-
-		<p>This photo is from the day the first box arrived:</p>
-
-		<div class="caption"><img src="/assets/files/tricopter/IMG_6336.JPG" alt="Components box" class="img-responsive" /></div>
-	</div>
 </div>
+
+##Original list
+From the original list I changed a few things, it's also missing others I included as extras.
+
+Most of the items were bought from Hobbyking, because they have almost everything. I bought everything I could locally, and the list doesn't show those things.
+
+I ended up going for a bigger battery for flying, so now I use the 2200 mah for the 9xr, and a bigger 4500 mah for flying.
+
+This photo is from the day the first box arrived:
+
+<div class="caption"><img src="/assets/files/tricopter/IMG_6336.JPG" alt="Components box" class="img-responsive" /></div>
 
 ##Build
 The body I mentioned above was bought from Flitetest's website, they have a really good quality and only cost 20$, although at the moment they might not be available.
 
 One of the first problems I encountered was the wood arms. They should be 10x10mm, but I could only find 12x12, so I went with those. It turns out that the screws that I bought were just perfect for 10x10, and too short for my arms, so I decided to sand them down to size.
 
-<img src="/assets/files/tricopter/IMG_6339.JPG" alt="Sanded arms" class="img-responsive img-thumbnail" />
+<div class="caption"><img src="/assets/files/tricopter/IMG_6339.JPG" alt="Sanded arms" class="img-responsive img-thumbnail" /> Sanded arms to fit the body</div>
 
 For the yaw mechanism I went with David's design, using the plastic pieces he recommended and the tip of a fishing rod I managed to make it work. Attaching the servo was also pretty easy, since it coincidentally had the same height. Cutting the servo mounts, drilling the appropriate holes and just making the whole thing work was challenging but with patience it turned out pretty decent.
 
-<img src="/assets/files/tricopter/IMG_6340.JPG" alt="Yaw mechanism" class="img-responsive img-thumbnail" />
+<div class="caption"><img src="/assets/files/tricopter/IMG_6340.JPG" alt="Yaw mechanism" class="img-responsive img-thumbnail" /> Yaw mechanism attached to the arm</div>
 
 Once this was done assembling all the parts and cables was a lot more straight forward. I still had to solder the ESC to their new battery cables, and then join all the cables in the same connector though. The only problem I had there was that once joined, the cables wouldn't fit inside the connector, so it took a bit of time with a hammer and pliers.
 
 Here you can see the back arm with the ESC in place, and the battery connector in the back.
 
-<img src="/assets/files/tricopter/IMG_6342.JPG" alt="Back arm and battery connector" class="img-responsive img-thumbnail" />
+<div class="caption"><img src="/assets/files/tricopter/IMG_6342.JPG" alt="Back arm and battery connector" class="img-responsive img-thumbnail" /> Back arm and battery connector</div>
 
 I finally wired everything together, and secured the KK2.1 to the body. I decided to keep it inside the foam box it came in, for added protection. I initially secured it with a zip tie, but now use velcro. Since it was my initial build I didn't spend too much time arranging the cables, as you can see. On my current version I used some heat shrink tubing to tidy the design up.
 
-<img src="/assets/files/tricopter/IMG_6435.JPG" alt="Body" class="img-responsive img-thumbnail" />
+<div class="caption"><img src="/assets/files/tricopter/IMG_6435.JPG" alt="Body" class="img-responsive img-thumbnail" /> Body ready with the KK2.1 installed</div>
 
 Setting up the KK2.1 and the 9xr was actually really easy, there are already plenty of tutorials on both so I won't go into detail. The most difficult parts of the build were drilling the holes in the appropriate places and making a solid structure for the tricopter.
 
@@ -167,4 +167,4 @@ I have ordered bullet connectors now, that should be much better and provide a m
 
 David is releasing a new kit for the tricopter, that will probably improve the design greatly over my current wooden body. It will be released at 95$ so it's quite a good price for what you get, here is a preview:
 
-<img src="http://rcexplorer.se/wp-content/uploads/2014/09/Tricopter1.png" alt="Back arm and battery connector" class="img-responsive img-thumbnail" />
+<div class="caption"><img src="http://rcexplorer.se/wp-content/uploads/2014/09/Tricopter1.png" alt="Future design" class="img-responsive img-thumbnail" /></div>

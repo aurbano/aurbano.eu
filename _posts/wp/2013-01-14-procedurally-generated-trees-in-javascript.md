@@ -1,5 +1,6 @@
 ---
 title: Procedurally generated trees in JavaScript
+tagline: "Why not?"
 author: Alex
 layout: post
 permalink: /blog/2013/01/14/procedurally-generated-trees-in-javascript/
@@ -150,7 +151,7 @@ function branch(x,y,dx,dy,w,lifetime){
 {% endhighlight %}
 
 <div style="float:right" class="caption">
-<img src="http://i1.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree1.png?resize=216%2C311" /><br />
+<img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree1.png?resize=216%2C311" /><br />
 Figure 1: Initial development
 </div> 
 
@@ -174,7 +175,7 @@ if(w-lifetime*loss < 9 &#038;&#038; lifetime > 30 Math.random()*250){
 {% endhighlight %}
 
 <div style="float:right" class="caption">
-<img src="http://i1.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree2.png?resize=250%2C379" /><br />
+<img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree2.png?resize=250%2C379" /><br />
 Figure 2: Fully developed tree
 </div> 
 
@@ -200,6 +201,6 @@ The next thing I\'d like to do would be to use some 3D library (probably [three.
 
 Playing with the parameters of the tree generator you can generate some pretty cool things, below is simply a colorful forest, but you can end up having something similar to fireworks, or just random lines going everywhere...
 
-<img src="http://i2.wp.com/urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree3.png" alt="Colorful forest" class="img-responsive" />
+<div class="caption"><img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree3.png" alt="Colorful forest" class="img-responsive" /></div>
 
 Take a look at the <a href="http://lab.nuostudio.com/treegenerator">live experiment</a> at nuostudio.

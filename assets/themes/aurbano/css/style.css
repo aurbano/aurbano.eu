@@ -1,10 +1,28 @@
-@import url("//fonts.googleapis.com/css?family=Ubuntu");
-html,
-body {
+html, body {
 	height: 100%;
 	color: #111;
 	background: #f5f5f5 url(/assets/themes/aurbano/img/fade.png) repeat-x top;
 	color: #333;
+}
+
+@media (min-width: 1200px){
+  .post-full h1, .post-full h2, .post-full p {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  .post-full p {
+    font-size:1.3em;
+  }
+}
+
+@media (min-width: 992px){
+  .post-full h1, .post-full h2, .post-full p {
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  .post-full p {
+    font-size:1.2em;
+  }
 }
 
 /* Wrapper for page content to push down footer */
@@ -127,6 +145,7 @@ blockquote p {
   padding:10px;
   border:1px solid #ccc;
   margin-bottom:15px;
+  display:inline-block;
 }
 .glyphicon:empty{
 	width:1.5em;
