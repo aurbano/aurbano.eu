@@ -43,11 +43,13 @@ I was going to use the usual Google Search API, but it turns out it was deprecat
 
 After searching around for a bit I found that Bing offered 5000 queries/month, 5x the number Google allowed, so I went with Bing for this one...
 
-You can sign up for Bing's Search API on the new [Azure Marketplace](https://datamarket.azure.com/dataset/bing/search), after which you go to [your profile]https://datamarket.azure.com/account/keys) in order to get your Access key.
+You can sign up for Bing's Search API on the new [Azure Marketplace](https://datamarket.azure.com/dataset/bing/search), after which you go to [your profile](https://datamarket.azure.com/account/keys) in order to get your Access key.
 
 On my code I set the Access Key as an environment variable called `bingAPIkey` in order to keep it secret. When running locally use:
 
 `bingAPIkey=Your-Key node index.js`
+
+If you are deploying to Heroku as well remember to setup the Config Variable in the Settings tab.
 
 Serving Bing searches from Nodejs was quite easy after that:
 
