@@ -3,7 +3,7 @@ layout: post
 title: "Web Visualizer using WebGL"
 tagline: "VivaGraphJS library"
 description: "Building a web visualization tool using some search APIs and VivaGraphJS WebGL renderer"
-thumbnail: /assets/files/thumbnails/webvisualizer.png
+thumbnail: /assets/files/thumbnails/webvisualizer.PNG
 categories:
   - JavaScript
   - Main
