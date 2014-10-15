@@ -49,7 +49,7 @@ On my code I set the Access Key as an environment variable called `bingAPIkey` i
 
 `bingAPIkey=Your-Key node index.js`
 
-If you are deploying to Heroku as well remember to setup the Config Variable in the Settings tab.
+> If you are deploying to Heroku as well remember to setup the Config Variable in the Settings tab.
 
 Serving Bing searches from Nodejs was quite easy after that:
 

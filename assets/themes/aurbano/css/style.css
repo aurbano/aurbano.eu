@@ -6,7 +6,7 @@ html, body {
 }
 
 @media (min-width: 1200px){
-  .post-full h1, .post-full h2, .post-full h3, .post-full h4, .post-full p {
+  .post-full .content > h1, .post-full .content > h2, .post-full .content > h3, .post-full .content > h4, .post-full .content > p, .post-full .content > blockquote {
     margin-left: 20%;
     margin-right: 20%;
   }
@@ -16,7 +16,7 @@ html, body {
 }
 
 @media (min-width: 992px){
-  .post-full h1, .post-full h2, .post-full h3, .post-full h4, .post-full p {
+  .post-full .content > h1, .post-full .content > h2, .post-full .content > h3, .post-full .content > h4, .post-full .content > p, .post-full .content > blockquote {
     margin-left: 15%;
     margin-right: 15%;
   }
@@ -28,6 +28,14 @@ html, body {
 .content > .gist, .content > .highlight{
   margin-top: 50px;
   margin-bottom: 50px;
+
+}
+
+blockquote {
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight:100;
+  border-left: 5px solid #ddd;
 }
 
 /* Wrapper for page content to push down footer */
