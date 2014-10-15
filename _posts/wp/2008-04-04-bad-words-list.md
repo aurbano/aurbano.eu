@@ -22,6 +22,12 @@ Well I was in that situation a few days ago, and it took a very long time until 
 
 I won\'t post the bad words list as text, as some public might find it offensive. Instead I\'ll just post a link to a zip file with the badwords.
 
+<div class="alert alert-warning">
+	<b>Disclaimer</b><br />
+	The list was compiled from other lists found online, I did some checks to remove duplicates, but overall didn't go over all of them. <br />
+	There might be words that aren't actually offensive, so please go over them to make sure they are what you need.
+</div>
+
 ## Download:
 
 The zip file contains a plain text file with one word per line, and a MySQL file to populate a database with id, word, and replacement.
