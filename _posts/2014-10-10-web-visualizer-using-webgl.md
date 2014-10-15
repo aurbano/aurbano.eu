@@ -14,7 +14,7 @@ tags:
 ---
 {% include JB/setup %}
 
-I decided to build a tool that would allow me to see how websites are related in a visual way. I'm still working on the concept but the tool is ready and working: [WebVisualizer](web-visualizer.urbanoalvarez.es).
+I decided to build a tool that would allow me to see how websites are related in a visual way. I'm still working on the concept but the tool is ready and working: [WebVisualizer](http://web-visualizer.urbanoalvarez.es).
 
 ##Building blocks
 In order to get this to work there were some basic building blocks I needed. Some server side and a few client side. Here is a little run through:
