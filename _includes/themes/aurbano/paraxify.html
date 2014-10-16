@@ -35,15 +35,22 @@
   </head>
 
   <body>
-		{% include themes/aurbano/navbar.html %}
+    <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
 
-	   {{ content }}
+    {% include themes/aurbano/sidebar.html %}
+
+  	{% include themes/aurbano/navbar.html %}
+
+  	{{ content }}
 
     <footer>
     	<div class="container">
 	    	<p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }} &bull; Hosted on <a href="https://github.com/aurbano/aurbano.github.com">Github</a> &bull; Powered by <a href="http://jekyllrb.com/">Jekyll</a></p>
 	    </div>
     </footer>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   	<script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
   	<script src="{{ ASSET_PATH }}/lib/Paraxify.js-0.1/paraxify.min.js"></script>

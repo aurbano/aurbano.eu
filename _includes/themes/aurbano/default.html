@@ -42,23 +42,33 @@
   </head>
 
   <body>
-  	<div id="wrap">
+    <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+    {% include themes/aurbano/sidebar.html %}
+
+  	<div class="wrap">
 		{% include themes/aurbano/navbar.html %}
-	 <div class="container">
-	  <div class="content">
-        {{ content }}
-      </div>
-     </div>
-      
+        <div class="container">
+            <div class="content">
+                {{ content }}
+            </div>
+        </div>
     </div>
+
     <footer>
     	<div class="container">
 	    	<p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }} &bull; Hosted on <a href="https://github.com/aurbano/aurbano.github.com">Github</a> &bull; Powered by <a href="http://jekyllrb.com/">Jekyll</a></p>
 	    </div>
     </footer>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
-	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
     {% include JB/analytics %}
   </body>
 </html>
