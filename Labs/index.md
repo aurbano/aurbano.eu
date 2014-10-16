@@ -28,7 +28,7 @@ Here are some of the experiments I work on during my free time, you can find mos
 <div class="row">
 	<h2>HTML Clock</h2>
 	<div class="col-md-4 col-xs-5">
-		<a href="http://urbanoalvarez.es/HTML-Clock/" title="HTML Clock"><img src="/assets/files/labs/html-clock.png" class="img img-responsive" alt="HTML Clock"></a>
+		<a href="http://urbanoalvarez.es/HTML-Clock/" title="HTML Clock"><img src="http://urbanoalvarez.es/HTML-Clock/misc/html-clock.gif" class="img img-responsive" alt="HTML Clock"></a>
 	</div>
 	<div class="col-md-8 col-md-7">
 		<p>HTML5+CSS3+JS functioning clock, the exact time is shown by the offset of each number.</p>
