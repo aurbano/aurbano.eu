@@ -184,11 +184,12 @@ blockquote p {
 	font-size: 10pt;
 	margin: 10px 0;
 }
-.caption img{
-  padding:10px;
-  border:1px solid #ccc;
+.caption img, .caption iframe{
+  padding:5px;
+  border:1px solid #ddd;
   margin-bottom:15px;
   display:inline-block;
+  border-radius:5px;
 }
 .glyphicon:empty{
 	width:1.5em;
