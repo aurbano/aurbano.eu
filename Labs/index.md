@@ -11,6 +11,18 @@ Here are some of the experiments I work on during my free time, you can find mos
 
 ##Canvas experiments
 
+<div class="row">
+	<h2>Nebula</h2>
+	<div class="col-md-4 col-xs-5">
+		<a href="http://urbanoalvarez.es/Nebula/"><img src="https://raw.githubusercontent.com/aurbano/Nebula/master/misc/screenshot.png" class="img img-responsive" alt="Nebula"></a>
+	</div>
+	<div class="col-md-8 col-md-7">
+		<p>An HTML5+JS nebulosa effect, it displays text by making circles float inside it.</p>
+		<p>I'll write a detailed article on how this was achieved.</p>
+	</div>
+</div>
+
+<hr />
 
 <div class="row">
 	<h2>Line Art</h2>
