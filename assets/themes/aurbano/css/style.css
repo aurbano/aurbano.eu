@@ -17,6 +17,15 @@ p{
   color: #515151;
 }
 
+.dark-bg{
+  border-top:solid 1px #ccc;
+  background: #ddd;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 10px 20%;
+  color: #333;
+}
+
 h1, h2, h3, h4{
   font-family: "PT Sans", "Helvetica Neue",Helvetica,Arial,sans-serif;
   letter-spacing: -.025rem;
