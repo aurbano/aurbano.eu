@@ -35,7 +35,7 @@ h1, h2, h3, h4{
 @media (min-width: 1200px){
   .post-full .content > h1, .post-full .content > h2, .post-full .content > h3,
   .post-full .content > h4, .post-full .content > p, .post-full .content > blockquote,
-  .post-full .content > ul {
+  .post-full .content > ul, .comments {
     margin-left: 25%;
     margin-right: 25%;
   }
@@ -44,7 +44,7 @@ h1, h2, h3, h4{
 @media (min-width: 992px){
   .post-full .content > h1, .post-full .content > h2, .post-full .content > h3,
   .post-full .content > h4, .post-full .content > p, .post-full .content > blockquote,
-  .post-full .content > ul {
+  .post-full .content > ul, .comments {
     margin-left: 20%;
     margin-right: 20%;
   }
