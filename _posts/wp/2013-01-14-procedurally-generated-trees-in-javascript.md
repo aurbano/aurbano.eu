@@ -31,93 +31,25 @@ So I decided to create a 2D tree generator in JavaScript, you can [take a look a
 
 Before we move any further let me say that this article is aimed at people with experience using HTML5\'s canvas and JavaScript.
 
-## Starting up
+###Preview:
 
-I don\'t have any template for starting a new canvas project, but I do have some guidelines I like to follow. Below is the usual starting point
-
-
-{% highlight javascript linenos %}
-$(document).ready(function(e) {
-	var ctx;
-	var WIDTH;
-	var HEIGHT;
-	
-	var canvasMinX;
-	var canvasMaxX;
-	
-	var canvasMinY;
-	var canvasMaxY;
-	
-	var ms = {x:0, y:0}; // Mouse speed
-	var mp = {x:0, y:0}; // Mouse position
-	
-	var fps = 0, now, lastUpdate = (new Date)*1 - 1;
-	var fpsFilter = 100;
-	
-	ctx = $('#bg')[0].getContext("2d");
-
-	ctx.canvas.width  = window.innerWidth;
-	ctx.canvas.height = window.innerHeight;
-	
-	WIDTH = $("#bg").width();
-	HEIGHT = $("#bg").height();
-	resizeCanvas();
-	
-	canvasMinX = $("#bg").offset().left;
-	canvasMaxX = canvasMinX   WIDTH;
-	
-	canvasMinY = $("#bg").offset().top;
-	canvasMaxY = canvasMinY   HEIGHT;
-
-	function clear() {
-		ctx.clearRect(0, 0-HEIGHT/2, WIDTH, HEIGHT);
-	}
-	
-	function circle(x,y,rad,color){
-		ctx.fillStyle = color;
-		ctx.beginPath();
-		ctx.arc(x,y,rad,0,Math.PI*2,true);
-		ctx.closePath();
-		ctx.fill();
-	}
-	
-	function fade() {
-		ctx.fillStyle="rgba(0,0,0,0.01)";
-		ctx.fillRect(0, 0, WIDTH, HEIGHT);
-	}
-	
-	function resizeCanvas(e) {
-		WIDTH = window.innerWidth;
-		HEIGHT = window.innerHeight;
-		
-		$("#bg").attr('width',WIDTH);
-		$("#bg").attr('height',HEIGHT);
-	}
-	
-	function mouseMove(e) {
-		ms.x = Math.max( Math.min( e.pageX - mp.x, 40 ), -40 );
-		ms.y = Math.max( Math.min( e.pageY - mp.y, 40 ), -40 );
-		
-		mp.x = e.pageX - canvasMinX;
-		mp.y = e.pageY - canvasMinY;
-	}
-	$(document).mousemove(mouseMove);
-	$(window).resize(resizeCanvas);
-});
-{% endhighlight %}
-
-I know this is not optimized, and defines all variables inside the global namespace, but I like to start with a very quick prototype before I improve code design. I also use jQuery, although only for event binding such as window resize. As for the HTML, I simply start with a blank page containing a canvas element.
+<div class="caption" id="treeContainer" style="width:100%;">
+	<canvas id="bg" style="color:#09F"></canvas><br />
+	Click anywhere to generate trees
+</div>
 
 ## The idea
 
-The goal is to have JavaScript generate 2D trees. At first I will generate only \"naked\" trees, with no leaves. Canvas doesn\'t really have many drawing methods, we can create lines, curves, and basic shapes. Since trees aren\'t really curvy but tend to suddenly turn and then go straight for a while (See inspiration below) I have decided to use lines.
+The goal is to have JavaScript generate 2D trees. At first I will generate only \"naked\" trees, with no leaves.
+
+Canvas doesn\'t really have many drawing methods, we can create lines, curves, and basic shapes. Since trees aren\'t really curvy but tend to suddenly turn and then go straight for a while (See inspiration below)
 
 <div class="caption">
 	<img src="http://thumbs.dreamstime.com/x/naked-tree-14208046.jpg" alt="Inspiration" style="max-height:200px; display:inline" class="img-responsive" /><br />
 	Insipiration for the generator
 </div>
 
-Another requirement is that we start with a thick line, until we reach final branches which should be really thin. In order to fulfill these requirements and still use a simple method I have come up with the idea of stacking lines, as if they were rectangles. The nice thing about that is that we don\'t need to calculate the corners, only the initial and ending point, and if we use a very small length, stacking very thin rectangles, it will almost look line one long line that is twisting.
+Another requirement is that we start with a thick line, until we reach final branches which should be really thin. In order to fulfill these requirements and still use a simple method I have come up with the idea of **stacking lines**, as if they were rectangles. The nice thing about that is that we don\'t need to calculate the corners, only the initial and ending point, and if we use a very small length, stacking very thin rectangles, it will almost look line one long line that is twisting.
 
 ## Getting this to work
 
@@ -150,7 +82,7 @@ function branch(x,y,dx,dy,w,lifetime){
 }
 {% endhighlight %}
 
-<div style="float:right" class="caption">
+<div class="caption">
 <img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree1.png?resize=216%2C311" /><br />
 Figure 1: Initial development
 </div> 
@@ -163,9 +95,13 @@ In order to generate a new branch we must wait until the tree has grown enough, 
 
 After some testing I\'ve ended up with this condition: `w-lifetime*loss < 9`. If that is met we will start a new branch, although that would mean that after that point is reached we will always start a new branch. To avoid that we add a little randomness by using: `Math.random() > 0.7`, supposing Math.random() returns a real random number the chances of that being true are almost 30%.
 
+<div class="caption">
+<img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree2.png?resize=250%2C379" /><br />
+Figure 2: Fully developed tree
+</div> 
 
 {% highlight javascript linenos %}
-if(w-lifetime*loss < 9 &#038;&#038; lifetime > 30 Math.random()*250){
+if(w-lifetime*loss < 9 &amp;&amp; lifetime > 30 Math.random()*250){
 	setTimeout(function(){
 		branch(x,y,2*Math.sin(Math.random() lifetime),2*Math.cos(Math.random() lifetime),(w-lifetime*loss)*branchLoss,0);
 		// When it branches, it loses a bit of width
@@ -173,11 +109,6 @@ if(w-lifetime*loss < 9 &#038;&#038; lifetime > 30 Math.random()*250){
 	},sleep*Math.random() sleep);
 }
 {% endhighlight %}
-
-<div style="float:right" class="caption">
-<img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree2.png?resize=250%2C379" /><br />
-Figure 2: Fully developed tree
-</div> 
 
 I have added some randomness to the direction in which branches start to grow by using a sine and cosine along with a random number and the current lifetime. That should give us a random direction from -1 to 1 in both axis. `mainLoss` is a coefficient that determines how much width is lost by the main branch.
 
@@ -187,7 +118,7 @@ We should now have a working tree generator, although some variable tweaking is 
 
 By now branches work fine (Figure 2), I\'ve added a little jQuery snippet that will call the function branch whenever I click, generating a new tree at the x coordinate of the click.
 
-Now that it is working pretty well I have finished improving the code, and ensuring that almost everything is configurable via variables controlled by dat.gui. In that sense it is a very good framework for prototyping and experimenting with your tests. I would like to use some sort of genetic algorithm to find the best combination of values for tree generation, but writing the fitness function is quite challenging in this case.
+Now that it is working pretty well I have finished improving the code, and ensured that almost everything is configurable via variables controlled by dat.gui. In that sense it is a very good framework for prototyping and experimenting with your tests. I would like to use some sort of genetic algorithm to find the best combination of values for tree generation, but writing the fitness function is quite challenging in this case.
 
 Please check out the [final version][7], it has many options that are quite fun to play with. You can also browse [its source code][8] at Github.
 
@@ -205,3 +136,39 @@ Playing with the parameters of the tree generator you can generate some pretty c
 <div class="caption"><img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree3.png" alt="Colorful forest" class="img-responsive" /></div>
 
 Take a look at the <a href="http://urbanoalvarez.es/TreeGenerator/">live experiment</a> on its repository.
+
+<script type="text/javascript" src="http://urbanoalvarez.es/TreeGenerator/src/TreeGenerator.js" ></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		console.log("Init Tree generator");
+		var canvas = $('#bg'),
+			container = $('#treeContainer');
+
+		// Resize the canvas to fit the container
+		function resizeCanvas(){
+			canvas.attr('width',container.width());
+			canvas.attr('height', 300);
+		}
+		$(window).resize(function(){
+ 			resizeCanvas();
+		});
+		resizeCanvas();
+
+		var tree = new TreeGenerator(canvas, {
+			fitScreen: false,
+			bgColor: [245, 245, 245],
+			treeColor: '#000000',
+			spawnInterval: 1500,
+			initialWidth: 6
+		});
+		tree.start();
+
+		canvas.click(function(e){
+			var parentOffset = $(this).parent().offset(); 
+		    var relX = e.pageX - parentOffset.left;
+		    var relY = e.pageY - parentOffset.top;
+
+			tree.branch(relX, canvas.height(), 0, -Math.random()*3, Math.random()*tree.settings.initialWidth,5,0,'#000',tree);
+		});
+	});
+</script>
