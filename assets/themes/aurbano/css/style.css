@@ -191,6 +191,11 @@ blockquote p {
   display:inline-block;
   border-radius:5px;
 }
+
+.caption-no-border img, .caption-no-border iframe, .caption-no-border canvas{
+  border: none;
+}
+
 .glyphicon:empty{
 	width:1.5em;
 }

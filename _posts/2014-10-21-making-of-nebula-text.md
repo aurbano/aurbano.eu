@@ -21,7 +21,7 @@ When I was doing the [Tree Generator](/blog/2013/01/14/procedurally-generated-tr
 This gave me the idea to render text on the canvas using particles that would seem to be gravitating around, in such a way that when seen all together you would see the text.
 
 ###Example
-<div class="caption">
+<div class="caption caption-no-border">
     <div style="width:100%; height:300px" id="nebulaDemo"></div>
     Click for explosions
 </div>
