@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Making of Nebula text"
+tagline: "WebGL Experiment"
 description: "Details on the process of making the WebGL experiment Nebula"
 thumbnail: /assets/files/thumbnails/nebula.jpg
 categories:
