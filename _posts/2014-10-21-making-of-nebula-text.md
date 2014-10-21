@@ -12,7 +12,7 @@ tags:
 ---
 {% include JB/setup %}
 
-When I was doing the [Tree Generator](http://localhost:4000/blog/2013/01/14/procedurally-generated-trees-in-javascript/), I used [dat.gui](https://code.google.com/p/dat-gui/) for the first time, and on their workshop they have the following text to play with:
+When I was doing the [Tree Generator](/blog/2013/01/14/procedurally-generated-trees-in-javascript/), I used [dat.gui](https://code.google.com/p/dat-gui/) for the first time, and on their workshop they have the following text to play with:
 
 <div class="caption">
     <img src="/assets/files/posts/nebula/datgui.png" height="142" width="413" alt="dat.gui">
