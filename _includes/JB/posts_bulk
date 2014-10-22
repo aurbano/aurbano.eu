@@ -30,7 +30,7 @@ Usage:
       <div class="row">
     {% endif %}
 
-    <a href="{{ BASE_PATH }}{{ post.url }}" class="col-md-3 col-sm-4 col-xs-6 text-center post_box" style="color:inherit; height:300px">
+    <a href="{{ BASE_PATH }}{{ post.url }}" class="col-md-3 col-sm-4 col-xs-6 text-center post_box" style="color:inherit; height:300px" data-sr="">
       <img src="{{ post.thumbnail }}" alt="{{ post.title }}" class="img-responsive" style="max-height:200px; margin:0 auto; border-radius:10px; box-shadow:rgba(0,0,0,0.5) 0 0 10px" />
         <h4>{{ post.title }}</h4>
         <p>{{ post.subtitle }}</p>

@@ -17,6 +17,8 @@ p{
   color: #515151;
 }
 
+[data-sr]{ visibility: hidden; }
+
 .dark-bg{
   border-top:solid 1px #ccc;
   background: #ddd;

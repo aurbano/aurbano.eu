@@ -29,9 +29,9 @@ Usage:
     {% if forloop.first %}
       <div class="row">
         <div class="col-md-12">
-            <h2>{{this_year}}</h2>
-            <h3>{{this_month}}</h3>
-            <div class="row">
+            <h2 data-sr="">{{this_year}}</h2>
+            <h3 data-sr="">{{this_month}}</h3>
+            <div class="row" data-sr="">
     {% endif %}
 
     <a href="{{ BASE_PATH }}{{ post.url }}" class="col-md-3 col-sm-4 col-xs-6 text-center post_box" style="color:inherit; height:300px">
@@ -52,14 +52,14 @@ Usage:
       <hr />
       <div class="row">
         <div class="col-md-12">
-            <h2>{{this_year}}</h2>
-            <h3>{{next_month}}</h3>
-            <div class="row">
+            <h2 data-sr="">{{this_year}}</h2>
+            <h3 data-sr="">{{next_month}}</h3>
+            <div class="row" data-sr="">
       {% else %}    
         {% if this_month != next_month %}
           </div>
-            <h3>{{next_month}}</h3>
-            <div class="row">
+            <h3 data-sr="">{{next_month}}</h3>
+            <div class="row" data-sr="">
         {% endif %}
       {% endif %}
     {% endif %}
