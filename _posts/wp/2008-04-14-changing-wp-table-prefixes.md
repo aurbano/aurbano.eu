@@ -28,9 +28,7 @@ The problem is that most of the times it is very hard to get it to change the pr
 
 ### Step 1
 
-**Backup!** the most important thing of all, backup, backup everything, often and early ![;)][2] 
-
- [2]: http://i0.wp.com/urbanoalvarez.es/blog/wp-content/plugins/smilies-themer/kopete/wink.png
+**Backup!** the most important thing of all, backup, backup everything, often and early!
 
 ### Step 2
 
