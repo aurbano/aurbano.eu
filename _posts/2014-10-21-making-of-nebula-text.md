@@ -28,6 +28,11 @@ This gave me the idea to render text on the canvas using particles that would se
 
 For this example I set a big `drag` force so that the particles would settle fast and you could read the text more easily. On larger sizes it actually looks better withouth any `drag` force.
 
+###Demos
+
+* [Main demo](http://urbanoalvarez.es/Nebula/): Sample demo with dat.gui controls to play with the settings.
+* [Music Nebula](http://urbanoalvarez.es/Nebula/music.html): Nebula instance synced with an audio track for explosions.
+
 #First steps
 I initially did this experiment [on the canvas](http://urbanoalvarez.es/Nebula/canvas.html) without any rendering engine. This has the advantage of rapid prototyping, and the disadvantage of likely performance issues. I managed to make it work quite well though, but the number of nodes it could render was limited by the browser JavaScript interpreter.
 
