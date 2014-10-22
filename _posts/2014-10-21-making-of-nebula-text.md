@@ -94,6 +94,85 @@ For this example I set the `drag` force to 0 so that they would remain moving. M
 
 On the [demo page](http://urbanoalvarez.es/Nebula/) for Nebula you can play with these settings using dat.gui.
 
+##Interesting uses
+After playing with the explosions for a while I realized it would be really interesting if I could sync them to an audio track.
+
+Looking around I found out that Chrome and HTML5 provide an [AnalyserNode](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode) that does an [FFT](http://en.wikipedia.org/wiki/Fast_Fourier_transform) on the audio and gives you the frequency analysis, so I decided to hack that and Nebula together for an [awesome visualization experience](http://urbanoalvarez.es/Nebula/music.html)!
+
+Setting up the analyser was just too easy:
+
+{% highlight javascript linenos %}
+window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
+
+// Remember to add this to the HTML:
+// <audio id="explosions" src="misc/dubstep.mp3" preload="metadata"></audio>
+var audio = document.getElementById('explosions'),
+    audioCtx = new AudioContext(),
+    analyser = audioCtx.createAnalyser(),
+    source =  audioCtx.createMediaElementSource(audio);
+
+// Connect the analyser to the source
+source.connect(analyser);
+
+// And then the analyser to the destination, if you don't
+// you will analyse the audio but not hear it.
+analyser.connect(audioCtx.destination);
+analyser.smoothingTimeConstant = 0.3;
+// FFT "resolution", this specifies the number of samples
+analyser.fftSize = 512;
+
+// Setup frequencyData to hold our information
+var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+// Not necessary since I set it to autoplay
+// left it here in case someone copies this code.
+audio.play();
+
+// There are different ways to do this, but requestAnimationFrame works great
+function animation() {
+    requestAnimationFrame(animation);
+    
+    analyser.getByteFrequencyData(frequencyData);
+    
+    // And here I have the frequency data
+    console.log(frequencyData);
+}
+
+// Start the process
+animation();
+{% endhighlight %}
+
+The snippet before gives us the array `frequencyData`, which will contain in this case 512 integers `[0, 255]` representing in lay man's terms the "volume" on each frequency.
+
+Using this it's easy to set up a function that iterates over each frequency, checks if the volume is bigger than a set threshold and if so, triggers an explosion.
+
+The problem is that most songs are just centered on a low range of frequencies, so in order to have an accurate explosion on each frequency we would need a very big FFT resolution and then take only the first 300 values or so. Since that would be a bit resource intensive, and I only want an interesting visual effect I distribute the explosions randomly whenever any frequency surpases the threshold. At the moment there is no way to set a frequency range on the AnalyserNode.
+
+Here is the function for this:
+
+{% highlight javascript linenos %}
+// This function should be called where 'console.log' is in the other snippet
+function frequencyExplode(freqData){
+    var total = freqData.length;
+
+    // Divide by 2 because half the data is always 0
+    for(var i=0; i<total/2; i++){
+        if(freqData[i] > musicSettings.freqThreshold){
+            
+            // Random location in the x axis. Without the part after
+            // the + the explosions would have been exactly on the frequency
+            // they should, but as I said that wouldn't work fine because of 
+            // the spectral distribution of music. Will improve this over time.
+            var x = $(document).width() * i / (total/2) + $(document).width() * Math.random();
+
+            text.explosion(x, $(document).height()*Math.random());
+        }
+    }
+}
+{% endhighlight %}
+
+Turn up the volume, and take a look at [the demo](http://urbanoalvarez.es/Nebula/music.html) :)
+
 <script type="text/javascript" src="http://urbanoalvarez.es/Nebula/lib/pixi/bin/pixi.js"></script>
 <script type="text/javascript" src="http://urbanoalvarez.es/Nebula/src/nebula-pixi.js"></script>
 <script type="text/javascript">
