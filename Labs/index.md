@@ -41,7 +41,7 @@ Here are some of the experiments I work on during my free time, you can find mos
 <h2 class="dark-bg">Canvas experiments</h2>
 
 <div class="row">
-	<h2><a href="http://nuostudio.github.io/Line-Art">/Line-Art</a></h2>
+	<h2><a href="http://nuostudio.github.io/Line-Art">/Line-Art <small>Chrome Experiment</small></a></h2>
 	<div class="col-md-4 col-xs-5">
 		<a href="http://nuostudio.github.io/Line-Art/"><img src="http://www.chromeexperiments.com/detail/line-art/img/ahZzfmNocm9tZXhwZXJpbWVudHMtaHJkchgLEg9FeHBlcmltZW50SW1hZ2UY6rTvBQw/large" class="img img-responsive" alt="Line Art"></a>
 	</div>
