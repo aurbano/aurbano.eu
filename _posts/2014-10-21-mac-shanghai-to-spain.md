@@ -18,7 +18,7 @@ So now I can only wait for it to arrive, quite excited about this, since it mean
 In order to make the wait less painful I did this:
 
 <div class="caption">
-    <iframe width="100%" height="400" frameborder="0" src="//widgets.scribblemaps.com/sm/?d=true&z=true&l=true&mc=true&lat=38.2523151&lng=58.8905331&vz=3&type=road&width=550&height=400&id=aurbanoMac" style="border:0" allowfullscreen></iframe>
+    <iframe width="100%" height="400" frameborder="0" src="//widgets.scribblemaps.com/sm/?d=true&lat=43.96557893761193&lng=55.87459875000002&z=true&l=true&mc=true&vz=3&type=road&width=550&height=400&id=aurbanoMac" style="border:0" allowfullscreen></iframe>
 </div>
 
 When it arrives I might write a little post about migrating from Win to Mac with no experience on the latter.
