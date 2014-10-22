@@ -28,6 +28,14 @@ p{
   color: #333;
 }
 
+.img-thumbnail-center{
+  max-height:200px;
+  margin:0 auto;
+  border-radius:3px;
+  padding:3px;
+  border:1px solid #ccc;
+}
+
 h1, h2, h3, h4{
   font-family: "PT Sans", "Helvetica Neue",Helvetica,Arial,sans-serif;
   letter-spacing: -.025rem;

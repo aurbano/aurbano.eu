@@ -15,7 +15,7 @@ tags:
 When I was doing the [Tree Generator](/blog/2013/01/14/procedurally-generated-trees-in-javascript/), I used [dat.gui](https://code.google.com/p/dat-gui/) for the first time, and on their workshop they have the following text to play with:
 
 <div class="caption">
-    <img src="/assets/files/posts/nebula/datgui.png" height="142" width="413" alt="dat.gui">
+    <img src="/assets/files/posts/nebula/datgui.png" height="142" width="413" alt="dat.gui" class="img img-responsive"><br />
 </div>
 
 This gave me the idea to render text on the canvas using particles that would seem to be gravitating around, in such a way that when seen all together you would see the text.
@@ -39,7 +39,7 @@ I initially did this experiment [on the canvas](http://urbanoalvarez.es/Nebula/c
 The basic idea is to have a number of particles gravitate towards a point, in such a way that the points represent the text:
 
 <div class="caption">
-    <img src="/assets/files/posts/nebula/edges.png" alt="edges">
+    <img src="/assets/files/posts/nebula/edges.png" alt="edges" class="img img-responsive"><br />
     Points around which the particles gravitate.
 </div>
 
