@@ -48,6 +48,8 @@ h1, h2, h3, h4{
   .post-full .content > ul, .post-full .content > ol, .comments {
     margin-left: 25%;
     margin-right: 25%;
+    margin-bottom:20px;
+    font-family: Skolar, Tisa, 'Chaparral Pro', Merriweather, Georgia, serif;
   }
 }
 
@@ -57,6 +59,8 @@ h1, h2, h3, h4{
   .post-full .content > ul, .post-full .content > ol, .comments {
     margin-left: 20%;
     margin-right: 20%;
+    margin-bottom:20px;
+    font-family: Skolar, Tisa, 'Chaparral Pro', Merriweather, Georgia, serif;
   }
 }
 
@@ -149,8 +153,10 @@ blockquote p {
 }
 
 .page-header .date {
-  margin-bottom: 20px;
-  font-weight: bold; }
+  font-style: italic;
+  font-size: 0.9em;
+  color: #888;
+}
 
 /* tag_box */
 .tag_box {
