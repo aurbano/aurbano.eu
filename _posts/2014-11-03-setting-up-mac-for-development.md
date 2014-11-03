@@ -58,7 +58,13 @@ Install node: `brew install node`
 
 Install python: `brew install python`. It comes with setuptools and pip already :) More info [here](http://docs.python-guide.org/en/latest/starting/install/osx/).
 
-Install git: `brew install cask`
+Install git: `brew install git`
+
+Now enable Keychain for Git, this is a really good feature that allows you to stop entering the user/pass on every push you do. You can also use the ssh url, but that requires you to change it if you clone using the app...
+
+{% highlight bash %}
+git config --global credential.helper osxkeychain
+{% endhighlight %}
 
 ##Step 3
 
