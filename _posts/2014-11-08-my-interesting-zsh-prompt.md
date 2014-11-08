@@ -19,8 +19,7 @@ I already did a post on [the steps I took]({% post_url 2014-11-03-setting-up-mac
 After that post I started using Zsh more and more, and came to realize how much better it could become with some tweaking.
 
 <div class="caption">
-    <img src="/assets/files/posts/zsh/shell.jpg" alt="edges" class="img img-responsive"><br />
-    Zsh shell
+    <img src="/assets/files/posts/zsh/shell.png" alt="edges" class="img img-responsive" style="border:none"><br />
 </div>
 
 If you just want to replicate this just follow these two steps:
