@@ -27,6 +27,10 @@ I basically wanted:
 
 It seems straight forward seeing the list this way, but it does *take a while* to get it running. After doing both I realized that the starting blocks were pretty much the same in both cases, so I took all that common code and put it on a sample website.
 
+<div class="caption">
+    <img src="http://urbanoalvarez.es/angular-requirejs-bower-grunt/assets/logo.png" alt="Angular Requirejs Bower Grunt" class="img img-responsive" style="border:none"><br />
+</div>
+
 Take a look at the *[sample website](https://github.com/aurbano/angular-requirejs-bower-grunt)* first to see what we will be building. Following here is a guide on how it works.
 
 ## Getting started
@@ -34,11 +38,11 @@ With all this setup we will avoid ideally **manually downloading** anything (Get
 
 [Fork/clone the repository]() and rename it to your project. Now let's get all the dependencies:
 
-```sh
+{% highlight bash %}
 $ npm install
 $ bower install
 $ grunt
-```
+{% endhighlight %}
 
 This three steps are what power the whole thing:
 
@@ -62,7 +66,7 @@ What this means is that all those dependencies that Bower downloaded for us, tha
 
 If we take a look at the `config.js` file for Requirejs we'll now see:
 
-```js
+{% highlight javascript %}
 //...
 paths: {
   app: 'app',
@@ -75,7 +79,7 @@ paths: {
   almond: '../bower_components/almond/almond'
 },
 //...
-```
+{% endhighlight %}
 
 All the ones that are located inside `bower_components/` have been automatically added by Grunt. Cool huh :)
 
@@ -84,17 +88,18 @@ From now on if we need a dependency anywhere in our files, we can use require an
 ## Adding dependencies
 Should you need any other dependency, just run:
 
-```sh
+{% highlight bash %}
 $ bower install <dependency>
 $ grunt
-```
+{% endhighlight %}
+
 And it will be downloaded and added to the `paths` so it's accesible.
 
 ## Getting Angularjs to work
 An Angularjs app needs an `index.html` file, and an `app.js` entry point. One of the best things of this approach is that we no longer need to include every single JavaScript file manually.
 So the file will simply be:
 
-```html
+{% highlight html %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,13 +131,13 @@ So the file will simply be:
 </body>
 
 </html>
-```
+{% endhighlight %}
 
 The important part there is the `require.js` script tag. Using the attribute `data-main` we specify the Configuration file for Requirejs. 
 
 At the end of `config.js` we put the Angularjs initialization code:
 
-```js
+{% highlight javascript %}
 require([
   'angular',
   'app'
@@ -148,7 +153,7 @@ require([
   });
 
 });
-```
+{% endhighlight %}
 
 There are other ways in which this can be done, but for the sake of simplicity we'll just do it this way.
 
