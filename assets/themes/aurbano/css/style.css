@@ -199,7 +199,7 @@ pre {
   border: solid 1px #000;
   border-radius: 4px;
   background: #222;
-  padding: 10px 10px 0 10px;
+  padding: 10px;
   margin-bottom: 30px;
   line-height: 19px;
   white-space: pre;
@@ -374,8 +374,7 @@ pre code {
   overflow-y: auto;
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
   font-size: .875rem;
-  /* 15px */
-  
+  box-shadow: rgba(0, 0, 0, 0.4) 0 0 40px;
   color: rgba(255, 255, 255, .6);
   background-color: #202020;
   -webkit-transition: all .3s ease-in-out;

@@ -28,7 +28,7 @@ I basically wanted:
 It seems straight forward seeing the list this way, but it does *take a while* to get it running. After doing both I realized that the starting blocks were pretty much the same in both cases, so I took all that common code and put it on a sample website.
 
 <div class="caption">
-    <img src="http://urbanoalvarez.es/angular-requirejs-bower-grunt/assets/logo.png" alt="Angular Requirejs Bower Grunt" class="img img-responsive" style="border:none"><br />
+    <img src="http://urbanoalvarez.es/angular-requirejs-bower-grunt/assets/logo.png" alt="Angular Requirejs Bower Grunt" class="img img-responsive"><br />
 </div>
 
 Take a look at the *[sample website](https://github.com/aurbano/angular-requirejs-bower-grunt)* first to see what we will be building. Following here is a guide on how it works.
@@ -99,7 +99,7 @@ And it will be downloaded and added to the `paths` so it's accesible.
 An Angularjs app needs an `index.html` file, and an `app.js` entry point. One of the best things of this approach is that we no longer need to include every single JavaScript file manually.
 So the file will simply be:
 
-{% highlight html %}
+{% highlight html linenos %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,8 +110,10 @@ So the file will simply be:
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js">
+        </script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js">
+        </script>
     <![endif]-->
 </head>
 
@@ -127,7 +129,10 @@ So the file will simply be:
 
     <div class="container text-center" ng-view></div>
 
-    <script type="text/javascript" src="bower_components/requirejs/require.js" data-main="app/config.js"></script>
+    <script type="text/javascript"
+        src="bower_components/requirejs/require.js"
+        data-main="app/config.js">
+    </script>
 </body>
 
 </html>
@@ -137,7 +142,7 @@ The important part there is the `require.js` script tag. Using the attribute `da
 
 At the end of `config.js` we put the Angularjs initialization code:
 
-{% highlight javascript %}
+{% highlight javascript linenos %}
 require([
   'angular',
   'app'
