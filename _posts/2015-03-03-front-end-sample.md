@@ -3,7 +3,7 @@ layout: post
 title: "Using the latest front-end tech"
 tagline: "Angularjs, Requirejs, Grunt & Bower"
 description: "Sample web I've coded to get the latest front end technologies working together."
-thumbnail: /assets/files/thumbnails/chrome.png
+thumbnail: /assets/files/thumbnails/angularjs.png
 categories:
   - Main
 tags:
