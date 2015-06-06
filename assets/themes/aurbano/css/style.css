@@ -28,7 +28,6 @@ p {
 .img-thumbnail-center {
   max-height: 200px;
   margin: 0 auto;
-  border-radius: 3px;
   padding: 3px;
   border: 1px solid #ccc;
 }
