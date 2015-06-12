@@ -96,6 +96,10 @@ footer a:hover {
 a:hover {
   color: #C00;
 }
+.navbar-transparent{
+  background:transparent;
+  border:none;
+}
 .navbar-brand {
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -118,8 +122,23 @@ a:hover {
   margin: 10px 0;
   text-align: left;
 }
+.container-narrow{
+  width:500px;
+  margin:0 auto
+}
+.post_box{
+  position:relative;
+  display:block;
+  color:inherit;
+  margin-bottom:3em;
+}
 .post_box img {
   opacity: 0.9;
+  width:3em;
+  height:3em;
+  position:absolute;
+  left: -4em;
+  top: -1em;
 }
 .post_box:hover img {
   opacity: 1;
@@ -439,10 +458,12 @@ pre code {
   width: 2.2rem;
   padding: .5rem .65rem;
   color: #505050;
-  background-color: #fff;
   border-radius: 4px;
   cursor: pointer;
   z-index: 3;
+}
+.sidebar-toggle:hover{
+  background-color: #fff;
 }
 .sidebar-toggle:before {
   display: block;
@@ -491,8 +512,8 @@ pre code {
   backface-visibility: hidden;
 }
 .wrap, .sidebar-toggle {
-  -webkit-transition: -webkit-transform .3s ease-in-out;
-  transition: transform .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 #sidebar-checkbox:checked + .sidebar {
   z-index: 10;

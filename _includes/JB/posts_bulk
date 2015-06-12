@@ -26,19 +26,10 @@ Usage:
     {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
     {% capture next_month %}{{ post.previous.date | date: "%B" }}{% endcapture %}
   
-    {% if forloop.first %}
-      <div class="row">
-    {% endif %}
-
-    <a href="{{ BASE_PATH }}{{ post.url }}" class="col-md-3 col-sm-4 col-xs-6 text-center post_box" style="color:inherit; height:300px" data-sr="">
-      <img src="{{ post.thumbnail }}" alt="{{ post.title }}" class="img-responsive img-circle img-thumbnail-center" />
+    <a href="{{ BASE_PATH }}{{ post.url }}" class="post_box" data-sr="">
+        <img src="{{ post.thumbnail }}" alt="{{ post.title }}" class="img-responsive img-circle img-thumbnail-center" />
         <h4>{{ post.title }}</h4>
-        <p>{{ post.subtitle }}</p>
-    </a>  
-  
-    {% if forloop.last %}
-      </div>
-    {% endif %}
+    </a>
 
   {% endfor %}
 {% endif %}
