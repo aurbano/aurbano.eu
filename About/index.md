@@ -7,6 +7,8 @@ description: ""
 
 Hello! I'm Alejandro U. Alvarez, an engineering student at [Universidad de Oviedo](http://www.uniovi.es) (Spain). I work in application security at Morgan Stanley in London.
 
+Want to send something private? My minilock id is: 2CoGzindzmjJ8rPGYm2kt1Nwz4NMLV872fnUQ5xMLN9eJD, encrypt it and send via any means you want :)
+
 I'm usually involved in many personal projects as you can see <a href="/Projects">here</a> and <a href="/Labs">here</a>. I used to develop back-end systems, database stuff... but I fell in love with JavaScript and now try to do as much of it as possible. Luckily for me Nodejs and new MVC frameworks mean that you can pretty much use it everywhere :)
 
 I love new ideas, trying new tools and working with new people. When it comes to work, I love [git+Github](https://github.com/aurbano), Travis-ci and all the great things that are coming up. For the past years I've become very interested in security, both for web, mobile and desktop applications, and spend some of my time researching into that.
