@@ -10,13 +10,13 @@ tags:
 ---
 {% include JB/setup %}
 
-#### Actions
+### Actions
 
 This past year I invested heavily in Angularjs - building a massive application at work (at least it feels massive to me, the front end is at about 20k LOC without dependencies).
 
 At some point I realised that JS wasn't cutting it for *our size*, Angularjs provided the tools to build, but **not to maintain**. So I decided to refactor everything into **Typescript**. Three weeks and many late nights later we had type safety, coding without messing things up was easy and fun again!
 
-#### Thoughts
+### Thoughts
 
 Around May I started a new side project (as usual) and wanted to choose the best possible stack (as always). **Angular2** would've been awesome, but **React** seems to be the "winning framework" now, and learning is always a plus right?
 
@@ -32,7 +32,7 @@ Having **the client** decide which data, which format, and what **combinations**
 
 I haven't used it extensively, so maybe its implementations are flawed, but the *idea* is brilliant. And that's what I care for right now. People are awesome and pull requests will fix the issues, but **the base ideas aren't fixable**. So yeah, good luck documenting your REST API automatically... (including authentication/authorisation, request/response formats, flows of requests, you get it)
 
-#### And the point is?
+### And the point is?
 
 No idea, probably that I wish everyone would just stop *creating* new frameworks and workflows for a second, so that we could all just step back, look at the mess we've done, and come up with **the actual, good solution**. But now I have to quote XKCD...
 
