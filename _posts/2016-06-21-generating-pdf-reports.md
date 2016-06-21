@@ -3,6 +3,7 @@ layout: post
 title: "Generating Pixel Perfect PDF Reports"
 tagline: "Without having to trade your soul in the process"
 description: "No but really, does anyone actually get excited about pretty pdf reports?"
+thumbnail: /assets/files/thumbnails/phantomjs.png
 categories:
   - Main
 tags:
