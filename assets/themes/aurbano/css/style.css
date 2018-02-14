@@ -29,7 +29,6 @@ p {
   max-height: 200px;
   margin: 0 auto;
   padding: 3px;
-  border: 1px solid #ccc;
 }
 h1, h2, h3, h4 {
   font-family: "PT Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -77,24 +76,19 @@ blockquote {
 footer {
   height: 60px;
   text-align: center;
-  color: #fff;
   font-size: 14px;
-  box-shadow: inset 0 5px 30px #000;
   margin-top: 60px;
-  background: #444;
+  color: #999;
 }
 footer p {
   margin: 20px 0;
   color: inherit;
-}
-footer a {
-  color: #FC0;
-}
-footer a:hover {
-  color: #F60;
+  position: relative;
+  z-index: 1;
 }
 a:hover {
   color: #C00;
+  text-decoration: none;
 }
 .navbar-transparent{
   background:transparent;
@@ -130,15 +124,18 @@ a:hover {
   position:relative;
   display:block;
   color:inherit;
-  margin-bottom:3em;
+  margin-bottom:1em;
 }
-.post_box img {
+.post_box img, .post_box .img-empty {
   opacity: 0.9;
-  width:3em;
-  height:3em;
-  position:absolute;
-  left: -4em;
-  top: -1em;
+  width:2em;
+  height:2em;
+  display:inline-block;
+  vertical-align: middle;
+  margin-right: 0.5em;
+}
+.post_box h4 {
+  display: inline-block;
 }
 .post_box:hover img {
   opacity: 1;
@@ -365,6 +362,11 @@ pre code {
 .wrap {
   position: relative;
   width: 100%;
+}
+
+.wrap > .container {
+  background: #efefef;
+  box-shadow: #efefef 0 0 100px 50px;
 }
 /*
  * Sidebar

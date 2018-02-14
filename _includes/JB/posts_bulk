@@ -27,7 +27,11 @@ Usage:
     {% capture next_month %}{{ post.previous.date | date: "%B" }}{% endcapture %}
   
     <a href="{{ BASE_PATH }}{{ post.url }}" class="post_box" data-sr="">
-        <img src="{{ post.thumbnail }}" alt="{{ post.title }}" class="img-responsive img-circle img-thumbnail-center" />
+        {% if post.thumbnail %}
+            <img src="{{ post.thumbnail }}" alt="{{ post.title }}" class="img-responsive img-thumbnail-center" />
+        {% else %}
+            <div class="img-responsive img-thumbnail-center img-empty"></div>
+        {% endif %}
         <h4>{{ post.title }}</h4>
     </a>
 
