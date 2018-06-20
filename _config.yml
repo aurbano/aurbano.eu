@@ -2,6 +2,7 @@
 # For more see: http://jekyllrb.com/docs/permalinks/
 permalink: /blog/:title 
 
+include: ["_pages"]
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 highlighter: pygments
 
@@ -11,7 +12,7 @@ encoding: UTF-8
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Urbano's Blog
+title : Alex's Blog
 tagline: Words from Alejandro U. Alvarez
 author :
   name : Alejandro U. Alvarez
@@ -27,6 +28,9 @@ author :
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
 production_url : https://aurbano.eu
+
+custom:
+  analytics_id : 'UA-3181088-4'
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #

@@ -2,6 +2,7 @@
 layout: page
 title: "Now"
 description: ""
+permalink: "/now/"
 ---
 {% include JB/setup %}
 
