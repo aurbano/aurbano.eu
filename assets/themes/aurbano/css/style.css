@@ -28,9 +28,7 @@ p {
 .img-thumbnail-center {
   max-height: 200px;
   margin: 0 auto;
-  border-radius: 3px;
   padding: 3px;
-  border: 1px solid #ccc;
 }
 h1, h2, h3, h4 {
   font-family: "PT Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -78,24 +76,23 @@ blockquote {
 footer {
   height: 60px;
   text-align: center;
-  color: #fff;
   font-size: 14px;
-  box-shadow: inset 0 5px 30px #000;
   margin-top: 60px;
-  background: #444;
+  color: #999;
 }
 footer p {
   margin: 20px 0;
   color: inherit;
-}
-footer a {
-  color: #FC0;
-}
-footer a:hover {
-  color: #F60;
+  position: relative;
+  z-index: 1;
 }
 a:hover {
   color: #C00;
+  text-decoration: none;
+}
+.navbar-transparent{
+  background:transparent;
+  border:none;
 }
 .navbar-brand {
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
@@ -119,8 +116,26 @@ a:hover {
   margin: 10px 0;
   text-align: left;
 }
-.post_box img {
+.container-narrow{
+  width:500px;
+  margin:0 auto
+}
+.post_box{
+  position:relative;
+  display:block;
+  color:inherit;
+  margin-bottom:1em;
+}
+.post_box img, .post_box .img-empty {
   opacity: 0.9;
+  width:2em;
+  height:2em;
+  display:inline-block;
+  vertical-align: middle;
+  margin-right: 0.5em;
+}
+.post_box h4 {
+  display: inline-block;
 }
 .post_box:hover img {
   opacity: 1;
@@ -348,6 +363,11 @@ pre code {
   position: relative;
   width: 100%;
 }
+
+.wrap > .container {
+  background: #efefef;
+  box-shadow: #efefef 0 0 100px 50px;
+}
 /*
  * Sidebar
  *
@@ -440,10 +460,12 @@ pre code {
   width: 2.2rem;
   padding: .5rem .65rem;
   color: #505050;
-  background-color: #fff;
   border-radius: 4px;
   cursor: pointer;
   z-index: 3;
+}
+.sidebar-toggle:hover{
+  background-color: #fff;
 }
 .sidebar-toggle:before {
   display: block;
@@ -492,8 +514,8 @@ pre code {
   backface-visibility: hidden;
 }
 .wrap, .sidebar-toggle {
-  -webkit-transition: -webkit-transform .3s ease-in-out;
-  transition: transform .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 #sidebar-checkbox:checked + .sidebar {
   z-index: 10;

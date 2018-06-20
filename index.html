@@ -3,5 +3,23 @@ layout: page-no-title
 title: Alejandro U. Alvarez
 ---
 
-{% assign posts_collate = site.posts %}
-{% include JB/posts_bulk %}
+{% capture 10seconds %}{% include snippets/me10seconds.md %}{% endcapture %}
+
+<div class="container">
+
+    <h2>Me in 10 seconds</h2>
+
+    {{ 10seconds | markdownify }}
+
+    <h2>Me in 10 minutes?</h2>
+
+    <p>See my <a href='/about'>"about" page</a>.</p>
+
+    <h2>What am I doing now?</h2>
+
+    <p>See my <a href='/now'>"now" page</a>.</p>
+
+    <h2>Newest Articles</h2>
+    {% assign posts_collate = site.posts %}
+    {% include JB/posts_bulk %}
+</div>
