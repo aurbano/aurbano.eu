@@ -1,5 +1,7 @@
 html, body {
-    height: 100%;
+  height: 100%;
+  font-size: 18px !important;
+  background-color: {{ .Site.Params.backgroundColor | default "white" }};
 }
 
 body {
@@ -14,6 +16,32 @@ main {
     padding: 25px;
     flex: 1 0 auto;
     max-width: 750px;
+    text-align: left;
+
+    h1:first-child {
+      border-bottom: solid var(--border-width) var(--accent);
+      padding-bottom: 0.25em;
+      margin-bottom: 1em;
+
+      small {
+        text-transform: none;
+        font-size: 0.8em;
+        margin-left: 1em;
+      }
+    }
+
+    h1, h2, h3, h4 {
+      font-family: '{{ .Site.Params.font }}', sans-serif;
+    }
+}
+
+.navbar-nav {
+  font-family: '{{ .Site.Params.font }}', sans-serif;
+}
+
+hr {
+  border-top-color: #ccc;
+  width: 40%;
 }
 
 img {
@@ -24,23 +52,27 @@ img {
 
 .intro {
     transform: translateY(22vh);
-}
+    text-align: center;
 
-.intro > h1 {
-    color: #212121;
-    font-size: 12vh;
-}
+    h1 {
+      color: #212121;
+      font-size: 12vh;
+      border-bottom: none !important;
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
 
-.intro > h2 {
-    color: #757575;
-    font-size: 3vmin;
+    h2 {
+      color: #757575;
+      font-size: 3vmin;
+    }
 }
 
 /* Page content */
 
 .content {
     padding-top: 20px;
-    text-align: left;
+    font-size: 1rem;
 }
 
 /* Profile picture */
@@ -106,4 +138,5 @@ a:hover {
 
 footer {
     border-bottom: var(--border-width) solid var(--accent);
+    font-size: 0.8rem;
 }

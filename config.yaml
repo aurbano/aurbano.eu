@@ -4,8 +4,8 @@ languageCode: en-us
 title: Alex's Blog
 
 params:
-    author: "Calin Tataru"
-    description: "Personal blog theme powered by Hugo"
+    author: "Alejandro U. Alvarez"
+    description: "I sometimes stop by"
     githubUsername: "#"
     accent: "#eb0000"
     showBorder: true
@@ -39,3 +39,6 @@ menu:
     - url: 'https://stackoverflow.com/users/1262824/aurbano'
       name: stack-overflow
       weight: 5
+    - url: 'https://news.ycombinator.com/user?id=aurbano'
+      name: hacker-news
+      weight: 6
