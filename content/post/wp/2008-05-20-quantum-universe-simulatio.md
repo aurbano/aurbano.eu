@@ -13,7 +13,7 @@ tags:
 - time
 thumbnail: /assets/files/thumbnails/quantum.png
 title: Quantum Universe Simulation &#8211; The Unique beings paradox
-url: /blog/2008/05/20/quantum-universe-simulatio/
+aliases: [ /blog/2008/05/20/quantum-universe-simulatio/ ]
 ---
  
 Completely off topic for this blog, but at the time it is the best place to write about this. Read through the whole thing before judging what you see, then think about it, and then express your opinion.

@@ -9,7 +9,7 @@ tags:
 - google chrome
 thumbnail: /assets/files/thumbnails/chrome.png
 title: Google chrome
-url: /blog/2008/09/02/google-chrome/
+aliases: [ /blog/2008/09/02/google-chrome/ ]
 ---
  
 

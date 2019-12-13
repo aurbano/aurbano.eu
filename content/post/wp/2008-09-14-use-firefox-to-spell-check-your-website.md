@@ -10,7 +10,7 @@ tags:
 - spell
 thumbnail: /assets/files/thumbnails/browsers.png
 title: Use the browser to spell check your website
-url: /blog/2008/09/14/use-firefox-to-spell-check-your-website/
+aliases: [ /blog/2008/09/14/use-firefox-to-spell-check-your-website/ ]
 ---
  
 
@@ -22,9 +22,9 @@ If you maintain a website, you will surely know how important it is to never hav
 
 Well, there is a very simple way of doing so, simply copy the following javascript code and paste it into the address bar (On Google Chrome you may have to rewrite `javascript:`):
 
-{{< highlight javascript "linenos=table" >}}
+``` javascript
 javascript:document.body.contentEditable='true'; document.designMode='on'; void 0
-{{< / highlight >}}
+```
 
 If you find it useful, I recommend that you store that code as a bookmark, I call it Spell Check for example.
 

@@ -11,7 +11,7 @@ tags:
 - password
 thumbnail: /assets/files/thumbnails/bios.jpg
 title: 'Bypass/Flash BIOS password:'
-url: /blog/2008/09/12/bypassflash-bios-password/
+aliases: [ /blog/2008/09/12/bypassflash-bios-password/ ]
 ---
 
 Have you ever tried to access a computer\'s BIOS settings to find they are protected? Or maybe it was you and forgot the password. Either way don\'t worry since bypassing this simple password is as simple as following the following solutions:

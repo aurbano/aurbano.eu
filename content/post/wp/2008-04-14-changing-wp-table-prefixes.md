@@ -12,7 +12,7 @@ tags:
 - wp
 thumbnail: /assets/files/thumbnails/wordpress.png
 title: Changing WP Table prefixes
-url: /blog/2008/04/14/changing-wp-table-prefixes/
+aliases: [ /blog/2008/04/14/changing-wp-table-prefixes/ ]
 ---
 
 

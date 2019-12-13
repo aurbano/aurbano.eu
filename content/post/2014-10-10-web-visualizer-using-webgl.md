@@ -53,7 +53,7 @@ On my code I set the Access Key as an environment variable called `bingAPIkey` i
 
 Serving Bing searches from Nodejs was quite easy after that:
 
-{{< highlight javascript "linenos=table" >}}
+``` javascript
 module.exports = function (app) {
 
 	var bingAPIkey = process.env.bingAPIkey;
@@ -99,7 +99,7 @@ module.exports = function (app) {
 		});
 	});
 };
-{{< / highlight >}}
+```
 
 ## Putting it all together
 After all that was working I built a simple UI to display everything, it's still a work in progress so I'll keep adding to this post.

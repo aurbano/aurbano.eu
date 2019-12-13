@@ -13,7 +13,7 @@ tags:
 - suggestion
 thumbnail: /assets/files/thumbnails/ai_php.png
 title: Did you mean&#8230; ? In php
-url: /blog/2008/05/30/did-you-mean-in-php/
+aliases: [ /blog/2008/05/30/did-you-mean-in-php/ ]
 ---
  
 
@@ -33,7 +33,7 @@ The [Levenshtein][2] algorithm, which basically finds the number of characters y
 
 [2]: http://www.php.net/manual/en/function.levenshtein.php
 
-{{< highlight php "linenos=table,startinline" >}}
+``` php
 // input misspelled word
 $input = 'carrrot';
 
@@ -77,7 +77,7 @@ if ($shortest == 0) {
 } else {
     echo "Did you mean: $closest?\n";
 }
-{{< / highlight >}}
+```
 
 This is an example where even a misspelled word can be found. It uses the Levenshtein to look for the word which is the most similar one, and then it is returned.  
 This is the output of the code before:
@@ -92,7 +92,7 @@ The use of this function is quite simple, although there are many optional param
 Other algorithms that could be used for this are [soudex][3] and [metaphone][4]. [Soundex][3] will create a key that is the same for all words that are pronounced in a similar way.  
 For example, the following code:
 
-{{< highlight php "linenos=table,startinline" >}}
+``` php
 echo soundex('beard');
 echo soundex('bird');
 echo soundex('bear');
@@ -103,7 +103,7 @@ echo soundex('bear');
  * B630
  * B600
  */
-{{< / highlight >}}    
+```    
 
 Where `beard` and `bird` are the same. <del cite="http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_soundex">This could make suggestions fast if you have already created a column in the mysql tables with the soundex key of the tags for example, so that you could search not only for the string, but also for its soundex key...</del>
  

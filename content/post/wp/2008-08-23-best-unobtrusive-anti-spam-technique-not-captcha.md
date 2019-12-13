@@ -12,7 +12,7 @@ tags:
 - thomas landauer
 thumbnail: /assets/files/thumbnails/captcha.png
 title: Best unobtrusive anti-spam technique (Not CAPTCHA)
-url: /blog/2008/08/23/best-unobtrusive-anti-spam-technique-not-captcha/
+aliases: [ /blog/2008/08/23/best-unobtrusive-anti-spam-technique-not-captcha/ ]
 ---
 
 I know you are probably thinking that this will be some silly thing, but this idea that [Thomas Landauer][1] came up with is by far the best I\'ve seen in a long time.
@@ -25,27 +25,27 @@ Well the idea is relatively simple: Add CSS-hidden fields that a user won\'t see
 
 The CSS would be something as simple as:
 
-{{< highlight css "linenos=table" >}}
+``` css
 .noshow { display:none; }
-{{< / highlight >}}
+```
 
 The HTML form should include something like this:
 
-{{< highlight html "linenos=table" >}}
+``` html
 <label for="leaveblank">Leave this blank</label>
 <input type="text" class="noshow" id="leaveblank" name="leaveblank" /><br />
 <label for="dontchange">Do not change this</label>
 <input type="text" value="http://" class="noshow" id="dontchange" name="dontchange" />
-{{< / highlight >}}     
+```     
     
 
 And finally the php would be simply:
 
-{{< highlight php "linenos=table,startinline" >}}
+``` php
 if ($_POST['leaveblank'] == '' &#038;&#038; $_POST['dontchange'] == 'http://') {
  // accept form submission
 }
-{{< / highlight >}}   
+```   
 
 The only possible drawback would be that some users with CSS disabled would see the \"hidden\" form fields, and thus would be quite puzzled.  
 The good thing is that the percentage of users with CSS disabled is so low that I wouldn\'t even care about that issue...

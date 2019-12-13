@@ -25,10 +25,10 @@ After that post I started using Zsh more and more, and came to realize how much 
 If you just want to replicate this just follow these two steps:
 
 1. Install [antigen](https://github.com/zsh-users/antigen):
-2. {{< highlight bash >}}
+2. ``` bash
 curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > antigen.zsh
 source antigen.zsh
-{{< / highlight >}}
+```
 3. Use [this `.zshrc`](https://gist.github.com/aurbano/e32596aae16a7b9f8b48) file.
 
 -------
@@ -41,18 +41,18 @@ It works great with [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh), whic
 
 Once antigen is installed the first part of the `.zshrc` file is setting that up and loading Oh My Zsh.
 
-{{< highlight bash >}}
+``` bash
 # Antigen — A zsh plugin manager
 export ANTIGEN_DEFAULT_REPO_URL=https://github.com/sharat87/oh-my-zsh.git
 source ~/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
-{{< / highlight >}}
+```
 
 Now load all the plugins (bundles) you want, the great thing about antigen is that you can add any plugin from any repository/url:
 
-{{< highlight bash >}}
+``` bash
 antigen bundles <<EOBUNDLES
 
 lein
@@ -66,7 +66,7 @@ python
 #...
 
 EOBUNDLES
-{{< / highlight >}}
+```
 
 ## Extras
 
@@ -74,11 +74,11 @@ EOBUNDLES
 
 I find this really useful, it triggers an `ls` whenever you `cd` into a directory.
 
-{{< highlight bash >}}
+``` bash
 # Automatically list directory contents on `cd`.
 auto-ls () { ls; }
 chpwd_functions=( auto-ls $chpwd_functions )
-{{< / highlight >}}
+```
 
 ### History search
 
@@ -86,12 +86,12 @@ We add the history substring plugin to enable fish style search, first add the p
 
 Now we can bind the search to Up/Down arrows:
 
-{{< highlight bash >}}
+``` bash
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
-{{< / highlight >}}
+```
 
 ### Fish-style autosuggest
 
@@ -100,10 +100,10 @@ A great plugin that shows the first suggestion in light grey as suggestion as yo
 Add the plugin: `tarruda/zsh-autosuggestions`
 
 Set it up:
-{{< highlight bash >}}
+``` bash
 # Setup suggestions
 zle-line-init() {
     zle autosuggest-start
 }
 zle -N zle-line-init
-{{< / highlight >}}
+```

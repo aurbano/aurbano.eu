@@ -16,7 +16,7 @@ tags:
 - tree
 thumbnail: /assets/files/thumbnails/trees.png
 title: Procedurally generated trees in JavaScript
-url: /blog/2013/01/14/procedurally-generated-trees-in-javascript/
+aliases: [ /blog/2013/01/14/procedurally-generated-trees-in-javascript/ ]
 ---
 
 Over the past year I\'ve been more and more interested in HTML5 canvas, since it allows very fast development of graphical animations using JavaScript.
@@ -55,7 +55,7 @@ Another requirement is that we start with a thick line, until we reach final bra
 
 So off we go, just for now I will test the idea with a loop that draws small segments all in a row, introducing a little variation on the next point\'s coordinates, with an initial width of 20 for example, and reducing it by a small quantity on each iteration. We should get a long wiggly line getting thinner until it \"dies\" at the end. I have extracted all useful variables to outside the function so that we can easily configure it.
 
-{{< highlight javascript "linenos=table" >}}
+``` javascript
 var loss = 0.1;		// Width loss per cycle
 var sleep = 10;		// Min sleep time (For the animation)
 var branchLoss = 0.9;	// % width maintained for branches
@@ -80,7 +80,7 @@ function branch(x,y,dx,dy,w,lifetime){
 	ctx.stroke();
 	if(w-lifetime*loss>=1) setTimeout(function(){ branch(x,y,dx,dy,w,  lifetime); },sleep);
 }
-{{< / highlight >}}
+```
 
 <div class="caption">
 <img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree1.png?resize=216%2C311" /><br />
@@ -100,7 +100,7 @@ After some testing I\'ve ended up with this condition: `w-lifetime*loss < 9`. If
 Figure 2: Fully developed tree
 </div> 
 
-{{< highlight javascript "linenos=table" >}}
+``` javascript
 if(w-lifetime*loss < 9 &amp;&amp; lifetime > 30 Math.random()*250){
 	setTimeout(function(){
 		branch(x,y,2*Math.sin(Math.random() lifetime),2*Math.cos(Math.random() lifetime),(w-lifetime*loss)*branchLoss,0);
@@ -108,7 +108,7 @@ if(w-lifetime*loss < 9 &amp;&amp; lifetime > 30 Math.random()*250){
 		w *= mainLoss;
 	},sleep*Math.random() sleep);
 }
-{{< / highlight >}}
+```
 
 I have added some randomness to the direction in which branches start to grow by using a sine and cosine along with a random number and the current lifetime. That should give us a random direction from -1 to 1 in both axis. `mainLoss` is a coefficient that determines how much width is lost by the main branch.
 

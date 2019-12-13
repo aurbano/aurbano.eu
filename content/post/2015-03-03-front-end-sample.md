@@ -38,11 +38,11 @@ With all this setup we will avoid ideally **manually downloading** anything (Get
 
 [Fork/clone the repository]() and rename it to your project. Now let's get all the dependencies:
 
-{{< highlight bash >}}
+``` bash
 $ npm install
 $ bower install
 $ grunt
-{{< / highlight >}}
+```
 
 This three steps are what power the whole thing:
 
@@ -66,7 +66,7 @@ What this means is that all those dependencies that Bower downloaded for us, tha
 
 If we take a look at the `config.js` file for Requirejs we'll now see:
 
-{{< highlight javascript >}}
+``` javascript
 //...
 paths: {
   app: 'app',
@@ -79,7 +79,7 @@ paths: {
   almond: '../bower_components/almond/almond'
 },
 //...
-{{< / highlight >}}
+```
 
 All the ones that are located inside `bower_components/` have been automatically added by Grunt. Cool huh :)
 
@@ -88,10 +88,10 @@ From now on if we need a dependency anywhere in our files, we can use require an
 ## Adding dependencies
 Should you need any other dependency, just run:
 
-{{< highlight bash >}}
+``` bash
 $ bower install <dependency>
 $ grunt
-{{< / highlight >}}
+```
 
 And it will be downloaded and added to the `paths` so it's accesible.
 
@@ -99,7 +99,7 @@ And it will be downloaded and added to the `paths` so it's accesible.
 An Angularjs app needs an `index.html` file, and an `app.js` entry point. One of the best things of this approach is that we no longer need to include every single JavaScript file manually.
 So the file will simply be:
 
-{{< highlight html "linenos=table" >}}
+``` html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,13 +136,13 @@ So the file will simply be:
 </body>
 
 </html>
-{{< / highlight >}}
+```
 
 The important part there is the `require.js` script tag. Using the attribute `data-main` we specify the Configuration file for Requirejs. 
 
 At the end of `config.js` we put the Angularjs initialization code:
 
-{{< highlight javascript "linenos=table" >}}
+``` javascript
 require([
   'angular',
   'app'
@@ -158,7 +158,7 @@ require([
   });
 
 });
-{{< / highlight >}}
+```
 
 There are other ways in which this can be done, but for the sake of simplicity we'll just do it this way.
 

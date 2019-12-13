@@ -12,7 +12,7 @@ tags:
 - WordPress
 thumbnail: /assets/files/thumbnails/wordpress.png
 title: Easily assign an image to a post in WordPress
-url: /blog/2008/09/11/assign-image-to-wordpress-post/
+aliases: [ /blog/2008/09/11/assign-image-to-wordpress-post/ ]
 ---
  
 
@@ -46,13 +46,13 @@ So here is the code to display the image (It must be inserted inside [the Loop][
 
  [3]: http://codex.wordpress.org/The_Loop
  
-{{< highlight php "linenos=table,startinline" >}}
+``` php
 if(get_post_meta($post->ID, 'post_image',true)){
 	//There is an image assigned:
 	echo '<img src="http://yourblog.com/post_images/'.get_post_meta($post-/>ID,'.
 		 'post_image',true).'" />';
 }
-{{< / highlight >}}
+```
 
 Note that if you copy and paste the code before you\'ll have to delete a / in `$post->ID` because WordPress is adding it automatically.  
 Of course this is the most basic approach, but hopefully you will understand the method and will be able to work on it.  

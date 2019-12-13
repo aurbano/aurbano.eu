@@ -19,7 +19,7 @@ When I was doing the [Tree Generator](/blog/2013/01/14/procedurally-generated-tr
 
 This gave me the idea to render text on the canvas using particles that would seem to be gravitating around, in such a way that when seen all together you would see the text.
 
-### Example
+### Example: "hey"
 <div class="caption caption-no-border">
     <div style="width:100%; height:300px" id="nebulaDemo"></div>
     Click for explosions
@@ -29,11 +29,11 @@ For this example I set a big `drag` force so that the particles would settle fas
 
 ### Demos
 
-* [Main demo](http://urbanoalvarez.es/Nebula/): Sample demo with dat.gui controls to play with the settings.
-* [Music Nebula](http://urbanoalvarez.es/Nebula/music.html): Nebula instance synced with an audio track for explosions.
+* [Main demo](https://aurbano.eu/Nebula/): Sample demo with dat.gui controls to play with the settings.
+* [Music Nebula](https://aurbano.eu/Nebula/music.html): Nebula instance synced with an audio track for explosions.
 
 # First steps
-I initially did this experiment [on the canvas](http://urbanoalvarez.es/Nebula/canvas.html) without any rendering engine. This has the advantage of rapid prototyping, and the disadvantage of likely performance issues. I managed to make it work quite well though, but the number of nodes it could render was limited by the browser JavaScript interpreter.
+I initially did this experiment [on the canvas](https://aurbano.eu/Nebula/canvas.html) without any rendering engine. This has the advantage of rapid prototyping, and the disadvantage of likely performance issues. I managed to make it work quite well though, but the number of nodes it could render was limited by the browser JavaScript interpreter.
 
 The basic idea is to have a number of particles gravitate towards a point, in such a way that the points represent the text:
 
@@ -53,7 +53,7 @@ In order to allow for different resolution settings I didn't go pixel by pixel, 
 
 The code for this is quite long, so I posted here the relevant parts only:
 
-{{< highlight javascript "linenos=table" >}}
+``` javascript
 // Find the largest font size
 var textSize;
 do {
@@ -84,7 +84,7 @@ for (var y = 0; y < pix.height; y += nebula.settings.resolution) {
         }
     }
 }
-{{< / highlight >}}
+```
 
 With all this code I have the image before, with all the edges. Now it's just a matter of drawing some particles in random locations, and update their position based on gravity towards the calculated points.
 
@@ -96,16 +96,16 @@ Here is a live example where you can see the distance from each particle to the 
 
 For this example I set the `drag` force to 0 so that they would remain moving. Most of the particles' behavior can be changed with the settings, which allows for pretty cool effects.
 
-On the [demo page](http://urbanoalvarez.es/Nebula/) for Nebula you can play with these settings using dat.gui.
+On the [demo page](https://aurbano.eu/Nebula/) for Nebula you can play with these settings using dat.gui.
 
 ## Interesting uses
 After playing with the explosions for a while I realized it would be really interesting if I could sync them to an audio track.
 
-Looking around I found out that Chrome and HTML5 provide an [AnalyserNode](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode) that does an [FFT](http://en.wikipedia.org/wiki/Fast_Fourier_transform) on the audio and gives you the frequency analysis, so I decided to hack that and Nebula together for an [awesome visualization experience](http://urbanoalvarez.es/Nebula/music.html)!
+Looking around I found out that Chrome and HTML5 provide an [AnalyserNode](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode) that does an [FFT](http://en.wikipedia.org/wiki/Fast_Fourier_transform) on the audio and gives you the frequency analysis, so I decided to hack that and Nebula together for an [awesome visualization experience](https://aurbano.eu/Nebula/music.html)!
 
 Setting up the analyser was just too easy:
 
-{{< highlight javascript "linenos=table" >}}
+``` javascript
 window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
 
 // Remember to add this to the HTML:
@@ -144,7 +144,7 @@ function animation() {
 
 // Start the process
 animation();
-{{< / highlight >}}
+```
 
 The snippet before gives us the array `frequencyData`, which will contain in this case 512 integers `[0, 255]` representing in lay man's terms the "volume" on each frequency.
 
@@ -154,7 +154,7 @@ The problem is that most songs are just centered on a low range of frequencies, 
 
 Here is the function for this:
 
-{{< highlight javascript "linenos=table" >}}
+``` javascript
 // This function should be called where 'console.log' is in the other snippet
 function frequencyExplode(freqData){
     var total = freqData.length;
@@ -173,12 +173,12 @@ function frequencyExplode(freqData){
         }
     }
 }
-{{< / highlight >}}
+```
 
-Turn up the volume, and take a look at [the demo](http://urbanoalvarez.es/Nebula/music.html) :)
+Turn up the volume, and take a look at [the demo](https://aurbano.eu/Nebula/music.html) :)
 
-<script type="text/javascript" src="http://urbanoalvarez.es/Nebula/lib/pixi/bin/pixi.js"></script>
-<script type="text/javascript" src="http://urbanoalvarez.es/Nebula/src/nebula-pixi.js"></script>
+<script type="text/javascript" src="https://aurbano.eu/Nebula/lib/pixi/bin/pixi.js"></script>
+<script type="text/javascript" src="https://aurbano.eu/Nebula/src/nebula-pixi.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -198,7 +198,7 @@ Turn up the volume, and take a look at [the demo](http://urbanoalvarez.es/Nebula
             blendMode: 'NORMAL'
         });
         
-        text.write('nebula', [0x7752FF, 0x4DA6F0]);
+        text.write('hey', [0x7752FF, 0x4DA6F0]);
 
         $('#nebulaDemo').click(function(e){
             text.explosion(
@@ -224,6 +224,6 @@ Turn up the volume, and take a look at [the demo](http://urbanoalvarez.es/Nebula
             blendMode: 'NORMAL'
         });
 
-        edges.write('nebula', [0x7752FF]);
+        edges.write('force', [0x7752FF]);
     });
 </script>

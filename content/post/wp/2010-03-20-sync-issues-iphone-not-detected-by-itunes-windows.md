@@ -11,7 +11,7 @@ tags:
 - sync
 thumbnail: /assets/files/thumbnails/iphone_itunes.jpg
 title: 'Sync issues: iPhone not detected by iTunes (Windows)'
-url: /blog/2010/03/20/sync-issues-iphone-not-detected-by-itunes-windows/
+aliases: [ /blog/2010/03/20/sync-issues-iphone-not-detected-by-itunes-windows/ ]
 ---
  
 

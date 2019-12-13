@@ -4,16 +4,20 @@ languageCode: en-us
 title: Alex's Blog
 
 params:
-    author: "Alejandro U. Alvarez"
-    description: "I sometimes stop by"
-    githubUsername: "#"
-    accent: "#eb0000"
-    showBorder: true
-    backgroundColor: "#efefef"
-    font: "Raleway"
-    highlight: true
-    highlightStyle: "dark"
-    highlightLanguages: ["javascript", "typescript", "java"]
+  author: "Alejandro U. Alvarez"
+  description: "I sometimes stop by"
+  githubUsername: "#"
+  accent: "#eb0000"
+  showBorder: true
+  backgroundColor: "#efefef"
+  font: "Raleway"
+  highlight: true
+  highlightStyle: "dark"
+  highlightLanguages: ["javascript", "typescript", "java"]
+
+taxonomies:
+  category: categories
+  tag: tags
 
 menu:
   main:
@@ -42,3 +46,8 @@ menu:
     - url: 'https://news.ycombinator.com/user?id=aurbano'
       name: hacker-news
       weight: 6
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

@@ -12,7 +12,7 @@ tags:
 - ui
 thumbnail: /assets/files/thumbnails/jqueryUI.png
 title: Perfect jQuery UI rotating tabs
-url: /blog/2009/10/20/perfect-jquery-ui-rotating-tabs/
+aliases: [ /blog/2009/10/20/perfect-jquery-ui-rotating-tabs/ ]
 ---
 
 Tabs are nice. They create a very elegant interface, and jQuery UI does this marvelously, here we have a little preview of this:
@@ -31,10 +31,10 @@ With [jQuery][2] and [jQuery UI][3] it is dead simple. First, load the libraries
 [2]: http://jquery.com/
 [3]: http://jqueryui.com/
 
-{{< highlight html "linenos=table" >}}
+``` html
 	<script src="http://jqueryjs.googlecode.com/files/jquery-x.min.js" type="text/javascript"></script>
 	<script src="path/to/jquery UI" type="text/javascript"></script>
-{{< / highlight >}}
+```
 
 Remember to include also the *CSS files* for the UI Theme! Otherwise the tabs won\'t seem to work!
 
@@ -45,7 +45,7 @@ jQuery UI does that by itself with a very simple command, but it is **not** perf
 
 So here is how this is achieved:
 
-{{< highlight javascript "linenos=table" >}}
+``` javascript
     $(document).ready(function(){
     	$("#tabs-rotate").tabs({ fx: { opacity: 'toggle' } }).tabs('rotate', 3000);
     	$('#tabs-rotate').hover(function(){
@@ -55,7 +55,7 @@ So here is how this is achieved:
     		}
     	);
     });
-{{< / highlight >}}
+```
 
 First we instruct jQuery UI to set up tabs in that div, and to rotate them. Then we use a hover event to control the rotation. On hover no rotation, and on out resume rotation.
 
@@ -65,12 +65,12 @@ Now you may want to stop rotation completely when a tab is clicked. This can be 
 
  [7]: http://api.jquery.com/unbind/
 
-{{< highlight javascript "linenos=table" >}}
+``` javascript
     $('#tabs').click(function(){
     	$(this).tabs('rotate', 0, false);
     	$(this).unbind('hover');
     });
-{{< / highlight >}}
+```
 
 ## See it in action
 

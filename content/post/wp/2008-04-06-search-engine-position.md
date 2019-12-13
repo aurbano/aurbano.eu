@@ -15,7 +15,7 @@ tags:
 - tool
 thumbnail: /assets/files/thumbnails/seo.png
 title: SEO Tool Search Engine position checker
-url: /blog/2008/04/06/search-engine-position/
+aliases: [ /blog/2008/04/06/search-engine-position/ ]
 ---
 
 Hello!

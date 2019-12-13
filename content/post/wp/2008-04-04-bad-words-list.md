@@ -14,7 +14,7 @@ tags:
 - words
 thumbnail: /assets/files/thumbnails/bad_words.png
 title: Bad words list (458 words)
-url: /blog/2008/04/04/bad-words-list/
+aliases: [ /blog/2008/04/04/bad-words-list/ ]
 ---
 
 Are you creating a new forum, IRC channel, or pretty much any kind of website where users can submit links and you need to control bad words?  

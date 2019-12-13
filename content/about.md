@@ -17,4 +17,4 @@ My software things are divided between [projects](/projects), [libraries](https:
 
 So I focus more on libraries and experiments now (not that those are a lot more useful, but I'm able to get more things done this way).
 
-I really enjoy making music, skiing, [radio controlled](/rc) machines, and travelling around.
+I really enjoy making music, skiing, [radio controlled](/categories/RC/) machines, and travelling around.

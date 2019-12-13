@@ -11,7 +11,7 @@ tags:
 - tracking
 thumbnail: /assets/files/thumbnails/analytics.png
 title: Event tracking &#8211; Google Analytics
-url: /blog/2009/06/13/event-tracking-google-analytics/
+aliases: [ /blog/2009/06/13/event-tracking-google-analytics/ ]
 ---
 
 ## What is event tracking?
@@ -24,15 +24,15 @@ So finally, we can keep track of AJAX interactions with the server, we can log a
 
 Imagine we have a site where we feature some sort of mp3 downloads. And we want to track those with Analytics. In the link to the file we would put:
 
-{{< highlight html "linenos=table" >}}
+``` html
 <a href="song_file.mp3" title="Download file">Download song</a>
-{{< / highlight >}}
+```
 
 As you can see we use the function `_trackEvent`, from the pageTracker object. This function takes 4 parameters, Category name, action name and a label and value:
 
-{{< highlight javascript "linenos=table" >}}
+``` javascript
 _trackEvent(category, action, optional_label, optional_value)
-{{< / highlight >}} 
+``` 
 
 The category can be used to store different events that are similar, for example in the category music we could use the actions Download, Listen, Rate... And finally the label, that is normally used to refer to which specific object in that category you are referring to, in this case which song.
 

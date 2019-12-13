@@ -15,7 +15,7 @@ tags:
 - restore
 thumbnail: /assets/files/thumbnails/iphone_itunes.jpg
 title: Restore iPhone without upgrading OS
-url: /blog/2010/05/03/restore-iphone-without-upgrading-os/
+aliases: [ /blog/2010/05/03/restore-iphone-without-upgrading-os/ ]
 ---
 
 If you need to restore your iPhone you\'ll notice iTunes tells you that upon restoring it, the latest version will be installed. This will be just fine for regular iPhones of course, but for the people who have a Jailbroken iPhone, it\'s not ok (At least until the newest version is ready for jailbreak)

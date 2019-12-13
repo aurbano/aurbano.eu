@@ -38,9 +38,9 @@ Also, right click can be setup as two finger click. Drag and text selection with
 
 Install [Homebrew](http://brew.sh/):
 
-{{< highlight bash >}}
+``` bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-{{< / highlight >}}
+```
 
 This is the missing Mac version of `apt-get`, kind of.
 
@@ -50,9 +50,9 @@ Make sure everything is fine: `brew doctor`, follow any recommendations.
 
 If `brew` doesn't work as a command add this to your bash/zsh profile:
 
-{{< highlight bash >}}
+``` bash
 export PATH="/usr/local/bin:$PATH"
-{{< / highlight >}}
+```
 
 Install node: `brew install node`
 
@@ -62,9 +62,9 @@ Install git: `brew install git`
 
 Now enable Keychain for Git, this is a really good feature that allows you to stop entering the user/pass on every push you do. You can also use the ssh url, but that requires you to change it if you clone using the app...
 
-{{< highlight bash >}}
+``` bash
 git config --global credential.helper osxkeychain
-{{< / highlight >}}
+```
 
 ## Step 3
 

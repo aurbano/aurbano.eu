@@ -11,7 +11,7 @@ tags:
 - stack
 thumbnail: /assets/files/thumbnails/jqueryUI.png
 title: 'jQueryUI Draggable: Bring stack element to front on click'
-url: /blog/2013/01/21/jqueryui-draggable-bring-stack-element-to-front-on-click/
+aliases: [ /blog/2013/01/21/jqueryui-draggable-bring-stack-element-to-front-on-click/ ]
 ---
 
 If you are developing window-like elements on HTML using jQueryUI Draggable, you are probably using the [stack][1] option to ensure that the dragged element will always be on top. But the actual goal would be for that element to be on top onFocus, and that means whenever the user clicks on the element.
