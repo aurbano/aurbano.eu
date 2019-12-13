@@ -11,7 +11,6 @@ tags:
 thumbnail: /assets/files/thumbnails/phantomjs.png
 title: Generating Pixel Perfect PDF Reports
 ---
-{% include JB/setup %}
 
 Have you been tasked with generating PDF reports? If you have tried using the typical tools (iText for Java, ReportLab in Python... ) you understand why it's bad.
 

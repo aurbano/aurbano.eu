@@ -8,7 +8,7 @@ thumbnail: /assets/files/thumbnails/tricopter.jpg
 title: Tricopter v2.5 build and first flight
 ---
 
-##Project
+## Project
 After a lot of research on multirotors I decided to go with a tricopter after finding <a href="https://www.youtube.com/watch?v=hU0_tGHlR7g">David Windestal's videos</a> on YouTube. He actually has a really cool <a href="http://rcexplorer.se/">blog</a> where he writes about his projects, and used to work at <a href="https://www.youtube.com/user/flitetest">FliteTest</a>.
 
 I started my plan with a Word document where I wrote all I could find on tricopters, fpv, parts... etc, so that when I actually decided to start I would be ready, my original list looked like this:
@@ -102,7 +102,7 @@ I started my plan with a Word document where I wrote all I could find on tricopt
 	</div>
 </div>
 
-##Original list
+## Original list
 From the original list I changed a few things, it's also missing others I included as extras.
 
 Most of the items were bought from Hobbyking, because they have almost everything. I bought everything I could locally, and the list doesn't show those things.
@@ -113,7 +113,7 @@ This photo is from the day the first box arrived:
 
 <div class="caption"><img src="/assets/files/tricopter/IMG_6336.JPG" alt="Components box" class="img-responsive" /></div>
 
-##Build
+## Build
 The body I mentioned above was bought from Flitetest's website, they have a really good quality and only cost 20$, although at the moment they might not be available.
 
 One of the first problems I encountered was the wood arms. They should be 10x10mm, but I could only find 12x12, so I went with those. It turns out that the screws that I bought were just perfect for 10x10, and too short for my arms, so I decided to sand them down to size.
@@ -138,7 +138,7 @@ Setting up the KK2.1 and the 9xr was actually really easy, there are already ple
 
 At this point I still hadn't bothered to check the balance of motors and props, so I was expecting a lot of vibration, but I first wanted to see if it flew!
 
-##First flight
+## First flight
 The actual first flight was a bit of a disaster, a motor was turning less than the others (turned out to be a faulty motor), and when I replaced it and tried again it was tipping badly to one side (never found out why though). After making sure everything was really tight and well setup I finally managed to get in the air.
 
 The first actual flight was a bit shaky and absolutely terrifying, but luckily everything ended well. I took the tricopter to an empty part of my city, set everything up and went ahead. The result can be seen in the following video.
@@ -149,7 +149,7 @@ The first actual flight was a bit shaky and absolutely terrifying, but luckily e
 
 <hr />
 
-##First crash
+## First crash
 
 After this flight I got myself a GoPro, and shot the following video (edited with the GoPro editor using a default template)
 
@@ -163,7 +163,7 @@ The crash happened because I flew even though the motor connectors were not 100%
 
 I have ordered bullet connectors now, that should be much better and provide a more solid connection. 
 
-##Future plans
+## Future plans
 
 David is releasing a new kit for the tricopter, that will probably improve the design greatly over my current wooden body. It will be released at 95$ so it's quite a good price for what you get, here is a preview:
 

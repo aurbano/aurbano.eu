@@ -13,19 +13,18 @@ tags:
 thumbnail: /assets/files/thumbnails/webvisualizer.PNG
 title: Web Visualizer using WebGL
 ---
-{% include JB/setup %}
 
 I decided to build a tool that would allow me to see how websites are related in a visual way. I'm still working on the concept but the tool is ready and working: [WebVisualizer](http://web-visualizer.urbanoalvarez.es).
 
-##Building blocks
+## Building blocks
 In order to get this to work there were some basic building blocks I needed. Some server side and a few client side. Here is a little run through:
 
-###Client graph rendering
+### Client graph rendering
 I had some experience with the [VivaGraph](https://github.com/anvaka/VivaGraphJS) library, from the very talented [Andrei Kashcha](http://www.yasiv.com/), so that was an obvious choice. It allows you to render very large graphs (tested up to 50000+) using WebGL without any hassle really.
 
 Using WebGL has some limitations, the main one is that it can **only access same domain assets** (Unless using CORS or changing the accept headers). This means we'll need a server proxy to load the favicons for each website.
 
-###Server
+### Server
 I needed to setup a server, both for the image proxy and to interact with the Search APIs (they all require private keys) so I decided to go with **Nodejs** and deploy to Heroku through Travis.
 
 For the tests I'm using [mocha](https://www.npmjs.org/package/mocha) with [should](https://www.npmjs.org/package/should) and [supertest](https://www.npmjs.org/package/supertest), they make testing a web server extremely easy.
@@ -34,12 +33,12 @@ Testing the Image proxy (detailed below):
 
 {% gist aurbano/3d8829c5cdb243f3fded proxyTest.js %}
 
-###Image proxy
+### Image proxy
 There were some existing npm packages to proxy requests in Nodejs, but I wanted something very simple. I set it up using Express and require:
 
 {% gist aurbano/3d8829c5cdb243f3fded expressProxy.js %}
 
-###Search API
+### Search API
 I was going to use the usual Google Search API, but it turns out it was deprecated some years ago and will be dissapearing. They are replacing it with the Custom Search API, which unfortunately only allows 100 queries/day.
 
 After searching around for a bit I found that Bing offered 5000 queries/month, 5x the number Google allowed, so I went with Bing for this one...
@@ -102,5 +101,5 @@ module.exports = function (app) {
 };
 {{< / highlight >}}
 
-##Putting it all together
+## Putting it all together
 After all that was working I built a simple UI to display everything, it's still a work in progress so I'll keep adding to this post.

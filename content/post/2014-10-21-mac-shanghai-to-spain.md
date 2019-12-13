@@ -9,7 +9,6 @@ tags:
 thumbnail: /assets/files/thumbnails/apple.png
 title: 'Mac: Shanghai to Spain'
 ---
-{% include JB/setup %}
 
 I just ordered a new Macbook Air, exactly when the October 16<sup>th</sup> Keynote was over (In case they presented a new one with retina display).
 

@@ -13,7 +13,6 @@ tags:
 thumbnail: /assets/files/thumbnails/zsh.png
 title: My Interesting Zsh Prompt
 ---
-{% include JB/setup %}
 
 I already did a post on [the steps I took]({% post_url 2014-11-03-setting-up-mac-for-development %}) to set up my new macbook for development.
 

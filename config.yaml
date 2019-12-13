@@ -1,4 +1,5 @@
-baseURL: http://example.org/
+baseURL: https://aurbano.eu
 disablePathToLower: true
 languageCode: en-us
 title: Alex's Blog
+theme: minimal

@@ -31,7 +31,7 @@ So I decided to create a 2D tree generator in JavaScript, you can [take a look a
 
 Before we move any further let me say that this article is aimed at people with experience using HTML5\'s canvas and JavaScript.
 
-###Preview:
+### Preview:
 
 <div class="caption" id="treeContainer" style="width:100%;">
 	<canvas id="bg" style="color:#09F"></canvas><br />

@@ -8,7 +8,6 @@ tags:
 - thoughts
 title: 2016 Q1 Update
 ---
-{% include JB/setup %}
 
 ### Actions
 

@@ -11,11 +11,10 @@ tags:
 thumbnail: /assets/files/thumbnails/xcode.jpg
 title: Setting up Mac for development
 ---
-{% include JB/setup %}
 
 So I recently got [a new Macbook Air]({% post_url 2014-10-21-mac-shanghai-to-spain %}), and after a couple of weeks of installing and configuring I finally have an initial setup I'm happy with.
 
-##Step 1
+## Step 1
 Setup, install Yosemite, open System Preferences and change everything.
 
 Remove most things from the dock, change the theme to Dark.
@@ -35,7 +34,7 @@ Also, right click can be setup as two finger click. Drag and text selection with
     Mission Control
 </div>
 
-##Step 2
+## Step 2
 
 Install [Homebrew](http://brew.sh/):
 
@@ -67,7 +66,7 @@ Now enable Keychain for Git, this is a really good feature that allows you to st
 git config --global credential.helper osxkeychain
 {{< / highlight >}}
 
-##Step 3
+## Step 3
 
 Install xcode (App Store), it takes a while so I'll do other things while it's at it.
 
@@ -92,7 +91,7 @@ Install [Sublime Text 3](http://www.sublimetext.com/3), import plugins from my W
 * [SublimeCodeIntel](https://github.com/SublimeCodeIntel/SublimeCodeIntel): Turn ST into more of an IDE, smart autocomplete and some other things.
 
 
-##Step 4
+## Step 4
 
 Open xcode, new playground project, take a look around: It looks really cool, but I don't have time right now. Moving on.
 
@@ -105,7 +104,7 @@ I'm going to be using Sublime Text for editing, with the LaTeXTools package. I'm
 * <kbd>cmd+B</kbd> Builds as usual.
 * <kbd>cmd+L, V</kbd> Open the generated pdf, I can't get it to jump to the cursor though.
 
-##Step 5
+## Step 5
 
 The default Terminal looks ok, but needs a lot of work.
 
@@ -121,10 +120,10 @@ Now you'll want to configure the theme and plugins, so follow these two guides:
 * [Chose and install](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes) a theme, I really like Avit.
 * [Browse the plugins](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins) and add the ones you like, I currently have: git, rails, ruby, brew, common-aliases, gem, npm, pip, python, rvm and sublime.
 
-##Step 6
+## Step 6
 Install the [Mac Github app](https://mac.github.com/), it's surprisingly worse than the Windows version though. It doesn't feel as polished and powerful basically.
 
-##Step 7
+## Step 7
 I installed some other apps as well, although not essential:
 
 * [Transmission](https://www.transmissionbt.com/): Torrent client

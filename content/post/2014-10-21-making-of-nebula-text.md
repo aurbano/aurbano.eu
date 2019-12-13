@@ -10,7 +10,6 @@ tags:
 thumbnail: /assets/files/thumbnails/nebula.jpg
 title: Making of Nebula text
 ---
-{% include JB/setup %}
 
 When I was doing the [Tree Generator](/blog/2013/01/14/procedurally-generated-trees-in-javascript/), I used [dat.gui](https://code.google.com/p/dat-gui/) for the first time, and on their workshop they have the following text to play with:
 
@@ -20,7 +19,7 @@ When I was doing the [Tree Generator](/blog/2013/01/14/procedurally-generated-tr
 
 This gave me the idea to render text on the canvas using particles that would seem to be gravitating around, in such a way that when seen all together you would see the text.
 
-###Example
+### Example
 <div class="caption caption-no-border">
     <div style="width:100%; height:300px" id="nebulaDemo"></div>
     Click for explosions
@@ -28,12 +27,12 @@ This gave me the idea to render text on the canvas using particles that would se
 
 For this example I set a big `drag` force so that the particles would settle fast and you could read the text more easily. On larger sizes it actually looks better withouth any `drag` force.
 
-###Demos
+### Demos
 
 * [Main demo](http://urbanoalvarez.es/Nebula/): Sample demo with dat.gui controls to play with the settings.
 * [Music Nebula](http://urbanoalvarez.es/Nebula/music.html): Nebula instance synced with an audio track for explosions.
 
-#First steps
+# First steps
 I initially did this experiment [on the canvas](http://urbanoalvarez.es/Nebula/canvas.html) without any rendering engine. This has the advantage of rapid prototyping, and the disadvantage of likely performance issues. I managed to make it work quite well though, but the number of nodes it could render was limited by the browser JavaScript interpreter.
 
 The basic idea is to have a number of particles gravitate towards a point, in such a way that the points represent the text:
@@ -99,7 +98,7 @@ For this example I set the `drag` force to 0 so that they would remain moving. M
 
 On the [demo page](http://urbanoalvarez.es/Nebula/) for Nebula you can play with these settings using dat.gui.
 
-##Interesting uses
+## Interesting uses
 After playing with the explosions for a while I realized it would be really interesting if I could sync them to an audio track.
 
 Looking around I found out that Chrome and HTML5 provide an [AnalyserNode](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode) that does an [FFT](http://en.wikipedia.org/wiki/Fast_Fourier_transform) on the audio and gives you the frequency analysis, so I decided to hack that and Nebula together for an [awesome visualization experience](http://urbanoalvarez.es/Nebula/music.html)!
