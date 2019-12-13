@@ -30,7 +30,7 @@ menu:
     - url: /post/
       name: Posts
       weight: 3
-    - url: /project/
+    - url: /projects/
       name: Projects
       weight: 4
   icon:

@@ -4,7 +4,13 @@
   <div class="container">
     <div class="row">
       <div class="col-md-offset-2 col-md-8 col-xs-12">
-        <h2>{{ .Title }}</h2>
+        <div>
+          <h2>{{ .Title }}</h2>
+          <h5 class="date text-muted">
+            Apps & websites I've worked on over the years
+          </h5>
+          {{ partial "tags" . }}
+        </div>
 
         {{ range (.Paginator 5).Pages }} {{ partial "list-item" . }} {{ end }}
       </div>

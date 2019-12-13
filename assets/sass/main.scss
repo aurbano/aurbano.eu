@@ -37,8 +37,8 @@ div.border {
 main {
     margin: auto;
     padding: 25px;
-    flex: 1 0 auto;
-    max-width: 750px;
+    width: 100%;
+    flex: 1;
     text-align: left;
 
     h1:first-child {
@@ -68,6 +68,7 @@ main {
   pre {
     padding: 0;
     border-radius: 0.25rem;
+    font-size: 0.8em;
 
     > code.hljs {
       padding-top: 1rem;
