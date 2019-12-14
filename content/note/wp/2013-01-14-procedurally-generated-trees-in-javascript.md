@@ -27,7 +27,7 @@ Another thing that has always amazed me was procedurally generated content. Chec
 
 So I decided to create a 2D tree generator in JavaScript, you can [take a look at it][2] to know exactly what I am talking about.
 
-[2]: http://urbanoalvarez.es/TreeGenerator/ "Tree generator"
+[2]: https://aurbano.github.io/TreeGenerator/ "Tree generator"
 
 Before we move any further let me say that this article is aimed at people with experience using HTML5\'s canvas and JavaScript.
 
@@ -35,7 +35,7 @@ Before we move any further let me say that this article is aimed at people with 
 
 <div class="caption" id="treeContainer" style="width:100%;">
 	<canvas id="bg" style="color:#09F"></canvas><br />
-	Click anywhere to generate trees
+	Click anywhere to generate trees (for some reason they tend to be small when embedding like this, so click several time until you get a big one!)
 </div>
 
 ## The idea
@@ -82,11 +82,6 @@ function branch(x,y,dx,dy,w,lifetime){
 }
 ```
 
-<div class="caption">
-<img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree1.png?resize=216%2C311" /><br />
-Figure 1: Initial development
-</div> 
-
 To execute we simply need to call `branch(WIDTH/2,HEIGHT,0,-1,15,0)`, although you can change however you want the first 4 arguments. `lifetime` should start in 0, since it is the cycle counter. I\'ve used the `sleep` variable to control how long it waits before drawing the next line, this way you get a sense of real drawing. If you set it to 0 the tree simply appears.
 
 As you can see in Figure 1 the technique of stacking lines works very well, it even gives a little texture to the tree. We should now add some branches, the idea here is to treat the branches as new \"trees\", thus reusing the function branch.
@@ -94,11 +89,6 @@ As you can see in Figure 1 the technique of stacking lines works very well, it e
 In order to generate a new branch we must wait until the tree has grown enough, branches usually start 1-2 meters above ground. Since this a recursive function we don\'t know much on each iteration, that\'s why I\'m using the variable lifetime. If we use lifetime along with the current width of the tree, we can know exactly the percentage of growth, in order to start a new branch.
 
 After some testing I\'ve ended up with this condition: `w-lifetime*loss < 9`. If that is met we will start a new branch, although that would mean that after that point is reached we will always start a new branch. To avoid that we add a little randomness by using: `Math.random() > 0.7`, supposing Math.random() returns a real random number the chances of that being true are almost 30%.
-
-<div class="caption">
-<img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree2.png?resize=250%2C379" /><br />
-Figure 2: Fully developed tree
-</div> 
 
 ``` javascript
 if(w-lifetime*loss < 9 &amp;&amp; lifetime > 30 Math.random()*250){
@@ -122,7 +112,7 @@ Now that it is working pretty well I have finished improving the code, and ensur
 
 Please check out the [final version][7], it has many options that are quite fun to play with. You can also browse [its source code][8] at Github.
 
-[7]: http://urbanoalvarez.es/TreeGenerator/
+[7]: https://aurbano.github.io/TreeGenerator/
 [8]: https://github.com/aurbano/TreeGenerator
 
 The next thing I\'d like to do would be to use some 3D library (probably [three.js][8]) to create a \"forest\", and probably improve the realism of the generated trees.
@@ -133,11 +123,9 @@ The next thing I\'d like to do would be to use some 3D library (probably [three.
 
 Playing with the parameters of the tree generator you can generate some pretty cool things, below is simply a colorful forest, but you can end up having something similar to fireworks, or just random lines going everywhere...
 
-<div class="caption"><img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2013/01/tree3.png" alt="Colorful forest" class="img-responsive" /></div>
+Take a look at the <a href="https://aurbano.github.io/TreeGenerator/">live experiment</a> on its repository.
 
-Take a look at the <a href="http://urbanoalvarez.es/TreeGenerator/">live experiment</a> on its repository.
-
-<script type="text/javascript" src="http://urbanoalvarez.es/TreeGenerator/src/TreeGenerator.js" ></script>
+<script type="text/javascript" src="https://aurbano.github.io/TreeGenerator/src/TreeGenerator.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		console.log("Init Tree generator");

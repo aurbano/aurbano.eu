@@ -15,12 +15,7 @@ title: Perfect jQuery UI rotating tabs
 aliases: [ /blog/2009/10/20/perfect-jquery-ui-rotating-tabs/ ]
 ---
 
-Tabs are nice. They create a very elegant interface, and jQuery UI does this marvelously, here we have a little preview of this:
-
-<div class="caption">
-	<img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2009/10/tabs.png" /><br />
-	Figure 1: jQuery UI Tabs
-</div> 
+Tabs are nice. They create a very elegant interface, and jQuery UI does this marvelously.
 
 ## How to do that?
 

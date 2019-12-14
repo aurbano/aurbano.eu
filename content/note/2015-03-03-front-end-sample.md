@@ -27,9 +27,7 @@ I basically wanted:
 
 It seems straight forward seeing the list this way, but it does *take a while* to get it running. After doing both I realized that the starting blocks were pretty much the same in both cases, so I took all that common code and put it on a sample website.
 
-<div class="caption">
-    <img src="http://urbanoalvarez.es/angular-requirejs-bower-grunt/assets/logo.png" alt="Angular Requirejs Bower Grunt" class="img img-responsive"><br />
-</div>
+{{< figure src="https://aurbano.github.io/angular-requirejs-bower-grunt/assets/logo.png" title="Angular Requirejs Bower Grunt" >}}
 
 Take a look at the *[sample website](https://github.com/aurbano/angular-requirejs-bower-grunt)* first to see what we will be building. Following here is a guide on how it works.
 

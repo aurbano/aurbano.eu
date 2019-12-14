@@ -38,16 +38,7 @@ The category can be used to store different events that are similar, for example
 
 ### From the Analytics panel
 
-Wait for a day after you install this to see the data in Google Analytics, and then go to the stats panel, go to the Content tab, then you\'ll see at the bottom Event Tracking:  
-I\'ve created a sample profile with some events and I clicked a couple times to show you how it looks like:
-
-<div class="caption">
-	<img src="http://static.urbanoalvarez.es/blog/wp-content/uploads/2009/06/analytics.gif" alt ="Google Analytics" />
-	<br />
-	Screen capture of the Event Tracking page
-</div>
-
-<hr />
+Wait for a day after you install this to see the data in Google Analytics, and then go to the stats panel, go to the Content tab, then you\'ll see at the bottom Event Tracking.
 
 Well I hope you found this useful, more information on the [Google API][4]
 

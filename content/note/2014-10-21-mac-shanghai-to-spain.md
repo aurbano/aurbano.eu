@@ -16,8 +16,8 @@ So now I can only wait for it to arrive, quite excited about this, since it mean
 
 In order to make the wait less painful I did a quick script to parse the UPS tracking page and draw the locations on Scribble Maps:
 
-<div class="caption">
+<figure>
     <iframe width="100%" height="400" frameborder="0" src="//widgets.scribblemaps.com/sm/?d=true&lat=43.96557893761193&lng=55.87459875000002&z=true&l=true&mc=true&vz=3&type=road&width=550&height=400&id=aurbanoMac" style="border:0" allowfullscreen></iframe>
-</div>
+</figure>
 
 When it arrives I might write a little post about migrating from Win to Mac with no experience on the latter.
