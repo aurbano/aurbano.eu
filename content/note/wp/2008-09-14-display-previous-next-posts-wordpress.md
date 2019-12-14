@@ -12,7 +12,7 @@ tags:
 - template
 - WordPress
 thumbnail: /assets/files/thumbnails/wordpress.png
-title: Display previous/next posts in single, category&#8230; in WordPress
+title: Display previous/next posts in single or category in WordPress
 aliases: [ /blog/2008/09/14/display-previous-next-posts-wordpress/ ]
 ---
 

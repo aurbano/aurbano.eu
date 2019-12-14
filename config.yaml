@@ -13,6 +13,7 @@ params:
   highlightLanguages: ["javascript", "typescript", "java"]
 
 taxonomies:
+  note: notes
   category: categories
   tag: tags
 
@@ -24,8 +25,8 @@ menu:
     - url: /about/
       name: About
       weight: 2
-    - url: /post/
-      name: Posts
+    - url: /note/
+      name: Notes
       weight: 3
     - url: /projects/
       name: Projects

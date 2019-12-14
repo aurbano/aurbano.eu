@@ -12,7 +12,7 @@ tags:
 - soundex
 - suggestion
 thumbnail: /assets/files/thumbnails/ai_php.png
-title: Did you mean&#8230; ? In php
+title: Did you mean? In php
 aliases: [ /blog/2008/05/30/did-you-mean-in-php/ ]
 ---
  

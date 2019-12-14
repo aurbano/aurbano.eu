@@ -10,7 +10,7 @@ tags:
 - google
 - tracking
 thumbnail: /assets/files/thumbnails/analytics.png
-title: Event tracking &#8211; Google Analytics
+title: Event tracking - Google Analytics
 aliases: [ /blog/2009/06/13/event-tracking-google-analytics/ ]
 ---
 

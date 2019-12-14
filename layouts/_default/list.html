@@ -6,7 +6,7 @@
       <div class="col col-lg-8">
         <h2>{{ .Title }}</h2>
 
-        {{ range (.Paginator 5).Pages }} {{ partial "list-item" . }} {{ end }}
+        {{ range (.Paginator 20).Pages }} {{ partial "list-item" . }} {{ end }}
       </div>
     </div>
   </div>
