@@ -14,7 +14,7 @@ thumbnail: /assets/files/thumbnails/zsh.png
 title: My Interesting Zsh Prompt
 ---
 
-I already did a post on [the steps I took]({% post_url 2014-11-03-setting-up-mac-for-development %}) to set up my new macbook for development.
+I already did a post on [the steps I took]({{< ref "2014-11-03-setting-up-mac-for-development" >}}) to set up my new macbook for development.
 
 After that post I started using Zsh more and more, and came to realize how much better it could become with some tweaking.
 

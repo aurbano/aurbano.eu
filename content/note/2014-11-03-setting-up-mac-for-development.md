@@ -12,7 +12,7 @@ thumbnail: /assets/files/thumbnails/xcode.jpg
 title: Setting up Mac for development
 ---
 
-So I recently got [a new Macbook Air]({% post_url 2014-10-21-mac-shanghai-to-spain %}), and after a couple of weeks of installing and configuring I finally have an initial setup I'm happy with.
+So I recently got [a new Macbook Air]({{< ref "2014-10-21-mac-shanghai-to-spain" >}}), and after a couple of weeks of installing and configuring I finally have an initial setup I'm happy with.
 
 ## Step 1
 Setup, install Yosemite, open System Preferences and change everything.
