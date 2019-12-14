@@ -5,4 +5,5 @@ description: >
     It's a mix of two different libraries, all created from scratch for this project: a GUI controller and an image editing library.
 year: 2013
 link: https://aurbano.eu/nuophoto/
+image: nuophoto.jpg
 ---

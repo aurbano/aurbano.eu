@@ -53,6 +53,12 @@ main {
 
     h1, h2, h3, h4 {
       font-family: '{{ .Site.Params.font }}', sans-serif;
+
+      .badge {
+        font-family: initial;
+        letter-spacing: 1px;
+        font-weight: 200;
+      }
     }
 
     .date {

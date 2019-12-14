@@ -6,4 +6,5 @@ description: >
     We provide all the technology + experienced mentors from the industry to our events. Students come to the events from local universities thanks to the support of our partner student-led tech societies. 
 year: 2017
 link: https://socialgorithm.org
+image: socialgorithm.jpg
 ---

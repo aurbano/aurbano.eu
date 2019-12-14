@@ -8,4 +8,5 @@ description: >
     The design is growing a bit really old, so I started developing a new version from scratch.
 year: 2007
 link: https://djs-music.com
+image: djs_music.jpg
 ---

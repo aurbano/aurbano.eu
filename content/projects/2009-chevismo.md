@@ -6,4 +6,5 @@ description: >
     This was mostly done to experiment with some new things, but it got quite popular in Spain so I kept on working on it.
 year: 2009
 link: https://chevismo.com
+image: chevismo.jpg
 ---

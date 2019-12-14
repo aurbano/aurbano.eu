@@ -7,20 +7,34 @@
         <header>
           <h1>{{ .Title }}</h1>
           <h5 class="date text-muted">
-            Apps & websites I've worked on over the years
+            Some apps & websites I've worked on over the years
           </h5>
           {{ partial "tags" . }}
         </header>
 
         <div class="mosaic">
             {{ range  sort .Pages "Params.year" "desc" }}
-              {{ $.Scratch.Set "link" .RelPermalink }}
               {{ with .Description }} {{ $.Scratch.Set "subheader" . }} {{ end }}              
               <div class="panel panel-default mosaic-item">
                 <div class="panel-body">
-                    <h4><a href="{{ .Scratch.Get "link" }}">{{ .Title }}</a> <small>{{ .Param "year" }}</small></h4>
-                    <div class="small">
-                        {{ $.Scratch.Get "subheader" | markdownify }}
+                    <div class="row">
+                      <div class="col-xs-4">
+                          <img class="img" src='/assets/files/screenshots/{{ .Param "image" }}' alt="{{ .Title }}" />
+                      </div>
+                      <div class="col-xs-8">
+                        <h4>
+                            <a href="{{ .Param "link" }}">{{ .Title }}</a>
+                            {{ if (.Param "offline") }}
+                              <span class="badge">
+                                Offline
+                              </span> 
+                            {{end}}
+                            <small>{{ .Param "year" }}</small>
+                          </h4>
+                          <div class="small">
+                              {{ $.Scratch.Get "subheader" | markdownify }}
+                          </div>
+                      </div>
                     </div>
                 </div>
               </div>

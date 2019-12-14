@@ -7,4 +7,5 @@ description: >
 year: 2013
 offline: true
 link: https://aurbano.eu
+image: vayaconazo.jpg
 ---

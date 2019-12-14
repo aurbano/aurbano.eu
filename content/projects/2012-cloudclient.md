@@ -6,4 +6,5 @@ description: >
     The full source code can be found on Github, there might be some useful parts.
 year: 2012
 offline: true
+image: cloudclient.jpg
 ---

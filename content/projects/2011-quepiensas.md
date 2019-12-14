@@ -7,5 +7,7 @@ description: >
 
     It was build from scratch by [Jaime Caballero](http://jaicab.com/) and me. It uses jQuery, lots of (awful) AJAX and a PHP backend.
 year: 2011
+offline: true
 link: https://github.com/aurbano/QuePiensas
+image: quepiensas.jpg
 ---
