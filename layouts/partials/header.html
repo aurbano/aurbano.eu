@@ -64,7 +64,7 @@
                   <ul class="navbar-nav">
                       {{ range sort .Site.Menus.icon }}
                           <li class="nav-item">
-                            <a class="nav-link" href="{{ .URL }}">
+                            <a title="{{ .Name }} profile" class="nav-link text-{{ .Name }}" href="{{ .URL }}">
                               <i class="fa fa-{{ .Name }}"></i>
                             </a>
                           </li>
