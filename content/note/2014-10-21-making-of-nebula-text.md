@@ -13,34 +13,33 @@ title: Making of Nebula text
 
 When I was doing the [Tree Generator](/blog/2013/01/14/procedurally-generated-trees-in-javascript/), I used [dat.gui](https://code.google.com/p/dat-gui/) for the first time, and on their workshop they have the following text to play with:
 
-<div class="caption">
-    <img src="/assets/files/posts/nebula/datgui.png" height="142" width="413" alt="dat.gui" class="img img-responsive"><br />
-</div>
+{{< figure src="/assets/files/posts/nebula/datgui.png" title="dat.gui - " >}}
+
 
 This gave me the idea to render text on the canvas using particles that would seem to be gravitating around, in such a way that when seen all together you would see the text.
 
 ### Example: "hey"
-<div class="caption caption-no-border">
+<figure>
     <div style="width:100%; height:300px" id="nebulaDemo"></div>
-    Click for explosions
-</div>
+    <figcaption>
+      <h4>Click for explosions</h4>
+    </figcaption>
+</figure>
 
 For this example I set a big `drag` force so that the particles would settle fast and you could read the text more easily. On larger sizes it actually looks better withouth any `drag` force.
 
 ### Demos
 
-* [Main demo](https://aurbano.eu/Nebula/): Sample demo with dat.gui controls to play with the settings.
-* [Music Nebula](https://aurbano.eu/Nebula/music.html): Nebula instance synced with an audio track for explosions.
+* [Main demo](https://aurbano.github.io/Nebula/): Sample demo with dat.gui controls to play with the settings.
+* [Music Nebula](https://aurbano.github.io/Nebula/music.html): Nebula instance synced with an audio track for explosions.
 
 # First steps
-I initially did this experiment [on the canvas](https://aurbano.eu/Nebula/canvas.html) without any rendering engine. This has the advantage of rapid prototyping, and the disadvantage of likely performance issues. I managed to make it work quite well though, but the number of nodes it could render was limited by the browser JavaScript interpreter.
+I initially did this experiment [on the canvas](https://aurbano.github.io/Nebula/canvas.html) without any rendering engine. This has the advantage of rapid prototyping, and the disadvantage of likely performance issues. I managed to make it work quite well though, but the number of nodes it could render was limited by the browser JavaScript interpreter.
 
 The basic idea is to have a number of particles gravitate towards a point, in such a way that the points represent the text:
 
-<div class="caption">
-    <img src="/assets/files/posts/nebula/edges.png" alt="edges" class="img img-responsive"><br />
-    Points around which the particles gravitate.
-</div>
+{{< figure src="/assets/files/posts/nebula/edges.png" title="edges - Points around which the particles gravitate." >}}
+
 
 This was actually trickier than it seems, because there is no built in way to get a list of coordinates like that. So I did the following:
 
@@ -90,18 +89,18 @@ With all this code I have the image before, with all the edges. Now it's just a 
 
 Here is a live example where you can see the distance from each particle to the point where it wants to go (green), and the force (red):
 
-<div class="caption">
+<figure>
     <div style="width:100%; height:300px" id="edgesDemo"></div>
-</div>
+</figure>
 
 For this example I set the `drag` force to 0 so that they would remain moving. Most of the particles' behavior can be changed with the settings, which allows for pretty cool effects.
 
-On the [demo page](https://aurbano.eu/Nebula/) for Nebula you can play with these settings using dat.gui.
+On the [demo page](https://aurbano.github.io/Nebula/) for Nebula you can play with these settings using dat.gui.
 
 ## Interesting uses
 After playing with the explosions for a while I realized it would be really interesting if I could sync them to an audio track.
 
-Looking around I found out that Chrome and HTML5 provide an [AnalyserNode](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode) that does an [FFT](http://en.wikipedia.org/wiki/Fast_Fourier_transform) on the audio and gives you the frequency analysis, so I decided to hack that and Nebula together for an [awesome visualization experience](https://aurbano.eu/Nebula/music.html)!
+Looking around I found out that Chrome and HTML5 provide an [AnalyserNode](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode) that does an [FFT](http://en.wikipedia.org/wiki/Fast_Fourier_transform) on the audio and gives you the frequency analysis, so I decided to hack that and Nebula together for an [awesome visualization experience](https://aurbano.github.io/Nebula/music.html)!
 
 Setting up the analyser was just too easy:
 
@@ -175,10 +174,10 @@ function frequencyExplode(freqData){
 }
 ```
 
-Turn up the volume, and take a look at [the demo](https://aurbano.eu/Nebula/music.html) :)
+Turn up the volume, and take a look at [the demo](https://aurbano.github.io/Nebula/music.html) :)
 
-<script type="text/javascript" src="https://aurbano.eu/Nebula/lib/pixi/bin/pixi.js"></script>
-<script type="text/javascript" src="https://aurbano.eu/Nebula/src/nebula-pixi.js"></script>
+<script type="text/javascript" src="https://aurbano.github.io/Nebula/lib/pixi/bin/pixi.js"></script>
+<script type="text/javascript" src="https://aurbano.github.io/Nebula/src/nebula-pixi.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
 

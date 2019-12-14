@@ -29,10 +29,8 @@ Play with the trackpad gestures, didn't understand the reason for the dashboard.
 
 Also, right click can be setup as two finger click. Drag and text selection with 3 fingers, I almost feel like playing piano using the Mac...
 
-<div class="caption">
-    <img src="/assets/files/posts/mac/mission_control.jpg" alt="edges" class="img img-responsive"><br />
-    Mission Control
-</div>
+{{< figure src="/assets/files/posts/mac/mission_control.jpg" title="edges - Mission Control" >}}
+
 
 ## Step 2
 

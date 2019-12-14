@@ -15,10 +15,7 @@ title: Creating a game with Unreal Engine 4
 
 Github just started giving out "[Student packs](https://education.github.com/pack)", which include quite a big list of gifts, including a 1 year license of Unreal Engine. I decided to use that to create a game and learn about game development all together.
 
-<div class="caption">
-    <img src="/assets/files/posts/unreal/project_browser.jpg" height="300" width="584" alt="Unreal Engine" class="img img-responsive" /><br />
-    Unreal Engine Browser
-</div>
+{{< figure src="/assets/files/posts/unreal/project_browser.jpg" title="Unreal Engine Browser" >}}
 
 ## Step 1
 
@@ -30,10 +27,8 @@ On top the usual Save, Settings... Alongside with Play, which actually turns the
 
 And finally in the right we have the 3D scene elements and the Details of the selected object. I didn't really know where to start doing anything, so I changed some settings, moved things around, edited the map...
 
-<div class="caption">
-    <img src="/assets/files/posts/unreal/unreal_editor.jpg" height="851" width="1911" alt="Unreal Engine" class="img img-responsive" /><br />
-    Unreal Engine Browser
-</div>
+{{< figure src="/assets/files/posts/unreal/unreal_editor.jpg" title="Unreal Engine Browser" >}}
+
 
 With this approach you quickly realize that **This is hard**.
 

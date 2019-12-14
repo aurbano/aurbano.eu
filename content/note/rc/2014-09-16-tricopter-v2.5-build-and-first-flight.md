@@ -112,28 +112,28 @@ I ended up going for a bigger battery for flying, so now I use the 2200 mah for 
 
 This photo is from the day the first box arrived:
 
-<div class="caption"><img src="/assets/files/tricopter/IMG_6336.JPG" alt="Components box" class="img-responsive" /></div>
+{{< figure src="/assets/files/tricopter/IMG_6336.JPG" title="Components box" >}}
 
 ## Build
 The body I mentioned above was bought from Flitetest's website, they have a really good quality and only cost 20$, although at the moment they might not be available.
 
 One of the first problems I encountered was the wood arms. They should be 10x10mm, but I could only find 12x12, so I went with those. It turns out that the screws that I bought were just perfect for 10x10, and too short for my arms, so I decided to sand them down to size.
 
-<div class="caption"><img src="/assets/files/tricopter/IMG_6339.JPG" alt="Sanded arms" class="img-responsive img-thumbnail" /> Sanded arms to fit the body</div>
+{{< figure src="/assets/files/tricopter/IMG_6339.JPG" title="Sanded arms to fit the body" >}}
 
 For the yaw mechanism I went with David's design, using the plastic pieces he recommended and the tip of a fishing rod I managed to make it work. Attaching the servo was also pretty easy, since it coincidentally had the same height. Cutting the servo mounts, drilling the appropriate holes and just making the whole thing work was challenging but with patience it turned out pretty decent.
 
-<div class="caption"><img src="/assets/files/tricopter/IMG_6340.JPG" alt="Yaw mechanism" class="img-responsive img-thumbnail" /> Yaw mechanism attached to the arm</div>
+{{< figure src="/assets/files/tricopter/IMG_6340.JPG" title="Yaw mechanism attached to the arm" >}}
 
 Once this was done assembling all the parts and cables was a lot more straight forward. I still had to solder the ESC to their new battery cables, and then join all the cables in the same connector though. The only problem I had there was that once joined, the cables wouldn't fit inside the connector, so it took a bit of time with a hammer and pliers.
 
 Here you can see the back arm with the ESC in place, and the battery connector in the back.
 
-<div class="caption"><img src="/assets/files/tricopter/IMG_6342.JPG" alt="Back arm and battery connector" class="img-responsive img-thumbnail" /> Back arm and battery connector</div>
+{{< figure src="/assets/files/tricopter/IMG_6342.JPG" title="Back arm and battery connector" >}}
 
 I finally wired everything together, and secured the KK2.1 to the body. I decided to keep it inside the foam box it came in, for added protection. I initially secured it with a zip tie, but now use velcro. Since it was my initial build I didn't spend too much time arranging the cables, as you can see. On my current version I used some heat shrink tubing to tidy the design up.
 
-<div class="caption"><img src="/assets/files/tricopter/IMG_6435.JPG" alt="Body" class="img-responsive img-thumbnail" /> Body ready with the KK2.1 installed</div>
+{{< figure src="/assets/files/tricopter/IMG_6435.JPG" title="Body ready with the KK2.1 installed" >}}
 
 Setting up the KK2.1 and the 9xr was actually really easy, there are already plenty of tutorials on both so I won't go into detail. The most difficult parts of the build were drilling the holes in the appropriate places and making a solid structure for the tricopter.
 
@@ -144,21 +144,13 @@ The actual first flight was a bit of a disaster, a motor was turning less than t
 
 The first actual flight was a bit shaky and absolutely terrifying, but luckily everything ended well. I took the tricopter to an empty part of my city, set everything up and went ahead. The result can be seen in the following video.
 
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="//www.youtube.com/embed/DMkhw02jLWs" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<hr />
+{{< youtube DMkhw02jLWs >}}
 
 ## First crash
 
 After this flight I got myself a GoPro, and shot the following video (edited with the GoPro editor using a default template)
 
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="//www.youtube.com/embed/shSnwfJcCrI" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<hr />
+{{< youtube shSnwfJcCrI >}}
 
 The crash happened because I flew even though the motor connectors were not 100% perfect. The left motor only worked when its connectors were in a very specific position, and even 1mm would be enough to make it stop. The flight lasted a lot longer than what's shown on the video, and at some point they became loose and the rest you've seen.
 
@@ -168,4 +160,4 @@ I have ordered bullet connectors now, that should be much better and provide a m
 
 David is releasing a new kit for the tricopter, that will probably improve the design greatly over my current wooden body. It will be released at 95$ so it's quite a good price for what you get, here is a preview:
 
-<div class="caption"><img src="http://rcexplorer.se/wp-content/uploads/2014/09/Tricopter1.png" alt="Future design" class="img-responsive img-thumbnail" /></div>
+{{< figure src="http://rcexplorer.se/wp-content/uploads/2014/09/Tricopter1.png" title="Future design" >}}
