@@ -1,8 +1,5 @@
 name: Hugo gh-pages
 
-env:
-  ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-
 on:
   push:
     branches:
