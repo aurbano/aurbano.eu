@@ -1,0 +1,35 @@
+{{ partial "header" . }}
+
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8 col-xs-12">
+        <header>
+          <h1>{{ .Title }}</h1>
+          <h5 class="date text-muted">
+            Apps & websites I've worked on over the years
+          </h5>
+          {{ partial "tags" . }}
+        </header>
+
+        <div class="mosaic">
+            {{ range  sort .Pages "Params.year" "desc" }}
+              {{ $.Scratch.Set "link" .RelPermalink }}
+              {{ with .Description }} {{ $.Scratch.Set "subheader" . }} {{ end }}              
+              <div class="panel panel-default mosaic-item">
+                <div class="panel-body">
+                    <h4><a href="{{ .Scratch.Get "link" }}">{{ .Title }}</a> <small>{{ .Param "year" }}</small></h4>
+                    <div class="small">
+                        {{ $.Scratch.Get "subheader" | markdownify }}
+                    </div>
+                </div>
+              </div>
+            {{ end }}
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</main>
+
+{{ partial "footer" . }}

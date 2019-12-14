@@ -1,0 +1,53 @@
+baseURL: https://aurbano.eu
+disablePathToLower: true
+languageCode: en-us
+title: Alex's Blog
+
+params:
+  author: "Alejandro U. Alvarez"
+  description: "I sometimes stop by"
+  githubUsername: "aurbano"
+  accent: "#0070ff"
+  showBorder: true
+  backgroundColor: "#efefef"
+  font: "Raleway"
+  highlight: true
+  highlightStyle: "dark"
+  highlightLanguages: ["javascript", "typescript", "java"]
+
+taxonomies:
+  category: categories
+  tag: tags
+
+menu:
+  main:
+    - url: /
+      name: Home
+      weight: 1
+    - url: /about/
+      name: About
+      weight: 2
+    - url: /post/
+      name: Posts
+      weight: 3
+    - url: /projects/
+      name: Projects
+      weight: 4
+  icon:
+    - url: 'https://github.com/aurbano/'
+      name: github
+      weight: 2
+    - url: 'https://www.linkedin.com/in/aurbano/'
+      name: linkedin
+      weight: 4
+    - url: 'https://stackoverflow.com/users/1262824/aurbano'
+      name: stack-overflow
+      weight: 5
+    - url: 'https://news.ycombinator.com/user?id=aurbano'
+      name: hacker-news
+      weight: 6
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
