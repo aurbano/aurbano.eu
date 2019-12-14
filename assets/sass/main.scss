@@ -1,4 +1,7 @@
 $code-horizontal-margin: -2rem;
+$top-border-width: 0.5rem;
+
+@import 'animations';
 
 html, body {
   height: 100%;
@@ -14,7 +17,7 @@ body {
 }
 
 div.border {
-  height: {{ if .Site.Params.showBorder | default false }} 5px {{ else }} 0 {{ end }};
+  height: {{ if .Site.Params.showBorder | default false }} $top-border-width {{ else }} 0 {{ end }};
   width: 100%;
   background-color: {{ $.Site.Params.accent }};
   background-image: linear-gradient( 135deg, #FF9D6C 10%, #BB4E75 100%);
@@ -24,14 +27,8 @@ div.border {
   animation: hue-animation 30s infinite;
 }
 
-@keyframes hue-animation {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  
-  100% {
-    filter: hue-rotate(360deg);
-  }
+header {
+  margin-bottom: 2em;
 }
 
 main {
@@ -42,9 +39,10 @@ main {
     text-align: left;
 
     h1:first-child {
-      border-bottom: solid var(--border-width) {{ $.Site.Params.accent }};
+      border-bottom: solid $top-border-width #ccc;
       padding-bottom: 0.25em;
-      margin-bottom: 1em;
+      margin-top: 1em;
+      position: relative;
 
       small {
         text-transform: none;
@@ -202,13 +200,6 @@ a.item-tag {
     display: inline-block !important;
 }
 
-/* Colored borders at top/bottom of page */
-
-.navbar.navbar-default {
-    border-top: var(--border-width) solid {{ $.Site.Params.accent }};
-}
-
 footer {
-    border-bottom: var(--border-width) solid {{ $.Site.Params.accent }};
     font-size: 0.8rem;
 }

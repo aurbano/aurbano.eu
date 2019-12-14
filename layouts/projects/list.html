@@ -4,18 +4,32 @@
   <div class="container">
     <div class="row">
       <div class="col-md-offset-2 col-md-8 col-xs-12">
-        <div>
-          <h2>{{ .Title }}</h2>
+        <header>
+          <h1>{{ .Title }}</h1>
           <h5 class="date text-muted">
             Apps & websites I've worked on over the years
           </h5>
           {{ partial "tags" . }}
-        </div>
+        </header>
 
-        {{ range (.Paginator 5).Pages }} {{ partial "list-item" . }} {{ end }}
+        <div class="mosaic">
+            {{ range  sort .Pages "Params.year" "desc" }}
+              {{ $.Scratch.Set "link" .RelPermalink }}
+              {{ with .Description }} {{ $.Scratch.Set "subheader" . }} {{ end }}              
+              <div class="panel panel-default mosaic-item">
+                <div class="panel-body">
+                    <h4><a href="{{ .Scratch.Get "link" }}">{{ .Title }}</a> <small>{{ .Param "year" }}</small></h4>
+                    <div class="small">
+                        {{ $.Scratch.Get "subheader" | markdownify }}
+                    </div>
+                </div>
+              </div>
+            {{ end }}
+        </div>
+        
       </div>
     </div>
   </div>
 </main>
 
-{{ partial "paginator" . }} {{ partial "footer" . }}
+{{ partial "footer" . }}

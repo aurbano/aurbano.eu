@@ -6,8 +6,8 @@ title: Alex's Blog
 params:
   author: "Alejandro U. Alvarez"
   description: "I sometimes stop by"
-  githubUsername: "#"
-  accent: "#eb0000"
+  githubUsername: "aurbano"
+  accent: "#0070ff"
   showBorder: true
   backgroundColor: "#efefef"
   font: "Raleway"
