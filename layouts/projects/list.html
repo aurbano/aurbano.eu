@@ -2,8 +2,8 @@
 
 <main>
   <div class="container">
-    <div class="row">
-      <div class="col-md-offset-2 col-md-8 col-xs-12">
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-8">
         <header>
           <h1>{{ .Title }}</h1>
           <h5 class="date text-muted">
@@ -12,34 +12,28 @@
           {{ partial "tags" . }}
         </header>
 
-        <div class="mosaic">
-            {{ range  sort .Pages "Params.year" "desc" }}
-              {{ with .Description }} {{ $.Scratch.Set "subheader" . }} {{ end }}              
-              <div class="panel panel-default mosaic-item">
-                <div class="panel-body">
-                    <div class="row">
-                      <div class="col-xs-4">
-                          <img class="img" src='/assets/files/screenshots/{{ .Param "image" }}' alt="{{ .Title }}" />
-                      </div>
-                      <div class="col-xs-8">
-                        <h4>
-                            <a href="{{ .Param "link" }}">{{ .Title }}</a>
-                            {{ if (.Param "offline") }}
-                              <span class="badge">
-                                Offline
-                              </span> 
-                            {{end}}
-                            <small>{{ .Param "year" }}</small>
-                          </h4>
-                          <div class="small">
-                              {{ $.Scratch.Get "subheader" | markdownify }}
-                          </div>
-                      </div>
-                    </div>
-                </div>
+        {{ range  sort .Pages "Params.year" "desc" }}
+          {{ with .Description }} {{ $.Scratch.Set "subheader" . }} {{ end }} 
+          <div class="card my-4 shadow">
+            <img class="card-img-top" src='/assets/files/screenshots/{{ .Param "image" }}' alt="{{ .Title }}" />
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="{{ .Param "link" }}">{{ .Title }}</a>
+                <small>{{ .Param "year" }}</small>
+              </h4>
+              <p class="card-text">
+                {{ $.Scratch.Get "subheader" | markdownify }}
+              </p>
+            </div>
+            {{ if (.Param "offline") }}
+              <div class="card-footer">
+                <small class="text-muted">
+                  Offline
+                </small>
               </div>
-            {{ end }}
-        </div>
+            {{end}}
+          </div>
+        {{ end }}
         
       </div>
     </div>

@@ -1,25 +1,23 @@
-$code-horizontal-margin: -2rem;
-$top-border-width: 0.5rem;
-
+@import 'variables';
 @import 'animations';
+@import "../vendor/bootstrap/scss/bootstrap";
 
 html, body {
   height: 100%;
   font-size: 18px !important;
-  background-color: {{ .Site.Params.backgroundColor | default "white" }};
+  background-color: $background;
 }
 
 body {
-    padding-top: 55px;
     display: flex;
     text-align: center;
     flex-direction: column;
 }
 
 div.border {
-  height: {{ if .Site.Params.showBorder | default false }} $top-border-width {{ else }} 0 {{ end }};
+  height: $top-border-width;
   width: 100%;
-  background-color: {{ $.Site.Params.accent }};
+  background-color: $accent;
   background-image: linear-gradient( 135deg, #FF9D6C 10%, #BB4E75 100%);
 }
 
@@ -99,7 +97,7 @@ img {
 /* Homepage */
 
 .intro {
-    transform: translateY(22vh);
+    margin: auto;
     text-align: center;
 
     h1 {
@@ -150,7 +148,7 @@ img {
 /* Colored links */
 
 a:link, a:visited {
-    color: {{ $.Site.Params.accent }};
+    color: $accent;
 }
 
 a.icon:hover {
@@ -158,7 +156,7 @@ a.icon:hover {
 }
 
 a:hover {
-    color: {{ $.Site.Params.accent }} !important;
+    color: $accent !important;
 }
 
 /* Copyright message */
