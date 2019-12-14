@@ -20,4 +20,4 @@ You can specify the word you want to appear instead of ago by setting the `$ago`
 
 I moved this code to a Github Gist, available here:
 
-{% gist aurbano/7e83bef9923cd4ed800a timeBetween.php %}
+{{< gist aurbano 7e83bef9923cd4ed800a "timeBetween.php" >}}

@@ -24,8 +24,8 @@ Exploring the jqueryUI [source code][2] for the Draggable widget we can extract 
 
 Here is the function (Tweaked to work as a standalone function)
 
-{% gist aurbano/9ce7e689d8138f341aea jqueryBringFront.js %}
+{{< gist aurbano 9ce7e689d8138f341aea "jqueryBringFront.js" >}}
 
 `elem` should be the clicked element and `stack` should be the same you put in jQueryUI draggable's options. If you wanted that to happen on click, you could use:
 
-{% gist aurbano/9ce7e689d8138f341aea demo.html %}
+{{< gist aurbano 9ce7e689d8138f341aea "demo.html" >}}

@@ -31,12 +31,12 @@ For the tests I'm using [mocha](https://www.npmjs.org/package/mocha) with [shoul
 
 Testing the Image proxy (detailed below):
 
-{% gist aurbano/3d8829c5cdb243f3fded proxyTest.js %}
+{{< gist aurbano 3d8829c5cdb243f3fded "proxyTest.js" >}}
 
 ### Image proxy
 There were some existing npm packages to proxy requests in Nodejs, but I wanted something very simple. I set it up using Express and require:
 
-{% gist aurbano/3d8829c5cdb243f3fded expressProxy.js %}
+{{< gist aurbano 3d8829c5cdb243f3fded "expressProxy.js" >}}
 
 ### Search API
 I was going to use the usual Google Search API, but it turns out it was deprecated some years ago and will be dissapearing. They are replacing it with the Custom Search API, which unfortunately only allows 100 queries/day.
