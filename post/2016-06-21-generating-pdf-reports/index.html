@@ -1,0 +1,113 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Generating Pixel Perfect PDF Reports</title><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous><link rel=stylesheet href=https://aurbano.eu/main.min.e205736e8ecf984e0d709c5a96a7635164fd73f5f2e0db4cb3229de838851632.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/typescript.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js></script><script>hljs.initHighlightingOnLoad();</script><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script>$(document).on('click',function(){$('.collapse').collapse('hide');})</script><meta name=generator content="Hugo 0.61.0"><script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body><nav class="navbar navbar-default navbar-fixed-top"><div class="border animated-hue"></div><div class=container><div class=navbar-header><a class="navbar-brand visible-xs" href=#>Generating Pixel Perfect PDF Reports</a>
+<button class=navbar-toggle data-target=.navbar-collapse data-toggle=collapse>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href=/>Home</a></li><li><a href=/about/>About</a></li><li><a href=/post/>Posts</a></li><li><a href=/projects/>Projects</a></li></ul><ul class="nav navbar-nav navbar-right"><li class=navbar-icon><a href=https://github.com/aurbano/><i class="fa fa-github"></i></a></li><li class=navbar-icon><a href=https://www.linkedin.com/in/aurbano/><i class="fa fa-linkedin"></i></a></li><li class=navbar-icon><a href=https://stackoverflow.com/users/1262824/aurbano><i class="fa fa-stack-overflow"></i></a></li><li class=navbar-icon><a href="https://news.ycombinator.com/user?id=aurbano"><i class="fa fa-hacker-news"></i></a></li></ul></div></div></nav><main><div class=container><div class=row><div class="col-md-offset-2 col-md-8 col-xs-12"><div><h1>Generating Pixel Perfect PDF Reports</h1><h5 class="date text-muted">Published on June 21, 2016</h5><a href=https://aurbano.eutags/report class=item-tag>report</a>
+<a href=https://aurbano.eutags/pdf class=item-tag>pdf</a>
+<a href=https://aurbano.eutags/reporting class=item-tag>reporting</a></div><div align=start class=content><p>Have you been tasked with generating PDF reports? If you have tried using the typical tools (iText for Java, ReportLab in Python&mldr; ) you understand why it's bad.</p><p>Imagine having to build a PDF like this:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Rectangle pagesize <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Rectangle<span style=color:#f92672>(</span>216f<span style=color:#f92672>,</span> 720f<span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+Document document <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Document<span style=color:#f92672>(</span>pagesize<span style=color:#f92672>,</span> 36f<span style=color:#f92672>,</span> 72f<span style=color:#f92672>,</span> 108f<span style=color:#f92672>,</span> 180f<span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+<span style=color:#75715e>// step 2
+</span><span style=color:#75715e></span>PdfWriter<span style=color:#f92672>.</span><span style=color:#a6e22e>getInstance</span><span style=color:#f92672>(</span>document<span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> FileOutputStream<span style=color:#f92672>(</span>RESULT<span style=color:#f92672>)</span><span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+<span style=color:#75715e>// step 3
+</span><span style=color:#75715e></span>document<span style=color:#f92672>.</span><span style=color:#a6e22e>open</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+<span style=color:#75715e>// step 4
+</span><span style=color:#75715e></span>document<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> Paragraph<span style=color:#f92672>(</span>
+    <span style=color:#e6db74>&#34;Hello World! Hello People! &#34;</span> <span style=color:#f92672>+</span>
+    <span style=color:#e6db74>&#34;Hello Sky! Hello Sun! Hello Moon! Hello Stars!&#34;</span><span style=color:#f92672>)</span><span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+<span style=color:#75715e>// step 5
+</span><span style=color:#75715e></span>document<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+</code></pre></div><p>Now add images, charts&mldr; and get ready to quit your job and become a farmer.</p><p>HTML/CSS can have many downsides, but the reality is that they are one of the easiest ways to <em>programatically generate</em> a document with any design we could think of.</p><p>So I thought that if I wanted our reports to follow the branding of our web application, we should be <strong>rendering HTML/CSS</strong> to a <strong>PDF</strong>.</p><p>This will even allow you to generate the PDF reports using your existing code, be it Angular/React&mldr; etc.</p><h2 id=enter-phantomjs>Enter PhantomJS</h2><p><strong>Quick intro:</strong> PhantomJS is a <em>&ldquo;headless&rdquo;</em> browser, that can render a web page just like Chrome, from the command line. And it can output the website as an image or pdf.</p><p><strong>Benefits:</strong> You can actually run this from Java, NodeJS, Python, or whichever language that allows you to call an executable. In fact from NodeJS it would be even easier since PhantomJS runs in Node.</p><p>Since I did this for a reporting system at work, that was built in Java, I'll focus on that.</p><p>You'll need three things to generate a report:</p><ol><li>PhantomJS executable</li><li>JavaScript config file for PhantomJS</li><li>HTML file to convert into PDF</li></ol><h3 id=javascript-config-file-for-phantomjs>JavaScript config file for PhantomJS</h3><p>The following file will configure PhantomJS to generate a standard A4 PDF, in portrait mode.</p><p>It will take the HTML content and the PDF output file from the CLI arguments.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>page</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;webpage&#39;</span>).<span style=color:#a6e22e>create</span>(),
+    <span style=color:#a6e22e>system</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;system&#39;</span>),
+    <span style=color:#a6e22e>fs</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;fs&#39;</span>);
+
+<span style=color:#a6e22e>page</span>.<span style=color:#a6e22e>settings</span>.<span style=color:#a6e22e>userAgent</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;aurbano&#34;</span>;
+<span style=color:#75715e>// The following are only required if you&#39;re loading assets using file://
+</span><span style=color:#75715e></span><span style=color:#a6e22e>page</span>.<span style=color:#a6e22e>settings</span>.<span style=color:#a6e22e>localToRemoteUrlAccessEnabled</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
+<span style=color:#a6e22e>page</span>.<span style=color:#a6e22e>settings</span>.<span style=color:#a6e22e>webSecurityEnabled</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>;
+<span style=color:#a6e22e>page</span>.<span style=color:#a6e22e>settings</span>.<span style=color:#a6e22e>loadImages</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
+
+<span style=color:#a6e22e>page</span>.<span style=color:#a6e22e>paperSize</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>format</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;A4&#39;</span>,
+    <span style=color:#a6e22e>orientation</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;portrait&#39;</span>,
+    <span style=color:#a6e22e>margin</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>top</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1.5cm&#34;</span>,
+        <span style=color:#a6e22e>bottom</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1cm&#34;</span>
+    },
+    <span style=color:#a6e22e>footer</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>height</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1cm&#34;</span>,
+        <span style=color:#a6e22e>contents</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>phantom</span>.<span style=color:#a6e22e>callback</span>(<span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>pageNum</span>, <span style=color:#a6e22e>numPages</span>) {
+            <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;&#39;</span> <span style=color:#f92672>+</span>
+                <span style=color:#e6db74>&#39;&lt;div style=&#34;margin: 0 1cm 0 1cm; font-size: 0.65em&#34;&gt;&#39;</span> <span style=color:#f92672>+</span>
+                <span style=color:#e6db74>&#39;   &lt;div style=&#34;color: #888; padding:20px 20px 0 10px; border-top: 1px solid #ccc;&#34;&gt;&#39;</span> <span style=color:#f92672>+</span>
+                <span style=color:#e6db74>&#39;       &lt;span&gt;REPORT FOOTER&lt;/span&gt; &#39;</span> <span style=color:#f92672>+</span>
+                <span style=color:#e6db74>&#39;       &lt;span style=&#34;float:right&#34;&gt;&#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>pageNum</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39; / &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>numPages</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;&lt;/span&gt;&#39;</span> <span style=color:#f92672>+</span>
+                <span style=color:#e6db74>&#39;   &lt;/div&gt;&#39;</span> <span style=color:#f92672>+</span>
+                <span style=color:#e6db74>&#39;&lt;/div&gt;&#39;</span>;
+        })
+    }
+};
+
+<span style=color:#75715e>// This will fix some things that I&#39;ll talk about in a second
+</span><span style=color:#75715e></span><span style=color:#a6e22e>page</span>.<span style=color:#a6e22e>settings</span>.<span style=color:#a6e22e>dpi</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;96&#34;</span>;
+
+<span style=color:#a6e22e>page</span>.<span style=color:#a6e22e>content</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>fs</span>.<span style=color:#a6e22e>read</span>(<span style=color:#a6e22e>system</span>.<span style=color:#a6e22e>args</span>[<span style=color:#ae81ff>1</span>]);
+
+<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>output</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>system</span>.<span style=color:#a6e22e>args</span>[<span style=color:#ae81ff>2</span>];
+
+window.<span style=color:#a6e22e>setTimeout</span>(<span style=color:#66d9ef>function</span> () {
+    <span style=color:#a6e22e>page</span>.<span style=color:#a6e22e>render</span>(<span style=color:#a6e22e>output</span>, {<span style=color:#a6e22e>format</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;pdf&#39;</span>});
+    <span style=color:#a6e22e>phantom</span>.<span style=color:#a6e22e>exit</span>(<span style=color:#ae81ff>0</span>);
+}, <span style=color:#ae81ff>2000</span>);
+</code></pre></div><h3 id=html-file>HTML File</h3><p>Any file, with any contents will work just fine. To load local resources you can just use the <code>file://</code> protocol.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!DOCTYPE html&gt;</span>
+
+&lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;en&#34;</span>&gt;
+&lt;<span style=color:#f92672>head</span>&gt;
+    &lt;<span style=color:#f92672>title</span>&gt;The title is irrelevant&lt;/<span style=color:#f92672>title</span>&gt;
+    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>http-equiv</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;content-type&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/html; charset=UTF-8&#34;</span>&gt;
+    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;viewport&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+    &lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;stylesheet&#34;</span> <span style=color:#a6e22e>media</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;all&#34;</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/css&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;file:///path/to/stylesheet.css&#34;</span> /&gt;
+
+    &lt;<span style=color:#f92672>style</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/css&#34;</span> <span style=color:#a6e22e>media</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;all&#34;</span>&gt;
+        <span style=color:#f92672>html</span> {
+            <span style=color:#66d9ef>margin</span>:<span style=color:#ae81ff>0</span>;
+            zoom: <span style=color:#ae81ff>1</span>; <span style=color:#75715e>/* or 0.76 for Linux */</span>
+        }
+    &lt;/<span style=color:#f92672>style</span>&gt;
+&lt;/<span style=color:#f92672>head</span>&gt;
+
+&lt;<span style=color:#f92672>body</span>&gt;
+  &lt;<span style=color:#f92672>h1</span>&gt;Sample report&lt;/<span style=color:#f92672>h1</span>&gt;
+  &lt;<span style=color:#f92672>p</span>&gt;It works!&lt;/<span style=color:#f92672>p</span>&gt;
+&lt;/<span style=color:#f92672>div</span>&gt;
+&lt;/<span style=color:#f92672>body</span>&gt;
+&lt;/<span style=color:#f92672>html</span>&gt;
+</code></pre></div><h2 id=executing>Executing</h2><p>If running this from the command line, just make sure you have NodeJS and PhantomJS installed (duh&mldr; ), then run:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ phantomjs configFile.js htmlFile.html output.pdf
+</code></pre></div><p>If you wanted to run this programatically from Java for example, you could use:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Get HTML Report
+</span><span style=color:#75715e></span>URL htmlFileUrl <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getResource</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;htmlFile.html&#34;</span><span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+File htmlFile <span style=color:#f92672>=</span> Paths<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>htmlFileUrl<span style=color:#f92672>.</span><span style=color:#a6e22e>toURI</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>)</span><span style=color:#f92672>.</span><span style=color:#a6e22e>toFile</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+
+<span style=color:#75715e>// Get JS config file
+</span><span style=color:#75715e></span>URL configFileUrl <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getResource</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;configFile.js&#34;</span><span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+File configFile <span style=color:#f92672>=</span> Paths<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>configFileUrl<span style=color:#f92672>.</span><span style=color:#a6e22e>toURI</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>)</span><span style=color:#f92672>.</span><span style=color:#a6e22e>toFile</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+
+<span style=color:#75715e>// tmp pdf file for output
+</span><span style=color:#75715e></span>File pdfReport <span style=color:#f92672>=</span> File<span style=color:#f92672>.</span><span style=color:#a6e22e>createTempFile</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;report&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;.pdf&#34;</span><span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+
+ProcessBuilder renderProcess <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ProcessBuilder<span style=color:#f92672>(</span>
+        <span style=color:#e6db74>&#34;/path/to/phantomjs&#34;</span><span style=color:#f92672>,</span>
+        configFile<span style=color:#f92672>.</span><span style=color:#a6e22e>getAbsolutePath</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>,</span>
+        htmlFile<span style=color:#f92672>.</span><span style=color:#a6e22e>getAbsolutePath</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>,</span>
+        pdfReport<span style=color:#f92672>.</span><span style=color:#a6e22e>getAbsolutePath</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span>
+<span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+
+Process phantom <span style=color:#f92672>=</span> renderProcess<span style=color:#f92672>.</span><span style=color:#a6e22e>start</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+
+<span style=color:#75715e>// you need to read phantom.getInputStream() and phantom.getErrorStream()
+</span><span style=color:#75715e></span><span style=color:#75715e>// otherwise if they output something the process won&#39;t end
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> exitCode <span style=color:#f92672>=</span> phantom<span style=color:#f92672>.</span><span style=color:#a6e22e>waitFor</span><span style=color:#f92672>(</span><span style=color:#f92672>)</span><span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>exitCode <span style=color:#f92672>!</span><span style=color:#f92672>=</span> 0<span style=color:#f92672>)</span><span style=color:#f92672>{</span>
+    <span style=color:#75715e>// report generation failed
+</span><span style=color:#75715e></span><span style=color:#f92672>}</span>
+
+<span style=color:#75715e>// success!
+</span></code></pre></div><p>The coolest thing? If you can render it in HTML, you can render it in your report!</p><p>This means that now you can almost directly copy/paste from your application, you can even use AngularJS/React to generate the content&mldr; The possibilities are endless.</p><h2 id=caveats>Caveats</h2><p>As of versions &lt;= 2.1 PhantomJS renders differenly on Windows and Linux. I believe this is caused by different DPI settings.</p><p>After <strong>hours</strong> of debugging and trying to figure out ways to fix it, I decided to use a CSS transform to adjust for the difference, you can find it commented in the HTML file. The magic number is <strong>0.76</strong>, if you find a better solution please let me know!</p></div></div></div></div></main><footer><p class="copyright text-muted">© All rights reserved.</p></footer><div class="border animated-hue"></div></body></html>

@@ -1,0 +1,54 @@
+==================================================================
+https://keybase.io/aurbano
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://urbanoalvarez.es
+  * I am aurbano (https://keybase.io/aurbano) on keybase.
+  * I have a public key ASCbcc9fttWsjSlcvPXb20XFpbJ7vq7WKRLLxLLOrPFh3go
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01209b71cf5fb6d5ac8d295cbcf5dbdb45c5a5b27bbeaed62912cbc4b2ceacf161de0a",
+            "host": "keybase.io",
+            "kid": "01209b71cf5fb6d5ac8d295cbcf5dbdb45c5a5b27bbeaed62912cbc4b2ceacf161de0a",
+            "uid": "4107192ae0393d449f5c8250e6477619",
+            "username": "aurbano"
+        },
+        "service": {
+            "hostname": "urbanoalvarez.es",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.18"
+    },
+    "ctime": 1484236620,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1484236606,
+        "hash": "d38ae456ec8b1713b75bc9a6a17d84089585a21f7d749544090046a0e7214e09c7fa2ba5b948698880cc7239daaf039da8999267e9ab7ae491036eb4b8cffdca",
+        "seqno": 796688
+    },
+    "prev": "c74b94e1f636cf52d8210c1267e7d237db0701cfd6fcb23c432379dadd28f24e",
+    "seqno": 12,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgm3HPX7bVrI0pXLz129tFxaWye76u1ikSy8SyzqzxYd4Kp3BheWxvYWTFAvh7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwOWI3MWNmNWZiNmQ1YWM4ZDI5NWNiY2Y1ZGJkYjQ1YzVhNWIyN2JiZWFlZDYyOTEyY2JjNGIyY2VhY2YxNjFkZTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwOWI3MWNmNWZiNmQ1YWM4ZDI5NWNiY2Y1ZGJkYjQ1YzVhNWIyN2JiZWFlZDYyOTEyY2JjNGIyY2VhY2YxNjFkZTBhIiwidWlkIjoiNDEwNzE5MmFlMDM5M2Q0NDlmNWM4MjUwZTY0Nzc2MTkiLCJ1c2VybmFtZSI6ImF1cmJhbm8ifSwic2VydmljZSI6eyJob3N0bmFtZSI6InVyYmFub2FsdmFyZXouZXMiLCJwcm90b2NvbCI6Imh0dHBzOiJ9LCJ0eXBlIjoid2ViX3NlcnZpY2VfYmluZGluZyIsInZlcnNpb24iOjF9LCJjbGllbnQiOnsibmFtZSI6ImtleWJhc2UuaW8gZ28gY2xpZW50IiwidmVyc2lvbiI6IjEuMC4xOCJ9LCJjdGltZSI6MTQ4NDIzNjYyMCwiZXhwaXJlX2luIjo1MDQ1NzYwMDAsIm1lcmtsZV9yb290Ijp7ImN0aW1lIjoxNDg0MjM2NjA2LCJoYXNoIjoiZDM4YWU0NTZlYzhiMTcxM2I3NWJjOWE2YTE3ZDg0MDg5NTg1YTIxZjdkNzQ5NTQ0MDkwMDQ2YTBlNzIxNGUwOWM3ZmEyYmE1Yjk0ODY5ODg4MGNjNzIzOWRhYWYwMzlkYTg5OTkyNjdlOWFiN2FlNDkxMDM2ZWI0YjhjZmZkY2EiLCJzZXFubyI6Nzk2Njg4fSwicHJldiI6ImM3NGI5NGUxZjYzNmNmNTJkODIxMGMxMjY3ZTdkMjM3ZGIwNzAxY2ZkNmZjYjIzYzQzMjM3OWRhZGQyOGYyNGUiLCJzZXFubyI6MTIsInRhZyI6InNpZ25hdHVyZSJ9o3NpZ8RAjMTUm846Lz+zbvup/pPsEuL7E2Qdgg7CAHdYSxReY3H1RNLQZbGkduJ8Rsx0jM4h+N8q75DKavYUI5x122dUD6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIKWBAgBSat96RkEcyOeMRz942mxXqZojlOZGi8vFeE0So3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/aurbano
+
+==================================================================

@@ -1,0 +1,69 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Did you mean&amp;#8230; ? In php</title><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous><link rel=stylesheet href=https://aurbano.eu/main.min.e205736e8ecf984e0d709c5a96a7635164fd73f5f2e0db4cb3229de838851632.css><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/typescript.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js></script><script>hljs.initHighlightingOnLoad();</script><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script>$(document).on('click',function(){$('.collapse').collapse('hide');})</script><meta name=generator content="Hugo 0.61.0"><script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body><nav class="navbar navbar-default navbar-fixed-top"><div class="border animated-hue"></div><div class=container><div class=navbar-header><a class="navbar-brand visible-xs" href=#>Did you mean&amp;#8230; ? In php</a>
+<button class=navbar-toggle data-target=.navbar-collapse data-toggle=collapse>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href=/>Home</a></li><li><a href=/about/>About</a></li><li><a href=/post/>Posts</a></li><li><a href=/projects/>Projects</a></li></ul><ul class="nav navbar-nav navbar-right"><li class=navbar-icon><a href=https://github.com/aurbano/><i class="fa fa-github"></i></a></li><li class=navbar-icon><a href=https://www.linkedin.com/in/aurbano/><i class="fa fa-linkedin"></i></a></li><li class=navbar-icon><a href=https://stackoverflow.com/users/1262824/aurbano><i class="fa fa-stack-overflow"></i></a></li><li class=navbar-icon><a href="https://news.ycombinator.com/user?id=aurbano"><i class="fa fa-hacker-news"></i></a></li></ul></div></div></nav><main><div class=container><div class=row><div class="col-md-offset-2 col-md-8 col-xs-12"><div><h1>Did you mean&amp;#8230; ? In php</h1><h5 class="date text-muted">Published on May 30, 2008</h5><a href=https://aurbano.eutags/levenshtein class=item-tag>levenshtein</a>
+<a href=https://aurbano.eutags/metaphone class=item-tag>metaphone</a>
+<a href=https://aurbano.eutags/php class=item-tag>php</a>
+<a href=https://aurbano.eutags/similar_text class=item-tag>similar_text</a>
+<a href=https://aurbano.eutags/soundex class=item-tag>soundex</a>
+<a href=https://aurbano.eutags/suggestion class=item-tag>suggestion</a></div><div align=start class=content><p>In a new website I am developing for a client I had to add the usual "Did you mean&mldr; ?" in the search results for her. Si I started thinking for the easiest way to do this.</p><p>There are actually a lot of php functions out there to look for similar text. The most obvious one?<br><a href=http://www.php.net/manual/en/function.similar-text.php>similar_text()</a></p><blockquote><p>similar_text — Calculate the similarity between two strings</p></blockquote><p>You must pass 2 parameters plus an optional third. The two first are the strings to compare, and the optional one is the percentage of "closeness" you want them to have. It is quite useful, although it is too expensive in terms of time to use with huge database searches, so I wouldn't recommend it.</p><p>There are two other methods that might be good for some cases, and another function that is just the best. I'll show you first the best way to achieve this:<br>The <a href=http://www.php.net/manual/en/function.levenshtein.php>Levenshtein</a> algorithm, which basically finds the number of characters you must add, edit, or remove from a string to make it match another one. At first it doesn't sound too useful, but take a look at this example:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>// input misspelled word
+$input = &#39;carrrot&#39;;
+
+// array of words to check against
+$words  = array(&#39;apple&#39;,&#39;pineapple&#39;,&#39;banana&#39;,&#39;orange&#39;,
+                &#39;radish&#39;,&#39;carrot&#39;,&#39;pea&#39;,&#39;bean&#39;,&#39;potato&#39;);
+
+// no shortest distance found, yet
+$shortest = -1;
+
+// loop through words to find the closest
+foreach ($words as $word) {
+
+    // calculate the distance between the input word,
+    // and the current word
+    $lev = levenshtein($input, $word);
+
+    // check for an exact match
+    if ($lev == 0) {
+
+        // closest word is this one (exact match)
+        $closest = $word;
+        $shortest = 0;
+
+        // break out of the loop; we&#39;ve found an exact match
+        break;
+    }
+
+    // if this distance is less than the next found shortest
+    // distance, OR if a next shortest word has not yet been found
+    if ($lev <span style=color:#960050;background-color:#1e0010>&lt;</span>= $shortest || $shortest &lt; <span style=color:#f92672>0</span><span style=color:#960050;background-color:#1e0010>)</span> <span style=color:#960050;background-color:#1e0010>{</span>
+        <span style=color:#960050;background-color:#1e0010>/</span><span style=color:#960050;background-color:#1e0010>/</span> <span style=color:#a6e22e>set</span> <span style=color:#a6e22e>the</span> <span style=color:#a6e22e>closest</span> <span style=color:#a6e22e>match</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>and</span> <span style=color:#a6e22e>shortest</span> <span style=color:#a6e22e>distance</span>
+        <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>closest  </span><span style=color:#f92672>=</span> <span style=color:#e6db74>$word;</span>
+        <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>shortest </span><span style=color:#f92672>=</span> <span style=color:#e6db74>$lev;</span>
+    <span style=color:#960050;background-color:#1e0010>}</span>
+<span style=color:#960050;background-color:#1e0010>}</span>
+ 
+<span style=color:#a6e22e>echo</span> <span style=color:#960050;background-color:#1e0010>&#34;</span><span style=color:#a6e22e>Input</span> <span style=color:#a6e22e>word:</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>input</span><span style=color:#960050;background-color:#1e0010>\</span><span style=color:#a6e22e>n</span><span style=color:#960050;background-color:#1e0010>&#34;</span><span style=color:#960050;background-color:#1e0010>;</span>
+<span style=color:#a6e22e>if</span> <span style=color:#960050;background-color:#1e0010>(</span><span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>shortest </span><span style=color:#f92672>=</span><span style=color:#e6db74>=</span> <span style=color:#a6e22e>0</span><span style=color:#960050;background-color:#1e0010>)</span> <span style=color:#960050;background-color:#1e0010>{</span>
+    <span style=color:#a6e22e>echo</span> <span style=color:#960050;background-color:#1e0010>&#34;</span><span style=color:#a6e22e>Exact</span> <span style=color:#a6e22e>match</span> <span style=color:#a6e22e>found:</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>closest</span><span style=color:#960050;background-color:#1e0010>\</span><span style=color:#a6e22e>n</span><span style=color:#960050;background-color:#1e0010>&#34;</span><span style=color:#960050;background-color:#1e0010>;</span>
+<span style=color:#960050;background-color:#1e0010>}</span> <span style=color:#a6e22e>else</span> <span style=color:#960050;background-color:#1e0010>{</span>
+    <span style=color:#a6e22e>echo</span> <span style=color:#960050;background-color:#1e0010>&#34;</span><span style=color:#a6e22e>Did</span> <span style=color:#a6e22e>you</span> <span style=color:#a6e22e>mean:</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#a6e22e>closest</span><span style=color:#960050;background-color:#1e0010>?</span><span style=color:#960050;background-color:#1e0010>\</span><span style=color:#a6e22e>n</span><span style=color:#960050;background-color:#1e0010>&#34;</span><span style=color:#960050;background-color:#1e0010>;</span>
+<span style=color:#960050;background-color:#1e0010>}</span>
+</code></pre></div><p>This is an example where even a misspelled word can be found. It uses the Levenshtein to look for the word which is the most similar one, and then it is returned.<br>This is the output of the code before:</p><pre><code>Input word: carrrot
+Did you mean: carrot?
+</code></pre><p>The use of this function is quite simple, although there are many optional parameters for more precise use. See the <a href=http://www.php.net/manual/en/function.levenshtein.php>php.net reference for this function</a>. The biggest problem is that you would have to run the algorithm against all words to get the actual one. I would only recommend it on a subset of words already narrowed down with a more generic approach.</p><p>Other algorithms that could be used for this are <a href=http://www.php.net/manual/en/function.soundex.php>soudex</a> and <a href=http://www.php.net/manual/en/function.metaphone.php>metaphone</a>. <a href=http://www.php.net/manual/en/function.soundex.php>Soundex</a> will create a key that is the same for all words that are pronounced in a similar way.<br>For example, the following code:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>echo soundex(&#39;beard&#39;);
+echo soundex(&#39;bird&#39;);
+echo soundex(&#39;bear&#39;);
+
+/*
+ * Output:
+ * B630
+ * B630
+ * B600
+ */
+</code></pre></div><p>Where <code>beard</code> and <code>bird</code> are the same. <del cite=http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_soundex>This could make suggestions fast if you have already created a column in the mysql tables with the soundex key of the tags for example, so that you could search not only for the string, but also for its soundex key&mldr;</del></p><p><strong>UPDATE:</strong></p><p>You can use <a href=http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_soundex>MySQL's built in function SOUNDEX()</a> to search both for the string as-is, or for the soundex too, to provide also misspelled words.</p><p>And finally, the <a href=http://www.php.net/manual/en/function.metaphone.php>metaphone</a> function, it's a variation of the <code>soundex</code> key that produces also a key that is the same for all words pronounced the same, but more accurately than <code>soundex</code>, since <code>metaphone</code> actually knows the rules of English pronounciation.<br>The use would be exactly the same as <code>soundex</code>, and if you are going to use something of the sort I would recommend it for its improved accuracy.<br>But bear in mind that both soundex and metaphone won't probably work fine in most other languages, or at least for languages with phonemes that don't exist in English.</p></div><h4 class=page-header>Related</h4><div class=item><h4><a href=/post/wp/2009-01-20-display-time-since-last-visit-in-php/>Display time since last visit in PHP</a></h4><h5>January 20, 2009</h5><a href=https://aurbano.eutags/php class=item-tag>php</a>
+<a href=https://aurbano.eutags/timestamp class=item-tag>timestamp</a>
+<a href=https://aurbano.eutags/unix class=item-tag>unix</a></div><div class=item><h4><a href=/post/wp/2008-09-11-assign-image-to-wordpress-post/>Easily assign an image to a post in WordPress</a></h4><h5>September 11, 2008</h5><a href=https://aurbano.eutags/assign class=item-tag>assign</a>
+<a href=https://aurbano.eutags/image class=item-tag>image</a>
+<a href=https://aurbano.eutags/php class=item-tag>php</a>
+<a href=https://aurbano.eutags/post class=item-tag>post</a>
+<a href=https://aurbano.eutags/WordPress class=item-tag>WordPress</a></div></div></div></div></main><footer><p class="copyright text-muted">© All rights reserved.</p></footer><div class="border animated-hue"></div></body></html>
