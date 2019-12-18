@@ -101,7 +101,7 @@ The next bit that looks odd is `p:xs`, my guess is that this represents an argum
 
 Ok, it turns out that `p:xs` is a fairly standard convention, although the typical way of writing it is `x:xs`. In Haskell it's common to end list variables with an `s`, and use a single letter for single values. The fact that they chose `p` instead of `x` is an indication that it's value is special - it's a prime number (well, it should be).
 
-After reading [some more](http://learnyouahaskell.com/syntax-in-functions), I understand that `p:xs` is a pattern (and [patterns look AWESOME](https://www.haskell.org/tutorial/patterns.html) in Haskell!), which means that `p` is the first element, and `xs` is **the rest** of the list.
+After reading [some more](http://learnyouahaskell.com/syntax-in-functions), I understand that `p:xs` is a pattern (and [patterns look AWESOME](https://www.haskell.org/tutorial/patterns.html) in Haskell!), which means that `p` is the first element, and `xs` is **the rest** of the list. For example if you needed the first two elements and then the rest, you could write `p:s:xs`, where `p` would be the first, `s` the second, and `xs` the rest.
 
 For example the first time `sieve` runs `p = 2` and `xs = [3, 4, 5...]`.
 
