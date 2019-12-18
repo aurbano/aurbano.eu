@@ -3,27 +3,13 @@
 <a href=https://aurbano.eu/tags/zsh class=item-tag>zsh</a>
 <a href=https://aurbano.eu/tags/shell class=item-tag>shell</a>
 <a href=https://aurbano.eu/tags/apple class=item-tag>apple</a>
-<a href=https://aurbano.eu/tags/mac class=item-tag>mac</a></header><div align=start class=content><p>I already did a post on <a href=https://aurbano.eu/note/2014-11-03-setting-up-mac-for-development/>the steps I took</a> to set up my new macbook for development.</p><p>After that post I started using Zsh more and more, and came to realize how much better it could become with some tweaking.</p><figure><img src=/assets/files/posts/zsh/shell.png><figcaption><h4>edges -</h4></figcaption></figure><p>If you just want to replicate this just follow these two steps:</p><ol><li>Install <a href=https://github.com/zsh-users/antigen>antigen</a>:</li><li><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash></code></pre></div></li></ol><p>curl -L <a href=https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh>https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh</a> > antigen.zsh
-source antigen.zsh</p><pre><code>3. Use [this `.zshrc`](https://gist.github.com/aurbano/e32596aae16a7b9f8b48) file.
-
--------
-
-## Walkthrough
-
-The first thing I recommend is using [antigen](https://github.com/zsh-users/antigen). It is something like Pathogen for Vim, a configuration/plugin manager for Zsh.
-
-It works great with [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh), which should also be your first step into setting up your zsh shell.
-
-Once antigen is installed the first part of the `.zshrc` file is setting that up and loading Oh My Zsh.
-
-``` bash
-# Antigen — A zsh plugin manager
-export ANTIGEN_DEFAULT_REPO_URL=https://github.com/sharat87/oh-my-zsh.git
+<a href=https://aurbano.eu/tags/mac class=item-tag>mac</a></header><div class="alert alert-warning mt-4" role=alert><b>Here be dragons!</b><br>I wrote this ages ago and is now outdated. Time flies!</div><div align=start class=content><blockquote><p>Yes, this is outdated - I've now moved on to use Oh My Zsh, mostly with the default setup to keep things simple.</p></blockquote><p>I already did a post on <a href=https://aurbano.eu/note/2014-11-03-setting-up-mac-for-development/>the steps I took</a> to set up my new macbook for development.</p><p>After that post I started using Zsh more and more, and came to realize how much better it could become with some tweaking.</p><figure><img src=/assets/files/posts/zsh/shell.png><figcaption><h4>edges -</h4></figcaption></figure><p>If you just want to replicate this just follow these two steps:</p><ol><li>Install <a href=https://github.com/zsh-users/antigen>antigen</a>:</li><li>Use <a href=https://gist.github.com/aurbano/e32596aae16a7b9f8b48>this <code>.zshrc</code></a> file.</li></ol><hr><h2 id=walkthrough>Walkthrough</h2><p>The first thing I recommend is using <a href=https://github.com/zsh-users/antigen>antigen</a>. It is something like Pathogen for Vim, a configuration/plugin manager for Zsh.</p><p>It works great with <a href=https://github.com/robbyrussell/oh-my-zsh>Oh My Zsh</a>, which should also be your first step into setting up your zsh shell.</p><p>Once antigen is installed the first part of the <code>.zshrc</code> file is setting that up and loading Oh My Zsh.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Antigen — A zsh plugin manager</span>
+export ANTIGEN_DEFAULT_REPO_URL<span style=color:#f92672>=</span>https://github.com/sharat87/oh-my-zsh.git
 source ~/antigen.zsh
 
-# Load the oh-my-zsh's library.
+<span style=color:#75715e># Load the oh-my-zsh&#39;s library.</span>
 antigen use oh-my-zsh
-</code></pre><p>Now load all the plugins (bundles) you want, the great thing about antigen is that you can add any plugin from any repository/url:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>antigen bundles <span style=color:#e6db74>&lt;&lt;EOBUNDLES
+</code></pre></div><p>Now load all the plugins (bundles) you want, the great thing about antigen is that you can add any plugin from any repository/url:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>antigen bundles <span style=color:#e6db74>&lt;&lt;EOBUNDLES
 </span><span style=color:#e6db74>
 </span><span style=color:#e6db74>lein
 </span><span style=color:#e6db74>pip
