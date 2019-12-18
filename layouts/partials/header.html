@@ -41,7 +41,7 @@
           
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               {{ if .Site.Menus.main }}
-                  <ul class="navbar-nav mr-auto">
+                  <ul class="navbar-nav nav-menu mr-auto">
                       {{ $currentPage := . }}
                       {{ range sort .Site.Menus.main }}
                         {{ $is := $currentPage.IsMenuCurrent "main" . }}

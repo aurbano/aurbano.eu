@@ -44,6 +44,9 @@ menu:
     - url: 'https://news.ycombinator.com/user?id=aurbano'
       name: hacker-news
       weight: 6
+    - url: '/index.xml'
+      name: rss
+      weight: 6
 
 markup:
   goldmark:
