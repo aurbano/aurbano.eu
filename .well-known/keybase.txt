@@ -4,7 +4,7 @@ https://keybase.io/aurbano
 
 I hereby claim:
 
-  * I am an admin of https://urbanoalvarez.es
+  * I am an admin of https://aurbano.eu
   * I am aurbano (https://keybase.io/aurbano) on keybase.
   * I have a public key ASCbcc9fttWsjSlcvPXb20XFpbJ7vq7WKRLLxLLOrPFh3go
 
@@ -20,7 +20,7 @@ To do so, I am signing this object:
             "username": "aurbano"
         },
         "service": {
-            "hostname": "urbanoalvarez.es",
+            "hostname": "aurbano.eu",
             "protocol": "https:"
         },
         "type": "web_service_binding",
