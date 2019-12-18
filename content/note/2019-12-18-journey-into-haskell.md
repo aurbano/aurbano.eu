@@ -85,13 +85,13 @@ So `primes` is a function with one argument `n`, that returns `take n $ sieve [2
 
 It's being called with `n` (the argument from `primes`, which was actually the nth integer from the start), and `$ sieve [2..]` which as I have learnt should become the return value of `sieve [2..]`.
 
+I'm still not sure whether `sieve` is built-in or defined below where it says `where sieve (p:xs) =`, so I'll finish this line first. `[]` is an operator that creates a list (or maybe I should call it sugar for the List constructor?) and `2..` means all integers starting from 2. Ok, getting there!
+
 Now we move on to the definition of `sieve`:
 
 ```haskell
 where sieve (p:xs) = p : sieve [x | x <- xs, x `rem` p > 0]
 ```
-
-I'm still not sure whether `sieve` is built-in or defined below where it says `where sieve (p:xs) =`, so I'll finish this line first. `[]` is an operator that creates a list (or maybe I should call it sugar for the List constructor?) and `2..` means all integers starting from 2. Ok, getting there!
 
 `where` is a way to define functions based on their inputs, quite similar to what happened earlier, and after reading [some documentation](https://wiki.haskell.org/Let_vs._Where) I'm still not 100% sure about when it's best to be used, but I think I get what it does.
 
