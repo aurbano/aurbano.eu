@@ -95,7 +95,7 @@ where sieve (p:xs) = p : sieve [x | x <- xs, x `rem` p > 0]
 
 `where` is a way to define functions based on their inputs, quite similar to what happened earlier, and after reading [some documentation](https://wiki.haskell.org/Let_vs._Where) I'm still not 100% sure about when it's best to be used, but I think I get what it does.
 
-Something awesome that I'm realising now is the "[lazy evaluation](https://wiki.haskell.org/Lazy_evaluation)" part of Haskell. If you wrote this code in Java for example it would simply never end because we're calling sieve with an infinite list! But thanks to Haskell's lazy evaluation `sieve [2..]` doesn't get evaluated when defined, but when it's return value is needed. So because `take n` needs the first `n` elements of the list returned by `sieve [2..]`, it will only evaluate until then. I'm blown away.
+Something awesome that I'm realising now is the "[lazy evaluation](https://wiki.haskell.org/Lazy_evaluation)" part of Haskell. If you wrote this code in Java for example it would simply never end because we're calling sieve with an infinite list! But thanks to Haskell's lazy evaluation `sieve [2..]` doesn't get evaluated when defined, but when it's return value is needed. So because `take n` needs the first `n` elements of the list returned by `sieve [2..]`, it will only evaluate until then. I'm blown away!
 
 The next bit that looks odd is `p:xs`, my guess is that this represents an argument of type list, where the start is stored in `p` and the end in `xs`? but the list was unbounded (defined as `2..`) so surely I'm missing something here (I was, I figured it out by the next paragraph). Time to [read](https://wiki.haskell.org/How_to_read_Haskell).
 
