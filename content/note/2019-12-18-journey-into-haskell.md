@@ -65,7 +65,7 @@ The last thing is to call the function `primes` with the argument `x`, which see
 primes :: Integral a => Int -> [a]
 ```
 
-The type definition for `primes` confirms the assumption, let's move on to the body:
+The type definition for `primes` confirms the assumption, let's move on to the body (I'll show it complete first, then break it down by lines)
 
 ```haskell
 primes n = take n $ sieve [2..]
@@ -73,13 +73,25 @@ primes n = take n $ sieve [2..]
           sieve [] = []
 ```
 
-Ok time to roll my sleeves up, this looks like a mess! Where do I start...?
+Time to roll my sleeves up, this looks like a mess! Where do I start...?
 
-`take` is a function that takes two arguments, an integer (N) and a list, and returns the first N elements of the list (or less if the list is not long enough).
+```haskell
+primes n = take n $ sieve [2..]
+```
 
-It's being called with `n` (our argument from earlier, which was the nth integer from the start), and `$ sieve [2..]` which as I have learnt should become the return value of `sieve [2..]`.
+So `primes` is a function with one argument `n`, that returns `take n $ sieve [2..]`. Let's see what that does:
 
-I'm not sure yet whether `sieve` is built-in or defined below where it says `where sieve (p:xs) =`, so I'll finish this line and then see what's below. `[]` is an operator that creates a list and `2..` means all integers starting from 2. Ok, getting there!
+`take` is a built-in function that takes two arguments, an integer (N) and a list, and returns the first N elements of the list (or less if the list is not long enough).
+
+It's being called with `n` (the argument from `primes`, which was actually the nth integer from the start), and `$ sieve [2..]` which as I have learnt should become the return value of `sieve [2..]`.
+
+Now we move on to the definition of `sieve`:
+
+```haskell
+where sieve (p:xs) = p : sieve [x | x <- xs, x `rem` p > 0]
+```
+
+I'm still not sure whether `sieve` is built-in or defined below where it says `where sieve (p:xs) =`, so I'll finish this line first. `[]` is an operator that creates a list (or maybe I should call it sugar for the List constructor?) and `2..` means all integers starting from 2. Ok, getting there!
 
 `where` is a way to define functions based on their inputs, quite similar to what happened earlier, and after reading [some documentation](https://wiki.haskell.org/Let_vs._Where) I'm still not 100% sure about when it's best to be used, but I think I get what it does.
 
