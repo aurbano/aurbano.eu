@@ -28,6 +28,10 @@ div.border {
 
 header {
   margin-bottom: 2em;
+
+  small {
+    color: $text-muted;
+  }
 }
 
 a.nav-link {
@@ -62,7 +66,7 @@ main {
     z-index: 0;
 
     h1:first-child {
-      border-bottom: solid $top-border-width #ccc;
+      border-bottom: solid $top-border-width $secondary;
       padding-bottom: 0.25em;
       margin-top: 1em;
       position: relative;
@@ -76,6 +80,7 @@ main {
 
     h1, h2, h3, h4 {
       font-family: '{{ .Site.Params.font }}', sans-serif;
+      color: $dark;
 
       .badge {
         font-family: initial;
