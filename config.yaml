@@ -10,7 +10,7 @@ params:
   font: "Raleway"
   highlight: true
   highlightStyle: "dark"
-  highlightLanguages: ["javascript", "typescript", "java"]
+  highlightLanguages: ["javascript", "typescript", "java", "haskell", "bash"]
 
 taxonomies:
   note: notes
