@@ -5,8 +5,8 @@ date: "2014-10-21T00:00:00Z"
 description: Details on the process of making the WebGL experiment Nebula
 tagline: WebGL Experiment
 tags:
-- apple
-- mac
+- webgl
+- javascript
 thumbnail: /assets/files/thumbnails/nebula.jpg
 title: Making of Nebula text
 ---

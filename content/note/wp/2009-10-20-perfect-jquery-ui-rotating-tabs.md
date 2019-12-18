@@ -13,6 +13,7 @@ tags:
 thumbnail: /assets/files/thumbnails/jqueryUI.png
 title: Perfect jQuery UI rotating tabs
 aliases: [ /blog/2009/10/20/perfect-jquery-ui-rotating-tabs/ ]
+outdated: true
 ---
 
 Tabs are nice. They create a very elegant interface, and jQuery UI does this marvelously.

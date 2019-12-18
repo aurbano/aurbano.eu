@@ -4,7 +4,8 @@ categories:
 date: "2019-12-18T00:00:00Z"
 description: Do I need Haskell to be a functional human?
 tags:
-- thoughts
+- haskell
+- journey
 title: Journey into Haskell
 ---
 

@@ -13,6 +13,7 @@ tags:
 thumbnail: /assets/files/thumbnails/wordpress.png
 title: Easily assign an image to a post in WordPress
 aliases: [ /blog/2008/09/11/assign-image-to-wordpress-post/ ]
+outdated: true
 ---
  
 

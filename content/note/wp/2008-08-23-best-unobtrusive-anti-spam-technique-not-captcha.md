@@ -13,6 +13,7 @@ tags:
 thumbnail: /assets/files/thumbnails/captcha.png
 title: Best unobtrusive anti-spam technique (Not CAPTCHA)
 aliases: [ /blog/2008/08/23/best-unobtrusive-anti-spam-technique-not-captcha/ ]
+outdated: true
 ---
 
 I know you are probably thinking that this will be some silly thing, but this idea that [Thomas Landauer][1] came up with is by far the best I\'ve seen in a long time.

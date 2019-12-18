@@ -12,6 +12,7 @@ tags:
 thumbnail: /assets/files/thumbnails/analytics.png
 title: Event tracking - Google Analytics
 aliases: [ /blog/2009/06/13/event-tracking-google-analytics/ ]
+outdated: true
 ---
 
 ## What is event tracking?

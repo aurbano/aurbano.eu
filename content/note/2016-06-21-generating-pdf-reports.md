@@ -8,6 +8,7 @@ tags:
 - report
 - pdf
 - reporting
+- java
 thumbnail: /assets/files/thumbnails/phantomjs.png
 title: Generating Pixel Perfect PDF Reports
 ---

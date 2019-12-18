@@ -5,10 +5,8 @@ date: "2014-10-08T00:00:00Z"
 description: Developing a game from scratch in Unreal Engine 4
 tagline: Without knowing anything about it
 tags:
-- security
-- hashing
-- hash
-- sha1
+- game
+- journey
 thumbnail: /assets/files/thumbnails/unrealengine4logo-300x300.png
 title: Creating a game with Unreal Engine 4
 ---

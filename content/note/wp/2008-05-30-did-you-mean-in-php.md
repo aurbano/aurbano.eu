@@ -14,8 +14,8 @@ tags:
 thumbnail: /assets/files/thumbnails/ai_php.png
 title: Did you mean? In php
 aliases: [ /blog/2008/05/30/did-you-mean-in-php/ ]
+outdated: true
 ---
- 
 
 In a new website I am developing for a client I had to add the usual \"Did you mean... ?\" in the search results for her. Si I started thinking for the easiest way to do this.
 

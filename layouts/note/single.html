@@ -12,6 +12,13 @@
           {{ partial "tags" . }}
         </div>
 
+        {{ if (.Param "outdated") }}
+          <div class="alert alert-warning mt-4" role="alert">
+            <b>Here be dragons!</b> <br>
+            I wrote this ages ago and is now outdated. Time flies!
+          </div>
+        {{end}}
+
         <div align="start" class="content">{{ .Content }}</div>
 
         <!-- Related posts -->

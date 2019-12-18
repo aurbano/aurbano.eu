@@ -14,6 +14,7 @@ tags:
 thumbnail: /assets/files/thumbnails/shoutcast.png
 title: Online radio - Setting it up & hosting it
 aliases: [ /blog/2009/06/29/online-radio-setting-it-up-hosting-it/ ]
+outdated: true
 ---
 
 Audio being broadcasted via the Internet. So that means that we generate an audio stream that listeners cannot control, other than pausing and resuming.  

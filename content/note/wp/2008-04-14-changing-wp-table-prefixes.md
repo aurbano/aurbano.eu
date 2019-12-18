@@ -13,9 +13,8 @@ tags:
 thumbnail: /assets/files/thumbnails/wordpress.png
 title: Changing WP Table prefixes
 aliases: [ /blog/2008/04/14/changing-wp-table-prefixes/ ]
+outdated: true
 ---
-
-
 
 As a security tip you should always change the default table prefix \"wp_\", mainly to avoid zero-day vulnerabilities (Vulnerabilities that haven\'t been discovered yet), or JavaScript SQL injection.
 
