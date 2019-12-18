@@ -4,7 +4,9 @@
   <div class="container">
     <div class="row justify-content-md-center">
       <div class="col col-lg-8">
-        <h2>{{ .Title }}</h2>
+        <header>
+          <h1>{{ humanize .Title }}</h1>
+        </header>
 
         {{ range (.Paginator 20).Pages }} {{ partial "list-item" . }} {{ end }}
       </div>
@@ -12,4 +14,6 @@
   </div>
 </main>
 
-{{ partial "paginator" . }} {{ partial "footer" . }}
+{{ partial "paginator" . }}
+
+{{ partial "footer" . }}
