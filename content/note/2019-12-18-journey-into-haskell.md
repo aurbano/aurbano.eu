@@ -47,7 +47,7 @@ Seems easy, when calling `nth` with `0` as the argument, we return `Nothing`. Fr
 nth x = Just (last $ primes x)
 ```
 
-After [a bit of help from SO](https://stackoverflow.com/questions/18808258/what-does-the-just-syntax-mean-in-haskell), I think I get it: For any other argument `x`, `Just` is a constructor for `Maybe` which seems to "assert" that x does have a value, then runs the functions in the parenthesis.
+After [a bit of help from SO](https://stackoverflow.com/questions/18808258/what-does-the-just-syntax-mean-in-haskell), I think I get it: For any other argument `x`, `Just` is a constructor for `Maybe` which "asserts" that x does have a value (or that the function on its right will not return `Nothing`, I'm not fully sure now), then runs the functions in the parenthesis.
 
 `last` is obvious, it returns the last element on a list.
 `$` is not so much. It required some [additional reading](https://typeclasses.com/featured/dollar) to understand that it's essentially sugar for more parenthesis, so AFAIK, the following two lines would do the same:
@@ -59,7 +59,7 @@ nth x = Just (last (primes x))
 
 The article goes to pretty scary deep places regarding the use of the `$` sign, but I'm gonna leave that for future me :) For now I get what it's doing in this context and that's going to be enough.
 
-The last thing is to call the function `primes` with the argument `x`, which seems to be defined later on. I assume that `primes` will be a function that takes one integer and returns a list of integers (primes) up to that one.
+The last thing is to call the function `primes` with the argument `x`, which seems to be defined later on (Apparently because Haskell does lazy evaluation you can define functions in any order). I assume that `primes` will be a function that takes one integer and returns a list of integers (primes) up to that one.
 
 ```haskell
 primes :: Integral a => Int -> [a]
