@@ -12,7 +12,10 @@ tags:
 - mac
 thumbnail: /assets/files/thumbnails/zsh.png
 title: My Interesting Zsh Prompt
+outdated: true
 ---
+
+> Yes, this is outdated - I've now moved on to use Oh My Zsh, mostly with the default setup to keep things simple.
 
 I already did a post on [the steps I took]({{< ref "2014-11-03-setting-up-mac-for-development" >}}) to set up my new macbook for development.
 
@@ -24,11 +27,7 @@ After that post I started using Zsh more and more, and came to realize how much 
 If you just want to replicate this just follow these two steps:
 
 1. Install [antigen](https://github.com/zsh-users/antigen):
-2. ``` bash
-curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > antigen.zsh
-source antigen.zsh
-```
-3. Use [this `.zshrc`](https://gist.github.com/aurbano/e32596aae16a7b9f8b48) file.
+1. Use [this `.zshrc`](https://gist.github.com/aurbano/e32596aae16a7b9f8b48) file.
 
 -------
 

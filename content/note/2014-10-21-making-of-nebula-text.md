@@ -8,6 +8,7 @@ tags:
 - webgl
 - javascript
 thumbnail: /assets/files/thumbnails/nebula.jpg
+aliases: [ /blog/making-of-nebula-text/ ]
 title: Making of Nebula text
 ---
 
