@@ -12,6 +12,12 @@ params:
   highlightStyle: "dark"
   highlightLanguages: ["javascript", "typescript", "java", "haskell", "bash"]
 
+outputs:
+  home:
+  - HTML
+  - RSS
+  - JSON
+
 taxonomies:
   note: notes
   category: categories
