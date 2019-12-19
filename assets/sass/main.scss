@@ -148,23 +148,6 @@ blockquote {
   margin-bottom: 1em;
 }
 
-.highlight {
-  margin: 2rem $code-horizontal-margin;
-
-  pre {
-    padding: 0;
-    border-radius: 0.25rem;
-    font-size: 0.8em;
-
-    > code.hljs {
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      padding-left: -$code-horizontal-margin;
-      padding-right: -$code-horizontal-margin;
-    }
-  }
-}
-
 nav.navbar {
   z-index: 2;
 }
@@ -240,6 +223,30 @@ a, a:link, a:visited {
 }
 
 .content {
+  p > code {
+    padding: .2em .4em;
+    margin: 0;
+    font-size: 0.8em;
+    background-color:rgba(27,31,35,.05);
+    border-radius: 3px;
+    color: scale-color($pink, $lightness: -10%)
+  }
+
+  pre {
+    padding: 0;
+    border-radius: 0.25rem;
+    font-size: 0.8em;
+    margin: 2rem $code-horizontal-margin;
+
+    > code {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      padding-left: -$code-horizontal-margin;
+      padding-right: -$code-horizontal-margin;
+      border-left: solid #fb306e 5px;
+    }
+  }
+
   a, a:link, a:visited {
     color: $accent;
     text-shadow: 0 1px 1px #fff;
