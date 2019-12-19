@@ -142,7 +142,7 @@ Our `nth` function returns the largest prime lower or equals to an integer we pa
 
 If we pass 0, we get nothing.
 
-If we pass any other number, we'll first calculate all primes up until that number and then return the last one.
+If we pass any other number, we'll first calculate all primes up until that number and then return the last one. (Note: I just caught myself thinking in "non-lazy" style again! the sentence should actually say "we'll calculate primes as we need them, up until the number specified")
 
 In order to calculate all primes until that number, we'll start with a list of all integers starting by 2, and return a subset of the list starting from the next integer that is not divisible by it.
 
