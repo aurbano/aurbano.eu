@@ -7,6 +7,7 @@ tagline: Haven't posted in a while, and want to share thoughts
 tags:
 - thoughts
 title: 2016 Q1 Update
+aliases: [ /blog/what-im-doing/ ]
 ---
 
 ### Actions

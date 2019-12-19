@@ -7,7 +7,6 @@ date: "2008-09-14T00:00:00Z"
 tags:
 - bounce rate
 - stumble upon
-thumbnail: /assets/files/thumbnails/stumbleupon.png
 title: Stumble Upon Low Bounce Rate
 aliases: [ /blog/2008/09/14/stumble-upon-low-bounce-rate/ ]
 ---

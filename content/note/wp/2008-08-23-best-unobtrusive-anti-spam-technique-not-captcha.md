@@ -10,7 +10,6 @@ tags:
 - prevent
 - spam
 - thomas landauer
-thumbnail: /assets/files/thumbnails/captcha.png
 title: Best unobtrusive anti-spam technique (Not CAPTCHA)
 aliases: [ /blog/2008/08/23/best-unobtrusive-anti-spam-technique-not-captcha/ ]
 outdated: true

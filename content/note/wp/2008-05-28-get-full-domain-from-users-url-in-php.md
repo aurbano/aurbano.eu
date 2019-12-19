@@ -4,7 +4,6 @@ categories:
 - PHP
 - Main
 date: "2008-05-28T00:00:00Z"
-thumbnail: /assets/files/thumbnails/domain.jpg
 title: Get full domain from user's URL in php
 aliases: [ /blog/2008/05/28/get-full-domain-from-users-url-in-php/ ]
 outdated: true

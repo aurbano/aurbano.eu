@@ -10,8 +10,8 @@ tags:
 - javascript
 - webgl
 - vivagraphjs
-thumbnail: /assets/files/thumbnails/webvisualizer.PNG
 title: Web Visualizer using WebGL
+aliases: [ /blog/web-visualizer-using-webgl/ ]
 ---
 
 I decided to build a tool that would allow me to see how websites are related in a visual way. I'm still working on the concept but the tool is ready and working: [WebVisualizer](http://web-visualizer.urbanoalvarez.es).

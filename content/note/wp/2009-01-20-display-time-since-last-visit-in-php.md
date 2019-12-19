@@ -9,7 +9,6 @@ tags:
 - php
 - timestamp
 - unix
-thumbnail: http://www.wired.com/images_blogs/wiredscience/2012/09/mf-do-the-right-things-at-the-right-time_f.jpg
 title: Display time since last visit in PHP
 aliases: [ /blog/2009/01/20/display-time-since-last-visit-in-php/ ]
 ---

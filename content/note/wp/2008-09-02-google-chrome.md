@@ -7,13 +7,11 @@ date: "2008-09-02T00:00:00Z"
 tags:
 - browser
 - google chrome
-thumbnail: /assets/files/thumbnails/chrome.png
-title: Google chrome
+title: Google Chrome
 aliases: [ /blog/2008/09/02/google-chrome/ ]
 ---
  
-
-<img src="/assets/files/thumbnails/chrome.png" align="right" />
+> I've kept updating this post, scroll down for that!
 
 Well, it was time for web-giant Google to jump the gap between being the world leader in providing web-based services to actually providing... the web.
 
@@ -28,7 +26,15 @@ The main drawback though is the lack of Extensions or plugins. I miss Stumbling 
 
 My rating, if I was faced from a 0-10 choice would be around a 7. But the lack of plugins will never allow it for more. Maybe a normal user will find it perfect, but a developer and a user that spends hours a day watching for new stuff all over the web needs more than \"The basics\".
 
-**2013 Update**
+### 2013 Update
 
 Interesting to see my opinion at launch. I currently use Chrome on a daily basis, it offers an incredible developer console, and grew to have a very comprehensive addon collection.
 I'll come back in a few more years.
+
+### 2019 Update
+
+And we've come full circle again... I'm using Firefox now. I stayed with Google Chrome until 2018, mainly because it's dev-tools were amazing. Then Google started doing some funky things around privacy, like [logging you into Google services if you were logged into the browser](https://www.theverge.com/2018/9/24/17895536/google-chrome-69-log-in-sync-password-user-data-privacy). 
+
+Firefox is now good enough to make the jump. I feel like it consumes more resources and battery, but I don't have any data to back that up. The dev-tools are *almost* as good as Chrome's (they miss little details, <del>like WebSockets support</del> I just realised they now support WebSockets experimentally) but for the most part they are good, it *is* a good browser.
+
+But the main thing is the privacy. I run [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/) with the [Multi-Account Containers](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/) + [Cookie AutoDelete](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/?src=search) extensions, and it's just perfect for me.

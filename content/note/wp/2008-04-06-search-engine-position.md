@@ -13,7 +13,6 @@ tags:
 - search engine
 - seo
 - tool
-thumbnail: /assets/files/thumbnails/seo.png
 title: SEO Tool Search Engine position checker
 aliases: [ /blog/2008/04/06/search-engine-position/ ]
 outdated: true

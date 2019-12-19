@@ -5,10 +5,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ humanize .Title }}</title>
+        
         {{ if .Site.Params.favicon }}
             <link rel="icon" href="{{ .Site.Params.favicon | absURL }}">
         {{ end }}
-        {{ partial "css" . }} {{ hugo.Generator }}
+
+        {{ partial "css" . }}
+
+        {{ hugo.Generator }}
+
         {{ with .OutputFormats.Get "RSS" }}
             <link href="{{ .RelPermalink }}" rel="alternate" type="{{ .MediaType.Type }}" title="{{ $.Site.Title }}" />
             <link href="{{ .RelPermalink }}" rel="feed" type="{{ .MediaType.Type }}" title="{{ $.Site.Title }}" />
@@ -22,10 +27,6 @@
               gtag('js', new Date());
               gtag('config', '{{ .Site.GoogleAnalytics }}');
             </script>
-        {{ end }}
-
-        {{ if .Site.Params.MathJax | default true }}
-            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         {{ end }}
 
         {{ partial "head-close" . }}

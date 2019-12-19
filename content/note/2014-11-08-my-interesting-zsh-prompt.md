@@ -10,8 +10,8 @@ tags:
 - shell
 - apple
 - mac
-thumbnail: /assets/files/thumbnails/zsh.png
 title: My Interesting Zsh Prompt
+aliases: [ /blog/my-interesting-zsh-prompt/ ]
 outdated: true
 ---
 

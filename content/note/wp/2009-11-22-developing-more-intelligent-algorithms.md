@@ -10,7 +10,6 @@ tags:
 - artificial intelligence
 - bot
 - robot
-thumbnail: /assets/files/thumbnails/ai.jpg
 title: Developing more intelligent algorithms
 aliases: [ /blog/2009/11/22/developing-more-intelligent-algorithms/ ]
 ---

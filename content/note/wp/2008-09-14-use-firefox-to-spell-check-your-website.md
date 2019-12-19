@@ -8,7 +8,6 @@ tags:
 - check
 - Firefox
 - spell
-thumbnail: /assets/files/thumbnails/browsers.png
 title: Use the browser to spell check your website
 aliases: [ /blog/2008/09/14/use-firefox-to-spell-check-your-website/ ]
 outdated: true

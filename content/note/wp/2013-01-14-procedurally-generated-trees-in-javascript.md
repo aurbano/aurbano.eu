@@ -14,7 +14,6 @@ tags:
 - procedural
 - procedurally
 - tree
-thumbnail: /assets/files/thumbnails/trees.png
 title: Procedurally generated trees in JavaScript
 aliases: [ /blog/2013/01/14/procedurally-generated-trees-in-javascript/ ]
 ---

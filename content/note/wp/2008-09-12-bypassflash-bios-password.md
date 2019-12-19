@@ -9,7 +9,6 @@ tags:
 - bypass
 - flash
 - password
-thumbnail: /assets/files/thumbnails/bios.jpg
 title: 'Bypass/Flash BIOS password:'
 aliases: [ /blog/2008/09/12/bypassflash-bios-password/ ]
 outdated: true

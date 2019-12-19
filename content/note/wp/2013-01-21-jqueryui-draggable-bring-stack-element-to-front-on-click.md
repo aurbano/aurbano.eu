@@ -9,7 +9,6 @@ tags:
 - jquery
 - jqueryui
 - stack
-thumbnail: /assets/files/thumbnails/jqueryUI.png
 title: 'jQueryUI Draggable: Bring stack element to front on click'
 aliases: [ /blog/2013/01/21/jqueryui-draggable-bring-stack-element-to-front-on-click/ ]
 outdated: true

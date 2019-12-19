@@ -10,7 +10,6 @@ tags:
 - sql
 - tables
 - wp
-thumbnail: /assets/files/thumbnails/wordpress.png
 title: Changing WP Table prefixes
 aliases: [ /blog/2008/04/14/changing-wp-table-prefixes/ ]
 outdated: true

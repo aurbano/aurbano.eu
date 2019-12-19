@@ -11,7 +11,6 @@ tags:
 - quantum
 - simulation
 - time
-thumbnail: /assets/files/thumbnails/quantum.png
 title: Quantum Universe Simulation - The Unique beings paradox
 aliases: [ /blog/2008/05/20/quantum-universe-simulatio/ ]
 ---
