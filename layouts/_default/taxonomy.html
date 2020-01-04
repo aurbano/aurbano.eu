@@ -5,7 +5,7 @@
     <div class="row justify-content-md-center">
       <div class="col col-lg-8">
         <header>
-          <h1>{{ .Title }}</h1>
+          <h1>{{ humanize .Data.Singular }}: {{ .Title }}</h1>
         </header>
 
         {{ range (.Paginator 20).Pages }} {{ partial "list-item" . }} {{ end }}
