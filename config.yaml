@@ -19,20 +19,17 @@ outputs:
   - JSON
 
 taxonomies:
-  note: notes
+  post: posts
   category: categories
   tag: tags
 
 menu:
   main:
-    - url: /
-      name: Home
-      weight: 1
     - url: /about/
       name: About
       weight: 2
-    - url: /note/
-      name: Notes
+    - url: /post/
+      name: Posts
       weight: 3
     - url: /projects/
       name: Projects

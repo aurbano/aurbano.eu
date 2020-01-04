@@ -1,4 +1,6 @@
-{{ partial "header" . }}
+{{ partial "head" . }}
+
+<body>
 
 <main>
     <div class="intro">
@@ -6,7 +8,34 @@
         <h1>{{ .Site.Title }}</h1>
         <h2>{{ markdownify .Site.Params.Description }}</h2>
         {{ with .Content }} <div class="homepage-content text-justify">{{ . }}</div> {{ end }}
+
+        {{ if .Site.Menus.main }}
+          <ul class="nav justify-content-center mt-5">
+              {{ $currentPage := . }}
+              {{ range sort .Site.Menus.main }}
+                {{ $is := $currentPage.IsMenuCurrent "main" . }}
+                {{ $has := $currentPage.HasMenuCurrent "main" . }}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ .URL }}">
+                    {{ .Name }}
+                  </a>
+                </li>
+              {{ end }}
+          </ul>
+        {{ end }}
     </div>
 </main>
+
+{{ if .Site.Menus.icon }}
+  <ul class="nav justify-content-center">
+      {{ range sort .Site.Menus.icon }}
+          <li class="nav-item">
+            <a title="{{ .Name }} profile" class="nav-link text-{{ .Name }}" href="{{ .URL }}">
+              <i class="fa fa-{{ .Name }}"></i>
+            </a>
+          </li>
+      {{ end }}
+  </ul>
+{{ end }}
 
 {{ partial "footer" . }}

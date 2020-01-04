@@ -3,9 +3,11 @@ title: About
 description:
 ---
 
-I guess this is a small autobiography of sorts. Instead of trying to figure out who may be reading this and write something for them, I'll write this for myself.
+My name is Alejandro U. Alvarez and I'm a passionate developer interested in web development, security, realtime/collaborative applications and tons of other stuff.
 
-For up to date info on me check my ["now" page](/now).
+I'm currently located in London working as a dev manager in a security team at an investment bank.
+
+I can be contacted via any of the social links at the top right, or via email at aluralma at gmail.
 
 ## I create things
 

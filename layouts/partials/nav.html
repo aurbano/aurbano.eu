@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      {{ if .Site.Menus.main }}
+          <ul class="navbar-nav nav-menu mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">
+                  Home
+                </a>
+              </li>
+              {{ $currentPage := . }}
+              {{ range sort .Site.Menus.main }}
+                {{ $is := $currentPage.IsMenuCurrent "main" . }}
+                {{ $has := $currentPage.HasMenuCurrent "main" . }}
+                <li
+                  {{ if or $is $has }}
+                    class="nav-item active"
+                  {{ else }}
+                    class="nav-item"
+                  {{ end }}
+                >
+                  <a class="nav-link" href="{{ .URL }}">
+                    {{ .Name }}
+                  </a>
+                </li>
+              {{ end }}
+          </ul>
+      {{ end }}
+      {{ if .Site.Menus.icon }}
+          <ul class="navbar-nav">
+              {{ range sort .Site.Menus.icon }}
+                  <li class="nav-item">
+                    <a title="{{ .Name }} profile" class="nav-link text-{{ .Name }}" href="{{ .URL }}">
+                      <i class="fa fa-{{ .Name }}"></i>
+                    </a>
+                  </li>
+              {{ end }}
+          </ul>
+      {{ end }}
+    </div>
+  </div>
+</nav>
