@@ -1,7 +1,7 @@
 ---
 title: Journey into AWS DeepRacer
 description: Does it get any better than AI racing?
-date: "2020-01-04T00:00:00Z"
+date: "2020-01-04"
 categories:
 - Learning
 tags:

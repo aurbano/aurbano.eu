@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Thoughts
-date: "2009-11-22T00:00:00Z"
+date: "2009-11-22"
 tags:
 - AI
 title: Developing more intelligent algorithms

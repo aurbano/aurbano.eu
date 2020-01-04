@@ -1,7 +1,7 @@
 ---
 categories:
 - Random
-date: "2014-10-21T00:00:00Z"
+date: "2014-10-21"
 description: The story of my new Mac
 tags:
 - Update

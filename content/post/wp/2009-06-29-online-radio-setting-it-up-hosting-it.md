@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Technical
-date: "2009-06-29T00:00:00Z"
+date: "2009-06-29"
 tags:
 - Radio
 title: Online radio - Setting it up & hosting it

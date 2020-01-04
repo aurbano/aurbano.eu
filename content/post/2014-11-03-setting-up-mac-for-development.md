@@ -1,7 +1,7 @@
 ---
 categories:
 - Technical
-date: "2014-11-03T00:00:00Z"
+date: "2014-11-03"
 description: Process of setting up a new Mac as a developer, coming from a Windows
   background
 tagline: Coming from Windows

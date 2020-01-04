@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Technical
-date: "2008-09-14T00:00:00Z"
+date: "2008-09-14"
 tags:
 - WordPress
 title: Display previous/next posts in single or category in WordPress

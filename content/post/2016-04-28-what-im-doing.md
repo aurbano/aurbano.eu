@@ -1,7 +1,7 @@
 ---
 categories:
 - Thoughts
-date: "2016-04-28T00:00:00Z"
+date: "2016-04-28"
 description: I guess this is just a long tweet
 tagline: Haven't posted in a while, and want to share thoughts
 tags:

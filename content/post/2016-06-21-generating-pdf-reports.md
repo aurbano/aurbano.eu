@@ -1,7 +1,7 @@
 ---
 categories:
 - Technical
-date: "2016-06-21T00:00:00Z"
+date: "2016-06-21"
 description: No but really, does anyone actually get excited about pretty pdf reports?
 tagline: Without having to trade your soul in the process
 tags:

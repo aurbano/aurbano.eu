@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Technical
-date: "2008-09-14T00:00:00Z"
+date: "2008-09-14"
 tags:
 - Browsers
 title: Use the browser to spell check your website

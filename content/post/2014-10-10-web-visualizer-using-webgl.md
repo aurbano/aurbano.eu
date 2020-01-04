@@ -1,7 +1,7 @@
 ---
 categories:
 - Experiments
-date: "2014-10-10T00:00:00Z"
+date: "2014-10-10"
 description: Building a web visualization tool using some search APIs and VivaGraphJS
   WebGL renderer
 tagline: VivaGraphJS library

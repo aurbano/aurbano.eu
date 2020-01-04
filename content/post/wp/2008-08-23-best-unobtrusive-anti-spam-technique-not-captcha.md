@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Technical
-date: "2008-08-23T00:00:00Z"
+date: "2008-08-23"
 tags:
 - Captcha
 title: Best unobtrusive anti-spam technique (Not CAPTCHA)

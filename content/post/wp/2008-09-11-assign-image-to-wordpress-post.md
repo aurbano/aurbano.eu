@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Technical
-date: "2008-09-11T00:00:00Z"
+date: "2008-09-11"
 tags:
 - PHP
 - WordPress

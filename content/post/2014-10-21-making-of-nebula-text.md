@@ -1,7 +1,7 @@
 ---
 categories:
 - Experiments
-date: "2014-10-21T00:00:00Z"
+date: "2014-10-21"
 description: Details on the process of making the WebGL experiment Nebula
 tagline: WebGL Experiment
 tags:

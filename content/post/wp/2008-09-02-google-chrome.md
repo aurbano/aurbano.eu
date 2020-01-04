@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Thoughts
-date: "2008-09-02T00:00:00Z"
+date: "2008-09-02"
 tags:
 - Browsers
 title: Google Chrome

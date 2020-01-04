@@ -1,7 +1,7 @@
 ---
 categories:
 - Learning
-date: "2019-12-18T00:00:00Z"
+date: "2019-12-18"
 description: Do I need Haskell to be a functional human?
 tags:
 - Haskell

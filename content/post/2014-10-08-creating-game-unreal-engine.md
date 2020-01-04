@@ -1,7 +1,7 @@
 ---
 categories:
 - Learning
-date: "2014-10-08T00:00:00Z"
+date: "2014-10-08"
 description: Developing a game from scratch in Unreal Engine 4
 tagline: Without knowing anything about it
 tags:

@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Thoughts
-date: "2008-05-20T00:00:00Z"
+date: "2008-05-20"
 tags:
 - Physics
 - Philosophy

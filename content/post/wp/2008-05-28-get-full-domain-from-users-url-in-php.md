@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Technical
-date: "2008-05-28T00:00:00Z"
+date: "2008-05-28"
 tags:
 - PHP
 title: Get full domain from user's URL in php

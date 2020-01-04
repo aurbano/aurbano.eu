@@ -1,7 +1,7 @@
 ---
 categories:
 - Technical
-date: "2014-11-08T00:00:00Z"
+date: "2014-11-08"
 description: Zsh is already pretty powerful, but it can still be extended into the
   best possible shell.
 tagline: And why it's better than fish

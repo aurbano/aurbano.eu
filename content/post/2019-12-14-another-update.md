@@ -1,7 +1,7 @@
 ---
 categories:
 - Thoughts
-date: "2019-12-14T00:00:00Z"
+date: "2019-12-14"
 description: How do I get back into blogging?
 tags:
 - Update

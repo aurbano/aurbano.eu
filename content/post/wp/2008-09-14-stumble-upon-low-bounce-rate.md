@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Thoughts
-date: "2008-09-14T00:00:00Z"
+date: "2008-09-14"
 tags:
 - Analytics
 title: Stumble Upon Low Bounce Rate

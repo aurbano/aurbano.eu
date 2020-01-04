@@ -1,7 +1,7 @@
 ---
 categories:
 - Random
-date: "2019-12-18T00:00:00Z"
+date: "2019-12-18"
 title: I am my family's password manager
 description: Is there any way to fix this?
 tags:

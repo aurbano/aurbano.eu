@@ -1,7 +1,7 @@
 ---
 categories:
 - Technical
-date: "2015-03-03T00:00:00Z"
+date: "2015-03-03"
 description: Sample web I've coded to get the latest front end technologies working
   together.
 tagline: Angularjs, Requirejs, Grunt & Bower

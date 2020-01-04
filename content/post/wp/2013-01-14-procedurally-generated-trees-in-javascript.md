@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Experiments
-date: "2013-01-14T00:00:00Z"
+date: "2013-01-14"
 tagline: Why not?
 tags:
 - JavaScript

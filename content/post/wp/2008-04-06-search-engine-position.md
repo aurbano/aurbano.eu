@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Technical
-date: "2008-04-06T00:00:00Z"
+date: "2008-04-06"
 tags:
 - Tools
 - SEO

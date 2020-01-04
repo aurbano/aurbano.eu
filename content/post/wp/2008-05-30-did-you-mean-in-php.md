@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Technical
-date: "2008-05-30T00:00:00Z"
+date: "2008-05-30"
 tags:
 - PHP
 - Soundex

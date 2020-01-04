@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Technical
-date: "2013-01-21T00:00:00Z"
+date: "2013-01-21"
 tags:
 - JavaScript
 - jQuery

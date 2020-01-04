@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Technical
-date: "2009-06-13T00:00:00Z"
+date: "2009-06-13"
 tags:
 - Analytics
 title: Event tracking - Google Analytics

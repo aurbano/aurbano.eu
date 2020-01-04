@@ -2,7 +2,7 @@
 author: Alex
 categories:
 - Technical
-date: "2009-01-20T00:00:00Z"
+date: "2009-01-20"
 tagline: PHP snippets
 tags:
 - PHP
