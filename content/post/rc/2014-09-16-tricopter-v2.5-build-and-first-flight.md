@@ -2,6 +2,8 @@
 author: Alex
 categories:
 - RC
+tags:
+- RC
 date: "2014-09-16T00:00:00Z"
 tagline: My first try at a tricopter
 thumbnail: /assets/files/thumbnails/tricopter.jpg

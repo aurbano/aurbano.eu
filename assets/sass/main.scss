@@ -56,6 +56,10 @@ a.nav-link {
   }
 }
 
+.card {
+  background: fade-out(#fff, 0.5);
+}
+
 main {
     margin: auto;
     padding: 25px;
@@ -64,6 +68,12 @@ main {
     text-align: left;
     position: relative;
     z-index: 0;
+
+    header {
+      .edit {
+        font-size: 0.8em;
+      }
+    }
 
     h1:first-child {
       border-bottom: solid $top-border-width $secondary;

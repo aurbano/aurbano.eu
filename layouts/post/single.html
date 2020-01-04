@@ -6,10 +6,19 @@
       <div class="col col-lg-8">
         <header>
           <h1>{{ .Title }}</h1>
-          <small class="date text-muted">
-            Published on {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}
-          </small>
-          {{ partial "tags" . }}
+          <div class="row">
+            <div class="col">
+              <small class="date text-muted">
+                Published on {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}
+              </small>
+              {{ partial "tags" . }}
+            </div>
+            <div class="col-2 text-right">
+              <a href="{{ .Site.Params.repo }}/blob/master/content/{{ .File.Path }}" class="edit" title="Open this post on Github">
+                <i class="fa fa-pencil"></i>
+              </a>
+            </div>
+          </div>
         </header>
 
         {{ if (.Param "outdated") }}
@@ -22,9 +31,15 @@
         <div align="start" class="content">{{ .Content }}</div>
 
         <!-- Related posts -->
-        {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }} {{ if $related }}
-        <h4 class="page-header">Related</h4>
-        {{ range $related }} {{ partial "list-item" . }} {{ end }} {{ end }}
+        {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
+        {{ if $related }}
+          <div class="card mt-4 shadow">
+            <div class="card-body">
+              <h5 class="card-title">More like this:</h5>
+              {{ range $related }} {{ partial "list-item" . }} {{ end }}
+            </div>
+          </div>
+        {{ end }}
       </div>
     </div>
   </div>

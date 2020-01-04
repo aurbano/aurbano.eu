@@ -7,6 +7,7 @@ params:
   author: "Alejandro U. Alvarez"
   description: "I sometimes stop by"
   githubUsername: "aurbano"
+  repo: https://github.com/aurbano/aurbano.eu
   font: "Raleway"
   highlight: true
   highlightStyle: "dark"
