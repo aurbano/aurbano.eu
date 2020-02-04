@@ -3,16 +3,31 @@
   <head>
     {{ partial "head-open" . }}
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .Title }}</title>
+    <meta name="description" content="A blog by Alejandro U. Alvarez on programming and humans" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+
+    <meta property="og:site_name" content="Alejandro U. Alvarez - Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ .Title }}" />
+    <meta property="og:description" content="{{ .Summary }}" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="article:published_time" content="{{ .PublishDate }}" />
+    <meta property="article:modified_time" content="{{ .Lastmod }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ .Title }}" />
+    <meta name="twitter:description" content="{{ .Summary }}" />
+    <meta name="twitter:url" content="{{ .Permalink }}" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Alejandro U. Alvarez" />
 
     {{ if .Site.Params.favicon }}
         <link rel="icon" href="{{ .Site.Params.favicon | absURL }}">
     {{ end }}
 
     {{ partial "css" . }}
-
-    {{ hugo.Generator }}
 
     {{ with .OutputFormats.Get "RSS" }}
         <link href="{{ .RelPermalink }}" rel="alternate" type="{{ .MediaType.Type }}" title="{{ $.Site.Title }}" />
@@ -25,16 +40,6 @@
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-
-    {{ if .Site.GoogleAnalytics }}
-      <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments)};
-        gtag('js', new Date());
-        gtag('config', '{{ .Site.GoogleAnalytics }}');
-      </script>
-    {{ end }}
 
     {{ partial "head-close" . }}
   </head>
