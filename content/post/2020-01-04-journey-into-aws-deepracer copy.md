@@ -7,6 +7,7 @@ categories:
 tags:
 - AI
 - Journey
+draft: true
 ---
 
 I'm starting another learning journey, this time into [AWS DeepRacer](https://aws.amazon.com/deepracer/). I will continue updating this post as I go.

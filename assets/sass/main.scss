@@ -81,6 +81,7 @@ main {
       padding-bottom: 0.25em;
       margin-top: 1em;
       position: relative;
+      margin-bottom: 0.25em;
 
       small {
         text-transform: none;
@@ -92,6 +93,8 @@ main {
     h1, h2, h3, h4 {
       font-family: '{{ .Site.Params.font }}', sans-serif;
       color: $dark;
+      margin-top: 1.5em;
+      margin-bottom: 0.75em;
 
       .badge {
         font-family: initial;

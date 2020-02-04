@@ -1,7 +1,7 @@
 baseURL: https://aurbano.eu
 disablePathToLower: true
 languageCode: en-us
-title: Alex's Blog
+title: Alejandro U. Alvarez
 
 params:
   author: "Alejandro U. Alvarez"
