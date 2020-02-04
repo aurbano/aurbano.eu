@@ -36,7 +36,7 @@ We've classified bugs as follows:
 * **Medium:**
   Bugs affecting us (internal users), with no known workaround.
 
-* **Low**
+* **Low:**
   Bug affecting us (internal users), with a known workaround.
 
 This way everyone in our team can quickly assess the complexity of our bugs. This system works well for us because it doesn't really matter what the bug **is**, as long as you know **who** is impacted.
