@@ -13,7 +13,6 @@
         </header>
 
         {{ range  sort .Pages "Params.year" "desc" }}
-          {{ with .Description }} {{ $.Scratch.Set "subheader" . }} {{ end }} 
           <div class="card my-4 shadow">
             <img class="card-img-top" src='/assets/files/screenshots/{{ .Param "image" }}' alt="{{ .Title }}" />
             <div class="card-body">
@@ -22,7 +21,7 @@
                 <small>{{ .Param "year" }}</small>
               </h4>
               <p class="card-text">
-                {{ $.Scratch.Get "subheader" | markdownify }}
+                {{ .Content }}
               </p>
             </div>
             {{ if (.Param "offline") }}
