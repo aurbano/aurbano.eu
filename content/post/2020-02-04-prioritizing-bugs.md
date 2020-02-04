@@ -26,7 +26,7 @@ There must be a well defined system to calculate this, which depends on each pro
 We've classified bugs as follows:
 
 * **Critical:**
-  It prevents any type of user from performing the core business purpose of the tool. For this we have identified a list of workflows that we consider our core business.
+  It prevents any type of user from performing the core business purpose of the tool. This definition was very useful because it forced us to come up with all the workflows we consider business critical.
 
   For example if we were building a simple mail client, reading incoming emails and sending emails might be our core business functionality, whereas a suggestions dropdown for the "To" field might not be.
 
