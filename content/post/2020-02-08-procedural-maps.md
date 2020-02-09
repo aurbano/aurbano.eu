@@ -130,8 +130,6 @@ First I will try to replicate the elevation lines. These should be easy, I could
 
 One thing that looks very distinctive from the reference map is that there are soft hills and sharp changes in elevation. This obviously depends on the real world terrain and type of landscape, but since I'm trying to replicate this reference image I think I'll need to multiply/combine together a couple of different noise maps in order to make it harsher.
 
-Initial attempt:
-
 <canvas id="elevation" style="height: 400px; width: 100%; border: #ccc solid 1px; margin: 1em 0"></canvas>
 
 Well, it's not too bad really! It sometimes generates small areas full of the line color, and sometimes the lines are not as thin as I'd like them to be. So if I want to actually replicate that sample I'm going to need a different approach...
