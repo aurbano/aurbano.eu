@@ -12,14 +12,21 @@ $(document).ready(function() {
   try {
     var noiseCanvas = getCanvas('noise');
     var terrainCanvas = getCanvas('terrainBasic');
+    var elevationCanvas = getCanvas('elevation');
+    var scaledCanvas = getCanvas('scaled');
 
     var noiseCtx = noiseCanvas.getContext('2d');
     var terrainCtx = terrainCanvas.getContext('2d');
+    var elevationCtx = elevationCanvas.getContext('2d');
+    var scaledCtx = scaledCanvas.getContext('2d');
 
     var simplexNoise = new SimplexNoise();
     var noiseScale = 75;
     var shiftSpeed = 1;
     var offset = 0;
+    var params = {
+      scaledScale: 200,
+    };
 
     var colorMap = [
       {
@@ -73,6 +80,60 @@ $(document).ready(function() {
       }
     }
 
+    function renderElevation() {
+      var lineColor = '#7e4723';
+      var grassColor = '#ebf9d5';
+      var elevationScale = 100;
+      for (var x = 0; x < elevationCanvas.width; x++) {
+        for (var y = 0; y < elevationCanvas.height; y++) {
+          var value1 = (simplexNoise.noise2D(
+            x / elevationScale,
+            y / elevationScale
+          ) / 2 + 0.5);
+
+          var value2 = (simplexNoise.noise2D(
+            (x + elevationCanvas.width * 2) / elevationScale,
+            (y + elevationCanvas.height * 2) / elevationScale
+          ) / 2 + 0.5);
+
+          var value = value1 * value2 * 100;
+
+          if (value > 0 && Math.floor(value) % 10 < 1) {
+            elevationCtx.fillStyle = lineColor;
+            elevationCtx.fillRect(x, y, 1, 1);
+          }
+
+          if (value % 10 > 4) {
+            elevationCtx.fillStyle = grassColor;
+            elevationCtx.fillRect(x, y, 1, 1);
+          }
+        }
+      }
+    }
+
+    function renderScaled() {
+      scaledCtx.clearRect(0, 0, scaledCanvas.width, scaledCanvas.height);
+      for (var x = 0; x < scaledCanvas.width; x++) {
+        for (var y = 0; y < scaledCanvas.height; y++) {
+          var value1 = (simplexNoise.noise2D(
+            x / params.scaledScale,
+            y / params.scaledScale
+          ) / 2 + 0.5);
+
+          var value = (simplexNoise.noise2D(
+            (x + scaledCanvas.width * 2) * value1 / params.scaledScale,
+            (y + scaledCanvas.height * 2) * value1 / params.scaledScale
+          ) / 2 + 0.5);
+
+          // map the noise to [0,360]
+          var hue = Math.floor(value * 360);
+
+          scaledCtx.fillStyle = 'hsl(' + hue + ', 100%, 50%)';
+          scaledCtx.fillRect(x, y, 1, 1);
+        }
+      }
+    }
+
     function moveNoise() {
       // shift current content 1 to the left
       var imageData = noiseCtx.getImageData(shiftSpeed, 0, noiseCanvas.width - shiftSpeed, noiseCanvas.height);
@@ -97,13 +158,23 @@ $(document).ready(function() {
       renderTerrain();
     });
 
+    // update scale
+    $('input.paramSlider').change(function(event) {
+      params[event.target.id] = event.target.value;
+      renderScaled();
+    });
+
     // Start rendering
 
     renderNoise(0, 0, noiseCanvas.width, noiseCanvas.height, 0, 0);
     // start animation loop
     nextFrame();
 
-    renderTerrain();
+    // delay the rest so they all render sequentially
+    setTimeout(renderTerrain, 1000);
+    setTimeout(renderElevation, 2000);
+    setTimeout(renderScaled, 3000);
+
   } catch (e) {
     alert('Hey! Some of the code on this page failed to run! Maybe it has gotten too old... Drop me an issue on Github if you want me to look into it: https://github.com/aurbano/aurbano.eu');
     console.warn('Failed to render examples', e);

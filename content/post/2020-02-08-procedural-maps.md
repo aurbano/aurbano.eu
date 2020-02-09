@@ -40,7 +40,7 @@ Our requirement for this game is to have at least 3 types of terrain: **Rocks** 
 
 The starting point is going to be [Perlin](https://en.wikipedia.org/wiki/Perlin_noise) or [Simplex](https://en.wikipedia.org/wiki/Simplex_noise) noise. I'll be using [simplex-noise.js](https://github.com/jwagner/simplex-noise.js) for this project. Simplex noise was also developed by Ken Perlin, and as far as I know it just has a lower computational complexity.
 
-If I generate some Simplex 2D noise I get something like the figure below. I have animated the x-axis to highlight the fact that Simplex noise is a continuous function. Another useful property is that it produces exactly the same output for a given seed and coordinate pair.
+If I generate some Simplex 2D noise I get something like the figure below. I have animated the x-axis to highlight the fact that Simplex noise is a continuous function. Another useful property is that it produces exactly the same output for a given seed and coordinate pair. It actually takes too long to generate the noise to be able to have a smooth animation, but in this case it's fine because on each frame I only need to render a [1 x height] rectangle to add on the right, and just shift all the other pixels 1 to the left.
 
 <canvas id="noise" style="height: 200px; width: 100%; border: #ccc solid 1px; margin: 1em 0"></canvas>
 
@@ -117,6 +117,86 @@ function getTerrain(o: Options, elevation: number, moisture: number) {
   return CELL_TYPES.GRASS;
 }
 {{< /highlight >}}
+
+## Variations
+
+I got curious now about whether I could use noise to generate realistic looking topographic maps. So off we go! First I need an example to try to replicate:
+
+{{< resourceFigure "posts/procedural-maps/img/topographic.jpg" "Some topographic map I found as reference" >}}
+
+Will this be useful? <del>Probably</del>Definitely not. Will it be a fun way to spend a couple hours today Sunday while it rains outside? Definitely yes!
+
+First I will try to replicate the elevation lines. These should be easy, I could turn the noise output into discrete steps, and just render them as lines. It's not going to be very efficient because I'd only be able to draw them pixel by pixel... I'll think of a solution after.
+
+One thing that looks very distinctive from the reference map is that there are soft hills and sharp changes in elevation. This obviously depends on the real world terrain and type of landscape, but since I'm trying to replicate this reference image I think I'll need to multiply/combine together a couple of different noise maps in order to make it harsher.
+
+Initial attempt:
+
+<canvas id="elevation" style="height: 400px; width: 100%; border: #ccc solid 1px; margin: 1em 0"></canvas>
+
+Well, it's not too bad really! It sometimes generates small areas full of the line color, and sometimes the lines are not as thin as I'd like them to be. So if I want to actually replicate that sample I'm going to need a different approach...
+
+This is the bit that generates the lines right now:
+
+{{< highlight js >}}
+var value1 = (simplexNoise.noise2D(
+  x / elevationScale,
+  y / elevationScale
+) / 2 + 0.5);
+
+var value2 = (simplexNoise.noise2D(
+  (x + elevationCanvas.width * 2) / elevationScale,
+  (y + elevationCanvas.height * 2) / elevationScale
+) / 2 + 0.5);
+
+var value = value1 * value2 * 100;
+
+// draw a line on 10, 20, 30...
+if (value > 0 && Math.floor(value) % 10 < 1) {
+  elevationCtx.fillStyle = lineColor;
+  elevationCtx.fillRect(x, y, 1, 1);
+}
+
+// draw grass sometimes
+if (value % 10 > 4) {
+  elevationCtx.fillStyle = grassColor;
+  elevationCtx.fillRect(x, y, 1, 1);
+}
+{{< /highlight >}}
+
+On top of the problem with the lines not being actually lines I have the fact that this can only generate very "smooth" shapes. Multiplying two maps together fixed it a bit, but still doesn't generate sharp turns like the reference. I'm thinking using a different scale for the other noise values?
+
+Two things here: I thought it would be easier to get the elevation lines by drawing pixels at a certain noise level. Turns out it won't look smooth so I'd have to first render the image as b&w noise and then maybe "walk" the image drawing lines at certain transitions? I actually don't know but it feels like it would take ages to get a good result so I'm going to continue in a new direction:
+
+Wild idea: What if I use a noise map as the scale factor for another noise map?
+
+{{< highlight js >}}
+var value1 = (simplexNoise.noise2D(
+  x / elevationScale,
+  y / elevationScale
+) / 2 + 0.5);
+
+var value2 = (simplexNoise.noise2D(
+  // multiply each coordinate by value1 to scale it by it
+  (x + elevationCanvas.width * 2) * value1 / elevationScale,
+  (y + elevationCanvas.height * 2) * value1 / elevationScale
+) / 2 + 0.5);
+{{< /highlight >}}
+
+Only one way to know how it'll look! :) I also decided to give this one a more fun color scheme, using the HSL color space and mapping the noise to a number 0-360 so that I can use it directly as the Hue parameter.
+
+<canvas id="scaled" style="height: 300px; width: 100%; border: #ccc solid 1px; margin: 1em 0"></canvas>
+
+<form>
+  <div class="form-group">
+    <label for="scaledScale">Scale</label><br>
+    <input type="range" class="form-control-range paramSlider" id="scaledScale" min="100" max="1000" value="200">
+  </div>
+</form>
+
+Ok at this point I have to admit that I'm just having pointless fun, I would love to turn the above into an animation but when I was doing the noise scrolling horizontally at the start of this post I realised that generating the noise took too long for a smooth animation. So there's no way I'm getting away with it here, at least not without some tricks.
+
+## Next steps
 
 Soon we'll start using this generator in our new game, so I'll update this post if we come up with any improvements.
 
