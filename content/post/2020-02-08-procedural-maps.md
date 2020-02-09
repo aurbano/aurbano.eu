@@ -194,6 +194,9 @@ Only one way to know how it'll look! :) I also decided to give this one a more f
 
 Ok at this point I have to admit that I'm just having pointless fun, I would love to turn the above into an animation but when I was doing the noise scrolling horizontally at the start of this post I realised that generating the noise took too long for a smooth animation. So there's no way I'm getting away with it here, at least not without some tricks.
 
+In this case these swirls are very similar to using a [displacement map](https://en.wikipedia.org/wiki/Displacement_mapping) on a grid of colors, which could be done quite efficiently with WebGl. I'll leave doing that for another day.
+
+
 ## Next steps
 
 Soon we'll start using this generator in our new game, so I'll update this post if we come up with any improvements.
