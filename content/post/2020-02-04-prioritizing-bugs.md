@@ -1,7 +1,7 @@
 ---
 title: When do you fix bugs?
 description: Tomorrow?
-date: "2020-01-21"
+date: "2020-02-04"
 tags:
 - Agile
 ---

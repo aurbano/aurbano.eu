@@ -1,0 +1,10 @@
+{{ $file := .Get 0 }}
+{{ $format := index (split $file ".") 1 }}
+{{ $asset := resources.Get $file }}
+
+
+{{ if eq $format "js" }}
+<script type="text/javascript" src="{{ $asset.Permalink }}"></script>
+{{ else }}
+  <img src="{{ $asset.Permalink }}" />
+{{ end }}

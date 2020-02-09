@@ -130,9 +130,6 @@ main {
 }
 
 figure {
-  border: solid 1px #ccc;
-  padding: 5px 5px 0.5em;
-  background: white;
   text-align: center;
 
   img {
@@ -177,6 +174,22 @@ hr {
 
 img {
     max-width: 100%;
+}
+
+table.images {
+  text-align: center;
+  font-size: 0.9em;
+  margin: 2em 0;
+  color: #666;
+
+  td {
+    vertical-align: top;
+
+    img {
+      display: block;
+      margin-bottom: 0.5em;
+    }
+  }
 }
 
 /* Homepage */
@@ -264,13 +277,13 @@ a, a:link, a:visited {
   a, a:link, a:visited {
     color: $accent;
     text-shadow: 0 1px 1px #fff;
-    box-shadow: inset 0 -.5em scale-color($accent, $lightness: 85%);
+    box-shadow: inset 0 -.5em scale-color($accent, $lightness: 92%);
     transition: box-shadow .2s ease-in-out;
     text-decoration: none;
   
     &:hover {
-      color: #000;
-      box-shadow: inset 0 -1.2em 0 scale-color($pink, $lightness: 50%);
+      color: scale-color($accent, $lightness: -20%);
+      box-shadow: inset 0 -1.2em 0 scale-color($pink, $lightness: 90%);
       text-shadow: none;
     }
   }
@@ -307,6 +320,11 @@ a.item-tag {
     background-color:#def;
     color: #0366d6 !important;
   }
+}
+
+.related {
+  margin-top: 4em;
+  margin-bottom: 1em;
 }
 
 footer {

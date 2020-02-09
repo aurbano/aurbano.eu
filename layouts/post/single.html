@@ -28,12 +28,14 @@
           </div>
         {{end}}
 
-        <div align="start" class="content">{{ .Content }}</div>
+        <div align="start" class="content">
+          {{ .Content }}
+        </div>
 
         <!-- Related posts -->
         {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
         {{ if $related }}
-          <div class="card mt-4 shadow">
+          <div class="card related shadow">
             <div class="card-body">
               <h5 class="card-title">More like this:</h5>
               {{ range $related }} {{ partial "list-item" . }} {{ end }}
