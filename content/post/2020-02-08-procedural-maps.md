@@ -11,6 +11,10 @@ tags:
 
 At [#socialgorithm](https://socialgorithm.org) we recently started working on a new game, let's call it "**Ant Colony**" for now. It's a bit like simplified Age of Empires, where you write the code that drives a bunch of ants, and they need to survive and ultimately be the only ones alive in the map.
 
+We needed to generate map procedurally, which is [nothing](https://www.redblobgames.com/maps/terrain-from-noise/) new [really](https://github.com/Azercoco/3D-Earth-Like-Planet-Procedural-Generator), but it was new to me when I started writing the code for it, so it's been a fun opportunity to learn something new!
+
+I've seen plenty of noise based terrain generators but unfortunately couldn't find anything where I could quickly test different parameters and ways to use the noise functions, so I decided to build a simple generator with a GUI to control the parameters:
+
 [Procedural Map Generator](https://aurbano.github.io/procedural-maps/)
 
 Here are some examples of maps produced using this tool:
@@ -23,7 +27,7 @@ Here are some examples of maps produced using this tool:
         </td>
         <td width="33%">
           {{< resource "posts/procedural-maps/img/islands.png" >}}
-          Islands
+          Islands (scaled using the tool itself)
         </td>
         <td width="33%">
           {{< resource "posts/procedural-maps/img/forest.png" >}}
@@ -31,10 +35,6 @@ Here are some examples of maps produced using this tool:
         </td>
     </tr>
 </table>
-
-We need procedural map generation, which is [nothing](https://www.redblobgames.com/maps/terrain-from-noise/) new [really](https://github.com/Azercoco/3D-Earth-Like-Planet-Procedural-Generator), but it was new to me when I started writing the code for it, so it's been a fun opportunity to learn something new.
-
-I've seen plenty of noise based terrain generators but unfortunately couldn't find anything where I could quickly test different parameters and ways to use the noise functions.
 
 Our requirement for this game is to have at least 3 types of terrain: **Rocks** (block moving), **Grass** (can move freely), and **Water** (slows ants down). It's also important to make something that *looks good*, because when games are being played everyone will see the map on a big projector.
 
@@ -52,7 +52,7 @@ This is where it gets slightly complicated. If we were working in 3D we could us
 
 {{< resourceFigure "posts/procedural-maps/img/3d-terrain.png" "3D elevation mapped from noise" >}}
 
-In 2D though we can only play with colors. A naive approach would be to define some color stops for each noise value we'd get something that wouldn't look realistic. So let's say we normalize our noise to output values in the range [0, 100], we could apply the following color map:
+In 2D we can only play with colors though. A naive approach would be to define some color stops for each noise value, so let's say we normalize our noise to output values in the range [0, 100] and then apply the following color map:
 
 * <span style="color: #0a90d8">Water</span> < 20
 * <span style="color: #cea244">Sand</span> < 22
@@ -78,9 +78,9 @@ Here you can play with the elevations for each color:
   </div>
 </form>
 
-This is a reasonable approach, but if we want to add different types of terrain (dry areas, forest... ) it becomes too obviously based on noise. An easy way to get around this is to use two noise maps: elevation and moisture. I got this idea from this [amazing blog post by Red Blob Games](https://www.redblobgames.com/maps/terrain-from-noise/). The idea is that elevation controls mountains and water, but is then combined with a moisture map to determine the type of terrain **in between**.
+This is a reasonable approach, but if we want to add different types of terrain (dry areas, forest... ) it becomes too obviously based on noise and won't look realistic. An easy way to get around this is to use two noise maps: elevation and moisture. I got this idea from this [amazing blog post by Red Blob Games](https://www.redblobgames.com/maps/terrain-from-noise/). The idea is that elevation controls mountains and water, but is then combined with a moisture map to determine the type of terrain **in between**.
 
-The algorithm I ended up using to choose which terrain to render without losing my hair over it is this:
+The algorithm that I ended up using to generate realistic terrain is this:
 
 {{< highlight typescript >}}
 /**
@@ -118,7 +118,7 @@ function getTerrain(o: Options, elevation: number, moisture: number) {
 }
 {{< /highlight >}}
 
-Soon we'll start using this generator for our new game, so I'll update this post if we come up with any improvements to our procedural generator.
+Soon we'll start using this generator in our new game, so I'll update this post if we come up with any improvements.
 
 You can also follow updates at [#socialgorithm](https://socialgorithm.org), or get in touch if you want to run a coding workshop/competition in your uni, company, school, meetup...
 
