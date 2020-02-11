@@ -176,18 +176,20 @@ img {
     max-width: 100%;
 }
 
-table.images {
+.row.images {
   text-align: center;
   font-size: 0.9em;
-  margin: 2em 0;
+  margin: 2em 0 1em;
   color: #666;
 
-  td {
+  & > div {
     vertical-align: top;
+    margin-bottom: 1em;
 
     img {
       display: block;
       margin-bottom: 0.5em;
+      padding: 1px;
     }
   }
 }

@@ -19,22 +19,20 @@ I've seen plenty of noise based terrain generators but unfortunately couldn't fi
 
 Here are some examples of maps produced using this tool:
 
-<table class="images">
-    <tr>
-        <td width="33%">
-          {{< resource "posts/procedural-maps/img/regular.png" >}}
-          Grasslands with some rocks/mountains
-        </td>
-        <td width="33%">
-          {{< resource "posts/procedural-maps/img/islands.png" >}}
-          Islands (scaled using the tool itself)
-        </td>
-        <td width="33%">
-          {{< resource "posts/procedural-maps/img/forest.png" >}}
-          Forest
-        </td>
-    </tr>
-</table>
+<div class="row no-gutters images">
+  <div class="col-sm">
+    {{< resource "posts/procedural-maps/img/regular.png" >}}
+    Grasslands with some rocks/mountains
+  </div>
+  <div class="col-sm">
+    {{< resource "posts/procedural-maps/img/islands.png" >}}
+    Islands (scaled using the tool itself)
+  </div>
+  <div class="col-sm">
+    {{< resource "posts/procedural-maps/img/forest.png" >}}
+    Forest
+  </div>
+</div>
 
 Our requirement for this game is to have at least 3 types of terrain: **Rocks** (block moving), **Grass** (can move freely), and **Water** (slows ants down). It's also important to make something that *looks good*, because when games are being played everyone will see the map on a big projector.
 
