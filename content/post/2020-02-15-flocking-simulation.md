@@ -2,7 +2,6 @@
 title: Flocking Behaviour Simulations
 description: Different approaches
 date: "2020-02-08"
-draft: true
 categories:
 - Learning
 tags:
@@ -78,8 +77,9 @@ I'll still simulate constant speed for now.
 
 ### Second Iteration: Boids with FoV and Non-Instant turning
 
-I'll start with the visualiation of the new model:
+This article is still being written! The second iteration will come soon :)
 
+You can preview the "final product" on [it's Github page](https://aurbano.github.io/flock-webgl/), currently in some stage between iteration 1 and 2.
 
 <!-- CodePen Embed Library -->
 <script async src="https://assets.codepen.io/assets/embed/ei.js"></script>
