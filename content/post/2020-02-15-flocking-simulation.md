@@ -26,25 +26,44 @@ Reynolds called each particle in the simulation a *boid* (bird-oid object), so I
 
 So I set out to implement this and see how it looks!
 
-### First attempt: Reynolds' Boids
+### First Iteration: Reynolds' Boids
 
 To keep things simple initially, I decided to simulate it in 2D, make the speed of the boids fixed and have the rules determine their flight direction only (the algorithm is detailed below the visualization). 
 
-Although my end goal is to generate a visualization that looks like the reference video, so I'll eventually need to go 3D and a few thousand boids. Below I have embedded a CodePen with the code I have at this stage: (The mouse behaves like a predator, so boids will try to avoid it)
+Although my end goal is to generate a visualization that looks like the reference video, so I'll eventually need to go 3D and a few thousand boids.
 
-{{< codepen aurbano abONWZr 350>}}
-
-The algorithm clearly doesn't work that well yet, I've made a lot of simplifications to Reynold's rules in order to quickly get something done that I can play with - but the good thing is that now I have the WebGL renderer setup, 2D boids arranged, turning of the sprites as they fly, and live configuration of the simulation parameters (not in the tiny embedded version above, but on the fullscreen demo) so I can iterate fast <del title="Wait, wrong context!">and break things</del>.
-
-At least there is *some* flocking behaviour. I can clearly see the effects of cohesion, alignment, and separation; although because I'm not taking the distance to neighbours into account the result is not as natural looking.
-
-The way I implemented this first attempt was:
+My initial algorithm is:
 
 1. For each boid {{<math-inline>}}z_i{{</math-inline>}} find all neighbours {{<math-inline>}}z_{ij}{{</math-inline>}} within each of the radii (cohesion {{<math-inline>}}z_{ij_c}{{</math-inline>}} , alignment {{<math-inline>}}z_{ij_a}{{</math-inline>}}, and separation {{<math-inline>}}z_{ij_s}{{</math-inline>}})
-1. For each group of neighbours, calculate the center of mass {{<math-inline>}}C_k = z_i - z_{ij_k}{{</math-inline>}} and the angle between it and each boid: {{<math-inline>}}\theta_k = atan2(\dfrac{z_i}{C_k}){{</math-inline>}}
-1. Update the boid's direction: {{<math-inline>}} \Delta\theta_i = \theta_i + c_k(\theta_k - \theta_i) {{</math-inline>}} where {{<math-inline>}}c_k{{</math-inline>}} is the coefficient for that rule.
+1. For each group of neighbours {{<math-inline>}}z_{ij_k}{{</math-inline>}} calculate the center of mass {{<math-inline>}}C_k = z_i - z_{ij_k}{{</math-inline>}} and the angle between it and each boid: {{<math-inline>}}\theta_k = atan2(\dfrac{z_i}{C_k}){{</math-inline>}}
+1. Update the boid's direction {{<math-inline>}} \theta_i(t+1) = \theta_i(t) + c_k(\theta_k - \theta_i) {{</math-inline>}} where {{<math-inline>}}c_k{{</math-inline>}} is the coefficient for that rule.
 
-If I want to continue with this approach I'd need to make a modification so that each neighbour's contribution to the center of mass is scaled by the distance to the boid. The other issue is that this approach allows instant changes in direction, whereas in real life there should always be some delay - this makes me think that each boid should have the current direction, the desired direction, and perhaps *how much* they want to go in that direction.
+Below I have embedded a CodePen with the code I have at this stage: (Green indicates that a boid is aligned to others. The mouse behaves like a predator, so boids will try to avoid it and turn red while doing so)
+
+{{< codepen aurbano abONWZr "Basic version of Reynolds' algorithm" 350 >}}
+
+The algorithm clearly doesn't work that well yet, unsurprisingly since I've made a lot of simplifications to Reynold's rules in order to quickly get something done that I can play with - but the good thing is that now I have the project setup (WebGL renderer setup, 2D boids arranged, turning of the sprites as they fly... ) so I can iterate fast <del title="Wait, wrong context!">and break things</del>.
+
+At least there is *some* flocking behaviour though. I can clearly see the effects of cohesion, alignment, and separation so it's not a bad start!
+
+Alhough I need a better way to *see* what the boids are doing, something that will give me an idea of what's happening **over time** in case there are other obvious problems with the algorithm, so I modified the code slightly to also render a heatmap based on the boids locations: 
+
+{{< codepen aurbano RwPajeY "Heat map of the boids' locations over time" 450>}}
+
+Thanks to the heatmap I can quickly identify a big issue with my simulation: I've made the boids *wrap* around the edges of the simulation window as if it were a projected sphere. But boids on the opposite side are not currently taken into account for the distance when finding neighbours, meaning that the algorithm breaks near the edges of the simulation. Before I improve the algorithm I'd like to fix that problem so that I get accurate visual feedback.
+
+I have two options:
+
+* Keep the wrapping, and include boids on the other side of the window (potentially more realistic).
+* Disable wrapping and instead make the boids prefer the center of the screen with another weak force (less realistic?).
+
+Calculating the distance either in a straight line or wrapping around the edges sounds complicated but it really isn't, since we can just use negative x/y values in the distance function.
+
+{{< resourceFigure "posts/flocking/img/wrapping.png" "Include boids wrapping around the simulation when calculating the distance to neighbours" >}}
+
+#### Next steps
+
+If I want to continue with this model I'd need to make a modification so that each neighbour's contribution to the center of mass is scaled by the distance to the boid. The other issue is that this approach allows instant changes in direction, whereas in real life there should always be some delay - this makes me think that each boid should have the current direction, the desired direction, and perhaps *how much* they want to go in that direction. I also need to solve the problem with wrapping around the window, I might just remove that later and instead always make the boids *prefer* being closer to the center with a weak attraction.
 
 Using this new approach, if there is a predator the desired direction will be to go away from it, and the *how much* part will be very high, depending on the predator's distance.
 
@@ -57,11 +76,10 @@ So to recapitulate, for my second attempt I need:
 
 I'll still simulate constant speed for now.
 
-### Second attempt: Boids with FoV and Non-Instant turning
+### Second Iteration: Boids with FoV and Non-Instant turning
 
 I'll start with the visualiation of the new model:
 
-{{< codepen aurbano abONWZr 350>}}
 
 <!-- CodePen Embed Library -->
 <script async src="https://assets.codepen.io/assets/embed/ei.js"></script>

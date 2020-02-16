@@ -1,13 +1,19 @@
-{{ $height := .Get 2 | default "350" }}
+{{ $height := .Get 3 | default "350" }}
 
-<div
-  data-height="{{ $height }}"
-  data-theme-id="24311"
-  data-slug-hash="{{ .Get 1 }}"
-  data-default-tab="result"
-  data-user="{{ .Get 0 }}"
-  data-embed-version="2"
-  class="codepen"
->
-  <a href="https://codepen.io/{{ .Get 0 }}/pen/{{ .Get 1 }}/">See the Pen</a>
-</div>
+<figure>
+  <div
+    data-height="{{ $height }}"
+    data-theme-id="24311"
+    data-slug-hash="{{ .Get 1 }}"
+    data-default-tab="result"
+    data-user="{{ .Get 0 }}"
+    data-embed-version="2"
+    class="codepen"
+  >
+    <a href="https://codepen.io/{{ .Get 0 }}/pen/{{ .Get 1 }}/">See the Pen</a>
+  </div>
+
+  <figcaption>
+    <h4>{{ .Get 2 }} - <a title="View the source/edit in Codepen" target="_blank" href="https://codepen.io/{{ .Get 0 }}/pen/{{ .Get 1 }}?editors=0110">Codepen</a></h4>
+  </figcaption>
+</figure>
