@@ -10,6 +10,7 @@ tags:
 - AngularJS
 title: Using the latest front-end tech
 aliases: [ /blog/front-end-sample/ ]
+outdated: true
 ---
 
 There are so many new technologies popping up every week on **JavaScript front end** ways of doing things that it becomes really hard to stay on top of everything.
@@ -23,8 +24,6 @@ I basically wanted:
 * **MVC front end** (Angularjs)
 
 It seems straight forward seeing the list this way, but it does *take a while* to get it running. After doing both I realized that the starting blocks were pretty much the same in both cases, so I took all that common code and put it on a sample website.
-
-{{< figure src="https://aurbano.github.io/angular-requirejs-bower-grunt/assets/logo.png" title="Angular Requirejs Bower Grunt" >}}
 
 Take a look at the *[sample website](https://github.com/aurbano/angular-requirejs-bower-grunt)* first to see what we will be building. Following here is a guide on how it works.
 

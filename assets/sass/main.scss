@@ -261,6 +261,11 @@ a, a:link, a:visited {
     color: scale-color($pink, $lightness: -10%)
   }
 
+  .cp_embed_wrapper {
+    margin: 2rem $code-horizontal-margin;
+    border-radius: 0.25rem;
+  }
+
   pre {
     padding: 0;
     border-radius: 0.25rem;
