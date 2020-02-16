@@ -7,6 +7,7 @@ categories:
 tags:
 - JavaScript
 - Procedural
+- Journey
 ---
 
 I've always been fascinated by flocks of birds flying in the sky, when they create patterns like the ones you can see in this video:
