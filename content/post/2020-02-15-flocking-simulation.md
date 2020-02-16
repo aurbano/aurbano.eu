@@ -48,7 +48,7 @@ At least there is *some* flocking behaviour though. I can clearly see the effect
 
 Alhough I need a better way to *see* what the boids are doing, something that will give me an idea of what's happening **over time** in case there are other obvious problems with the algorithm, so I modified the code slightly to also render a heatmap based on the boids locations: 
 
-{{< codepen aurbano RwPajeY "Heat map of the boids' locations over time" 450>}}
+{{< codepen aurbano RwPajeY "Heat map of the boids' locations over time. If it doesn't look much like a heatmap it's probably because most boids are 'stuck' in the corners or edges (explained below), and the heatmap scales the rest to the 'hottest' value." 450>}}
 
 Thanks to the heatmap I can quickly identify a big issue with my simulation: I've made the boids *wrap* around the edges of the simulation window as if it were a projected sphere. But boids on the opposite side are not currently taken into account for the distance when finding neighbours, meaning that the algorithm breaks near the edges of the simulation. Before I improve the algorithm I'd like to fix that problem so that I get accurate visual feedback.
 
