@@ -21,7 +21,7 @@ This post details my journey learning about flocking behaviours, the mathematica
 
 I've always been fascinated by flocks of birds flying in the sky creating patterns like the ones you can see in this video:
 
-{{< youtube V4f_1_r80RY >}}
+{{< youtubeFigure V4f_1_r80RY "Reference material for my end goal" >}}
 
 And as usual I've thought, how hard can it be to recreate? So off we go into the next learning adventure!
 
