@@ -9,6 +9,8 @@ $primary: #3fc1c9;
 $secondary: $pink;
 $dark: #364f6b;
 
+$link-color: $accent;
+
 @import '../vendor/bootstrap/scss/functions';
 @import '../vendor/bootstrap/scss/variables';
 @import '../vendor/bootstrap/scss/mixins';

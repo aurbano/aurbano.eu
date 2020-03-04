@@ -6,7 +6,6 @@
     <div class="intro">
         {{ with .Site.Params.profilePic }} <img class="profile" src="{{ . }}"> {{ end }}
         <h1>{{ .Site.Title }}</h1>
-        <h2>{{ markdownify .Site.Params.Description }}</h2>
         {{ with .Content }} <div class="homepage-content text-justify">{{ . }}</div> {{ end }}
 
         {{ if .Site.Menus.main }}
@@ -22,6 +21,20 @@
                 </li>
               {{ end }}
           </ul>
+        {{ end }}
+
+        {{ $posts := .Site.RegularPages | first 5 }}
+        {{ with $posts }}
+          <div class="container">
+            <h3>Latest posts</h3>
+            {{ range . }}
+              <p>
+                <a href="{{ .RelPermalink }}" class="btn btn-light shadow-sm btn-sm">
+                {{ .Title }}
+                </a>
+              </p>
+            {{ end }}
+          </div>
         {{ end }}
     </div>
 </main>

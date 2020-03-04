@@ -8,9 +8,18 @@ tags:
 - JavaScript
 - Procedural
 - Journey
+
+# // REF:
+# // https://github.com/rafinskipg/birds/blob/master/app/scripts/models/birdsGenerator.js
+
+# // REF2
+# // Reynolds, Craig (1987). "Flocks, herds and schools: A distributed behavioral model.". SIGGRAPH '87: Proceedings of the 14th annual conference on Computer graphics and interactive techniques. Association for Computing Machinery
+
 ---
 
-I've always been fascinated by flocks of birds flying in the sky, when they create patterns like the ones you can see in this video:
+This post details my journey learning about flocking behaviours, the mathematical models behind them, and my own implementation using WebGL. You can also see [the final product](https://aurbano.github.io/flocking-simulation/) before you read it if you want!
+
+I've always been fascinated by flocks of birds flying in the sky creating patterns like the ones you can see in this video:
 
 {{< youtube V4f_1_r80RY >}}
 
@@ -50,37 +59,63 @@ Alhough I need a better way to *see* what the boids are doing, something that wi
 
 {{< codepen aurbano RwPajeY "Heat map of the boids' locations over time. If it doesn't look much like a heatmap it's probably because most boids are 'stuck' in the corners or edges (explained below), and the heatmap scales the rest to the 'hottest' value." 450>}}
 
+If you just see a black screen refresh the page to see it when it starts!
+
 Thanks to the heatmap I can quickly identify a big issue with my simulation: I've made the boids *wrap* around the edges of the simulation window as if it were a projected sphere. But boids on the opposite side are not currently taken into account for the distance when finding neighbours, meaning that the algorithm breaks near the edges of the simulation. Before I improve the algorithm I'd like to fix that problem so that I get accurate visual feedback.
 
-I have two options:
+The heatmap doesn't look the same in the small size above so I made a video of a sped-up version where it's easier to spot the current patterns that the algorithm produces: (make sure to select the highest quality possible to appreciate the details)
+
+{{< youtubeFigure _kLC8KuuQFw "Time-lapse of the heatmap in action, making certain patterns even more obvious" >}}
+
+The heatmap was useful because it allowed me to **see patterns** that weren't obvious at first, specially with the sped up version in the video above. I find that a visualization is onlly useful when it gives the existing data *a new dimension* of information.
+
+In this case it allows us to see patterns **over time**, but it doesn't contain information about what's going on. For that I'm going to have to rewrite the system so that it allows me to easily **overlay** debug information.
+
+When coding traditional systems we debug either with a debugger, or by printing statements to a console. When working with animations like these though this is not useful, because I want to see live values **as they are being updated**, and sometimes not as text - I might want to see the boid *field of vision* as a cone for instance.
+
+So I'm going to create a debugging system that will allow the following:
+
+* Arbitrary lines from each boid, defined either as an endpoint, or as an angle and a distance. This will allow debugging the location of neighbours (endpoint mode), as well as cohesion/alignment (by displaying the vector it's following, as an angle and a length).
+* Arbitrary lines of text under each boid (so I can see any parameter updating live)
+
+Below is a video of what the simulation looks like with debugging enabled:
+
+{{< youtubeFigure ttOtlayown0 "Debugging system enabled, displaying live data under each boid, their field of vision and lines to detected neighbours" >}}
+
+As I was working on the debugging system I did notice several bugs in the maths, mostly due to incorrect assumptions about the coordinate system and how angles were measured. I knew that positive Y is down (as is typical in computer vision - apparently due to [old CRT monitors](https://gamedev.stackexchange.com/questions/83570/why-is-the-origin-in-computer-graphics-coordinates-at-the-top-left)), but I had assumed that angles were measured from the X axis counter-clockwise, and they were in fact measured from the Y positive axis clockwise.
+
+After fixing that I decided to tackle the issue with the boids *getting stuck* in the corners. I have two options:
 
 * Keep the wrapping, and include boids on the other side of the window (potentially more realistic).
-* Disable wrapping and instead make the boids prefer the center of the screen with another weak force (less realistic?).
+* Disable wrapping and instead make the boids prefer being inside of the screen with another weak force (less realistic because of the preference to be inside the screen).
 
-Calculating the distance either in a straight line or wrapping around the edges sounds complicated but it really isn't, since we can just use negative x/y values in the distance function.
+For the first approach I would have to calculate the distance to each neighbour, but also to their "reflections":
 
 {{< resourceFigure "posts/flocking/img/wrapping.png" "Include boids wrapping around the simulation when calculating the distance to neighbours" >}}
 
-#### Next steps
+Unfortunately distance calculations are the most expensive part of my animation loop, so adding a bunch more is not a good solution. So I'll make the boids "desire" being inside the screen whenever they leave and aren't affected by any other force (so that if 3 boids leave, 2 of them following the first, only the one at the front will turn, preserving the flock).
 
-If I want to continue with this model I'd need to make a modification so that each neighbour's contribution to the center of mass is scaled by the distance to the boid. The other issue is that this approach allows instant changes in direction, whereas in real life there should always be some delay - this makes me think that each boid should have the current direction, the desired direction, and perhaps *how much* they want to go in that direction. I also need to solve the problem with wrapping around the window, I might just remove that later and instead always make the boids *prefer* being closer to the center with a weak attraction.
+#### Improvements for the Next Iteration:
 
-Using this new approach, if there is a predator the desired direction will be to go away from it, and the *how much* part will be very high, depending on the predator's distance.
-
-The other change I should make is that right now neighbours are calculated using only the distance. But real life animals can't see in 360 degrees, so I need to implement the concept of **field of view**.
-
-So to recapitulate, for my second attempt I need:
-
-* Boids Field of View
-* Desired Direction & Desire Strength
-
-I'll still simulate constant speed for now.
+1. Finish implementing the Field of Vision of each boid.
+1. Use the distance to each neighbour when calculating their effect on a boid.
+1. Add the concept of **desired direction** to boids. Without it, they'll just turn instantly.
 
 ### Second Iteration: Boids with FoV and Non-Instant turning
 
-This article is still being written! The second iteration will come soon :)
+#### Field of View
 
-You can preview the "final product" on [it's Github page](https://aurbano.github.io/flock-webgl/), currently in some stage between iteration 1 and 2.
+This is a pretty easy thing to implement. Each boid already has a direction of travel defined as a clockwise rotation from the global Y positive axis, so I just need to calculate the angle from each boid to its neighbours and then see if that falls within the *cone* of vision:
+
+{{< resourceFigure "posts/flocking/img/boid_vision.png" "Boid vision angles and helper lines" >}}
+
+The first step is to translate the neighbour coordinates into the reference of the current boid:
+
+## The Road ahead is being built!
+
+I'm writing this article as I progress with my journey. Check it out every week for updates!
+
+You can preview the "final product" on [it's Github page](https://aurbano.github.io/flocking-simulation/).
 
 <!-- CodePen Embed Library -->
 <script async src="https://assets.codepen.io/assets/embed/ei.js"></script>
