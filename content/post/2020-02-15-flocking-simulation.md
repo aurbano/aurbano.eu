@@ -67,7 +67,7 @@ The heatmap doesn't look the same in the small size above so I made a video of a
 
 {{< youtubeFigure _kLC8KuuQFw "Time-lapse of the heatmap in action, making certain patterns even more obvious" >}}
 
-The heatmap was useful because it allowed me to **see patterns** that weren't obvious at first, specially with the sped up version in the video above. I find that a visualization is onlly useful when it gives the existing data *a new dimension* of information.
+The heatmap was useful because it allowed me to **see patterns** that weren't obvious at first, specially with the sped up version in the video above. I find that a visualization is only useful when it gives the existing data *a new dimension* of information.
 
 In this case it allows us to see patterns **over time**, but it doesn't contain information about what's going on. For that I'm going to have to rewrite the system so that it allows me to easily **overlay** debug information.
 
