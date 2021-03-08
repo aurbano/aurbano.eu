@@ -41,6 +41,9 @@ menu:
       weight: 2
     - url: 'https://www.linkedin.com/in/aurbano/'
       name: linkedin
+      weight: 3
+    - url: 'https://twitter.com/alalex'
+      name: twitter
       weight: 4
     - url: 'https://stackoverflow.com/users/1262824/aurbano'
       name: stack-overflow
@@ -50,7 +53,7 @@ menu:
       weight: 6
     - url: '/index.xml'
       name: rss
-      weight: 6
+      weight: 7
 
 markup:
   goldmark:
