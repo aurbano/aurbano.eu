@@ -1,19 +1,157 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><title>My Interesting Zsh Prompt</title><meta name=description content="A blog by Alejandro U. Alvarez on programming and humans"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=HandheldFriendly content="True"><meta name=MobileOptimized content="320"><meta property="og:site_name" content="Alejandro U. Alvarez - Blog"><meta property="og:type" content="article"><meta property="og:title" content="My Interesting Zsh Prompt"><meta property="og:description" content="Yes, this is outdated - I&rsquo;ve now moved on to use Oh My Zsh, mostly with the default setup to keep things simple.
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<title>My Interesting Zsh Prompt</title>
+<meta name=description content="A blog by Alejandro U. Alvarez on programming and humans">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=HandheldFriendly content="True">
+<meta name=MobileOptimized content="320">
+<meta property="og:site_name" content="Alejandro U. Alvarez - Blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="My Interesting Zsh Prompt">
+<meta property="og:description" content="Yes, this is outdated - I&rsquo;ve now moved on to use Oh My Zsh, mostly with the default setup to keep things simple.
  I already did a post on the steps I took to set up my new macbook for development.
 After that post I started using Zsh more and more, and came to realize how much better it could become with some tweaking.
-  edges -    If you just want to replicate this just follow these two steps:"><meta property="og:url" content="https://aurbano.eu/post/2014-11-08-my-interesting-zsh-prompt/"><meta property="article:published_time" content="2014-11-08 00:00:00 +0000 UTC"><meta property="article:modified_time" content="2014-11-08 00:00:00 +0000 UTC"><meta name=twitter:card content="summary"><meta name=twitter:title content="My Interesting Zsh Prompt"><meta name=twitter:description content="Yes, this is outdated - I&rsquo;ve now moved on to use Oh My Zsh, mostly with the default setup to keep things simple.
+ edges -    If you just want to replicate this just follow these two steps:">
+<meta property="og:url" content="https://aurbano.eu/post/2014-11-08-my-interesting-zsh-prompt/">
+<meta property="article:published_time" content="2014-11-08 00:00:00 +0000 UTC">
+<meta property="article:modified_time" content="2014-11-08 00:00:00 +0000 UTC">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="My Interesting Zsh Prompt">
+<meta name=twitter:description content="Yes, this is outdated - I&rsquo;ve now moved on to use Oh My Zsh, mostly with the default setup to keep things simple.
  I already did a post on the steps I took to set up my new macbook for development.
 After that post I started using Zsh more and more, and came to realize how much better it could become with some tweaking.
-  edges -    If you just want to replicate this just follow these two steps:"><meta name=twitter:url content="https://aurbano.eu/post/2014-11-08-my-interesting-zsh-prompt/"><meta name=twitter:label1 content="Written by"><meta name=twitter:data1 content="Alejandro U. Alvarez"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous><link rel=stylesheet href=https://aurbano.eu/main.min.1068b347d2ef602d8caccddd1143c176f61164bb940da1c74bfb09fca14d242e.css><script src=https://code.jquery.com/jquery-3.4.1.slim.min.js integrity=sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n crossorigin=anonymous></script></head><body><nav class="navbar navbar-expand-lg navbar-light bg-light"><div class=container><button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarSupportedContent><ul class="navbar-nav nav-menu mr-auto"><li class=nav-item><a class=nav-link href=/ style=font-weight:700>Alejandro U. Alvarez</a></li><li class=nav-item><a class=nav-link href=/about/>About</a></li><li class=nav-item><a class=nav-link href=/post/>Posts</a></li><li class=nav-item><a class=nav-link href=/projects/>Projects</a></li></ul><ul class=navbar-nav><li class=nav-item><a title="github profile" class="nav-link text-github" href=https://github.com/aurbano/><i class="fa fa-github"></i></a></li><li class=nav-item><a title="linkedin profile" class="nav-link text-linkedin" href=https://www.linkedin.com/in/aurbano/><i class="fa fa-linkedin"></i></a></li><li class=nav-item><a title="twitter profile" class="nav-link text-twitter" href=https://twitter.com/alalex><i class="fa fa-twitter"></i></a></li><li class=nav-item><a title="stack-overflow profile" class="nav-link text-stack-overflow" href=https://stackoverflow.com/users/1262824/aurbano><i class="fa fa-stack-overflow"></i></a></li><li class=nav-item><a title="hacker-news profile" class="nav-link text-hacker-news" href="https://news.ycombinator.com/user?id=aurbano"><i class="fa fa-hacker-news"></i></a></li><li class=nav-item><a title="rss profile" class="nav-link text-rss" href=/index.xml><i class="fa fa-rss"></i></a></li></ul></div></div></nav><main><div class=container><div class="row justify-content-md-center"><div class="col col-lg-8"><header><h1>My Interesting Zsh Prompt</h1><div class=row><div class=col><small class="date text-muted">Published on November 8, 2014</small>
-<a href=https://aurbano.eu/tags/MacOS class=item-tag>MacOS</a>
-<a href=https://aurbano.eu/tags/Shell class=item-tag>Shell</a></div><div class="col-2 text-right"><a href=https://github.com/aurbano/aurbano.eu/blob/master/content/post/2014-11-08-my-interesting-zsh-prompt.md class=edit title="Open this post on Github"><i class="fa fa-pencil"></i></a></div></div></header><div class="alert alert-warning mt-4" role=alert><b>Here be dragons!</b><br>I wrote this ages ago and is now outdated. Time flies!</div><div align=start class=content><blockquote><p>Yes, this is outdated - I&rsquo;ve now moved on to use Oh My Zsh, mostly with the default setup to keep things simple.</p></blockquote><p>I already did a post on <a href=https://aurbano.eu/post/2014-11-03-setting-up-mac-for-development/>the steps I took</a> to set up my new macbook for development.</p><p>After that post I started using Zsh more and more, and came to realize how much better it could become with some tweaking.</p><figure><img src=/assets/files/posts/zsh/shell.png><figcaption><h4>edges -</h4></figcaption></figure><p>If you just want to replicate this just follow these two steps:</p><ol><li>Install <a href=https://github.com/zsh-users/antigen>antigen</a>:</li><li>Use <a href=https://gist.github.com/aurbano/e32596aae16a7b9f8b48>this <code>.zshrc</code></a> file.</li></ol><hr><h2 id=walkthrough>Walkthrough</h2><p>The first thing I recommend is using <a href=https://github.com/zsh-users/antigen>antigen</a>. It is something like Pathogen for Vim, a configuration/plugin manager for Zsh.</p><p>It works great with <a href=https://github.com/robbyrussell/oh-my-zsh>Oh My Zsh</a>, which should also be your first step into setting up your zsh shell.</p><p>Once antigen is installed the first part of the <code>.zshrc</code> file is setting that up and loading Oh My Zsh.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Antigen — A zsh plugin manager</span>
+ edges -    If you just want to replicate this just follow these two steps:">
+<meta name=twitter:url content="https://aurbano.eu/post/2014-11-08-my-interesting-zsh-prompt/">
+<meta name=twitter:label1 content="Written by">
+<meta name=twitter:data1 content="Alejandro U. Alvarez">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css>
+<link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous>
+<link rel=stylesheet href=https://aurbano.eu/main.min.e255e5ed72297175daf25c3013d087343cf1772ae79fb3094d3496fa76316290.css>
+<script src=https://code.jquery.com/jquery-3.4.1.slim.min.js integrity=sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n crossorigin=anonymous></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class=container>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav nav-menu mr-auto">
+<li class=nav-item>
+<a class=nav-link href=/ style=font-weight:700>
+Alejandro U. Alvarez
+</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/about/>
+About
+</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/post/>
+Posts
+</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/projects/>
+Projects
+</a>
+</li>
+</ul>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a title="github profile" class="nav-link text-github" href=https://github.com/aurbano/>
+<i class="fa fa-github"></i>
+</a>
+</li>
+<li class=nav-item>
+<a title="linkedin profile" class="nav-link text-linkedin" href=https://www.linkedin.com/in/aurbano/>
+<i class="fa fa-linkedin"></i>
+</a>
+</li>
+<li class=nav-item>
+<a title="twitter profile" class="nav-link text-twitter" href=https://twitter.com/alalex>
+<i class="fa fa-twitter"></i>
+</a>
+</li>
+<li class=nav-item>
+<a title="stack-overflow profile" class="nav-link text-stack-overflow" href=https://stackoverflow.com/users/1262824/aurbano>
+<i class="fa fa-stack-overflow"></i>
+</a>
+</li>
+<li class=nav-item>
+<a title="hacker-news profile" class="nav-link text-hacker-news" href="https://news.ycombinator.com/user?id=aurbano">
+<i class="fa fa-hacker-news"></i>
+</a>
+</li>
+<li class=nav-item>
+<a title="rss profile" class="nav-link text-rss" href=/index.xml>
+<i class="fa fa-rss"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<main>
+<div class=container>
+<div class="row justify-content-md-center">
+<div class="col col-lg-8">
+<header>
+<h1>My Interesting Zsh Prompt</h1>
+<div class=row>
+<div class=col>
+<small class="date text-muted">
+Published on November 8, 2014
+</small>
+<a href=https://aurbano.eu/tags/MacOS class=item-tag>
+MacOS
+</a>
+<a href=https://aurbano.eu/tags/Shell class=item-tag>
+Shell
+</a>
+</div>
+<div class="col-2 text-right">
+<a href=https://github.com/aurbano/aurbano.eu/blob/master/content/post/2014-11-08-my-interesting-zsh-prompt.md class=edit title="Open this post on Github">
+<i class="fa fa-pencil"></i>
+</a>
+</div>
+</div>
+</header>
+<div class="alert alert-warning mt-4" role=alert>
+<b>Here be dragons!</b> <br>
+I wrote this ages ago and is now outdated. Time flies!
+</div>
+<div align=start class=content>
+<blockquote>
+<p>Yes, this is outdated - I&rsquo;ve now moved on to use Oh My Zsh, mostly with the default setup to keep things simple.</p>
+</blockquote>
+<p>I already did a post on <a href=https://aurbano.eu/post/2014-11-03-setting-up-mac-for-development/>the steps I took</a> to set up my new macbook for development.</p>
+<p>After that post I started using Zsh more and more, and came to realize how much better it could become with some tweaking.</p>
+<figure><img src=/assets/files/posts/zsh/shell.png><figcaption>
+<h4>edges - </h4>
+</figcaption>
+</figure>
+<p>If you just want to replicate this just follow these two steps:</p>
+<ol>
+<li>Install <a href=https://github.com/zsh-users/antigen>antigen</a>:</li>
+<li>Use <a href=https://gist.github.com/aurbano/e32596aae16a7b9f8b48>this <code>.zshrc</code></a> file.</li>
+</ol>
+<hr>
+<h2 id=walkthrough>Walkthrough</h2>
+<p>The first thing I recommend is using <a href=https://github.com/zsh-users/antigen>antigen</a>. It is something like Pathogen for Vim, a configuration/plugin manager for Zsh.</p>
+<p>It works great with <a href=https://github.com/robbyrussell/oh-my-zsh>Oh My Zsh</a>, which should also be your first step into setting up your zsh shell.</p>
+<p>Once antigen is installed the first part of the <code>.zshrc</code> file is setting that up and loading Oh My Zsh.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Antigen — A zsh plugin manager</span>
 export ANTIGEN_DEFAULT_REPO_URL<span style=color:#f92672>=</span>https://github.com/sharat87/oh-my-zsh.git
 source ~/antigen.zsh
 
 <span style=color:#75715e># Load the oh-my-zsh&#39;s library.</span>
 antigen use oh-my-zsh
-</code></pre></div><p>Now load all the plugins (bundles) you want, the great thing about antigen is that you can add any plugin from any repository/url:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>antigen bundles <span style=color:#e6db74>&lt;&lt;EOBUNDLES
+</code></pre></div><p>Now load all the plugins (bundles) you want, the great thing about antigen is that you can add any plugin from any repository/url:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>antigen bundles <span style=color:#e6db74>&lt;&lt;EOBUNDLES
 </span><span style=color:#e6db74>
 </span><span style=color:#e6db74>lein
 </span><span style=color:#e6db74>pip
@@ -26,24 +164,74 @@ antigen use oh-my-zsh
 </span><span style=color:#e6db74>#...
 </span><span style=color:#e6db74>
 </span><span style=color:#e6db74>EOBUNDLES</span>
-</code></pre></div><h2 id=extras>Extras</h2><h3 id=automaticcally-list-directory-on-cd>Automaticcally list directory on cd</h3><p>I find this really useful, it triggers an <code>ls</code> whenever you <code>cd</code> into a directory.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Automatically list directory contents on `cd`.</span>
+</code></pre></div><h2 id=extras>Extras</h2>
+<h3 id=automaticcally-list-directory-on-cd>Automaticcally list directory on cd</h3>
+<p>I find this really useful, it triggers an <code>ls</code> whenever you <code>cd</code> into a directory.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Automatically list directory contents on `cd`.</span>
 auto-ls <span style=color:#f92672>()</span> <span style=color:#f92672>{</span> ls; <span style=color:#f92672>}</span>
 chpwd_functions<span style=color:#f92672>=(</span> auto-ls $chpwd_functions <span style=color:#f92672>)</span>
-</code></pre></div><h3 id=history-search>History search</h3><p>We add the history substring plugin to enable fish style search, first add the plugin: <code>zsh-users/zsh-history-substring-search</code>.</p><p>Now we can bind the search to Up/Down arrows:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># bind UP and DOWN arrow keys</span>
+</code></pre></div><h3 id=history-search>History search</h3>
+<p>We add the history substring plugin to enable fish style search, first add the plugin: <code>zsh-users/zsh-history-substring-search</code>.</p>
+<p>Now we can bind the search to Up/Down arrows:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># bind UP and DOWN arrow keys</span>
 zmodload zsh/terminfo
 bindkey <span style=color:#e6db74>&#34;</span>$terminfo<span style=color:#e6db74>[kcuu1]&#34;</span> history-substring-search-up
 bindkey <span style=color:#e6db74>&#34;</span>$terminfo<span style=color:#e6db74>[kcud1]&#34;</span> history-substring-search-down
-</code></pre></div><p>### Fish-style autosuggest</p><p>A great plugin that shows the first suggestion in light grey as suggestion as you type. It might have some small bugs but for the most part it works great.</p><p>Add the plugin: <code>tarruda/zsh-autosuggestions</code></p><p>Set it up:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Setup suggestions</span>
+</code></pre></div><p>### Fish-style autosuggest</p>
+<p>A great plugin that shows the first suggestion in light grey as suggestion as you type. It might have some small bugs but for the most part it works great.</p>
+<p>Add the plugin: <code>tarruda/zsh-autosuggestions</code></p>
+<p>Set it up:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># Setup suggestions</span>
 zle-line-init<span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
     zle autosuggest-start
 <span style=color:#f92672>}</span>
 zle -N zle-line-init
-</code></pre></div></div><div class="card related shadow"><div class=card-body><h5 class=card-title>More like this:</h5><div class=item><h6><a href=/post/2014-11-03-setting-up-mac-for-development/>Setting up macOs for development</a>
-<small class="date text-muted">November 3, 2014</small></h6></div></div></div></div></div></div></main><footer><p class="copyright text-muted"><a href=/>Alejandro U. Alvarez</a>
+</code></pre></div>
+</div>
+<div class="card related shadow">
+<div class=card-body>
+<h5 class=card-title>More like this:</h5>
+<div class=item>
+<h6>
+<a href=/post/2014-11-03-setting-up-mac-for-development/>Setting up macOs for development</a>
+<small class="date text-muted">November 3, 2014</small>
+</h6>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer>
+<p class="copyright text-muted">
+<a href=/>Alejandro U. Alvarez</a>
 © All rights reserved.
 &bull;
-<a href=/index.xml>RSS</a>
+<a href=/index.xml>
+RSS
+</a>
 &bull;
-<a href=/categories>Categories</a>
+<a href=/categories>
+Categories
+</a>
 &bull;
-<a href=/tags>Tags</a></p></footer><div class="border animated-hue"></div><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/typescript.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js></script><script>hljs.initHighlightingOnLoad()</script><script src=https://aurbano.eu/vendor/bootstrap/dist/js/bootstrap.bundle.min.js></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script><script>$(document).on('click',function(){$('.collapse').collapse('hide')})</script></body></html>
+<a href=/tags>
+Tags
+</a>
+</p>
+</footer>
+<div class="border animated-hue"></div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/typescript.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js></script>
+<script>hljs.initHighlightingOnLoad()</script>
+<script src=https://aurbano.eu/vendor/bootstrap/dist/js/bootstrap.bundle.min.js></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+<script>$(document).on('click',function(){$('.collapse').collapse('hide')})</script>
+</body>
+</html>
