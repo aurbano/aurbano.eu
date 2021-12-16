@@ -1,7 +1,8 @@
 ---
 title: Chevismo
 year: 2009
-link: https://chevismo.com
+offline: true
+link: https://github.com/chevismo/chevismo.com
 image: chevismo.jpg
 ---
 

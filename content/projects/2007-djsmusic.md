@@ -1,7 +1,8 @@
 ---
 title: DJs Music
 year: 2007
-link: https://djs-music.com
+offline: true
+link: https://github.com/djsmusic
 image: djs_music.jpg
 ---
 
