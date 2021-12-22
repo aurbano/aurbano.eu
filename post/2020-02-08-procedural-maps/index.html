@@ -24,11 +24,11 @@ We needed to generate map procedurally, which is nothing new really, but it was 
 <link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css>
 <link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous>
-<link rel=stylesheet href=https://aurbano.eu/main.min.e255e5ed72297175daf25c3013d087343cf1772ae79fb3094d3496fa76316290.css>
+<link rel=stylesheet href=https://aurbano.eu/main.min.3fa8bb11f6b6b3ef841b29e5d96be493461f30ad6e5b94d7eea9ad7e75c67ea9.css>
 <script src=https://code.jquery.com/jquery-3.4.1.slim.min.js integrity=sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n crossorigin=anonymous></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg">
 <div class=container>
 <button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
 <span class=navbar-toggler-icon></span>
@@ -41,22 +41,16 @@ Alejandro U. Alvarez
 </a>
 </li>
 <li class=nav-item>
-<a class=nav-link href=/about/>
-About
-</a>
+<a class=nav-link href=/about/> About </a>
 </li>
 <li class=nav-item>
-<a class=nav-link href=/post/>
-Posts
-</a>
+<a class=nav-link href=/post/> Posts </a>
 </li>
 <li class=nav-item>
-<a class=nav-link href=/projects/>
-Projects
-</a>
+<a class=nav-link href=/projects/> Projects </a>
 </li>
 </ul>
-<ul class=navbar-nav>
+<ul class="navbar-nav social-icons">
 <li class=nav-item>
 <a title="github profile" class="nav-link text-github" href=https://github.com/aurbano/>
 <i class="fa fa-github"></i>
@@ -116,8 +110,7 @@ Procedural
 </div>
 </div>
 </header>
-<div align=start class=content>
-<p>At <a href=https://socialgorithm.org>#socialgorithm</a> we recently started working on a new game, let&rsquo;s call it &ldquo;<strong>Ant Colony</strong>&rdquo; for now. It&rsquo;s a bit like simplified Age of Empires, where you write the code that drives a bunch of ants, and they need to survive and ultimately be the only ones alive in the map.</p>
+<div align=start class=content><p>At <a href=https://socialgorithm.org>#socialgorithm</a> we recently started working on a new game, let&rsquo;s call it &ldquo;<strong>Ant Colony</strong>&rdquo; for now. It&rsquo;s a bit like simplified Age of Empires, where you write the code that drives a bunch of ants, and they need to survive and ultimately be the only ones alive in the map.</p>
 <p>We needed to generate map procedurally, which is <a href=https://www.redblobgames.com/maps/terrain-from-noise/>nothing</a> new <a href=https://github.com/Azercoco/3D-Earth-Like-Planet-Procedural-Generator>really</a>, but it was new to me when I started writing the code for it, so it&rsquo;s been a fun opportunity to learn something new!</p>
 <p>I&rsquo;ve seen plenty of noise based terrain generators but unfortunately couldn&rsquo;t find anything where I could quickly test different parameters and ways to use the noise functions, so I decided to build a simple generator with a GUI to control the parameters:</p>
 <p><a href=https://aurbano.github.io/procedural-maps/>Procedural Map Generator</a></p>
