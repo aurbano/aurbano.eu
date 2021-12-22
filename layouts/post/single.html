@@ -9,12 +9,17 @@
           <div class="row">
             <div class="col">
               <small class="date text-muted">
-                Published on {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}
+                Published on {{ .Date.Format (.Site.Params.dateFormat | default
+                "January 2, 2006") }}
               </small>
               {{ partial "tags" . }}
             </div>
             <div class="col-2 text-right">
-              <a href="{{ .Site.Params.repo }}/blob/master/content/{{ .File.Path }}" class="edit" title="Open this post on Github">
+              <a
+                href="{{ .Site.Params.repo }}/blob/master/content/{{ .File.Path }}"
+                class="edit"
+                title="Open this post on Github"
+              >
                 <i class="fa fa-pencil"></i>
               </a>
             </div>
@@ -22,25 +27,25 @@
         </header>
 
         {{ if (.Param "outdated") }}
-          <div class="alert alert-warning mt-4" role="alert">
-            <b>Here be dragons!</b> <br>
-            I wrote this ages ago and is now outdated. Time flies!
-          </div>
+        <div class="alert alert-warning mt-4" role="alert">
+          <b>Here be dragons!</b> <br />
+          I wrote this ages ago and is very likely outdated
+          <del>(and absolute crap)</del>. Time flies!
+        </div>
         {{end}}
 
-        <div align="start" class="content">
-          {{ .Content }}
-        </div>
+        <div align="start" class="content">{{ .Content }}</div>
 
         <!-- Related posts -->
-        {{ $related := first 5 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
-        {{ if $related }}
-          <div class="card related shadow">
-            <div class="card-body">
-              <h5 class="card-title">More like this:</h5>
-              {{ range $related }} {{ partial "list-item" . }} {{ end }}
-            </div>
+        {{ $related := first 5 (where (where (where .Site.Pages.ByDate.Reverse
+        ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags)
+        "Permalink" "!=" .Permalink) }} {{ if $related }}
+        <div class="card related shadow">
+          <div class="card-body">
+            <h5 class="card-title">More like this:</h5>
+            {{ range $related }} {{ partial "list-item" . }} {{ end }}
           </div>
+        </div>
         {{ end }}
       </div>
     </div>

@@ -5,6 +5,16 @@ My personal website, hosted here on Github. I have moved my blog here as well, u
 
 The web/blog can be accessed with the usual address: <del>http://urbanoalvarez.es</del> https://aurbano.eu
 
+## Running locally
+
+```
+git submodule update --init --recursive
+
+brew install hugo
+
+hugo serve
+```
+
 - - - -
 
 Most of it is copyrighted material, please contact if you have any concern

@@ -12,3 +12,4 @@ Thumbs.db
 .rvmrc
 .idea
 *.iml
+.hugo_build.lock
