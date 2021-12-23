@@ -7,7 +7,6 @@ tagline: Without having to trade your soul in the process
 tags:
 - PDF
 - Java
-thumbnail: /assets/files/thumbnails/phantomjs.png
 title: Generating Pixel Perfect PDF Reports
 aliases: [ /blog/generating-pdf-reports/ ]
 ---

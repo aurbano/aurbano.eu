@@ -1,54 +1,75 @@
 {{ partial "head" . }}
 
 <body>
+  <div class="new-layout">
+    <div class="item text">
+      {{ with .Site.Params.profilePic }}
+      <img class="profile" src="{{ . }}" />
+      {{ end }}
+      <h1><a href="/">{{ .Site.Title }}</a></h1>
 
-<main>
-    <div class="intro">
-        {{ with .Site.Params.profilePic }} <img class="profile" src="{{ . }}"> {{ end }}
-        <h1>{{ .Site.Title }}</h1>
-        {{ with .Content }} <div class="homepage-content text-justify">{{ . }}</div> {{ end }}
-
-        {{ if .Site.Menus.main }}
-          <ul class="nav justify-content-center mt-5">
-              {{ $currentPage := . }}
-              {{ range sort .Site.Menus.main }}
-                {{ $is := $currentPage.IsMenuCurrent "main" . }}
-                {{ $has := $currentPage.HasMenuCurrent "main" . }}
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ .URL }}">
-                    {{ .Name }}
-                  </a>
-                </li>
-              {{ end }}
-          </ul>
-        {{ end }}
-
-        {{ $posts := .Site.RegularPages | first 5 }}
-        {{ with $posts }}
-          <div class="container">
-            <h3>Latest posts</h3>
-            {{ range . }}
-              <p>
-                <a href="{{ .RelPermalink }}" class="btn btn-light shadow-sm btn-sm">
-                {{ .Title }}
-                </a>
-              </p>
-            {{ end }}
-          </div>
-        {{ end }}
-    </div>
-</main>
-
-{{ if .Site.Menus.icon }}
-  <ul class="nav justify-content-center">
-      {{ range sort .Site.Menus.icon }}
+      {{ if .Site.Menus.icon }}
+      <div class="social-icons">
+        <ul class="nav justify-content-center">
+          {{ range sort .Site.Menus.icon }}
           <li class="nav-item">
-            <a title="{{ .Name }} profile" class="nav-link text-{{ .Name }}" href="{{ .URL }}">
+            <a
+              title="{{ .Name }}"
+              class="nav-link text-{{ .Name }}"
+              href="{{ .URL }}"
+            >
               <i class="fa fa-{{ .Name }}"></i>
             </a>
           </li>
+          {{ end }}
+        </ul>
+      </div>
       {{ end }}
-  </ul>
-{{ end }}
+    </div>
+    {{ $posts := .Site.RegularPages }} {{ with $posts }} {{ range where .
+    ".Params.thumbnail" "!=" nil }} {{ $assetPath := printf "thumbnails/%s"
+    .Params.thumbnail}} {{ $asset := resources.Get $assetPath }}
+    <a href="{{ .RelPermalink }}" class="item interactive">
+      <div class="img">
+        <img src="{{$asset.Permalink}}" alt="{{ .Title }}" />
+      </div>
+      <div class="meta">
+        <p>{{ .Title }}</p>
+      </div>
+    </a>
+    {{ end }} {{ end }}
+  </div>
+  <!-- <main>
+    <div class="intro">
+      {{ with .Site.Params.profilePic }}
+      <img class="profile" src="{{ . }}" /> {{ end }}
+      <h1>{{ .Site.Title }}</h1>
+      {{ with .Content }}
+      <div class="homepage-content text-justify">{{ . }}</div>
+      {{ end }} {{ if .Site.Menus.main }}
+      <ul class="nav justify-content-center mt-5">
+        {{ $currentPage := . }} {{ range sort .Site.Menus.main }} {{ $is :=
+        $currentPage.IsMenuCurrent "main" . }} {{ $has :=
+        $currentPage.HasMenuCurrent "main" . }}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ .URL }}"> {{ .Name }} </a>
+        </li>
+        {{ end }}
+      </ul>
+      {{ end }} {{ $posts := .Site.RegularPages | first 5 }} {{ with $posts }}
+      <div class="container">
+        <h3>Latest posts</h3>
+        {{ range . }}
+        <p>
+          <a href="{{ .RelPermalink }}" class="btn btn-light shadow-sm btn-sm">
+            {{ .Title }}
+          </a>
+        </p>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </main> -->
 
-{{ partial "footer" . }}
+  {{ partial "footer" . }}
+</body>
