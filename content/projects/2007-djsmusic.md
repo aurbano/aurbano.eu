@@ -1,9 +1,12 @@
 ---
 title: DJs Music
 year: 2007
+date: "2007-01-01"
 offline: true
-link: https://github.com/djsmusic
+href: https://github.com/djsmusic
+thumbnail: djsmusic.png
 image: djs_music.jpg
+description: Music sharing website where independent DJs upload their mixes and original songs
 ---
 
 Music sharing website where independent DJs upload their mixes and original songs, packed with features developed over the years.

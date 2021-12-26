@@ -1,8 +1,11 @@
 ---
 title: socialgorithm
 year: 2017
-link: https://socialgorithm.org
+date: "2017-01-01"
+href: https://socialgorithm.org
 image: socialgorithm.png
+thumbnail: socialgorithm.png
+description: Online community and platform for code workshops and challenges. Used by universities and companies to run events for students, interns, and employees.
 ---
 
 Online community and platform for code workshops and challenges. Used by universities and companies to run events for students, interns, employees...

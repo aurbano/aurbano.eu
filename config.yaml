@@ -27,15 +27,15 @@ taxonomies:
 
 menu:
   main:
+    - url: /
+      name: Home
+      weight: 1
     - url: /about/
       name: About
       weight: 2
     - url: /post/
-      name: Posts
+      name: All posts
       weight: 3
-    - url: /projects/
-      name: Projects
-      weight: 4
   icon:
     - url: 'https://github.com/aurbano/'
       name: github

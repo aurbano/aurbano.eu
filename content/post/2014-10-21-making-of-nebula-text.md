@@ -2,13 +2,15 @@
 categories:
 - Experiments
 date: "2014-10-21"
-description: Details on the process of making the WebGL experiment Nebula
+description: JavaScript library to render text as floating particles in WebGL
 tagline: WebGL Experiment
+thumbnail: nebula.png
 tags:
 - WebGL
 - JavaScript
+- Procedural
 aliases: [ /blog/making-of-nebula-text/ ]
-title: Making of Nebula text
+title: "Nebula text: WebGL experiment"
 ---
 
 When I was doing the [Tree Generator](/blog/2013/01/14/procedurally-generated-trees-in-javascript/), I used [dat.gui](https://code.google.com/p/dat-gui/) for the first time, and on their workshop they have the following text to play with:

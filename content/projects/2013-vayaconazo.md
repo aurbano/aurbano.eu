@@ -1,9 +1,12 @@
 ---
 title: VayaCoñazo
 year: 2013
+date: "2013-01-01"
 offline: true
-link: https://aurbano.eu
+href: https://aurbano.eu
 image: vayaconazo.jpg
+thumbnail: vayaconazo.png
+description: Entertainment site, mixing an RSS aggregator and a "rage comic" site where users submitted their content
 ---
 
 An entertainment site, mixing an RSS aggregator and a "rage comic" site where users submit their content. It pulls content from its own database and a lot other sources, combining everything on the same feed.

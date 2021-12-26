@@ -1,9 +1,12 @@
 ---
 title: QuePiensas
 year: 2011
+date: "2011-01-01"
 offline: true
-link: https://github.com/aurbano/QuePiensas
+href: https://github.com/aurbano/QuePiensas
 image: quepiensas.jpg
+thumbnail: quepiensas.png
+description: Spanish (failed) social network fully integrated with Facebook. It alowed users to express their opinion on their friends.
 ---
 
 Spanish (failed) social network fully integrated with Facebook. It alows users to express their opinion on their friends. I'm still sure that this idea can become popular, it's just that we didn't achieve the right user experience. Building everything from scratch was a serious effort that helped us learn a lot, but made development too slow. We had no reusable CSS or components, no MVC architecture, nothing really...

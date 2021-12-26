@@ -1,7 +1,8 @@
 ---
 title: Flocking Behaviour Simulations
-description: Different approaches
+description: JavaScript implementation of the Boid algorithm
 date: "2020-02-08"
+thumbnail: boids.png
 categories:
 - Learning
 tags:

@@ -15,6 +15,11 @@ brew install hugo
 hugo serve
 ```
 
+## Update thumbnail colors
+For posts in the homepage, I extract the dominant color and use it as the background for each tile. This is done by running `python3 scripts/colors.py`.
+
+The script uses the `ColorThief` module, which must be installed (`pip install colorthief`)
+
 - - - -
 
 Most of it is copyrighted material, please contact if you have any concern

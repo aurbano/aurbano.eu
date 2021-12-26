@@ -8,12 +8,10 @@
           <h1>{{ .Title }}</h1>
         </header>
 
-        {{ range (.Paginator 20).Pages }} {{ partial "list-item" . }} {{ end }}
+        {{ range (.Paginator 40).Pages }} {{ partial "list-item" . }} {{ end }}
       </div>
     </div>
   </div>
 </main>
 
-{{ partial "paginator" . }}
-
-{{ partial "footer" . }}
+{{ partial "paginator" . }} {{ partial "footer" . }}

@@ -6,7 +6,7 @@
       {{ with .Site.Params.profilePic }}
       <img class="profile" src="{{ . }}" />
       {{ end }}
-      <h1><a href="/">{{ .Site.Title }}</a></h1>
+      <h1><a href="/about">{{ .Site.Title }}</a></h1>
 
       {{ if .Site.Menus.icon }}
       <div class="social-icons">
@@ -25,17 +25,35 @@
         </ul>
       </div>
       {{ end }}
+
+      <p>Here are some mostly useless and slightly cool things I've made</p>
     </div>
     {{ $posts := .Site.RegularPages }} {{ with $posts }} {{ range where .
     ".Params.thumbnail" "!=" nil }} {{ $assetPath := printf "thumbnails/%s"
-    .Params.thumbnail}} {{ $asset := resources.Get $assetPath }}
-    <a href="{{ .RelPermalink }}" class="item interactive">
-      <div class="img">
-        <img src="{{$asset.Permalink}}" alt="{{ .Title }}" />
-      </div>
+    .Params.thumbnail}} {{ $asset := resources.Get $assetPath }} {{ $color :=
+    index .Site.Data.colors .Params.thumbnail }} {{$bgColor := printf
+    "background-color:rgb%s;" $color }}
+    <a
+      href="{{ cond (isset .Params "link") .Params.link .RelPermalink }}"
+      class="item interactive"
+      style="{{$bgColor | safeCSS}}"
+    >
+      <div
+        class="img"
+        style="background-image: url('{{$asset.Permalink}}')"
+      ></div>
       <div class="meta">
-        <p>{{ .Title }}</p>
+        <div class="title">
+          <div class="date">
+            {{ .Date.Format (.Site.Params.dateFormat | default "2006") }}
+          </div>
+
+          {{ .Title }}
+        </div>
+
+        <div class="description">{{ .Description }}</div>
       </div>
+      
     </a>
     {{ end }} {{ end }}
   </div>
