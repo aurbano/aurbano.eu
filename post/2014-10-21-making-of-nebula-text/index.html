@@ -1,14 +1,14 @@
 <!doctype html><html lang=en-us>
 <head>
 <meta charset=utf-8>
-<title>Making of Nebula text</title>
+<title>Nebula text: WebGL experiment</title>
 <meta name=description content="A blog by Alejandro U. Alvarez on programming and humans">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=HandheldFriendly content="True">
 <meta name=MobileOptimized content="320">
 <meta property="og:site_name" content="Alejandro U. Alvarez - Blog">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Making of Nebula text">
+<meta property="og:title" content="Nebula text: WebGL experiment">
 <meta property="og:description" content="When I was doing the Tree Generator, I used dat.gui for the first time, and on their workshop they have the following text to play with:
  dat.gui -    This gave me the idea to render text on the canvas using particles that would seem to be gravitating around, in such a way that when seen all together you would see the text.
 Example: &ldquo;hey&rdquo;    Click for explosions   For this example I set a big drag force so that the particles would settle fast and you could read the text more easily.">
@@ -16,7 +16,7 @@ Example: &ldquo;hey&rdquo;    Click for explosions   For this example I set a bi
 <meta property="article:published_time" content="2014-10-21 00:00:00 +0000 UTC">
 <meta property="article:modified_time" content="2014-10-21 00:00:00 +0000 UTC">
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content="Making of Nebula text">
+<meta name=twitter:title content="Nebula text: WebGL experiment">
 <meta name=twitter:description content="When I was doing the Tree Generator, I used dat.gui for the first time, and on their workshop they have the following text to play with:
  dat.gui -    This gave me the idea to render text on the canvas using particles that would seem to be gravitating around, in such a way that when seen all together you would see the text.
 Example: &ldquo;hey&rdquo;    Click for explosions   For this example I set a big drag force so that the particles would settle fast and you could read the text more easily.">
@@ -26,7 +26,7 @@ Example: &ldquo;hey&rdquo;    Click for explosions   For this example I set a bi
 <link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css>
 <link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous>
-<link rel=stylesheet href=https://aurbano.eu/main.min.3fa8bb11f6b6b3ef841b29e5d96be493461f30ad6e5b94d7eea9ad7e75c67ea9.css>
+<link rel=stylesheet href=https://aurbano.eu/main.min.bd4ab2352da1c81d0e8c42e44426d056ba02a8e5fdb03a180c10d2cf90464823.css>
 <script src=https://code.jquery.com/jquery-3.4.1.slim.min.js integrity=sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n crossorigin=anonymous></script>
 </head>
 <body>
@@ -43,13 +43,13 @@ Alejandro U. Alvarez
 </a>
 </li>
 <li class=nav-item>
+<a class=nav-link href=/> Home </a>
+</li>
+<li class=nav-item>
 <a class=nav-link href=/about/> About </a>
 </li>
 <li class=nav-item>
-<a class=nav-link href=/post/> Posts </a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/projects/> Projects </a>
+<a class=nav-link href=/post/> All posts </a>
 </li>
 </ul>
 <ul class="navbar-nav social-icons">
@@ -92,7 +92,7 @@ Alejandro U. Alvarez
 <div class="row justify-content-md-center">
 <div class="col col-lg-8">
 <header>
-<h1>Making of Nebula text</h1>
+<h1>Nebula text: WebGL experiment</h1>
 <div class=row>
 <div class=col>
 <small class="date text-muted">
@@ -103,6 +103,9 @@ WebGL
 </a>
 <a href=https://aurbano.eu/tags/JavaScript class=item-tag>
 JavaScript
+</a>
+<a href=https://aurbano.eu/tags/Procedural class=item-tag>
+Procedural
 </a>
 </div>
 <div class="col-2 text-right">
@@ -258,33 +261,38 @@ JavaScript
 <h5 class=card-title>More like this:</h5>
 <div class=item>
 <h6>
-<a href=/post/2020-04-13-dotdot/>Launching dotdot.im - New Side Project!</a>
+<a href=/post/2020-04-13-dotdot/>dotdot: A social experiment</a>
 <small class="date text-muted">April 13, 2020</small>
 </h6>
+<p class=text-muted>Group chat application aiming to help meet and get to know other people</p>
 </div>
 <div class=item>
 <h6>
 <a href=/post/2020-02-08-procedural-maps/>Procedural Map Generation</a>
 <small class="date text-muted">February 8, 2020</small>
 </h6>
+<p class=text-muted>JavaScript implementation using simplex noise and WebGL rendering</p>
 </div>
 <div class=item>
 <h6>
 <a href=/post/2020-02-15-flocking-simulation/>Flocking Behaviour Simulations</a>
 <small class="date text-muted">February 8, 2020</small>
 </h6>
+<p class=text-muted>JavaScript implementation of the Boid algorithm</p>
 </div>
 <div class=item>
 <h6>
 <a href=/post/2015-03-03-front-end-sample/>Using the latest front-end tech</a>
 <small class="date text-muted">March 3, 2015</small>
 </h6>
+<p class=text-muted>Sample web I've coded to get the latest front end technologies working together.</p>
 </div>
 <div class=item>
 <h6>
 <a href=/post/2014-10-10-web-visualizer-using-webgl/>Web Visualizer using WebGL</a>
 <small class="date text-muted">October 10, 2014</small>
 </h6>
+<p class=text-muted>Building a web visualization tool using some search APIs and VivaGraphJS WebGL renderer</p>
 </div>
 </div>
 </div>
@@ -295,10 +303,14 @@ JavaScript
 <footer>
 <p class="copyright text-muted">
 <a href=/>Alejandro U. Alvarez</a>
-© All rights reserved.
+© All rights reserved
 &bull;
 <a href=/index.xml>
 RSS
+</a>
+&bull;
+<a href=/post>
+All posts
 </a>
 &bull;
 <a href=/categories>
