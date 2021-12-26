@@ -3,6 +3,10 @@
 @import 'brands';
 @import "../vendor/bootstrap/scss/bootstrap";
 
+$box-size: 500px;
+$border-size: 10px;
+$border-color: darken($gray-600, 20%);
+
 html, body {
   height: 100%;
   font-size: 18px !important;
@@ -13,6 +17,10 @@ body {
     display: flex;
     text-align: center;
     flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+  font-family: '{{ .Site.Params.font }}', sans-serif;
 }
 
 div.border {
@@ -56,6 +64,110 @@ a.nav-link {
   }
 }
 
+.new-layout {
+  display: flex;
+  flex-flow: row wrap;
+  border-bottom: $border-size/2 solid $border-color;
+
+  .item {
+    flex: 1;
+    min-width: $box-size;
+    min-height: $box-size;
+    max-width: $box-size + 100;
+    border: $border-size/2 solid $border-color;
+    transition: transform 0.25s ease-in-out,
+                background 0.25s ease-in-out;
+    background-color: $background;
+    z-index: 1;
+    vertical-align: middle;
+    position: relative;
+
+    &.text {
+      min-width: $box-size * 2;
+      min-height: $box-size * 1.2;
+      background: $primary !important;
+      color: $accent;
+      border-color: rgba($accent, 0.5);
+      padding-top: 3em;
+    }
+
+    &.interactive:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 0.5em rgba($primary, 0.5);
+      z-index: 2;
+      border-color: transparent;
+
+      .img {
+        opacity: 1;
+      }
+
+      .meta {
+        background-color: rgba($accent, 0.9);
+        color: $primary;
+
+        .description {
+          color: $primary;
+        }
+      }
+
+      .date {
+        background-color: $white;
+      }
+    }
+
+    h1 {
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+    }
+
+    .social-icons {
+      display: inline-block;
+      font-size: 1.5em;
+      margin-bottom: 2em;
+    }
+
+    .img {
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      opacity: 0.9;
+      transition: opacity 0.25s ease-in-out;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: top center;
+    }
+
+    .meta {
+      padding: 1em;
+      text-align: left;
+      background-color: rgba($background, 0.9);
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      transition: background-color 0.25s ease-in-out,
+                  color 0.25s ease-in-out;
+
+      .description {
+        font-size: 0.9em;
+        color: rgba($gray-200, 0.9);
+        margin-top: 1em;
+      }
+    }
+
+    .date {
+      background-color: $gray-600;
+      display: inline-block;
+      padding: 0.05em 0.5em;
+      color: $primary;
+      border-radius: 0.25em;
+      text-shadow: 0 -1px 1px rgba($white, 0.2);
+      font-size: 0.8em;
+      margin-right: 0.5em;
+    }
+  }
+}
+
 main {
     margin: auto;
     padding: 25px;
@@ -87,7 +199,6 @@ main {
     }
 
     h1, h2, h3, h4 {
-      font-family: '{{ .Site.Params.font }}', sans-serif;
       margin-top: 1.5em;
       margin-bottom: 0.75em;
 
@@ -162,7 +273,7 @@ nav.navbar {
 }
 
 .social-icons {
-  background: $gray-400;
+  background: $gray-700;
   border-radius: 0.5em;
 }
 
@@ -296,12 +407,6 @@ img {
     padding: 0 15px;
 }
 
-/* List item for posts/projects */
-
-.item {
-    padding: 10px 0;
-}
-
 a.item-tag {
   font-size: 12px !important;
   padding: .3em .9em;
@@ -335,4 +440,8 @@ footer {
   background: rgba($accent, 0.7);
   border: none;
   box-shadow: 0 0.25em 0.5em rgba($primary, 0.5);
+}
+
+.card-title {
+  margin-top: 0;
 }

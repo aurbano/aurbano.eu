@@ -26,4 +26,6 @@ After reading through the lecture materials I realised a book would definitely b
 
 So far I've read the introduction and the first couple of chapters of part 1, and I have to say that I'm happy with the choice. The introduction alone got me so excited that I simply can't wait to get all this new knowledge in my head!
 
-I will continue updating this post with any interesting things from the book for now.
+## Update Dec 2021
+
+I eventually decided to enroll in a Masters program in AI, I'm about halfway there now and gotta say it was definitely a good idea! Really enjoying the process so far :)

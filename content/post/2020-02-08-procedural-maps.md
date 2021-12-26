@@ -1,7 +1,8 @@
 ---
 title: Procedural Map Generation
-description: Simplex noise + Webgl
+description: JavaScript implementation using simplex noise and WebGL rendering
 date: "2020-02-08"
+thumbnail: maps.png
 categories:
 - Learning
 tags:

@@ -1,12 +1,15 @@
 ---
 title: Chevismo
 year: 2009
+date: "2009-01-01"
 offline: true
-link: https://github.com/chevismo/chevismo.com
+href: https://github.com/chevismo/chevismo.com
 image: chevismo.jpg
+thumbnail: chevismo.png
+description: Entertainment site featuring many popular tools and services. Also a chat, forum, and many other sections that users discovered over time.
 ---
 
-Entertainment site featuring many popular tools and services. Also a chat, forum, and many other sections that users discover over time.
+Entertainment site featuring many popular tools and services. Also a chat, forum, and many other sections that users discovered over time.
 
 This was mostly done to experiment with some new programming concepts, but it got quite popular in Spain so I kept on working on it for several years, making a few good friends in the community that it formed :)
 

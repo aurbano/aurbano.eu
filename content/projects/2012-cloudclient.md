@@ -1,9 +1,12 @@
 ---
 title: CloudClient  
 year: 2012
+date: "2012-01-01"
 offline: true
 image: cloudclient.jpg
-link: https://github.com/aurbano/Cloudclient
+thumbnail: cloudclient.png
+href: https://github.com/aurbano/Cloudclient
+description: Cloud storage client compatible with Dropbox and other services
 ---
 
 An experiment integrating an API with JavaScript. It's fully open source if you want to take a look.

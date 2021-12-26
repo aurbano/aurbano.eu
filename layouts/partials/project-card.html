@@ -1,0 +1,19 @@
+<div class="card my-4 shadow">
+  <img class="card-img-top" src='/assets/files/screenshots/{{ .Param "image" }}' alt="{{ .Title }}" />
+  {{ if (.Param "offline") }}
+    <div class="card-footer">
+      <small class="text-danger">
+        Offline
+      </small>
+    </div>
+  {{end}}
+  <div class="card-body">
+    <h4 class="card-title">
+      <a href="{{ .Param "href" }}">{{ .Title }}</a>
+      <small>{{ .Param "year" }}</small>
+    </h4>
+    <p class="card-text">
+      {{ .Content }}
+    </p>
+  </div>
+</div>
