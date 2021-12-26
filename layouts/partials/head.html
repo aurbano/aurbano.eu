@@ -23,6 +23,16 @@
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Alejandro U. Alvarez" />
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYFMFK4EX1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-BYFMFK4EX1');
+    </script>
+
     {{ if .Site.Params.favicon }}
         <link rel="icon" href="{{ .Site.Params.favicon | absURL }}">
     {{ end }}
