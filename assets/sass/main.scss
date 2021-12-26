@@ -83,6 +83,8 @@ a.nav-link {
     position: relative;
 
     &.text {
+      min-width: $box-size * 2;
+      min-height: $box-size * 1.2;
       background: $primary !important;
       color: $accent;
       border-color: rgba($accent, 0.5);
@@ -131,9 +133,9 @@ a.nav-link {
       margin: 0 auto;
       opacity: 0.9;
       transition: opacity 0.25s ease-in-out;
-      background-size: cover;
+      background-size: contain;
       background-repeat: no-repeat;
-      background-position: center center;
+      background-position: top center;
     }
 
     .meta {
