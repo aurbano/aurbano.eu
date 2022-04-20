@@ -1,189 +1,41 @@
-<!doctype html><html lang=en-us>
-<head>
-<meta charset=utf-8>
-<title>Journey into Haskell</title>
-<meta name=description content="A blog by Alejandro U. Alvarez on programming and humans">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=HandheldFriendly content="True">
-<meta name=MobileOptimized content="320">
-<meta property="og:site_name" content="Alejandro U. Alvarez - Blog">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Journey into Haskell">
-<meta property="og:description" content="I just came across a great read called &ldquo;The one time I thought I understood recursion&rdquo;, which talked about a developer&rsquo;s first steps with Haskell.
+<!doctype html><html lang=en-us><head><meta charset=utf-8><title>Journey into Haskell</title><meta name=description content="A blog by Alejandro U. Alvarez on programming and humans"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=HandheldFriendly content="True"><meta name=MobileOptimized content="320"><meta property="og:site_name" content="Alejandro U. Alvarez - Blog"><meta property="og:type" content="article"><meta property="og:title" content="Journey into Haskell"><meta property="og:description" content="I just came across a great read called &ldquo;The one time I thought I understood recursion&rdquo;, which talked about a developer&rsquo;s first steps with Haskell.
 He&rsquo;s doing the classic &ldquo;find the n-th prime&rdquo; algorithm, that has a typical recursive solution. It includes a snippet that solves the problem in a way that&rsquo;s just as beautiful as it is impossible to understand for me right now, without any Haskell knowledge.
-So I&rsquo;ve decided to (finally) start my Journey into Haskell by understanding how that snippet works.">
-<meta property="og:url" content="https://aurbano.eu/post/2019-12-18-journey-into-haskell/">
-<meta property="article:published_time" content="2019-12-18 00:00:00 +0000 UTC">
-<meta property="article:modified_time" content="2019-12-18 00:00:00 +0000 UTC">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Journey into Haskell">
-<meta name=twitter:description content="I just came across a great read called &ldquo;The one time I thought I understood recursion&rdquo;, which talked about a developer&rsquo;s first steps with Haskell.
+So I&rsquo;ve decided to (finally) start my Journey into Haskell by understanding how that snippet works."><meta property="og:url" content="https://aurbano.eu/post/2019-12-18-journey-into-haskell/"><meta property="article:published_time" content="2019-12-18 00:00:00 +0000 UTC"><meta property="article:modified_time" content="2019-12-18 00:00:00 +0000 UTC"><meta name=twitter:card content="summary"><meta name=twitter:title content="Journey into Haskell"><meta name=twitter:description content="I just came across a great read called &ldquo;The one time I thought I understood recursion&rdquo;, which talked about a developer&rsquo;s first steps with Haskell.
 He&rsquo;s doing the classic &ldquo;find the n-th prime&rdquo; algorithm, that has a typical recursive solution. It includes a snippet that solves the problem in a way that&rsquo;s just as beautiful as it is impossible to understand for me right now, without any Haskell knowledge.
-So I&rsquo;ve decided to (finally) start my Journey into Haskell by understanding how that snippet works.">
-<meta name=twitter:url content="https://aurbano.eu/post/2019-12-18-journey-into-haskell/">
-<meta name=twitter:label1 content="Written by">
-<meta name=twitter:data1 content="Alejandro U. Alvarez">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BYFMFK4EX1"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-BYFMFK4EX1')</script>
-<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css>
-<link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous>
-<link rel=stylesheet href=https://aurbano.eu/main.min.bd4ab2352da1c81d0e8c42e44426d056ba02a8e5fdb03a180c10d2cf90464823.css>
-<script src=https://code.jquery.com/jquery-3.4.1.slim.min.js integrity=sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n crossorigin=anonymous></script>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg">
-<div class=container>
-<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarSupportedContent>
-<ul class="navbar-nav nav-menu mr-auto">
-<li class=nav-item>
-<a class=nav-link href=/ style=font-weight:700>
-Alejandro U. Alvarez
-</a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/> Home </a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/about/> About </a>
-</li>
-<li class=nav-item>
-<a class=nav-link href=/post/> All posts </a>
-</li>
-</ul>
-<ul class="navbar-nav social-icons">
-<li class=nav-item>
-<a title="github profile" class="nav-link text-github" href=https://github.com/aurbano/>
-<i class="fa fa-github"></i>
-</a>
-</li>
-<li class=nav-item>
-<a title="linkedin profile" class="nav-link text-linkedin" href=https://www.linkedin.com/in/aurbano/>
-<i class="fa fa-linkedin"></i>
-</a>
-</li>
-<li class=nav-item>
-<a title="twitter profile" class="nav-link text-twitter" href=https://twitter.com/alalex>
-<i class="fa fa-twitter"></i>
-</a>
-</li>
-<li class=nav-item>
-<a title="stack-overflow profile" class="nav-link text-stack-overflow" href=https://stackoverflow.com/users/1262824/aurbano>
-<i class="fa fa-stack-overflow"></i>
-</a>
-</li>
-<li class=nav-item>
-<a title="hacker-news profile" class="nav-link text-hacker-news" href="https://news.ycombinator.com/user?id=aurbano">
-<i class="fa fa-hacker-news"></i>
-</a>
-</li>
-<li class=nav-item>
-<a title="rss profile" class="nav-link text-rss" href=/index.xml>
-<i class="fa fa-rss"></i>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<main>
-<div class=container>
-<div class="row justify-content-md-center">
-<div class="col col-lg-8">
-<header>
-<h1>Journey into Haskell</h1>
-<div class=row>
-<div class=col>
-<small class="date text-muted">
-Published on December 18, 2019
-</small>
-<a href=https://aurbano.eu/tags/Haskell class=item-tag>
-Haskell
-</a>
-<a href=https://aurbano.eu/tags/Journey class=item-tag>
-Journey
-</a>
-</div>
-<div class="col-2 text-right">
-<a href=https://github.com/aurbano/aurbano.eu/blob/master/content/post/2019-12-18-journey-into-haskell.md class=edit title="Open this post on Github">
-<i class="fa fa-pencil"></i>
-</a>
-</div>
-</div>
-</header>
-<div align=start class=content><p>I just came across a great read called <a href=https://functional.christmas/2019/18>&ldquo;The one time I thought I understood recursion&rdquo;</a>, which talked about a developer&rsquo;s first steps with Haskell.</p>
-<p>He&rsquo;s doing the classic &ldquo;find the n-th prime&rdquo; algorithm, that has a typical recursive solution. It includes a snippet that solves the problem in a way that&rsquo;s just as beautiful as it is impossible to understand for me right now, without any Haskell knowledge.</p>
-<p>So I&rsquo;ve decided to (finally) start my Journey into Haskell by understanding how that snippet works. Please note that I know <strong>nothing</strong> of Haskell as of now! So I&rsquo;m going to be learning as I go through the snippet.</p>
-<blockquote>
-<p>Every thing written here may be (and very likely is) wrong!</p>
-</blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#a6e22e>nth</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>Maybe</span> a
-<span style=color:#a6e22e>nth</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>Nothing</span>
-<span style=color:#a6e22e>nth</span> x <span style=color:#f92672>=</span> <span style=color:#66d9ef>Just</span> (last <span style=color:#f92672>$</span> primes x)
-
-<span style=color:#a6e22e>primes</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> [a]
-<span style=color:#a6e22e>primes</span> n <span style=color:#f92672>=</span> take n <span style=color:#f92672>$</span> sieve [<span style=color:#ae81ff>2</span><span style=color:#f92672>..</span>]
-    <span style=color:#66d9ef>where</span> sieve (p<span style=color:#66d9ef>:</span>xs) <span style=color:#f92672>=</span> p <span style=color:#66d9ef>:</span> sieve [x <span style=color:#f92672>|</span> x <span style=color:#f92672>&lt;-</span> xs, x `rem` p <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>]
-          sieve <span style=color:#66d9ef>[]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>[]</span>
-</code></pre></div><p>I&rsquo;ll start by trying to understand what each line does:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#a6e22e>nth</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>Maybe</span> a
-</code></pre></div><p>At a glance <code>::</code> seems to be declaring a variable, which will be a function that takes an <code>Int</code>, and maybe? returns an <code>Int</code>. The maybe seems to be similar to Java&rsquo;s Optional. But why the <code>Integral a</code> then?</p>
-<p><a href=http://learnyouahaskell.com/syntax-in-functions>Reading up on it</a> this turns out to be way more interesting than I thought! <code>Integral a</code> is the argument to the function, followed by a list of potential return types. This means that in some cases the function will return an Int (the nth prime), and in other cases it <strong>might</strong> return the same as the input.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#a6e22e>nth</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>Nothing</span>
-</code></pre></div><p>Seems easy, when calling <code>nth</code> with <code>0</code> as the argument, we return <code>Nothing</code>. From the <a href=https://hackage.haskell.org/package/base-4.12.0.0/docs/Data-Maybe.html#v:Nothing>docs</a> and <a href=https://stackoverflow.com/questions/22065358/what-is-the-type-of-nothing-in-haskell>SO</a>, <code>Nothing</code> represents a lack of value for a <code>Maybe XXX</code> type. Hence the <code>Maybe a</code> above.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#a6e22e>nth</span> x <span style=color:#f92672>=</span> <span style=color:#66d9ef>Just</span> (last <span style=color:#f92672>$</span> primes x)
-</code></pre></div><p>After <a href=https://stackoverflow.com/questions/18808258/what-does-the-just-syntax-mean-in-haskell>a bit of help from SO</a>, I think I get it: For any other argument <code>x</code>, <code>Just</code> is a constructor for <code>Maybe</code> which &ldquo;asserts&rdquo; that x does have a value (or that the function on its right will not return <code>Nothing</code>, I&rsquo;m not fully sure now), then runs the functions in the parenthesis.</p>
-<p><code>last</code> is obvious, it returns the last element on a list.
-<code>$</code> is not so much. It required some <a href=https://typeclasses.com/featured/dollar>additional reading</a> to understand that it&rsquo;s essentially sugar for more parenthesis, so AFAIK, the following two lines would do the same:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#a6e22e>nth</span> x <span style=color:#f92672>=</span> <span style=color:#66d9ef>Just</span> (last <span style=color:#f92672>$</span> primes x)
-<span style=color:#a6e22e>nth</span> x <span style=color:#f92672>=</span> <span style=color:#66d9ef>Just</span> (last (primes x))
-</code></pre></div><p>The article goes to pretty scary deep places regarding the use of the <code>$</code> sign, but I&rsquo;m gonna leave that for future me :) For now I get what it&rsquo;s doing in this context and that&rsquo;s going to be enough.</p>
-<p>The last thing is to call the function <code>primes</code> with the argument <code>x</code>, which seems to be defined later on (Apparently because Haskell does lazy evaluation you can define functions in any order). I assume that <code>primes</code> will be a function that takes one integer and returns a list of integers (primes) up to that one.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#a6e22e>primes</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> [a]
-</code></pre></div><p>The type definition for <code>primes</code> confirms the assumption, let&rsquo;s move on to the body (I&rsquo;ll show it complete first, then break it down by lines)</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#a6e22e>primes</span> n <span style=color:#f92672>=</span> take n <span style=color:#f92672>$</span> sieve [<span style=color:#ae81ff>2</span><span style=color:#f92672>..</span>]
-    <span style=color:#66d9ef>where</span> sieve (p<span style=color:#66d9ef>:</span>xs) <span style=color:#f92672>=</span> p <span style=color:#66d9ef>:</span> sieve [x <span style=color:#f92672>|</span> x <span style=color:#f92672>&lt;-</span> xs, x `rem` p <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>]
-          sieve <span style=color:#66d9ef>[]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>[]</span>
-</code></pre></div><p>Time to roll my sleeves up, this looks like a mess! Where do I start&mldr;?</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#a6e22e>primes</span> n <span style=color:#f92672>=</span> take n <span style=color:#f92672>$</span> sieve [<span style=color:#ae81ff>2</span><span style=color:#f92672>..</span>]
-</code></pre></div><p>So <code>primes</code> is a function with one argument <code>n</code>, that returns <code>take n $ sieve [2..]</code>. Let&rsquo;s see what that does:</p>
-<p><code>take</code> is a built-in function that takes two arguments, an integer (N) and a list, and returns the first N elements of the list (or less if the list is not long enough).</p>
-<p>It&rsquo;s being called with <code>n</code> (the argument from <code>primes</code>, which was actually the nth integer from the start), and <code>$ sieve [2..]</code> which as I have learnt should become the return value of <code>sieve [2..]</code>.</p>
-<p>I&rsquo;m still not sure whether <code>sieve</code> is built-in or defined below where it says <code>where sieve (p:xs) =</code>, so I&rsquo;ll finish this line first. <code>[]</code> is an operator that creates a list (or maybe I should call it sugar for the List constructor?) and <code>2..</code> means all integers starting from 2. Ok, getting there!</p>
-<p>Now we move on to the definition of <code>sieve</code>:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#66d9ef>where</span> sieve (p<span style=color:#66d9ef>:</span>xs) <span style=color:#f92672>=</span> p <span style=color:#66d9ef>:</span> sieve [x <span style=color:#f92672>|</span> x <span style=color:#f92672>&lt;-</span> xs, x `rem` p <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>]
-</code></pre></div><p><code>where</code> is a way to define functions based on their inputs, quite similar to what happened earlier, and after reading <a href=https://wiki.haskell.org/Let_vs._Where>some documentation</a> I&rsquo;m still not 100% sure about when it&rsquo;s best to be used, but I think I get what it does.</p>
-<p>Something awesome that I&rsquo;m realising now is the &ldquo;<a href=https://wiki.haskell.org/Lazy_evaluation>lazy evaluation</a>&rdquo; part of Haskell. If you wrote this code in Java for example it would simply never end because we&rsquo;re calling sieve with an infinite list! But thanks to Haskell&rsquo;s lazy evaluation <code>sieve [2..]</code> doesn&rsquo;t get evaluated when defined, but when it&rsquo;s return value is needed. So because <code>take n</code> needs the first <code>n</code> elements of the list returned by <code>sieve [2..]</code>, it will only evaluate until then. I&rsquo;m blown away!</p>
-<p>The next bit that looks odd is <code>p:xs</code>, my guess is that this represents an argument of type list, where the start is stored in <code>p</code> and the end in <code>xs</code>? but the list was unbounded (defined as <code>2..</code>) so surely I&rsquo;m missing something here (I was, I figured it out by the next paragraph). Time to <a href=https://wiki.haskell.org/How_to_read_Haskell>read</a>.</p>
-<p>Ok, it turns out that <code>p:xs</code> is a fairly standard convention, although the typical way of writing it is <code>x:xs</code>. In Haskell it&rsquo;s common to end list variables with an <code>s</code>, and use a single letter for single values. The fact that they chose <code>p</code> instead of <code>x</code> is an indication that it&rsquo;s value is special - it&rsquo;s a prime number (well, it should be).</p>
-<p>After reading <a href=http://learnyouahaskell.com/syntax-in-functions>some more</a>, I understand that <code>p:xs</code> is a pattern (and <a href=https://www.haskell.org/tutorial/patterns.html>patterns look AWESOME</a> in Haskell!), which means that <code>p</code> is the first element, and <code>xs</code> is <strong>the rest</strong> of the list. For example if you needed the first two elements and then the rest, you could write <code>p:s:xs</code>, where <code>p</code> would be the first, <code>s</code> the second, and <code>xs</code> the rest.</p>
-<p>For example the first time <code>sieve</code> runs <code>p = 2</code> and <code>xs = [3, 4, 5...]</code>.</p>
-<p>Now the return of the function: <code>p : sieve [x | x &lt;- xs, x `rem` p > 0]</code>.</p>
-<p>Based on what I&rsquo;ve learned so far, this is defining a new pattern that starts with <code>p</code> and ends in the return value of <code>sieve [x | x &lt;- xs, x `rem` p > 0]</code>, which should end up being a list of primes in <code>xs</code>.</p>
-<p>The argument for the recursive call to <code>sieve</code>: <code>x | x &lt;- xs, x `rem` p > 0</code> is what&rsquo;s called list comprehension, or in other words, get a subset of the original list where each element satisfies some conditions. The syntax seems to be <code>{return_var} | {return_var} from {list}, {condition 1}[, {condition 2}, ...]</code>.</p>
-<p>So in this case it says &ldquo;list of all <code>x</code> from <code>xs</code> such that <code>x `rem` p > 0</code>. And without reading up on this, I&rsquo;m assuming this says where the remainder of dividing <code>x</code>by <code>p</code> is greater than 0? (Yes, <a href=http://zvon.org/other/haskell/Outputprelude/rem_f.html>that&rsquo;s it</a>)</p>
-<p>And the last line:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#a6e22e>sieve</span> <span style=color:#66d9ef>[]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>[]</span>
-</code></pre></div><p>It simply returns an empty list when <code>sieve</code> is called with an empty list.</p>
-<h3 id=recap>Recap</h3>
-<p>Ok so now that I (mostly) get the syntax it&rsquo;s time to have a look at the algorithm again and see if I can make sense of it.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#a6e22e>nth</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>Maybe</span> a
-<span style=color:#a6e22e>nth</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>Nothing</span>
-<span style=color:#a6e22e>nth</span> x <span style=color:#f92672>=</span> <span style=color:#66d9ef>Just</span> (last <span style=color:#f92672>$</span> primes x)
-
-<span style=color:#a6e22e>primes</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> [a]
-<span style=color:#a6e22e>primes</span> n <span style=color:#f92672>=</span> take n <span style=color:#f92672>$</span> sieve [<span style=color:#ae81ff>2</span><span style=color:#f92672>..</span>]
-    <span style=color:#66d9ef>where</span> sieve (p<span style=color:#66d9ef>:</span>xs) <span style=color:#f92672>=</span> p <span style=color:#66d9ef>:</span> sieve [x <span style=color:#f92672>|</span> x <span style=color:#f92672>&lt;-</span> xs, x `rem` p <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>]
-          sieve <span style=color:#66d9ef>[]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>[]</span>
-</code></pre></div><p>Our <code>nth</code> function returns the largest prime lower or equals to an integer we pass.</p>
-<p>If we pass 0, we get nothing.</p>
-<p>If we pass any other number, we&rsquo;ll first calculate all primes up until that number and then return the last one. <em>(Note: I just caught myself thinking in &ldquo;non-lazy&rdquo; style again! the sentence should actually say &ldquo;we&rsquo;ll calculate primes as we need them, up until the number specified&rdquo;)</em></p>
-<p>In order to calculate all primes until that number, we&rsquo;ll start with a list of all integers starting by 2, and return a subset of the list starting from the next integer that is not divisible by it.</p>
-<p>So if we call the function with 14, we&rsquo;d expect the output to be 13. Let&rsquo;s run through what happens:</p>
-<pre tabindex=0><code>sieve [2..]
+So I&rsquo;ve decided to (finally) start my Journey into Haskell by understanding how that snippet works."><meta name=twitter:url content="https://aurbano.eu/post/2019-12-18-journey-into-haskell/"><meta name=twitter:label1 content="Written by"><meta name=twitter:data1 content="Alejandro U. Alvarez"><script async src="https://www.googletagmanager.com/gtag/js?id=G-BYFMFK4EX1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-BYFMFK4EX1")</script><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous><link rel=stylesheet href=https://aurbano.eu/main.min.62938ec46c15d6ef97891adadcd35df795e5f051d329cf462f3fc22b5ff6d7f0.css><script src=https://code.jquery.com/jquery-3.4.1.slim.min.js integrity=sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n crossorigin=anonymous></script></head><body><nav class="navbar navbar-expand-lg"><div class=container><button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarSupportedContent><ul class="navbar-nav nav-menu mr-auto"><li class=nav-item><a class=nav-link href=/ style=font-weight:700>Alejandro U. Alvarez</a></li><li class=nav-item><a class=nav-link href=/>Home</a></li><li class=nav-item><a class=nav-link href=/about/>About</a></li><li class=nav-item><a class=nav-link href=/post/>All posts</a></li></ul><ul class="navbar-nav social-icons"><li class=nav-item><a title="github profile" class="nav-link text-github" href=https://github.com/aurbano/><i class="fa fa-github"></i></a></li><li class=nav-item><a title="linkedin profile" class="nav-link text-linkedin" href=https://www.linkedin.com/in/aurbano/><i class="fa fa-linkedin"></i></a></li><li class=nav-item><a title="twitter profile" class="nav-link text-twitter" href=https://twitter.com/alalex><i class="fa fa-twitter"></i></a></li><li class=nav-item><a title="stack-overflow profile" class="nav-link text-stack-overflow" href=https://stackoverflow.com/users/1262824/aurbano><i class="fa fa-stack-overflow"></i></a></li><li class=nav-item><a title="hacker-news profile" class="nav-link text-hacker-news" href="https://news.ycombinator.com/user?id=aurbano"><i class="fa fa-hacker-news"></i></a></li><li class=nav-item><a title="rss profile" class="nav-link text-rss" href=/index.xml><i class="fa fa-rss"></i></a></li></ul></div></div></nav><main><div class=container><div class="row justify-content-md-center"><div class="col col-lg-8"><header><h1>Journey into Haskell</h1><div class=row><div class=col><small class="date text-muted">Published on December 18, 2019</small>
+<a href=https://aurbano.eu/tags/Haskell class=item-tag>Haskell</a>
+<a href=https://aurbano.eu/tags/Journey class=item-tag>Journey</a></div><div class="col-2 text-right"><a href=https://github.com/aurbano/aurbano.eu/blob/master/content/post/2019-12-18-journey-into-haskell.md class=edit title="Open this post on Github"><i class="fa fa-pencil"></i></a></div></div></header><div align=start class=content><p>I just came across a great read called <a href=https://functional.christmas/2019/18>&ldquo;The one time I thought I understood recursion&rdquo;</a>, which talked about a developer&rsquo;s first steps with Haskell.</p><p>He&rsquo;s doing the classic &ldquo;find the n-th prime&rdquo; algorithm, that has a typical recursive solution. It includes a snippet that solves the problem in a way that&rsquo;s just as beautiful as it is impossible to understand for me right now, without any Haskell knowledge.</p><p>So I&rsquo;ve decided to (finally) start my Journey into Haskell by understanding how that snippet works. Please note that I know <strong>nothing</strong> of Haskell as of now! So I&rsquo;m going to be learning as I go through the snippet.</p><blockquote><p>Every thing written here may be (and very likely is) wrong!</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=display:flex><span><span style=color:#a6e22e>nth</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>Maybe</span> a
+</span></span><span style=display:flex><span><span style=color:#a6e22e>nth</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>Nothing</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>nth</span> x <span style=color:#f92672>=</span> <span style=color:#66d9ef>Just</span> (last <span style=color:#f92672>$</span> primes x)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>primes</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> [a]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>primes</span> n <span style=color:#f92672>=</span> take n <span style=color:#f92672>$</span> sieve [<span style=color:#ae81ff>2</span><span style=color:#f92672>..</span>]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>where</span> sieve (p<span style=color:#66d9ef>:</span>xs) <span style=color:#f92672>=</span> p <span style=color:#66d9ef>:</span> sieve [x <span style=color:#f92672>|</span> x <span style=color:#f92672>&lt;-</span> xs, x `rem` p <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>          sieve <span style=color:#66d9ef>[]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>[]</span>
+</span></span></code></pre></div><p>I&rsquo;ll start by trying to understand what each line does:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=display:flex><span><span style=color:#a6e22e>nth</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>Maybe</span> a
+</span></span></code></pre></div><p>At a glance <code>::</code> seems to be declaring a variable, which will be a function that takes an <code>Int</code>, and maybe? returns an <code>Int</code>. The maybe seems to be similar to Java&rsquo;s Optional. But why the <code>Integral a</code> then?</p><p><a href=http://learnyouahaskell.com/syntax-in-functions>Reading up on it</a> this turns out to be way more interesting than I thought! <code>Integral a</code> is the argument to the function, followed by a list of potential return types. This means that in some cases the function will return an Int (the nth prime), and in other cases it <strong>might</strong> return the same as the input.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=display:flex><span><span style=color:#a6e22e>nth</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>Nothing</span>
+</span></span></code></pre></div><p>Seems easy, when calling <code>nth</code> with <code>0</code> as the argument, we return <code>Nothing</code>. From the <a href=https://hackage.haskell.org/package/base-4.12.0.0/docs/Data-Maybe.html#v:Nothing>docs</a> and <a href=https://stackoverflow.com/questions/22065358/what-is-the-type-of-nothing-in-haskell>SO</a>, <code>Nothing</code> represents a lack of value for a <code>Maybe XXX</code> type. Hence the <code>Maybe a</code> above.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=display:flex><span><span style=color:#a6e22e>nth</span> x <span style=color:#f92672>=</span> <span style=color:#66d9ef>Just</span> (last <span style=color:#f92672>$</span> primes x)
+</span></span></code></pre></div><p>After <a href=https://stackoverflow.com/questions/18808258/what-does-the-just-syntax-mean-in-haskell>a bit of help from SO</a>, I think I get it: For any other argument <code>x</code>, <code>Just</code> is a constructor for <code>Maybe</code> which &ldquo;asserts&rdquo; that x does have a value (or that the function on its right will not return <code>Nothing</code>, I&rsquo;m not fully sure now), then runs the functions in the parenthesis.</p><p><code>last</code> is obvious, it returns the last element on a list.
+<code>$</code> is not so much. It required some <a href=https://typeclasses.com/featured/dollar>additional reading</a> to understand that it&rsquo;s essentially sugar for more parenthesis, so AFAIK, the following two lines would do the same:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=display:flex><span><span style=color:#a6e22e>nth</span> x <span style=color:#f92672>=</span> <span style=color:#66d9ef>Just</span> (last <span style=color:#f92672>$</span> primes x)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>nth</span> x <span style=color:#f92672>=</span> <span style=color:#66d9ef>Just</span> (last (primes x))
+</span></span></code></pre></div><p>The article goes to pretty scary deep places regarding the use of the <code>$</code> sign, but I&rsquo;m gonna leave that for future me :) For now I get what it&rsquo;s doing in this context and that&rsquo;s going to be enough.</p><p>The last thing is to call the function <code>primes</code> with the argument <code>x</code>, which seems to be defined later on (Apparently because Haskell does lazy evaluation you can define functions in any order). I assume that <code>primes</code> will be a function that takes one integer and returns a list of integers (primes) up to that one.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=display:flex><span><span style=color:#a6e22e>primes</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> [a]
+</span></span></code></pre></div><p>The type definition for <code>primes</code> confirms the assumption, let&rsquo;s move on to the body (I&rsquo;ll show it complete first, then break it down by lines)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=display:flex><span><span style=color:#a6e22e>primes</span> n <span style=color:#f92672>=</span> take n <span style=color:#f92672>$</span> sieve [<span style=color:#ae81ff>2</span><span style=color:#f92672>..</span>]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>where</span> sieve (p<span style=color:#66d9ef>:</span>xs) <span style=color:#f92672>=</span> p <span style=color:#66d9ef>:</span> sieve [x <span style=color:#f92672>|</span> x <span style=color:#f92672>&lt;-</span> xs, x `rem` p <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>          sieve <span style=color:#66d9ef>[]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>[]</span>
+</span></span></code></pre></div><p>Time to roll my sleeves up, this looks like a mess! Where do I start&mldr;?</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=display:flex><span><span style=color:#a6e22e>primes</span> n <span style=color:#f92672>=</span> take n <span style=color:#f92672>$</span> sieve [<span style=color:#ae81ff>2</span><span style=color:#f92672>..</span>]
+</span></span></code></pre></div><p>So <code>primes</code> is a function with one argument <code>n</code>, that returns <code>take n $ sieve [2..]</code>. Let&rsquo;s see what that does:</p><p><code>take</code> is a built-in function that takes two arguments, an integer (N) and a list, and returns the first N elements of the list (or less if the list is not long enough).</p><p>It&rsquo;s being called with <code>n</code> (the argument from <code>primes</code>, which was actually the nth integer from the start), and <code>$ sieve [2..]</code> which as I have learnt should become the return value of <code>sieve [2..]</code>.</p><p>I&rsquo;m still not sure whether <code>sieve</code> is built-in or defined below where it says <code>where sieve (p:xs) =</code>, so I&rsquo;ll finish this line first. <code>[]</code> is an operator that creates a list (or maybe I should call it sugar for the List constructor?) and <code>2..</code> means all integers starting from 2. Ok, getting there!</p><p>Now we move on to the definition of <code>sieve</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=display:flex><span><span style=color:#66d9ef>where</span> sieve (p<span style=color:#66d9ef>:</span>xs) <span style=color:#f92672>=</span> p <span style=color:#66d9ef>:</span> sieve [x <span style=color:#f92672>|</span> x <span style=color:#f92672>&lt;-</span> xs, x `rem` p <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>]
+</span></span></code></pre></div><p><code>where</code> is a way to define functions based on their inputs, quite similar to what happened earlier, and after reading <a href=https://wiki.haskell.org/Let_vs._Where>some documentation</a> I&rsquo;m still not 100% sure about when it&rsquo;s best to be used, but I think I get what it does.</p><p>Something awesome that I&rsquo;m realising now is the &ldquo;<a href=https://wiki.haskell.org/Lazy_evaluation>lazy evaluation</a>&rdquo; part of Haskell. If you wrote this code in Java for example it would simply never end because we&rsquo;re calling sieve with an infinite list! But thanks to Haskell&rsquo;s lazy evaluation <code>sieve [2..]</code> doesn&rsquo;t get evaluated when defined, but when it&rsquo;s return value is needed. So because <code>take n</code> needs the first <code>n</code> elements of the list returned by <code>sieve [2..]</code>, it will only evaluate until then. I&rsquo;m blown away!</p><p>The next bit that looks odd is <code>p:xs</code>, my guess is that this represents an argument of type list, where the start is stored in <code>p</code> and the end in <code>xs</code>? but the list was unbounded (defined as <code>2..</code>) so surely I&rsquo;m missing something here (I was, I figured it out by the next paragraph). Time to <a href=https://wiki.haskell.org/How_to_read_Haskell>read</a>.</p><p>Ok, it turns out that <code>p:xs</code> is a fairly standard convention, although the typical way of writing it is <code>x:xs</code>. In Haskell it&rsquo;s common to end list variables with an <code>s</code>, and use a single letter for single values. The fact that they chose <code>p</code> instead of <code>x</code> is an indication that it&rsquo;s value is special - it&rsquo;s a prime number (well, it should be).</p><p>After reading <a href=http://learnyouahaskell.com/syntax-in-functions>some more</a>, I understand that <code>p:xs</code> is a pattern (and <a href=https://www.haskell.org/tutorial/patterns.html>patterns look AWESOME</a> in Haskell!), which means that <code>p</code> is the first element, and <code>xs</code> is <strong>the rest</strong> of the list. For example if you needed the first two elements and then the rest, you could write <code>p:s:xs</code>, where <code>p</code> would be the first, <code>s</code> the second, and <code>xs</code> the rest.</p><p>For example the first time <code>sieve</code> runs <code>p = 2</code> and <code>xs = [3, 4, 5...]</code>.</p><p>Now the return of the function: <code>p : sieve [x | x &lt;- xs, x `rem` p > 0]</code>.</p><p>Based on what I&rsquo;ve learned so far, this is defining a new pattern that starts with <code>p</code> and ends in the return value of <code>sieve [x | x &lt;- xs, x `rem` p > 0]</code>, which should end up being a list of primes in <code>xs</code>.</p><p>The argument for the recursive call to <code>sieve</code>: <code>x | x &lt;- xs, x `rem` p > 0</code> is what&rsquo;s called list comprehension, or in other words, get a subset of the original list where each element satisfies some conditions. The syntax seems to be <code>{return_var} | {return_var} from {list}, {condition 1}[, {condition 2}, ...]</code>.</p><p>So in this case it says &ldquo;list of all <code>x</code> from <code>xs</code> such that <code>x `rem` p > 0</code>. And without reading up on this, I&rsquo;m assuming this says where the remainder of dividing <code>x</code>by <code>p</code> is greater than 0? (Yes, <a href=http://zvon.org/other/haskell/Outputprelude/rem_f.html>that&rsquo;s it</a>)</p><p>And the last line:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=display:flex><span><span style=color:#a6e22e>sieve</span> <span style=color:#66d9ef>[]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>[]</span>
+</span></span></code></pre></div><p>It simply returns an empty list when <code>sieve</code> is called with an empty list.</p><h3 id=recap>Recap</h3><p>Ok so now that I (mostly) get the syntax it&rsquo;s time to have a look at the algorithm again and see if I can make sense of it.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=display:flex><span><span style=color:#a6e22e>nth</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>Maybe</span> a
+</span></span><span style=display:flex><span><span style=color:#a6e22e>nth</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>Nothing</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>nth</span> x <span style=color:#f92672>=</span> <span style=color:#66d9ef>Just</span> (last <span style=color:#f92672>$</span> primes x)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>primes</span> <span style=color:#f92672>::</span> <span style=color:#66d9ef>Integral</span> a <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>Int</span> <span style=color:#f92672>-&gt;</span> [a]
+</span></span><span style=display:flex><span><span style=color:#a6e22e>primes</span> n <span style=color:#f92672>=</span> take n <span style=color:#f92672>$</span> sieve [<span style=color:#ae81ff>2</span><span style=color:#f92672>..</span>]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>where</span> sieve (p<span style=color:#66d9ef>:</span>xs) <span style=color:#f92672>=</span> p <span style=color:#66d9ef>:</span> sieve [x <span style=color:#f92672>|</span> x <span style=color:#f92672>&lt;-</span> xs, x `rem` p <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>          sieve <span style=color:#66d9ef>[]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>[]</span>
+</span></span></code></pre></div><p>Our <code>nth</code> function returns the largest prime lower or equals to an integer we pass.</p><p>If we pass 0, we get nothing.</p><p>If we pass any other number, we&rsquo;ll first calculate all primes up until that number and then return the last one. <em>(Note: I just caught myself thinking in &ldquo;non-lazy&rdquo; style again! the sentence should actually say &ldquo;we&rsquo;ll calculate primes as we need them, up until the number specified&rdquo;)</em></p><p>In order to calculate all primes until that number, we&rsquo;ll start with a list of all integers starting by 2, and return a subset of the list starting from the next integer that is not divisible by it.</p><p>So if we call the function with 14, we&rsquo;d expect the output to be 13. Let&rsquo;s run through what happens:</p><pre tabindex=0><code>sieve [2..]
 
 // ------- //
 
@@ -226,64 +78,24 @@ return = [2, 3, 5, 7, 11, 13]
 Take the last element:
 
 Return 13
-</code></pre><p>This was pretty cool! I&rsquo;m now going to set up Haskell locally to start writing some code myself, so hopefully my Journey continues and I can post Part 2 at some point!</p>
-</div>
-<div class="card related shadow">
-<div class=card-body>
-<h5 class=card-title>More like this:</h5>
-<div class=item>
-<h6>
-<a href=/post/2020-02-15-flocking-simulation/>Flocking Behaviour Simulations</a>
-<small class="date text-muted">February 8, 2020</small>
-</h6>
-<p class=text-muted>JavaScript implementation of the Boid algorithm</p>
-</div>
-<div class=item>
-<h6>
-<a href=/post/2014-10-08-creating-game-unreal-engine/>Creating a game with Unreal Engine 4</a>
-<small class="date text-muted">October 8, 2014</small>
-</h6>
-<p class=text-muted>Developing a game from scratch in Unreal Engine 4</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<footer>
-<p class="copyright text-muted">
-<a href=/>Alejandro U. Alvarez</a>
+</code></pre><p>This was pretty cool! I&rsquo;m now going to set up Haskell locally to start writing some code myself, so hopefully my Journey continues and I can post Part 2 at some point!</p></div><div class="card related shadow"><div class=card-body><h5 class=card-title>More like this:</h5><div class=item><h6><a href=/post/2020-02-15-flocking-simulation/>Flocking Behaviour Simulations</a>
+<small class="date text-muted">February 8, 2020</small></h6><p class=text-muted>JavaScript implementation of the Boid algorithm</p></div><div class=item><h6><a href=/post/2014-10-08-creating-game-unreal-engine/>Creating a game with Unreal Engine 4</a>
+<small class="date text-muted">October 8, 2014</small></h6><p class=text-muted>Developing a game from scratch in Unreal Engine 4</p></div></div></div></div></div></div></main><footer><p class="copyright text-muted"><a href=/>Alejandro U. Alvarez</a>
 © All rights reserved
 &bull;
-<a href=/index.xml>
-RSS
-</a>
+<a href=/index.xml>RSS</a>
 &bull;
-<a href=/post>
-All posts
-</a>
+<a href=/post>All posts</a>
 &bull;
-<a href=/categories>
-Categories
-</a>
+<a href=/categories>Categories</a>
 &bull;
-<a href=/tags>
-Tags
-</a>
-</p>
-</footer>
-<div class="border animated-hue"></div>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script>
+<a href=/tags>Tags</a></p></footer><div class="border animated-hue"></div><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/typescript.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js></script>
-<script>hljs.initHighlightingOnLoad()</script>
-<script src=https://aurbano.eu/vendor/bootstrap/dist/js/bootstrap.bundle.min.js></script>
+<script>hljs.initHighlightingOnLoad()</script><script src=https://aurbano.eu/vendor/bootstrap/dist/js/bootstrap.bundle.min.js></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
-<script>$(document).on('click',function(){$('.collapse').collapse('hide')})</script>
-</body>
-</html>
+<script>$(document).on("click",function(){$(".collapse").collapse("hide")})</script></body></html>
