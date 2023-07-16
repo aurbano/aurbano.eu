@@ -36,3 +36,11 @@ And we've come full circle again... I'm using Firefox now. I stayed with Google 
 Firefox is now good enough to make the jump. I feel like it consumes more resources and battery, but I don't have any data to back that up. The dev-tools are *almost* as good as Chrome's (they miss little details, <del>like WebSockets support</del> I just realised they now support WebSockets experimentally) but for the most part they are good, it *is* a good browser.
 
 But the main thing is the privacy. I run [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/) with the [Multi-Account Containers](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/) + [Cookie AutoDelete](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/?src=search) extensions, and it's just perfect for me.
+
+### 2023 Update
+
+Heh, another full circle? I am back to using Chrome.
+
+I did love the containers, it was nice having the same website using different profiles on the same window - but it was a bit slow and the dev tools didn't feel as refined.
+
+So I switched back to Chrome, and used the profiles to segregate logins (work, personal, other). It's per-window instead per-tab, but it's better than nothing and it works for me.
