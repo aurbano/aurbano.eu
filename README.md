@@ -15,6 +15,11 @@ brew install hugo
 hugo serve
 ```
 
+## Install theme/module updates
+```
+hugo mod get -u
+```
+
 ## Update thumbnail colors
 For posts in the homepage, I extract the dominant color and use it as the background for each tile. This is done by running `python3 scripts/colors.py`.
 

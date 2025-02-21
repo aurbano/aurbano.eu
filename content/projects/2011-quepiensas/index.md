@@ -4,8 +4,7 @@ year: 2011
 date: "2011-01-01"
 offline: true
 href: https://github.com/aurbano/QuePiensas
-image: quepiensas.jpg
-thumbnail: quepiensas.png
+cover: thumbnail.png
 description: Spanish (failed) social network fully integrated with Facebook. It alowed users to express their opinion on their friends.
 ---
 

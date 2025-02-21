@@ -2,7 +2,7 @@
 title: "dotdot: A social experiment"
 description: Group chat application aiming to help meet and get to know other people
 date: "2020-04-13"
-thumbnail: dotdot.png
+cover: thumbnail.png
 categories:
 - Side Project
 tags:

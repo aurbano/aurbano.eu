@@ -4,7 +4,6 @@ categories:
 date: "2014-10-21"
 description: JavaScript library to render text as floating particles in WebGL
 tagline: WebGL Experiment
-thumbnail: nebula.png
 tags:
 - WebGL
 - JavaScript

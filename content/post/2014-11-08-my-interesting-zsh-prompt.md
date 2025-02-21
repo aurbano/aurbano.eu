@@ -13,7 +13,9 @@ aliases: [ /blog/my-interesting-zsh-prompt/ ]
 outdated: true
 ---
 
-> Yes, this is outdated - I've now moved on to use Oh My Zsh, mostly with the default setup to keep things simple.
+{{< lead >}}
+Yes, this is outdated - I've now moved on to use Oh My Zsh, mostly with the default setup to keep things simple.
+{{< /lead >}}
 
 I already did a post on [the steps I took]({{< ref "2014-11-03-setting-up-mac-for-development" >}}) to set up my new macbook for development.
 

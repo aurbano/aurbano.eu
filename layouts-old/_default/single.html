@@ -1,0 +1,19 @@
+{{ partial "header" . }}
+
+<main>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-8">
+        <header>
+          <h1>{{ .Title }}</h1>
+          <small>{{ .Description }}</small>
+          {{ partial "tags" . }}
+        </header>
+
+        <div align="start" class="content">{{ .Content }}</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{{ partial "footer" . }}

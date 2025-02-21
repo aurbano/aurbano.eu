@@ -18,6 +18,8 @@ tags:
 
 ---
 
+{{< katex >}}
+
 This post details my journey learning about flocking behaviours, the mathematical models behind them, and my own implementation using WebGL. You can also see [the final product](https://aurbano.github.io/flocking-simulation/) before you read it if you want!
 
 I've always been fascinated by flocks of birds flying in the sky creating patterns like the ones you can see in this video:
@@ -44,9 +46,9 @@ Although my end goal is to generate a visualization that looks like the referenc
 
 My initial algorithm is:
 
-1. For each boid {{<math-inline>}}z_i{{</math-inline>}} find all neighbours {{<math-inline>}}z_{ij}{{</math-inline>}} within each of the radii (cohesion {{<math-inline>}}z_{ij_c}{{</math-inline>}} , alignment {{<math-inline>}}z_{ij_a}{{</math-inline>}}, and separation {{<math-inline>}}z_{ij_s}{{</math-inline>}})
-1. For each group of neighbours {{<math-inline>}}z_{ij_k}{{</math-inline>}} calculate the center of mass {{<math-inline>}}C_k = z_i - z_{ij_k}{{</math-inline>}} and the angle between it and each boid: {{<math-inline>}}\theta_k = atan2(\dfrac{z_i}{C_k}){{</math-inline>}}
-1. Update the boid's direction {{<math-inline>}} \theta_i(t+1) = \theta_i(t) + c_k(\theta_k - \theta_i) {{</math-inline>}} where {{<math-inline>}}c_k{{</math-inline>}} is the coefficient for that rule.
+1. For each boid \\(z_i\\) find all neighbours \\(z_{ij}\\) within each of the radii (cohesion \\(z_{ij_c}\\) , alignment \\(z_{ij_a}\\), and separation \\(z_{ij_s}\\))
+1. For each group of neighbours \\(z_{ij_k}\\) calculate the center of mass \\(C_k = z_i - z_{ij_k}\\) and the angle between it and each boid: \\(\theta_k = atan2(\dfrac{z_i}{C_k})\\)
+1. Update the boid's direction \\( \theta_i(t+1) = \theta_i(t) + c_k(\theta_k - \theta_i) \\) where \\(c_k\\) is the coefficient for that rule.
 
 Below I have embedded a CodePen with the code I have at this stage: (Green indicates that a boid is aligned to others. The mouse behaves like a predator, so boids will try to avoid it and turn red while doing so)
 

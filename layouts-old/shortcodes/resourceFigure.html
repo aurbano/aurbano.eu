@@ -1,0 +1,9 @@
+{{ $file := .Get 0 }}
+{{ $asset := resources.Get $file }}
+
+<figure>
+  <img src="{{ $asset.Permalink }}" />
+  <figcaption>
+    <h4>{{ .Get 1 }}</h4>
+  </figcaption>
+</figure>

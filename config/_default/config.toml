@@ -1,0 +1,20 @@
+# -- Site Configuration --
+# Refer to the theme docs for more details about each of these parameters.
+# https://jpanther.github.io/congo/docs/getting-started/
+
+baseURL = "https://aurbano.eu"
+defaultContentLanguage = "en"
+
+disablePathToLower = true
+languageCode = "en"
+
+enableRobotsTXT = true
+summaryLength = 0
+
+googleAnalytics = "G-BYFMFK4EX1"
+
+[pagination]
+pagerSize = 10
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]

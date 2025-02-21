@@ -9,6 +9,7 @@ tags:
 - MacOS
 title: Setting up macOs for development
 aliases: [ /blog/setting-up-mac-for-development/ ]
+outdated: true
 ---
 
 So I recently got [a new Macbook Air]({{< ref "2014-10-21-mac-shanghai-to-spain" >}}), and after a couple of weeks of installing and configuring I finally have an initial setup I'm happy with.

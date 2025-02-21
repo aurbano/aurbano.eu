@@ -2,7 +2,6 @@
 title: Procedural Map Generation
 description: JavaScript implementation using simplex noise and WebGL rendering
 date: "2020-02-08"
-thumbnail: maps.png
 categories:
 - Learning
 tags:
@@ -202,5 +201,6 @@ Soon we'll start using this generator in our new game, so I'll update this post 
 
 You can also follow updates at [#socialgorithm](https://socialgorithm.org), or get in touch if you want to run a coding workshop/competition in your uni, company, school, meetup...
 
-{{< resource "posts/procedural-maps/js/simplex-noise.js" >}}
-{{< resource "posts/procedural-maps/js/render.js" >}}
+{{ with .Page.Resources.Get "js/simplex-noise.js" }}
+<script defer src="{{ .RelPermalink }}"></script>
+{{ end }}
