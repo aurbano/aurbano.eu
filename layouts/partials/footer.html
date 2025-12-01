@@ -1,32 +1,63 @@
-        <footer>
-            <p class="copyright text-muted">
-              <a href="/">Alejandro U. Alvarez</a>
-              {{ .Site.Params.copyright | default "&copy; All rights reserved" | markdownify }}
-              &bull;
-              <a href="/index.xml">
-                RSS
-              </a>
-              &bull;
-              <a href="/post">
-                All posts
-              </a>
-              &bull;
-              <a href="/categories">
-                Categories
-              </a>
-              &bull;
-              <a href="/tags">
-                Tags
-              </a>
-            </p>
-        </footer>
+        <!-- Decorative top border -->
+        <div class="h-1 bg-gradient-to-r from-magazine-accent via-magazine-accent-light to-magazine-secondary"></div>
 
-        <div class="border animated-hue"></div>
+        <footer class="bg-magazine-accent text-magazine-white">
+          <div class="container mx-auto px-8 max-w-7xl py-12">
+            <div class="text-center">
+              <!-- Name and copyright -->
+              <p class="mb-6 text-lg">
+                <a href="/" class="font-black text-magazine-white hover:text-magazine-cream transition-colors text-2xl">Alejandro U. Alvarez</a>
+              </p>
+              <p class="mb-8 text-magazine-white/70">
+                {{ .Site.Params.copyright | default "All rights reserved" | markdownify }}
+              </p>
+
+              <!-- Footer links with accent separators -->
+              <div class="flex justify-center gap-4 text-sm flex-wrap mb-8">
+                <a href="/index.xml" class="hover:text-magazine-cream transition-colors font-medium">RSS</a>
+                <span class="text-magazine-accent-light">●</span>
+                <a href="/post" class="hover:text-magazine-cream transition-colors font-medium">All posts</a>
+                <span class="text-magazine-accent-light">●</span>
+                <a href="/categories" class="hover:text-magazine-cream transition-colors font-medium">Categories</a>
+                <span class="text-magazine-accent-light">●</span>
+                <a href="/tags" class="hover:text-magazine-cream transition-colors font-medium">Tags</a>
+              </div>
+
+              <!-- Decorative accent line -->
+              <div class="flex justify-center gap-2 mb-6">
+                <div class="w-12 h-px bg-magazine-accent-light"></div>
+                <div class="w-12 h-px bg-magazine-cream"></div>
+                <div class="w-12 h-px bg-magazine-secondary"></div>
+              </div>
+
+              <!-- Social icons if available -->
+              {{ if .Site.Menus.icon }}
+              <div class="flex justify-center gap-4">
+                {{ range sort .Site.Menus.icon }}
+                <a
+                  href="{{ .URL }}"
+                  title="{{ .Name }}"
+                  class="w-10 h-10 flex items-center justify-center rounded-full bg-magazine-white/10 hover:bg-magazine-white hover:text-magazine-accent transition-all duration-300"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {{ if eq .Name "rss" }}
+                  <i class="fa-solid fa-rss"></i>
+                  {{ else }}
+                  <i class="fa-brands fa-{{ .Name }}"></i>
+                  {{ end }}
+                </a>
+                {{ end }}
+              </div>
+              {{ end }}
+            </div>
+          </div>
+        </footer>
 
         {{ partial "body-close" . }}
 
         {{ partial "js" . }}
-        
+
     </body>
 
 </html>

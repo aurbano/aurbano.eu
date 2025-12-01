@@ -7,12 +7,26 @@
     <script>hljs.initHighlightingOnLoad();</script>
 {{ end }}
 
-<!-- bootstrap -->
-{{ $bootstrap := resources.Get "vendor/bootstrap/dist/js/bootstrap.bundle.min.js" }}
-<script src="{{ $bootstrap.Permalink }}"></script>
-
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-<!-- dismiss expanded navigation bar with click -->
-<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+<!-- Mobile navigation toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.querySelector('.navbar-toggler');
+    const navMenu = document.querySelector('.navbar-collapse');
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('show');
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+          navMenu.classList.remove('show');
+        }
+      });
+    }
+  });
+</script>

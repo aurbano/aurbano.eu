@@ -1,0 +1,16 @@
+{
+  "name": "aurbano.eu",
+  "version": "1.0.0",
+  "description": "Personal website and blog",
+  "scripts": {
+    "dev": "hugo serve",
+    "build": "hugo"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.17"
+  }
+}

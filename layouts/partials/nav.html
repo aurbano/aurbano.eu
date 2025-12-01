@@ -1,58 +1,53 @@
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
+<nav class="navbar navbar-expand-lg bg-magazine-white/80 backdrop-blur-md border-b border-magazine-black/5 sticky top-0 z-50 shadow-sm">
+  <div class="container mx-auto px-8 py-6 max-w-7xl">
     <button
-      class="navbar-toggler"
+      class="navbar-toggler lg:hidden p-3 text-magazine-black hover:text-magazine-accent transition-colors"
       type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <span class="navbar-toggler-icon"></span>
+      <i class="fa-solid fa-bars text-xl"></i>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-collapse hidden lg:flex items-center justify-between w-full" id="navbarSupportedContent">
       {{ if .Site.Menus.main }}
-      <ul class="navbar-nav nav-menu mr-auto">
+      <ul class="navbar-nav nav-menu flex items-center gap-2">
         <li class="nav-item">
-          <a class="nav-link" href="/" style="font-weight: bold">
-            Alejandro U. Alvarez
+          <a class="nav-link text-xl font-black text-magazine-accent hover:text-magazine-accent-dark" href="/">
+            {{ .Site.Title }}
           </a>
+        </li>
+        <li class="nav-item">
+          <span class="text-magazine-black/20 mx-2">·</span>
         </li>
         {{ $currentPage := . }} {{ range sort .Site.Menus.main }} {{ $is :=
         $currentPage.IsMenuCurrent "main" . }} {{ $has :=
         $currentPage.HasMenuCurrent "main" . }}
-        <li
-          {{
-          if
-          or
-          $is
-          $has
-          }}
-          class="nav-item active"
-          {{
-          else
-          }}
-          class="nav-item"
-          {{
-          end
-          }}
-        >
-          <a class="nav-link" href="{{ .URL }}"> {{ .Name }} </a>
+        <li class="nav-item">
+          <a class="nav-link text-base{{ if or $is $has }} text-magazine-accent{{ end }}" href="{{ .URL }}">
+            {{ .Name }}
+          </a>
         </li>
         {{ end }}
       </ul>
-      {{ end }} {{ if .Site.Menus.icon }}
-      <ul class="navbar-nav social-icons">
+      {{ end }}
+      {{ if .Site.Menus.icon }}
+      <ul class="navbar-nav social-icons flex items-center gap-3">
         {{ range sort .Site.Menus.icon }}
         <li class="nav-item">
           <a
-            title="{{ .Name }} profile"
-            class="nav-link text-{{ .Name }}"
+            title="{{ .Name }}"
+            class="social-icon-nav text-magazine-accent hover:text-magazine-accent-dark transition-colors text-lg"
             href="{{ .URL }}"
+            target="_blank"
+            rel="noopener"
           >
-            <i class="fa fa-{{ .Name }}"></i>
+            {{ if eq .Name "rss" }}
+            <i class="fa-solid fa-rss"></i>
+            {{ else }}
+            <i class="fa-brands fa-{{ .Name }}"></i>
+            {{ end }}
           </a>
         </li>
         {{ end }}

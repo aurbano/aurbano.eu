@@ -1,19 +1,29 @@
-<div class="card my-4 shadow">
-  <img class="card-img-top" src='/assets/files/screenshots/{{ .Param "image" }}' alt="{{ .Title }}" />
+<article class="card my-8 group">
+  <div class="overflow-hidden">
+    <img class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" src='/assets/files/screenshots/{{ .Param "image" }}' alt="{{ .Title }}" />
+  </div>
+
   {{ if (.Param "offline") }}
-    <div class="card-footer">
-      <small class="text-danger">
-        Offline
+    <div class="px-6 py-3 bg-magazine-tertiary/20 border-l-4 border-magazine-secondary">
+      <small class="text-magazine-black font-bold">
+        ⚠️ Offline
       </small>
     </div>
   {{end}}
-  <div class="card-body">
-    <h4 class="card-title">
-      <a href="{{ .Param "href" }}">{{ .Title }}</a>
-      <small>{{ .Param "year" }}</small>
+
+  <div class="p-6">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="inline-block px-3 py-1 text-xs font-bold bg-magazine-accent text-magazine-white rounded-full">
+        {{ .Param "year" }}
+      </span>
+    </div>
+
+    <h4 class="text-3xl font-bold mb-4 group-hover:text-magazine-accent transition-colors">
+      <a href="{{ .Param "href" }}" target="_blank" rel="noopener">{{ .Title }}</a>
     </h4>
-    <p class="card-text">
+
+    <div class="prose">
       {{ .Content }}
-    </p>
+    </div>
   </div>
-</div>
+</article>

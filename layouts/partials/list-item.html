@@ -1,5 +1,4 @@
-<div class="item">
-
+<article class="list-item">
     {{ $.Scratch.Set "link" .RelPermalink }}
     {{ with .Params.repo }}
         {{ $repoHost := default "github" $.Params.repoHost }}
@@ -13,14 +12,31 @@
     {{ end }}
     {{ with .Params.link }} {{ $.Scratch.Set "link" . }} {{ end }}
 
-    {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") | $.Scratch.Set "subheader" }}
-    {{ with .Description }} {{ $.Scratch.Set "subheader" . }} {{ end }}
+    <div class="flex items-start justify-between gap-4">
+      <div class="flex-1">
+        <h6>
+          <a href="{{ .Scratch.Get "link" }}" class="text-magazine-black hover:text-magazine-accent transition-colors">
+            {{ .Title }}
+          </a>
+        </h6>
 
-    <h6>
-      <a href="{{ .Scratch.Get "link" }}">{{ .Title }}</a>
-      <small class="date text-muted">{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</small>
-    </h6>
+        <p class="text-magazine-black/60 mt-2">{{ .Description }}</p>
 
-    <p class="text-muted">{{.Description}}</p>
+        {{ if .Params.tags }}
+        <div class="flex flex-wrap gap-2 mt-3">
+          {{ range first 3 .Params.tags }}
+          <span class="inline-block px-3 py-1 text-xs font-medium bg-magazine-black/5 rounded-full">
+            {{ . }}
+          </span>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
 
-</div>
+      <div class="text-right flex-shrink-0">
+        <time class="inline-block px-3 py-1 text-sm font-bold bg-magazine-accent text-magazine-white rounded-full">
+          {{ .Date.Format "Jan 2006" }}
+        </time>
+      </div>
+    </div>
+</article>

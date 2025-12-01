@@ -3,6 +3,9 @@ disablePathToLower: true
 languageCode: en-us
 title: Alejandro U. Alvarez
 
+build:
+  writeStats: true
+
 params:
   author: "Alejandro U. Alvarez"
   description: "I sometimes stop by"

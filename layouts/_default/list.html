@@ -1,17 +1,21 @@
 {{ partial "header" . }}
 
-<main>
-  <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col col-lg-8">
-        <header>
-          <h1>{{ .Title }}</h1>
-        </header>
+<div class="accent-line"></div>
 
-        {{ range (.Paginator 40).Pages }} {{ partial "list-item" . }} {{ end }}
-      </div>
+<main class="flex-1 py-16">
+  <div class="container mx-auto px-8 max-w-4xl">
+    <header class="mb-16">
+      <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tight">{{ .Title }}</h1>
+      <div class="h-1 w-24 bg-magazine-accent"></div>
+    </header>
+
+    <div class="space-y-0">
+      {{ range (.Paginator 40).Pages }}
+        {{ partial "list-item" . }}
+      {{ end }}
     </div>
   </div>
 </main>
 
-{{ partial "paginator" . }} {{ partial "footer" . }}
+{{ partial "paginator" . }}
+{{ partial "footer" . }}

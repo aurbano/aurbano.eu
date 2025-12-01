@@ -1,93 +1,161 @@
 {{ partial "head" . }}
 
-<body>
-  <div class="new-layout">
-    <div class="item text">
-      {{ with .Site.Params.profilePic }}
-      <img class="profile" src="{{ . }}" />
-      {{ end }}
-      <h1><a href="/about">{{ .Site.Title }}</a></h1>
+<body class="relative flex flex-col min-h-screen">
+  <!-- Decorative grid lines -->
+  <div class="grid-line-vertical left-1/4 hidden md:block"></div>
+  <div class="grid-line-vertical right-1/4 hidden md:block"></div>
 
-      {{ if .Site.Menus.icon }}
-      <div class="social-icons">
-        <ul class="nav justify-content-center">
-          {{ range sort .Site.Menus.icon }}
-          <li class="nav-item">
-            <a
-              title="{{ .Name }}"
-              class="nav-link text-{{ .Name }}"
-              href="{{ .URL }}"
-            >
-              <i class="fa fa-{{ .Name }}"></i>
-            </a>
-          </li>
-          {{ end }}
-        </ul>
-      </div>
-      {{ end }}
+  <!-- Colorful accent line at top -->
+  <div class="h-2 bg-gradient-to-r from-magazine-accent via-magazine-secondary to-magazine-accent-light"></div>
 
-      <p>Here are some mostly useless and slightly cool things I've made</p>
-    </div>
-    {{ $posts := .Site.RegularPages }} {{ with $posts }} {{ range where .
-    ".Params.thumbnail" "!=" nil }} {{ $assetPath := printf "thumbnails/%s"
-    .Params.thumbnail}} {{ $asset := resources.Get $assetPath }} {{ $color :=
-    index .Site.Data.colors .Params.thumbnail }} {{$bgColor := printf
-    "background-color:rgb%s;" $color }}
-    <a
-      href="{{ cond (isset .Params "link") .Params.link .RelPermalink }}"
-      class="item interactive"
-      style="{{$bgColor | safeCSS}}"
-    >
-      <div
-        class="img"
-        style="background-image: url('{{$asset.Permalink}}')"
-      ></div>
-      <div class="meta">
-        <div class="title">
-          <div class="date">
-            {{ .Date.Format (.Site.Params.dateFormat | default "2006") }}
-          </div>
+  <!-- Hero Section -->
+  <section class="magazine-hero container mx-auto px-8 max-w-7xl relative overflow-visible">
+    <!-- Floating animated shapes with muted colors -->
+    <div class="floating-shape-1 absolute top-20 right-10 w-64 h-64 rounded-full bg-magazine-accent/12 pointer-events-none"></div>
+    <div class="floating-shape-2 absolute bottom-32 left-10 w-80 h-80 bg-magazine-secondary/12 pointer-events-none" style="clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
+    <div class="floating-shape-3 absolute top-1/2 right-1/4 w-56 h-56 rounded-full bg-magazine-accent-light/12 pointer-events-none hidden lg:block"></div>
 
-          {{ .Title }}
-        </div>
-
-        <div class="description">{{ .Description }}</div>
-      </div>
-      
-    </a>
-    {{ end }} {{ end }}
-  </div>
-  <!-- <main>
-    <div class="intro">
-      {{ with .Site.Params.profilePic }}
-      <img class="profile" src="{{ . }}" /> {{ end }}
-      <h1>{{ .Site.Title }}</h1>
-      {{ with .Content }}
-      <div class="homepage-content text-justify">{{ . }}</div>
-      {{ end }} {{ if .Site.Menus.main }}
-      <ul class="nav justify-content-center mt-5">
-        {{ $currentPage := . }} {{ range sort .Site.Menus.main }} {{ $is :=
-        $currentPage.IsMenuCurrent "main" . }} {{ $has :=
-        $currentPage.HasMenuCurrent "main" . }}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ .URL }}"> {{ .Name }} </a>
-        </li>
+    <div class="relative z-10">
+      <!-- Profile and intro -->
+      <div class="mb-16 md:mb-24">
+        {{ with .Site.Params.profilePic }}
+        <img class="profile-image mb-8" src="{{ . }}" alt="{{ $.Site.Title }}" />
         {{ end }}
-      </ul>
-      {{ end }} {{ $posts := .Site.RegularPages | first 5 }} {{ with $posts }}
-      <div class="container">
-        <h3>Latest posts</h3>
-        {{ range . }}
-        <p>
-          <a href="{{ .RelPermalink }}" class="btn btn-light shadow-sm btn-sm">
-            {{ .Title }}
-          </a>
+
+        <h1 class="magazine-hero-title text-balance mb-6">
+          {{ .Site.Title }}
+        </h1>
+
+        <p class="text-2xl md:text-3xl text-magazine-black/70 max-w-3xl leading-relaxed mb-12">
+          Developer, designer, and maker of mostly useless but slightly cool things
         </p>
+
+        <!-- Quick links with accent lines -->
+        <nav class="flex flex-wrap gap-6 mb-12">
+          {{ range sort .Site.Menus.main }}
+          <a href="{{ .URL }}" class="nav-link text-2xl font-bold">
+            {{ .Name }}
+          </a>
+          {{ end }}
+        </nav>
+
+        <!-- Social links -->
+        {{ if .Site.Menus.icon }}
+        <div class="flex gap-4">
+          {{ range sort .Site.Menus.icon }}
+          <a
+            href="{{ .URL }}"
+            title="{{ .Name }}"
+            class="social-link"
+            target="_blank"
+            rel="noopener"
+          >
+            {{ if eq .Name "rss" }}
+            <i class="fa-solid fa-rss"></i>
+            {{ else }}
+            <i class="fa-brands fa-{{ .Name }}"></i>
+            {{ end }}
+          </a>
+          {{ end }}
+        </div>
         {{ end }}
       </div>
+    </div>
+  </section>
+
+  <!-- Horizontal divider -->
+  <div class="container mx-auto px-8 max-w-7xl">
+    <div class="h-px bg-magazine-accent my-16"></div>
+  </div>
+
+  <!-- Featured Projects Section -->
+  <section class="magazine-section container mx-auto px-8 max-w-7xl">
+    <h2 class="magazine-section-title">
+      Featured Work
+    </h2>
+
+    <!-- Projects grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {{ $posts := .Site.RegularPages }}
+      {{ with $posts }}
+        {{ range where . ".Params.thumbnail" "!=" nil }}
+          {{ $assetPath := printf "thumbnails/%s" .Params.thumbnail }}
+          {{ $asset := resources.Get $assetPath }}
+          {{ $color := index .Site.Data.colors .Params.thumbnail }}
+          {{ $borderStyle := printf "border: 8px solid rgb%s; box-shadow: 0 0 0 1px rgba%s / 0.1) inset;" $color (strings.TrimPrefix "(" $color) }}
+
+          <article class="project-card group">
+            <a
+              href="{{ cond (isset .Params "link") .Params.link .RelPermalink }}"
+              class="block h-full"
+              style="{{ $borderStyle | safeCSS }}"
+            >
+              <!-- Project image -->
+              {{ if $asset }}
+              <div class="project-card-image-wrapper">
+                <img
+                  src="{{ $asset.Permalink }}"
+                  alt="{{ .Title }}"
+                  class="project-card-image"
+                />
+                <div class="project-card-overlay" style="background: linear-gradient(135deg, rgba{{ strings.TrimPrefix "(" $color }} / 0.9), rgba(107, 123, 75, 0.9));"></div>
+              </div>
+              {{ end }}
+
+              <!-- Project info -->
+              <div class="project-card-content">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="project-year-badge" style="background-color: rgb{{ $color }};">
+                    {{ .Date.Format "2006" }}
+                  </span>
+                  {{ if .Params.tags }}
+                    {{ range first 2 .Params.tags }}
+                    <span class="project-tag-badge">
+                      {{ . }}
+                    </span>
+                    {{ end }}
+                  {{ end }}
+                </div>
+
+                <h3 class="project-card-title">
+                  {{ .Title }}
+                </h3>
+
+                <p class="project-card-description">
+                  {{ .Description }}
+                </p>
+
+                <!-- Read more indicator -->
+                <div class="project-card-arrow">
+                  <span>Explore</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </div>
+              </div>
+
+              <!-- Decorative corner accent -->
+              <div class="project-card-corner" style="background: linear-gradient(135deg, transparent 50%, rgb{{ $color }} 50%);"></div>
+            </a>
+          </article>
+        {{ end }}
       {{ end }}
     </div>
-  </main> -->
+
+    <!-- View all link -->
+    <div class="mt-16 text-center">
+      <a href="/post/" class="inline-block px-8 py-4 bg-magazine-black text-magazine-white text-xl font-bold hover:bg-magazine-accent transition-colors">
+        View All Posts →
+      </a>
+    </div>
+  </section>
+
+  <!-- Decorative horizontal line -->
+  <div class="container mx-auto px-8 max-w-7xl mt-24">
+    <div class="grid grid-cols-3 gap-4">
+      <div class="h-px bg-magazine-accent"></div>
+      <div class="h-px bg-magazine-accent-light"></div>
+      <div class="h-px bg-magazine-secondary"></div>
+    </div>
+  </div>
 
   {{ partial "footer" . }}
 </body>

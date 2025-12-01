@@ -1,12 +1,12 @@
 {{ partial "header" . }}
 
-<main>
-  <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col col-lg-8">
+<main class="flex-1 py-12">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-center">
+      <div class="w-full lg:w-2/3">
         <header>
           <h1>{{ .Title }}</h1>
-          <h5 class="date text-muted">
+          <h5 class="date text-gray-300">
             Some apps & websites I've worked on over the years
           </h5>
           {{ partial "tags" . }}

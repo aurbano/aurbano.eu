@@ -1,5 +1,9 @@
-{{ range .Params.tags }}
-  <a href="{{ $.Site.BaseURL }}/tags/{{ . | urlize }}"  class="item-tag">
-    {{ . }}
-  </a>
+{{ with .Params.tags }}
+  <div class="mt-4 flex flex-wrap gap-2">
+    {{ range . }}
+      <a href="{{ $.Site.BaseURL }}/tags/{{ . | urlize }}" class="tag">
+        {{ . }}
+      </a>
+    {{ end }}
+  </div>
 {{ end }}

@@ -4,13 +4,13 @@
 
     {{ if .Paginator.HasPrev }}
         <a class="icon pages-icon" href="{{ .Paginator.Prev.URL }}" rel="prev">
-            <i class="fa fa-arrow-left"></i> Previous
+            <i class="fa-solid fa-arrow-left"></i> Previous
         </a>
     {{ end }}
 
     {{ if .Paginator.HasNext }}
         <a class="icon pages-icon" href="{{ .Paginator.Next.URL }}" rel="next">
-            Next <i class="fa fa-arrow-right"></i>
+            Next <i class="fa-solid fa-arrow-right"></i>
         </a>
     {{ end }}
 

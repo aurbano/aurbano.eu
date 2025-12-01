@@ -1,23 +1,24 @@
 {{ partial "header" . }}
 
-<main>
-  <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col col-lg-8">
-        <header>
-          <h1>{{ .Title }}</h1>
-        </header>
+<div class="accent-line"></div>
 
-        {{ with .Pages }}
+<main class="flex-1 py-16">
+  <div class="container mx-auto px-8 max-w-4xl">
+    <header class="mb-16">
+      <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tight">{{ .Title }}</h1>
+      <div class="h-1 w-24 bg-magazine-accent"></div>
+    </header>
 
-          {{ $sort := sort . }}
-          {{ $links := apply $sort "partial" "term-item" "." }}
-          {{ delimit $links " &bull; " }}
-
+    {{ with .Pages }}
+      <div class="flex flex-wrap gap-3">
+        {{ range sort . }}
+          <a href="{{ .RelPermalink }}" class="tag">
+            {{ .Title }} <span class="opacity-60">({{ len .Pages }})</span>
+          </a>
         {{ end }}
-
       </div>
-    </div>
+    {{ end }}
+
   </div>
 </main>
 
