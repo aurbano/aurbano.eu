@@ -16,3 +16,4 @@ Thumbs.db
 *.iml
 .hugo_build.lock
 hugo_stats.json
+.vscode/settings.json

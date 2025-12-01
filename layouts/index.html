@@ -9,7 +9,7 @@
   <div class="h-2 bg-gradient-to-r from-magazine-accent via-magazine-secondary to-magazine-accent-light"></div>
 
   <!-- Hero Section -->
-  <section class="magazine-hero container mx-auto px-8 max-w-7xl relative overflow-visible">
+  <section class="relative min-h-screen flex items-center py-24 container mx-auto px-8 max-w-7xl overflow-visible">
     <!-- Floating animated shapes with muted colors -->
     <div class="floating-shape-1 absolute top-20 right-10 w-64 h-64 rounded-full bg-magazine-accent/12 pointer-events-none"></div>
     <div class="floating-shape-2 absolute bottom-32 left-10 w-80 h-80 bg-magazine-secondary/12 pointer-events-none" style="clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
@@ -19,10 +19,16 @@
       <!-- Profile and intro -->
       <div class="mb-16 md:mb-24">
         {{ with .Site.Params.profilePic }}
-        <img class="profile-image mb-8" src="{{ . }}" alt="{{ $.Site.Title }}" />
+        <!-- Gradient border wrapper -->
+        <div class="inline-block mb-8 p-4 rounded-full bg-gradient-to-r from-magazine-accent/50 via-magazine-secondary/50 to-magazine-accent-light/50">
+          <!-- Inner beige border -->
+          <div class="p-3 rounded-full bg-magazine-cream">
+            <img class="w-48 h-48 rounded-full" src="{{ . }}" alt="{{ $.Site.Title }}" />
+          </div>
+        </div>
         {{ end }}
 
-        <h1 class="magazine-hero-title text-balance mb-6">
+        <h1 class="text-7xl md:text-9xl font-black leading-none tracking-tighter text-balance mb-6">
           {{ .Site.Title }}
         </h1>
 
@@ -33,7 +39,7 @@
         <!-- Quick links with accent lines -->
         <nav class="flex flex-wrap gap-6 mb-12">
           {{ range sort .Site.Menus.main }}
-          <a href="{{ .URL }}" class="nav-link text-2xl font-bold">
+          <a href="{{ .URL }}" class="nav-link relative font-medium py-2 px-3 hover:text-magazine-accent transition-colors duration-200 text-2xl font-bold">
             {{ .Name }}
           </a>
           {{ end }}
@@ -46,7 +52,7 @@
           <a
             href="{{ .URL }}"
             title="{{ .Name }}"
-            class="social-link"
+            class="w-12 h-12 flex items-center justify-center rounded-full bg-magazine-accent text-magazine-white hover:bg-magazine-accent-dark transition-all duration-300 hover:scale-110 shadow-[0_2px_8px_rgba(107,123,75,0.2)]"
             target="_blank"
             rel="noopener"
           >
@@ -69,8 +75,8 @@
   </div>
 
   <!-- Featured Projects Section -->
-  <section class="magazine-section container mx-auto px-8 max-w-7xl">
-    <h2 class="magazine-section-title">
+  <section class="py-24 relative container mx-auto px-8 max-w-7xl">
+    <h2 class="text-5xl md:text-6xl font-black mb-16 tracking-tight">
       Featured Work
     </h2>
 
@@ -84,56 +90,56 @@
           {{ $color := index .Site.Data.colors .Params.thumbnail }}
           {{ $borderStyle := printf "border: 8px solid rgb%s; box-shadow: 0 0 0 1px rgba%s / 0.1) inset;" $color (strings.TrimPrefix "(" $color) }}
 
-          <article class="project-card group">
+          <article class="project-card relative overflow-hidden transition-all duration-500 hover:-translate-y-3 bg-magazine-white shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] group">
             <a
               href="{{ cond (isset .Params "link") .Params.link .RelPermalink }}"
-              class="block h-full"
+              class="relative flex flex-col h-full"
               style="{{ $borderStyle | safeCSS }}"
             >
               <!-- Project image -->
               {{ if $asset }}
-              <div class="project-card-image-wrapper">
+              <div class="relative h-56 overflow-hidden">
                 <img
                   src="{{ $asset.Permalink }}"
                   alt="{{ .Title }}"
-                  class="project-card-image"
+                  class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:blur-[2px]"
                 />
-                <div class="project-card-overlay" style="background: linear-gradient(135deg, rgba{{ strings.TrimPrefix "(" $color }} / 0.9), rgba(107, 123, 75, 0.9));"></div>
+                <div class="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-30" style="background: linear-gradient(135deg, rgba{{ strings.TrimPrefix "(" $color }} / 0.9), rgba(107, 123, 75, 0.9)); mix-blend-mode: multiply;"></div>
               </div>
               {{ end }}
 
               <!-- Project info -->
-              <div class="project-card-content">
+              <div class="p-6 flex-1 flex flex-col relative z-10">
                 <div class="flex items-center gap-2 mb-3">
-                  <span class="project-year-badge" style="background-color: rgb{{ $color }};">
+                  <span class="inline-block px-3 py-1 text-xs font-black text-magazine-black rounded-full shadow-md" style="background-color: rgb{{ $color }};">
                     {{ .Date.Format "2006" }}
                   </span>
                   {{ if .Params.tags }}
                     {{ range first 2 .Params.tags }}
-                    <span class="project-tag-badge">
+                    <span class="inline-block px-3 py-1 text-xs font-medium bg-magazine-accent/10 text-magazine-accent rounded-full">
                       {{ . }}
                     </span>
                     {{ end }}
                   {{ end }}
                 </div>
 
-                <h3 class="project-card-title">
+                <h3 class="text-2xl font-black mb-3 text-magazine-black transition-colors duration-300 group-hover:text-magazine-accent" style="line-height: 1.2;">
                   {{ .Title }}
                 </h3>
 
-                <p class="project-card-description">
+                <p class="text-magazine-black/70 text-sm leading-relaxed mb-4 flex-1">
                   {{ .Description }}
                 </p>
 
                 <!-- Read more indicator -->
-                <div class="project-card-arrow">
+                <div class="flex items-center gap-2 text-magazine-accent font-bold text-sm opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
                   <span>Explore</span>
                   <i class="fa-solid fa-arrow-right"></i>
                 </div>
               </div>
 
               <!-- Decorative corner accent -->
-              <div class="project-card-corner" style="background: linear-gradient(135deg, transparent 50%, rgb{{ $color }} 50%);"></div>
+              <div class="project-card-corner absolute top-0 right-0 w-20 h-20 opacity-15 transition-all duration-500 group-hover:opacity-30" style="background: linear-gradient(135deg, transparent 50%, rgb{{ $color }} 50%); filter: blur(8px);"></div>
             </a>
           </article>
         {{ end }}

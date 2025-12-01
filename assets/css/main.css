@@ -42,46 +42,22 @@
 }
 
 @layer components {
-  /* Magazine grid lines */
+  /* Grid lines - decorative elements */
   .grid-line-vertical {
     @apply absolute top-0 bottom-0 w-px bg-magazine-black/10;
   }
 
-  .grid-line-horizontal {
-    @apply absolute left-0 right-0 h-px bg-magazine-black/10;
+  /* Navigation pseudo-element effects */
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0 h-0.5 bg-magazine-accent scale-x-0 transition-transform duration-300;
   }
 
-  .accent-line {
-    @apply h-1;
-    background: linear-gradient(90deg, #6B7B4B 0%, #8B9B6B 50%, #6B7B4B 100%);
+  .nav-link:hover::after {
+    @apply scale-x-100;
   }
 
-  /* Magazine hero section */
-  .magazine-hero {
-    @apply relative min-h-screen flex items-center py-24;
-  }
-
-  .magazine-hero-title {
-    @apply text-7xl md:text-9xl font-black leading-none tracking-tighter;
-  }
-
-  /* Featured project cards */
-  .project-card {
-    @apply relative overflow-hidden transition-all duration-500;
-    @apply hover:-translate-y-3;
-    @apply bg-magazine-white;
-    box-shadow:
-      0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  }
-
-  .project-card:hover {
-    box-shadow:
-      0 20px 25px -5px rgba(0, 0, 0, 0.1),
-      0 10px 10px -5px rgba(0, 0, 0, 0.04),
-      0 0 0 1px rgba(107, 123, 75, 0.1);
-  }
-
+  /* Project card pseudo-elements - can't be inline */
   .project-card::before {
     content: '';
     @apply absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none;
@@ -93,139 +69,33 @@
     @apply opacity-100;
   }
 
-  .project-card a {
-    @apply relative flex flex-col h-full;
+  .project-card:hover {
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04),
+      0 0 0 1px rgba(107, 123, 75, 0.1);
   }
 
-  .project-card-image-wrapper {
-    @apply relative h-56 overflow-hidden;
-  }
-
-  .project-card-image {
-    @apply w-full h-full object-cover transition-all duration-700;
-  }
-
-  .project-card:hover .project-card-image {
-    @apply scale-110 blur-[2px];
-  }
-
-  .project-card-overlay {
-    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
-    mix-blend-mode: multiply;
-  }
-
-  .project-card:hover .project-card-overlay {
-    @apply opacity-30;
-  }
-
-  .project-card-content {
-    @apply p-6 flex-1 flex flex-col relative z-10;
-  }
-
-  .project-year-badge {
-    @apply inline-block px-3 py-1 text-xs font-black text-magazine-black rounded-full shadow-md;
-    /* Background color is set inline via style attribute using project's dominant color */
-  }
-
-  .project-tag-badge {
-    @apply inline-block px-3 py-1 text-xs font-medium bg-magazine-accent/10 text-magazine-accent rounded-full;
-  }
-
-  .project-card-title {
-    @apply text-2xl font-black mb-3 text-magazine-black transition-colors duration-300;
-    line-height: 1.2;
-  }
-
-  .project-card:hover .project-card-title {
-    @apply text-magazine-accent;
-  }
-
-  .project-card-description {
-    @apply text-magazine-black/70 text-sm leading-relaxed mb-4 flex-1;
-  }
-
-  .project-card-arrow {
-    @apply flex items-center gap-2 text-magazine-accent font-bold text-sm opacity-0 transform translate-y-2 transition-all duration-300;
-  }
-
-  .project-card:hover .project-card-arrow {
-    @apply opacity-100 translate-y-0;
-  }
-
-  .project-card-corner {
-    @apply absolute top-0 right-0 w-20 h-20 opacity-15 transition-all duration-500;
-    filter: blur(8px);
-  }
-
-  .project-card:hover .project-card-corner {
-    @apply opacity-30;
+  .project-card-corner:hover {
     filter: blur(12px);
   }
 
-  /* Subtle inner glow on hover */
-  .project-card::after {
-    content: '';
-    @apply absolute inset-0 pointer-events-none transition-opacity duration-500;
-    opacity: 0;
-  }
-
-  .project-card:hover::after {
-    @apply opacity-0;
-  }
-
-  /* Navigation */
-  .navbar {
-    @apply transition-all duration-300;
-  }
-
-  .nav-link {
-    @apply relative font-medium py-2 px-3;
-    @apply hover:text-magazine-accent transition-colors duration-200;
-  }
-
-  .nav-link::after {
-    content: '';
-    @apply absolute bottom-0 left-0 right-0 h-0.5 bg-magazine-accent scale-x-0 transition-transform duration-300;
-  }
-
-  .nav-link:hover::after {
-    @apply scale-x-100;
-  }
-
-  .social-icon-nav {
-    @apply inline-flex items-center justify-center w-10 h-10 rounded-full;
-    @apply hover:bg-magazine-accent/10 transition-all duration-200;
-  }
-
+  /* Mobile navbar styles - responsive overrides */
   .navbar-collapse.show {
     @apply block bg-magazine-white/95 backdrop-blur-md p-6 rounded-lg mt-4 shadow-lg;
   }
 
   @media (max-width: 1023px) {
-    .navbar-collapse.show .navbar-nav {
+    .navbar-collapse.show ul {
       @apply flex-col gap-4;
     }
 
-    .navbar-collapse.show .nav-item {
+    .navbar-collapse.show li {
       @apply w-full text-center;
     }
-
-    .navbar-collapse.show .social-icons {
-      @apply justify-center mt-6 pt-6 border-t border-magazine-black/10;
-    }
   }
 
-  /* Section dividers */
-  .section-divider {
-    @apply my-24 relative;
-  }
-
-  .section-divider::before {
-    content: '';
-    @apply absolute top-1/2 left-0 right-0 h-px bg-magazine-black/20;
-  }
-
-  /* Content styling */
+  /* Content styling - prose overrides */
   .content {
     @apply prose prose-lg prose-headings:font-display max-w-none;
   }
@@ -275,19 +145,6 @@
     backdrop-filter: blur(10px);
   }
 
-  /* Profile image */
-  .profile-image {
-    @apply w-32 h-32 rounded-full border-4 border-magazine-accent;
-  }
-
-  /* Social icons */
-  .social-link {
-    @apply w-12 h-12 flex items-center justify-center rounded-full;
-    @apply bg-magazine-accent text-magazine-white;
-    @apply hover:bg-magazine-accent-dark transition-all duration-300 hover:scale-110;
-    box-shadow: 0 2px 8px rgba(107, 123, 75, 0.2);
-  }
-
   /* Alert boxes */
   .alert-warning {
     @apply bg-magazine-tertiary/20 border-l-4 border-magazine-secondary p-6 rounded-r;
@@ -306,55 +163,11 @@
   .list-item a {
     @apply text-magazine-black hover:text-magazine-accent;
   }
-
-  /* Magazine layout sections */
-  .magazine-section {
-    @apply py-24 relative;
-  }
-
-  .magazine-section-title {
-    @apply text-5xl md:text-6xl font-black mb-16 tracking-tight;
-  }
-
-  /* Accent blocks */
-  .accent-block {
-    @apply absolute w-24 h-24 md:w-32 md:h-32;
-  }
-
-  .accent-block-circle {
-    @apply rounded-full;
-    background: radial-gradient(circle, rgba(107, 123, 75, 0.1) 0%, rgba(107, 123, 75, 0.05) 100%);
-  }
-
-  .accent-block-square {
-    background: linear-gradient(135deg, rgba(155, 139, 123, 0.08) 0%, rgba(181, 168, 149, 0.08) 100%);
-  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-
-  /* Negative space utilities */
-  .space-y-huge > * + * {
-    margin-top: 6rem;
-  }
-
-  /* Bold text utilities */
-  .text-ultra-bold {
-    font-weight: 900;
-  }
-
-  /* Grid overlay for design */
-  .design-grid {
-    @apply relative;
-  }
-
-  .design-grid::before,
-  .design-grid::after {
-    content: '';
-    @apply absolute pointer-events-none;
   }
 
   /* Floating animations for decorative shapes */
@@ -442,5 +255,3 @@ figure figcaption {
   @apply px-4 py-2 bg-magazine-black text-magazine-white rounded;
   @apply hover:bg-magazine-accent transition-colors;
 }
-
-/* Footer - styled inline in footer partial */
