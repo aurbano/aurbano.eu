@@ -52,8 +52,8 @@ menu:
     - url: 'https://twitter.com/alalex'
       name: twitter
       weight: 4
-    - url: 'https://stackoverflow.com/users/1262824/aurbano'
-      name: stack-overflow
+    - url: 'https://www.youtube.com/@the_alexes'
+      name: youtube
       weight: 5
     - url: 'https://news.ycombinator.com/user?id=aurbano'
       name: hacker-news
