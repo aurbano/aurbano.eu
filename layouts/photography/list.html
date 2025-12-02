@@ -1,0 +1,106 @@
+{{ partial "header" . }}
+
+<div class="accent-line"></div>
+
+<main class="flex-1 py-16">
+  <!-- Instagram-style header -->
+  <div class="container mx-auto px-8 max-w-7xl mb-20">
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
+      <a href="https://instagram.com/framed_humans" target="_blank" rel="noopener" class="block flex-shrink-0">
+        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full p-[6px] hover:opacity-90 transition-opacity" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">
+          <div class="w-full h-full rounded-full bg-magazine-white p-[2px] flex items-center justify-center">
+            {{ $avatar := resources.Get "images/instagram_avatar.jpeg" }}
+            {{ $avatarResized := $avatar.Fill "256x256" }}
+            <img src="{{ $avatarResized.RelPermalink }}" alt="@framed_humans" class="w-full h-full rounded-full object-cover" />
+          </div>
+        </div>
+      </a>
+      <div class="flex-1">
+        <a href="https://instagram.com/framed_humans" target="_blank" rel="noopener" class="text-2xl md:text-3xl font-black text-magazine-black hover:text-magazine-accent transition-colors">
+          @framed_humans
+        </a>
+        <p class="text-magazine-black/60 mt-2 text-sm md:text-base">My personal photography account. I like taking photos of people, trying to capture their personality and what it says in the context of the photo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Events Gallery -->
+    {{ $events := where .Site.RegularPages "Section" "photography" }}
+    {{ range $index, $event := $events.ByDate.Reverse }}
+      {{ $isDark := eq (mod $index 2) 0 }}
+      {{ $bgColor := cond $isDark "bg-magazine-accent-dark" "bg-magazine-cream" }}
+      {{ $textColor := cond $isDark "text-magazine-cream" "text-magazine-accent-dark" }}
+      {{ $linkHoverColor := cond $isDark "hover:text-magazine-white" "hover:text-magazine-accent" }}
+
+      <!-- Event Section - Full Width -->
+      <section class="w-full {{ $bgColor }} py-8 md:py-16 mb-0">
+        <div class="mx-auto px-6 md:px-16 lg:px-24 max-w-[98%]">
+          <div class="flex gap-8 relative">
+            <!-- Vertical Date on Left (Desktop only) -->
+            {{ $dateColor := cond $isDark "rgba(139, 155, 107, 0.4)" "rgba(107, 123, 75, 0.2)" }}
+            <div class="hidden md:flex flex-shrink-0 w-32 items-start justify-center overflow-visible">
+              <div class="font-black tracking-wider leading-none" style="writing-mode: vertical-rl; transform: rotate(180deg) translateX(-30%); color: {{ $dateColor | safeCSS }} !important; font-size: 6rem;">
+                {{ .Date.Format "Jan 2006" }}
+              </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="flex-1">
+              <!-- Featured Photos Grid -->
+              {{ $featuredPhotos := where .Params.photos "featured" true }}
+              {{ if $featuredPhotos }}
+              <div>
+                <div class="w-full">
+                  <!-- Location and Date -->
+                  <div class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-3">
+                    {{ if .Params.location }}
+                      <p class="text-lg md:text-xl {{ $textColor }} opacity-60">{{ .Params.location }}</p>
+                    {{ end }}
+                    <p class="text-sm md:text-base {{ $textColor }} opacity-40 md:hidden">{{ .Date.Format "Jan 2006" }}</p>
+                  </div>
+
+                  <!-- Event Title -->
+                  <h2 class="text-4xl md:text-6xl lg:text-9xl font-headline font-black tracking-wide uppercase mb-6 md:mb-8 {{ $textColor }}">
+                    <a href="{{ .RelPermalink }}" class="{{ $linkHoverColor }} transition-colors">
+                      {{ .Title }}
+                    </a>
+                  </h2>
+
+                  <div class="masonry-grid w-full" data-masonry='{"percentPosition": true}'>
+                {{ range $featuredPhotos }}
+                  {{ $thumbUrl := replace .url (path.Ext .url) (printf "__thumb%s" (path.Ext .url)) }}
+                  <a href="{{ $event.RelPermalink }}" class="masonry-item relative overflow-hidden hover:opacity-80 transition-opacity group">
+                    <img src="{{ $thumbUrl }}" alt="" class="transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                  </a>
+                {{ end }}
+
+                <!-- Description Cell -->
+                {{ $descBg := cond $isDark "bg-magazine-accent/80" "bg-magazine-white/80" }}
+                {{ $descTextColor := cond $isDark "text-magazine-white/90" "text-magazine-black/70" }}
+                {{ $descLinkColor := cond $isDark "text-magazine-cream" "text-magazine-accent" }}
+                <a href="{{ $event.RelPermalink }}" class="masonry-item masonry-width-2 masonry-description {{ $descBg }} backdrop-blur-sm p-8 hover:opacity-90 transition-opacity group">
+                  <div class="text-base {{ $descTextColor }} leading-relaxed mb-4">
+                    {{ .Summary | truncate 300 }}
+                  </div>
+                  <div class="{{ $descLinkColor }} font-bold text-sm opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                    View Event →
+                  </div>
+                </a>
+              </div>
+                </div>
+              </div>
+              </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </section>
+    {{ end }}
+</main>
+
+<!-- Masonry.js -->
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script src="/js/masonry-gallery.js"></script>
+
+{{ partial "footer" . }}

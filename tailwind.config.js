@@ -22,6 +22,7 @@ module.exports = {
       fontFamily: {
         sans: ['Raleway', 'sans-serif'],
         display: ['Raleway', 'sans-serif'],
+        headline: ['Bebas Neue', 'Impact', 'Arial Black', 'sans-serif'],
       },
       spacing: {
         '128': '32rem',

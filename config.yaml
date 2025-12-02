@@ -36,9 +36,12 @@ menu:
     - url: /about/
       name: About
       weight: 2
+    - url: /photography/
+      name: Photography
+      weight: 3
     - url: /post/
       name: All posts
-      weight: 3
+      weight: 4
   icon:
     - url: 'https://github.com/aurbano/'
       name: github

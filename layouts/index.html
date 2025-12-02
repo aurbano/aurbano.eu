@@ -9,57 +9,57 @@
   <div class="h-2 bg-gradient-to-r from-magazine-accent via-magazine-secondary to-magazine-accent-light"></div>
 
   <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center py-24 container mx-auto px-8 max-w-7xl overflow-visible">
-    <!-- Floating animated shapes with muted colors -->
-    <div class="floating-shape-1 absolute top-20 right-10 w-64 h-64 rounded-full bg-magazine-accent/12 pointer-events-none"></div>
-    <div class="floating-shape-2 absolute bottom-32 left-10 w-80 h-80 bg-magazine-secondary/12 pointer-events-none" style="clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
+  <section class="relative min-h-screen flex items-center py-24 container mx-auto px-8 max-w-7xl overflow-hidden md:overflow-visible">
+    <!-- Floating animated shapes with muted colors - hidden on mobile -->
+    <div class="floating-shape-1 absolute top-20 right-10 w-64 h-64 rounded-full bg-magazine-accent/12 pointer-events-none hidden md:block"></div>
+    <div class="floating-shape-2 absolute bottom-32 left-10 w-80 h-80 bg-magazine-secondary/12 pointer-events-none hidden md:block" style="clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
     <div class="floating-shape-3 absolute top-1/2 right-1/4 w-56 h-56 rounded-full bg-magazine-accent-light/12 pointer-events-none hidden lg:block"></div>
 
-    <div class="relative z-10">
+    <div class="relative z-10 text-center md:text-left w-full">
       <!-- Profile and intro -->
       <div class="mb-16 md:mb-24">
         {{ with .Site.Params.profilePic }}
         <!-- Gradient border wrapper -->
-        <div class="inline-block mb-8 p-4 rounded-full bg-gradient-to-r from-magazine-accent/50 via-magazine-secondary/50 to-magazine-accent-light/50">
+        <div class="inline-block mb-8 p-3 md:p-4 rounded-full bg-gradient-to-r from-magazine-accent/50 via-magazine-secondary/50 to-magazine-accent-light/50">
           <!-- Inner beige border -->
-          <div class="p-3 rounded-full bg-magazine-cream">
-            <img class="w-48 h-48 rounded-full" src="{{ . }}" alt="{{ $.Site.Title }}" />
+          <div class="p-2 md:p-3 rounded-full bg-magazine-cream">
+            <img class="w-32 h-32 md:w-48 md:h-48 rounded-full" src="{{ . }}" alt="{{ $.Site.Title }}" />
           </div>
         </div>
         {{ end }}
 
-        <h1 class="text-7xl md:text-9xl font-black leading-none tracking-tighter text-balance mb-6">
+        <h1 class="text-5xl md:text-7xl lg:text-9xl font-black leading-none tracking-tighter text-balance mb-4 md:mb-6">
           {{ .Site.Title }}
         </h1>
 
-        <p class="text-2xl md:text-3xl text-magazine-black/70 max-w-3xl leading-relaxed mb-12">
-          Developer, designer, and maker of mostly useless but slightly cool things
+        <p class="text-xl md:text-2xl lg:text-3xl text-magazine-black/70 max-w-3xl leading-relaxed mb-8 md:mb-12 mx-auto md:mx-0">
+          I like to make things.
         </p>
 
-        <!-- Quick links with accent lines -->
-        <nav class="flex flex-wrap gap-6 mb-12">
+        <!-- Quick links - Grid on mobile, flex on desktop -->
+        <nav class="grid grid-cols-2 gap-3 mb-8 md:flex md:flex-wrap md:gap-6 md:mb-12 max-w-md mx-auto md:max-w-none md:mx-0">
           {{ range sort .Site.Menus.main }}
-          <a href="{{ .URL }}" class="nav-link relative font-medium py-2 px-3 hover:text-magazine-accent transition-colors duration-200 text-2xl font-bold">
+          <a href="{{ .URL }}" class="nav-link relative font-medium py-3 px-4 md:py-2 md:px-3 transition-colors duration-200 text-base md:text-2xl font-bold bg-magazine-accent text-magazine-white hover:bg-magazine-accent-dark md:bg-transparent md:text-magazine-black md:hover:text-magazine-accent rounded-lg md:rounded-none text-center md:text-left shadow-sm md:shadow-none">
             {{ .Name }}
           </a>
           {{ end }}
         </nav>
 
-        <!-- Social links -->
+        <!-- Social links - Single line -->
         {{ if .Site.Menus.icon }}
-        <div class="flex gap-4">
+        <div class="flex flex-wrap gap-3 md:gap-4 justify-center md:justify-start">
           {{ range sort .Site.Menus.icon }}
           <a
             href="{{ .URL }}"
             title="{{ .Name }}"
-            class="w-12 h-12 flex items-center justify-center rounded-full bg-magazine-accent text-magazine-white hover:bg-magazine-accent-dark transition-all duration-300 hover:scale-110 shadow-[0_2px_8px_rgba(107,123,75,0.2)]"
+            class="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-magazine-black md:bg-magazine-accent text-magazine-white hover:bg-magazine-black/80 md:hover:bg-magazine-accent-dark transition-all duration-300 hover:scale-110 shadow-[0_2px_8px_rgba(0,0,0,0.2)] md:shadow-[0_2px_8px_rgba(107,123,75,0.2)]"
             target="_blank"
             rel="noopener"
           >
             {{ if eq .Name "rss" }}
-            <i class="fa-solid fa-rss"></i>
+            <i class="fa-solid fa-rss text-sm md:text-base"></i>
             {{ else }}
-            <i class="fa-brands fa-{{ .Name }}"></i>
+            <i class="fa-brands fa-{{ .Name }} text-sm md:text-base"></i>
             {{ end }}
           </a>
           {{ end }}
@@ -69,19 +69,14 @@
     </div>
   </section>
 
-  <!-- Horizontal divider -->
-  <div class="container mx-auto px-8 max-w-7xl">
-    <div class="h-px bg-magazine-accent my-16"></div>
-  </div>
-
   <!-- Featured Projects Section -->
-  <section class="py-24 relative container mx-auto px-8 max-w-7xl">
+  <section class="pt-8 pb-12 md:pt-16 md:pb-24 relative container mx-auto px-8 max-w-7xl">
     <h2 class="text-5xl md:text-6xl font-black mb-16 tracking-tight">
-      Featured Work
+      Things
     </h2>
 
     <!-- Projects grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
       {{ $posts := .Site.RegularPages }}
       {{ with $posts }}
         {{ range where . ".Params.thumbnail" "!=" nil }}
