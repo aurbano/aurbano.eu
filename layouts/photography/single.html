@@ -38,7 +38,7 @@
   <!-- All Photos Grid - Full Width -->
   {{ if .Params.photos }}
   <div class="w-full px-12 lg:px-24">
-    <div class="masonry-grid w-full">
+    <div class="masonry-grid masonry-packed w-full">
       {{ range $index, $photo := .Params.photos }}
         {{ $thumbUrl := replace $photo.url (path.Ext $photo.url) (printf "__thumb%s" (path.Ext $photo.url)) }}
         <div class="masonry-item relative overflow-hidden bg-magazine-black/5 group cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox({{ $index }})">
@@ -84,7 +84,7 @@
   </button>
 
   <!-- Counter -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-magazine-white text-lg font-medium">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-magazine-white text-lg font-medium" style="text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);">
     <span id="current-index">1</span> / <span id="total-photos">{{ len .Params.photos }}</span>
   </div>
 </div>
@@ -99,13 +99,25 @@
 
   let currentIndex = 0;
 
-  function openLightbox(index) {
+  function getFilename(url) {
+    return decodeURIComponent(url.split('/').pop().replace(/\.[^.]+$/, ''));
+  }
+
+  function findIndexByFilename(filename) {
+    const decoded = decodeURIComponent(filename);
+    return photos.findIndex(url => getFilename(url) === decoded);
+  }
+
+  function openLightbox(index, updateHash = true) {
     currentIndex = index;
     updateLightboxImage();
     const lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('hidden');
     lightbox.classList.add('flex');
     document.body.style.overflow = 'hidden';
+    if (updateHash) {
+      history.replaceState(null, '', '#photo-' + encodeURIComponent(getFilename(photos[currentIndex])));
+    }
   }
 
   function closeLightbox() {
@@ -113,11 +125,13 @@
     lightbox.classList.add('hidden');
     lightbox.classList.remove('flex');
     document.body.style.overflow = '';
+    history.replaceState(null, '', window.location.pathname);
   }
 
   function navigateLightbox(direction) {
     currentIndex = (currentIndex + direction + photos.length) % photos.length;
     updateLightboxImage();
+    history.replaceState(null, '', '#photo-' + encodeURIComponent(getFilename(photos[currentIndex])));
   }
 
   function updateLightboxImage() {
@@ -147,6 +161,24 @@
       closeLightbox();
     }
   });
+
+  // Check for photo hash in URL on page load
+  function checkUrlHash() {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#photo-')) {
+      const filename = hash.replace('#photo-', '');
+      const index = findIndexByFilename(filename);
+      if (index >= 0) {
+        openLightbox(index, false);
+      }
+    }
+  }
+
+  // Run on page load
+  checkUrlHash();
+
+  // Also handle hash changes (back/forward navigation)
+  window.addEventListener('hashchange', checkUrlHash);
 </script>
 
 <!-- Masonry.js -->

@@ -32,6 +32,8 @@ hugo serve
 hugo build
 ```
 
+**Important**: When making changes to templates that use new Tailwind utility classes, always rebuild to regenerate the CSS. Hugo's PostCSS pipeline processes Tailwind on build, so new classes won't appear until you rebuild.
+
 ### Content Management
 ```bash
 # Create a new post (uses archetype from archetypes/post.md)

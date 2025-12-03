@@ -2,25 +2,33 @@
 
 <div class="accent-line"></div>
 
-<main class="flex-1 py-16">
-  <!-- Instagram-style header -->
-  <div class="container mx-auto px-8 max-w-7xl mb-20">
-    <div class="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
-      <a href="https://instagram.com/framed_humans" target="_blank" rel="noopener" class="block flex-shrink-0">
-        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full p-[6px] hover:opacity-90 transition-opacity" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">
-          <div class="w-full h-full rounded-full bg-magazine-white p-[2px] flex items-center justify-center">
+<main class="flex-1">
+  <!-- Instagram-style header with striped background -->
+  <div class="py-16 stripe-bg-olive">
+    <div class="container mx-auto px-8 max-w-2xl">
+      <a href="https://instagram.com/framed_humans" target="_blank" rel="noopener" class="block bg-white rounded-2xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex items-center gap-4">
+        <!-- Avatar with gradient ring -->
+        <div class="flex-shrink-0 w-20 h-20 rounded-full p-[3px]" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">
+          <div class="w-full h-full rounded-full bg-white p-[2px]">
             {{ $avatar := resources.Get "images/instagram_avatar.jpeg" }}
-            {{ $avatarResized := $avatar.Fill "256x256" }}
+            {{ $avatarResized := $avatar.Fill "160x160" }}
             <img src="{{ $avatarResized.RelPermalink }}" alt="@framed_humans" class="w-full h-full rounded-full object-cover" />
           </div>
         </div>
-      </a>
-      <div class="flex-1">
-        <a href="https://instagram.com/framed_humans" target="_blank" rel="noopener" class="text-2xl md:text-3xl font-black text-magazine-black hover:text-magazine-accent transition-colors">
-          @framed_humans
-        </a>
-        <p class="text-magazine-black/60 mt-2 text-sm md:text-base">My personal photography account. I like taking photos of people, trying to capture their personality and what it says in the context of the photo.</p>
+        <!-- Handle and description -->
+        <div class="flex-1 min-w-0">
+          <span class="font-semibold text-gray-900">@framed_humans</span>
+          <p class="text-gray-500 text-sm mt-1">My personal photography account. I like taking photos of people, trying to capture their personality and what it says in the context of the photo.</p>
+        </div>
+        <!-- Instagram icon -->
+        <div class="flex-shrink-0 hidden sm:block">
+          <svg class="w-8 h-8 text-gray-400" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+        </div>
       </div>
+    </a>
     </div>
   </div>
 
@@ -67,25 +75,28 @@
                   </h2>
 
                   <div class="masonry-grid w-full" data-masonry='{"percentPosition": true}'>
-                {{ range $featuredPhotos }}
-                  {{ $thumbUrl := replace .url (path.Ext .url) (printf "__thumb%s" (path.Ext .url)) }}
-                  <a href="{{ $event.RelPermalink }}" class="masonry-item relative overflow-hidden hover:opacity-80 transition-opacity group">
-                    <img src="{{ $thumbUrl }}" alt="" class="transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-                  </a>
-                {{ end }}
-
                 <!-- Description Cell -->
                 {{ $descBg := cond $isDark "bg-magazine-accent/80" "bg-magazine-white/80" }}
                 {{ $descTextColor := cond $isDark "text-magazine-white/90" "text-magazine-black/70" }}
                 {{ $descLinkColor := cond $isDark "text-magazine-cream" "text-magazine-accent" }}
-                <a href="{{ $event.RelPermalink }}" class="masonry-item masonry-width-2 masonry-description {{ $descBg }} backdrop-blur-sm p-8 hover:opacity-90 transition-opacity group">
-                  <div class="text-base {{ $descTextColor }} leading-relaxed mb-4">
-                    {{ .Summary | truncate 300 }}
-                  </div>
-                  <div class="{{ $descLinkColor }} font-bold text-sm opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                    View Event →
+                <a href="{{ $event.RelPermalink }}" class="masonry-item masonry-width-1 masonry-description hover:opacity-90 transition-opacity group aspect-[3/4]">
+                  <div class="{{ $descBg }} backdrop-blur-sm p-6 h-full flex flex-col">
+                    <div class="text-base {{ $descTextColor }} leading-relaxed mb-4">
+                      {{ .Summary | truncate 300 }}
+                    </div>
+                    <div class="{{ $descLinkColor }} font-bold text-sm opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                      View Event →
+                    </div>
                   </div>
                 </a>
+
+                {{ range $photoIndex, $photo := $featuredPhotos }}
+                  {{ $thumbUrl := replace $photo.url (path.Ext $photo.url) (printf "__thumb%s" (path.Ext $photo.url)) }}
+                  {{ $filename := path.Base $photo.url | replaceRE "\\.[^.]+$" "" | urlquery }}
+                  <a href="{{ $event.RelPermalink }}#photo-{{ $filename }}" class="masonry-item relative overflow-hidden hover:opacity-80 transition-opacity group">
+                    <img src="{{ $thumbUrl }}" alt="" class="transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                  </a>
+                {{ end }}
               </div>
                 </div>
               </div>

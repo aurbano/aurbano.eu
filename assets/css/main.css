@@ -42,6 +42,17 @@
 }
 
 @layer components {
+  /* Striped backgrounds */
+  .stripe-bg-olive {
+    background: repeating-linear-gradient(
+      45deg,
+      #d4d9c4,
+      #d4d9c4 10px,
+      #e2e6d6 10px,
+      #e2e6d6 20px
+    );
+  }
+
   /* Grid lines - decorative elements */
   .grid-line-vertical {
     @apply absolute top-0 bottom-0 w-px bg-magazine-black/10;
