@@ -20,7 +20,12 @@
     <div class="navbar-collapse hidden lg:flex items-center justify-between w-full" id="navbarSupportedContent">
       {{ if .Site.Menus.main }}
       <ul class="flex items-center gap-2">
-        <li class="hidden lg:block">
+        <li class="hidden lg:flex items-center gap-3">
+          {{ with .Site.Params.profilePic }}
+          <a href="/" class="flex-shrink-0">
+            <img src="{{ . }}" alt="{{ $.Site.Title }}" class="w-10 h-10 rounded-full object-cover" />
+          </a>
+          {{ end }}
           <a class="nav-link relative font-medium py-2 px-3 hover:text-magazine-accent transition-colors duration-200 text-xl font-black text-magazine-accent hover:text-magazine-accent-dark" href="/">
             {{ .Site.Title }}
           </a>
