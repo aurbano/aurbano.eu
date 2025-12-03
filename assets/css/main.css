@@ -321,6 +321,33 @@
       opacity: 0.08;
     }
   }
+
+  /* Avatar ring hue rotation animation */
+  .avatar-ring {
+    animation: hue-shift 10s ease-in-out infinite;
+  }
+
+  .avatar-ring img {
+    animation: hue-shift-counter 10s ease-in-out infinite;
+  }
+
+  @keyframes hue-shift {
+    0%, 100% {
+      filter: hue-rotate(0deg);
+    }
+    50% {
+      filter: hue-rotate(30deg);
+    }
+  }
+
+  @keyframes hue-shift-counter {
+    0%, 100% {
+      filter: hue-rotate(0deg);
+    }
+    50% {
+      filter: hue-rotate(-30deg);
+    }
+  }
 }
 
 /* Figure styling */

@@ -19,11 +19,49 @@
       <!-- Profile and intro -->
       <div class="mb-16 md:mb-24">
         {{ with .Site.Params.profilePic }}
-        <!-- Gradient border wrapper -->
-        <div class="inline-block mb-8 p-3 md:p-4 rounded-full bg-gradient-to-r from-magazine-accent/50 via-magazine-secondary/50 to-magazine-accent-light/50">
-          <!-- Inner beige border -->
-          <div class="p-2 md:p-3 rounded-full bg-magazine-cream">
-            <img class="w-32 h-32 md:w-48 md:h-48 rounded-full" src="{{ . }}" alt="{{ $.Site.Title }}" />
+        <!-- Avatar with architectural diagram elements -->
+        <div class="relative inline-flex items-center justify-center mb-8 w-44 h-44 md:w-64 md:h-64" style="z-index: 1;">
+          <!-- Architectural diagram decorations (behind everything) -->
+          <div class="absolute pointer-events-none" style="z-index: -1;">
+            <!-- Concentric circles -->
+            <div class="absolute rounded-full pointer-events-none" style="width: 280px; height: 280px; border: 1px solid rgba(148,163,184,0.3); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+            <div class="absolute rounded-full pointer-events-none" style="width: 380px; height: 380px; border: 1px solid rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+            <div class="absolute rounded-full pointer-events-none hidden md:block" style="width: 500px; height: 500px; border: 1px solid rgba(148,163,184,0.15); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+            <div class="absolute rounded-full pointer-events-none hidden md:block" style="width: 640px; height: 640px; border: 1px dashed rgba(148,163,184,0.1); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+
+            <!-- Main crosshair lines (horizontal & vertical) -->
+            <div class="absolute pointer-events-none hidden md:block" style="width: 750px; height: 1px; background: rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+            <div class="absolute pointer-events-none hidden md:block" style="width: 1px; height: 750px; background: rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+
+            <!-- Diagonal lines (45 degrees) -->
+            <div class="absolute pointer-events-none hidden md:block" style="width: 650px; height: 1px; background: rgba(148,163,184,0.15); top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg);"></div>
+            <div class="absolute pointer-events-none hidden md:block" style="width: 650px; height: 1px; background: rgba(148,163,184,0.15); top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);"></div>
+
+            <!-- Tick marks on horizontal axis -->
+            <div class="absolute pointer-events-none hidden md:block" style="width: 12px; height: 1px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(calc(-50% - 190px), -50%);"></div>
+            <div class="absolute pointer-events-none hidden md:block" style="width: 12px; height: 1px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(calc(-50% + 190px), -50%);"></div>
+            <div class="absolute pointer-events-none hidden md:block" style="width: 12px; height: 1px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(calc(-50% - 250px), -50%);"></div>
+            <div class="absolute pointer-events-none hidden md:block" style="width: 12px; height: 1px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(calc(-50% + 250px), -50%);"></div>
+
+            <!-- Tick marks on vertical axis -->
+            <div class="absolute pointer-events-none hidden md:block" style="width: 1px; height: 12px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(-50%, calc(-50% - 190px));"></div>
+            <div class="absolute pointer-events-none hidden md:block" style="width: 1px; height: 12px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(-50%, calc(-50% + 190px));"></div>
+            <div class="absolute pointer-events-none hidden md:block" style="width: 1px; height: 12px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(-50%, calc(-50% - 250px));"></div>
+            <div class="absolute pointer-events-none hidden md:block" style="width: 1px; height: 12px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(-50%, calc(-50% + 250px));"></div>
+
+            <!-- Corner markers -->
+            <div class="absolute pointer-events-none hidden md:block" style="width: 16px; height: 16px; border-left: 1px solid rgba(148,163,184,0.2); border-top: 1px solid rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(calc(-50% - 280px), calc(-50% - 280px));"></div>
+            <div class="absolute pointer-events-none hidden md:block" style="width: 16px; height: 16px; border-right: 1px solid rgba(148,163,184,0.2); border-top: 1px solid rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(calc(-50% + 264px), calc(-50% - 280px));"></div>
+            <div class="absolute pointer-events-none hidden md:block" style="width: 16px; height: 16px; border-left: 1px solid rgba(148,163,184,0.2); border-bottom: 1px solid rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(calc(-50% - 280px), calc(-50% + 264px));"></div>
+            <div class="absolute pointer-events-none hidden md:block" style="width: 16px; height: 16px; border-right: 1px solid rgba(148,163,184,0.2); border-bottom: 1px solid rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(calc(-50% + 264px), calc(-50% + 264px));"></div>
+          </div>
+
+          <!-- Gradient border wrapper with hue-shifting gray/blue -->
+          <div class="avatar-ring relative p-3 md:p-4 rounded-full bg-gradient-to-r from-slate-400/60 via-blue-400/50 to-slate-500/60" style="z-index: 2;">
+            <!-- Inner beige border -->
+            <div class="p-2 md:p-3 rounded-full bg-magazine-cream">
+              <img class="w-32 h-32 md:w-48 md:h-48 rounded-full" src="{{ . }}" alt="{{ $.Site.Title }}" />
+            </div>
           </div>
         </div>
         {{ end }}
