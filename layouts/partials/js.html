@@ -7,6 +7,13 @@
     <script>hljs.initHighlightingOnLoad();</script>
 {{ end }}
 
+<!-- Einstein tiling background (all pages) -->
+{{ $einsteinJS := resources.Get "js/einstein-tiling.js" }}
+{{ if $einsteinJS }}
+    {{ $einsteinJS = $einsteinJS | minify | fingerprint }}
+    <script src="{{ $einsteinJS.Permalink }}" defer></script>
+{{ end }}
+
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 

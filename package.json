@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "hugo serve",
     "build": "hugo",
-    "create-event": "node scripts/create-event.js"
+    "create-event": "node scripts/create-event.js",
+    "test": "node --test tests/einstein-tiling.test.js"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
