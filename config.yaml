@@ -33,15 +33,12 @@ menu:
     - url: /
       name: Home
       weight: 1
-    - url: /about/
-      name: About
-      weight: 2
     - url: /photography/
       name: Photography
-      weight: 3
+      weight: 2
     - url: /post/
       name: All posts
-      weight: 4
+      weight: 3
   icon:
     - url: 'https://github.com/aurbano/'
       name: github
