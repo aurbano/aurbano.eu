@@ -761,7 +761,8 @@
       const maxDimension = Math.max(this.width, this.height);
       const coverageScale = maxDimension / 80; // Adjust divisor for coverage
       
-      this.scale = this.width < CONFIG.mobileBreakpoint 
+      this.isMobile = this.width < CONFIG.mobileBreakpoint;
+      this.scale = this.isMobile 
         ? Math.max(CONFIG.baseScale * 0.6, coverageScale * 0.6)
         : Math.max(CONFIG.baseScale, coverageScale);
     }
@@ -773,16 +774,23 @@
     }
     
     _getEdgeFadeOpacity(x, y) {
-      const fadeDistanceH = 350; // px from left/right edge where fill opacity reaches 0
-      const fadeDistanceV = 175; // px from top/bottom edge (half of horizontal)
-      // Inner pages have much lower max opacity for subtler background
-      const maxOpacity = this.isHomepage ? 0.7 : 0.25;
+      // On mobile: no padding (fade starts immediately), with a wider fade zone
+      // On desktop: small padding before fade begins, tighter fade zone
+      const padH = this.isMobile ? 0 : 20;
+      const padV = this.isMobile ? 0 : 20;
+      const fadeDistanceH = this.isMobile ? this.width * 0.35 : this.width * 0.12;
+      const fadeDistanceV = this.isMobile ? this.height * 0.25 : this.height * 0.08;
       
-      // Distance from each edge, normalized by their respective fade distances
-      const fromLeft = x / fadeDistanceH;
-      const fromRight = (this.width - x) / fadeDistanceH;
-      const fromTop = y / fadeDistanceV;
-      const fromBottom = (this.height - y) / fadeDistanceV;
+      // Inner pages have much lower max opacity for subtler background
+      const maxOpacity = this.isHomepage 
+        ? (this.isMobile ? 0.25 : 0.7) 
+        : 0.25;
+      
+      // Distance from each edge minus the padding zone, normalized by fade distance
+      const fromLeft = Math.max(0, x - padH) / fadeDistanceH;
+      const fromRight = Math.max(0, (this.width - x) - padH) / fadeDistanceH;
+      const fromTop = Math.max(0, y - padV) / fadeDistanceV;
+      const fromBottom = Math.max(0, (this.height - y) - padV) / fadeDistanceV;
       
       // Minimum normalized distance from any edge
       const minNormDist = Math.min(fromLeft, fromRight, fromTop, fromBottom);
@@ -822,6 +830,12 @@
       
       ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
       ctx.clearRect(0, 0, this.width, this.height);
+      
+      // Skip tiling on inner pages for mobile - too distracting on small screens
+      if (!this.isHomepage && this.isMobile) {
+        this.animationId = requestAnimationFrame(this.render);
+        return;
+      }
       
       // ========================================
       // T(a,b) CONTINUUM (DISABLED - using reference shape)

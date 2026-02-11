@@ -79,7 +79,7 @@
         <!-- Quick links - Grid on mobile, flex on desktop -->
         <nav class="grid grid-cols-2 gap-3 mb-8 md:flex md:flex-wrap md:gap-6 md:mb-12 max-w-md mx-auto md:max-w-none md:mx-0">
           {{ range sort .Site.Menus.main }}
-          <a href="{{ .URL }}" class="nav-link relative font-medium py-3 px-4 md:py-2 md:px-3 transition-colors duration-200 text-base md:text-2xl font-bold bg-magazine-accent text-magazine-white hover:bg-magazine-accent-dark md:bg-transparent md:text-magazine-black md:hover:text-magazine-accent rounded-lg md:rounded-none text-center md:text-left shadow-sm md:shadow-none">
+          <a href="{{ .URL }}" class="relative font-medium py-3 px-4 md:py-2 md:px-3 transition-colors duration-200 text-base md:text-2xl font-bold bg-magazine-accent text-magazine-white hover:bg-magazine-accent-dark hover:text-magazine-white md:bg-transparent md:text-magazine-black md:hover:bg-magazine-accent-dark md:hover:text-magazine-white rounded-lg text-center md:text-left shadow-sm md:shadow-none">
             {{ .Name }}
           </a>
           {{ end }}

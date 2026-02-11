@@ -2,14 +2,14 @@
 title: "Building a full SaaS app in days"
 description: How I built a complete clinic management system using LLMs in a fraction of the usual time
 date: "2026-01-20"
-thumbnail: nebula.png
+thumbnail: brighterclinic.png
 categories:
-- Side Project
+  - Side Project
 tags:
-- JavaScript
-- TypeScript
-- AI
-- Claude
+  - JavaScript
+  - TypeScript
+  - AI
+  - Claude
 ---
 
 If you had asked me a year ago how long it would take to build a fully-featured clinic management system from scratch, I would have said at least a month. And then a few more months to fix bugs, and I would've recommended starting small, and using third party products at the start just to validate the business at first. We're talking authentication, booking systems, payment processing, third-party integrations, a CMS, PDF generation... the list goes on.
@@ -66,6 +66,7 @@ Here's where it gets a bit ridiculous thinking back to pre-LLM days! The final s
 ### Booking and Scheduling
 
 A complete booking system with:
+
 - Full scheduling capabilities with configurable working hours per person
 - Out-of-office overrides for holidays and blocked time
 - Third-party calendar integration so appointments sync externally and busy periods are imported
@@ -107,7 +108,7 @@ The system went from zero to production in days of actual work. Not continuous d
 
 The [landing page is live](https://brighterclinic.co.uk). The backoffice handles the full clinic workflow: from a patient booking an appointment, through the consultation, to invoicing and payment.
 
-Is it perfect? No. There are rough edges I'm still smoothing out. But it's *working*, in production. That's a very different starting point than a half-finished side project languishing on my machine.
+Is it perfect? No. There are rough edges I'm still smoothing out. But it's _working_, in production. That's a very different starting point than a half-finished side project languishing on my machine.
 
 ## A few observations
 
