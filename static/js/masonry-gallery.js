@@ -1,50 +1,66 @@
 function initMasonryGallery() {
-  const grids = document.querySelectorAll('.masonry-grid');
+  var grids = document.querySelectorAll('.masonry-grid');
+  var masonryInstances = [];
 
   grids.forEach(function(grid) {
     // Check if this is a packed grid (uniform width for maximum packing)
-    const isPacked = grid.classList.contains('masonry-packed');
+    var isPacked = grid.classList.contains('masonry-packed');
+
+    // Add a column-width sizer element so Masonry can calculate positions
+    // based on CSS-driven widths at every breakpoint
+    var sizer = document.createElement('div');
+    sizer.className = 'masonry-sizer masonry-width-1';
+    grid.insertBefore(sizer, grid.firstChild);
 
     // Get all image items (not description cells)
-    const imageItems = grid.querySelectorAll('.masonry-item:not(.masonry-description)');
+    var imageItems = grid.querySelectorAll('.masonry-item:not(.masonry-description)');
 
     // Wait for images to load to get their dimensions
     imagesLoaded(grid, function() {
       imageItems.forEach(function(item) {
-        const img = item.querySelector('img');
+        var img = item.querySelector('img');
         if (!img) return;
 
-        let width = 1;
-        let widthPercent = '20%';
+        var width = 1;
 
         if (!isPacked) {
           // Event list page: landscape photos double width
-          const aspectRatio = img.naturalWidth / img.naturalHeight;
-          const isLandscape = aspectRatio > 1.0;
+          var aspectRatio = img.naturalWidth / img.naturalHeight;
+          var isLandscape = aspectRatio > 1.0;
           width = isLandscape ? 2 : 1;
-          widthPercent = width === 2 ? '40%' : '20%';
         }
-        // Packed mode: all items same width (default 20%)
+        // Packed mode: all items same width (default width-1)
 
         // Remove existing width classes
         item.classList.remove('masonry-width-1', 'masonry-width-2', 'masonry-width-3');
-        // Add new width class
+        // Add new width class — CSS media queries handle the actual percentage
         item.classList.add('masonry-width-' + width);
-
-        // Also set inline style to ensure it takes effect
-        item.style.width = widthPercent;
 
         // Remove fixed aspect ratio to let image determine height
         item.style.aspectRatio = '';
       });
 
-      // Initialize Masonry after sizing
-      new Masonry(grid, {
+      // Initialize Masonry using the sizer for columnWidth
+      var msnry = new Masonry(grid, {
         itemSelector: '.masonry-item',
+        columnWidth: '.masonry-sizer',
         percentPosition: true,
         transitionDuration: '0.3s'
       });
+
+      masonryInstances.push(msnry);
     });
+  });
+
+  // Re-layout on resize (orientation change, window resize)
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      masonryInstances.forEach(function(msnry) {
+        msnry.layout();
+      });
+    }, 150);
   });
 }
 

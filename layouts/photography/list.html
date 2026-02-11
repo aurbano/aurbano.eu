@@ -74,15 +74,15 @@
                     </a>
                   </h2>
 
-                  <div class="masonry-grid w-full" data-masonry='{"percentPosition": true}'>
+                  <div class="masonry-grid w-full">
                 <!-- Description Cell -->
                 {{ $descBg := cond $isDark "bg-magazine-accent/80" "bg-magazine-white/80" }}
                 {{ $descTextColor := cond $isDark "text-magazine-white/90" "text-magazine-black/70" }}
                 {{ $descLinkColor := cond $isDark "text-magazine-cream" "text-magazine-accent" }}
-                <a href="{{ $event.RelPermalink }}" class="masonry-item masonry-width-1 masonry-description hover:opacity-90 transition-opacity group aspect-[3/4]">
-                  <div class="{{ $descBg }} backdrop-blur-sm p-6 h-full flex flex-col">
+                <a href="{{ $event.RelPermalink }}" class="masonry-item masonry-width-1 masonry-description hover:opacity-90 transition-opacity group">
+                  <div class="{{ $descBg }} backdrop-blur-sm p-6 h-full flex flex-col overflow-hidden">
                     <div class="text-base {{ $descTextColor }} leading-relaxed mb-4">
-                      {{ .Summary | truncate 300 }}
+                      {{ .Summary | truncate 200 }}
                     </div>
                     <div class="{{ $descLinkColor }} font-bold text-sm opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
                       View Event →

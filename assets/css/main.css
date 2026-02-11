@@ -180,10 +180,19 @@
     width: 100%;
   }
 
+  /* Sizer element used by Masonry.js for columnWidth calculation */
+  .masonry-sizer {
+    width: 20%;
+    padding: 0;
+    height: 0;
+    visibility: hidden;
+  }
+
   .masonry-item {
     width: 20%;
     padding: 6px;
     box-sizing: border-box;
+    float: left; /* CSS fallback so items form a grid even without JS */
   }
 
   /* Let images determine their own height based on aspect ratio */
@@ -207,6 +216,10 @@
 
   /* Responsive breakpoints */
   @media (max-width: 1024px) {
+    .masonry-sizer {
+      width: 25%;
+    }
+
     .masonry-item {
       width: 25%;
     }
@@ -225,6 +238,10 @@
   }
 
   @media (max-width: 768px) {
+    .masonry-sizer {
+      width: 33.333%;
+    }
+
     .masonry-item {
       width: 33.333%;
     }
@@ -243,6 +260,10 @@
   }
 
   @media (max-width: 640px) {
+    .masonry-sizer {
+      width: 50%;
+    }
+
     .masonry-item {
       width: 50%;
     }
