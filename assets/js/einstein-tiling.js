@@ -38,7 +38,7 @@
     // Visual style
     strokeWidth: 0.6,
     strokeBaseOpacity: 0.12,      // Minimum stroke opacity (always visible) - homepage
-    strokeBaseOpacityInner: 0.06, // Lower stroke opacity for inner pages
+    strokeBaseOpacityInner: 0.03, // Lower stroke opacity for inner pages
     
     // Tiling
     baseScale: 14,
@@ -782,9 +782,9 @@
       const fadeDistanceV = this.isMobile ? this.height * 0.25 : this.height * 0.08;
       
       // Inner pages have much lower max opacity for subtler background
-      const maxOpacity = this.isHomepage 
-        ? (this.isMobile ? 0.25 : 0.7) 
-        : 0.25;
+      const maxOpacity = this.isHomepage
+        ? (this.isMobile ? 0.25 : 0.7)
+        : 0.08;
       
       // Distance from each edge minus the padding zone, normalized by fade distance
       const fromLeft = Math.max(0, x - padH) / fadeDistanceH;
@@ -807,7 +807,7 @@
       // Stroke has a base opacity that's always visible, plus extra near edges
       // Inner pages use lower base opacity for subtler effect
       const baseStroke = this.isHomepage ? CONFIG.strokeBaseOpacity : CONFIG.strokeBaseOpacityInner;
-      const strokeOpacity = baseStroke + Math.min(opacity * 0.8, this.isHomepage ? 0.4 : 0.15);
+      const strokeOpacity = baseStroke + Math.min(opacity * 0.8, this.isHomepage ? 0.4 : 0.06);
       
       ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`;
       ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${strokeOpacity})`;
