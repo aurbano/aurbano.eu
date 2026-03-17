@@ -70,21 +70,48 @@
 </nav>
 
 <script>
-  // Mobile menu toggle
   (function() {
+    // Mobile menu toggle
     const navToggle = document.getElementById('navToggle');
     const navbarContent = document.getElementById('navbarSupportedContent');
 
     if (navToggle && navbarContent) {
       navToggle.addEventListener('click', function() {
         const isExpanded = this.getAttribute('aria-expanded') === 'true';
-
-        // Toggle visibility
         navbarContent.classList.toggle('hidden');
-
-        // Update aria-expanded
         this.setAttribute('aria-expanded', !isExpanded);
       });
     }
+
+    // Auto-hide header on scroll down, show on scroll up
+    const nav = document.querySelector('nav');
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function onScroll() {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
+
+      if (Math.abs(delta) < 5) {
+        ticking = false;
+        return;
+      }
+
+      if (delta > 0 && currentScrollY > 80) {
+        nav.style.transform = 'translateY(-100%)';
+      } else {
+        nav.style.transform = 'translateY(0)';
+      }
+
+      lastScrollY = currentScrollY;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
   })();
 </script>

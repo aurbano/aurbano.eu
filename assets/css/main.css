@@ -108,15 +108,41 @@
 
   /* Content styling - prose overrides */
   .content {
-    @apply prose prose-lg prose-headings:font-display max-w-none;
+    @apply prose prose-lg prose-headings:font-display;
+    max-width: 65ch;
+    line-height: 1.8;
+  }
+
+  .content > p {
+    margin-bottom: 1.5em;
+  }
+
+  .content h1,
+  .content h2,
+  .content h3 {
+    @apply relative pb-3;
+  }
+
+  .content h1::after,
+  .content h2::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-0.5 rounded-full;
+    width: 3em;
+    background: linear-gradient(to right, var(--accent), transparent);
   }
 
   .content h1 {
-    @apply border-l-4 border-magazine-accent pl-6 mb-8;
+    @apply text-3xl md:text-4xl mt-14 mb-6;
+    --accent: theme('colors.magazine-accent');
   }
 
   .content h2 {
-    @apply border-l-4 border-magazine-secondary pl-6 mb-6;
+    @apply text-2xl md:text-3xl mt-12 mb-4;
+    --accent: theme('colors.magazine-secondary');
+  }
+
+  .content h3 {
+    @apply text-xl md:text-2xl mt-10 mb-3;
   }
 
   .content a {
@@ -141,11 +167,47 @@
     @apply border-l-4 border-magazine-accent pl-6 italic text-magazine-black/70;
   }
 
+  .content ul {
+    @apply list-none pl-0 space-y-2;
+  }
+
+  .content ul > li {
+    @apply relative pl-6;
+  }
+
+  .content ul > li::before {
+    content: '';
+    @apply absolute left-0 top-[0.6em] w-1.5 h-1.5 rounded-full bg-magazine-accent/50;
+  }
+
+  .content ol {
+    @apply list-none pl-0 space-y-2;
+    counter-reset: ol-counter;
+  }
+
+  .content ol > li {
+    @apply relative pl-8;
+    counter-increment: ol-counter;
+  }
+
+  .content ol > li::before {
+    content: counter(ol-counter);
+    @apply absolute left-0 top-0 text-sm font-bold text-magazine-accent/70;
+    width: 1.5em;
+    text-align: right;
+  }
+
   /* Tags */
   .tag {
     @apply inline-block px-4 py-2 text-sm font-medium rounded-full;
     @apply bg-magazine-black text-magazine-white;
     @apply hover:bg-magazine-accent transition-colors;
+  }
+
+  .tag-subtle {
+    @apply inline-block px-3 py-1 text-xs font-medium rounded-full;
+    @apply text-magazine-black/50 border border-magazine-black/15;
+    @apply hover:text-magazine-accent hover:border-magazine-accent/40 transition-colors;
   }
 
   /* Cards */
@@ -165,6 +227,8 @@
   .list-item {
     @apply py-6 border-b border-magazine-black/10;
     @apply hover:bg-magazine-black/5 transition-colors px-4 -mx-4;
+    display: block;
+    list-style: none;
   }
 
   .list-item h6 {

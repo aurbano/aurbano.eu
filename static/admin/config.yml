@@ -1,0 +1,74 @@
+backend:
+  name: github
+  repo: aurbano/aurbano.eu
+  branch: master
+  # Auth requires an OAuth client. Options:
+  # 1. Deploy Sveltia CMS Authenticator on Cloudflare Workers (free),
+  #    then uncomment and set base_url:
+  # base_url: https://your-authenticator.workers.dev
+  # 2. Or use Netlify as OAuth provider (even with GitHub Pages hosting)
+  # 3. Or sign in with a GitHub personal access token (no setup needed)
+
+media_folder: assets/thumbnails
+public_folder: thumbnails
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: posts
+    label: Posts
+    folder: content/post
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields:
+      - date
+      - title
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+      - label: Published
+        field: draft
+        pattern: false
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Description
+        name: description
+        widget: string
+      - label: Date
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - label: Thumbnail
+        name: thumbnail
+        widget: image
+        required: false
+        media_folder: /assets/thumbnails
+        public_folder: ""
+      - label: Categories
+        name: categories
+        widget: list
+        required: false
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+      - label: Draft
+        name: draft
+        widget: boolean
+        default: true
+        required: false
+      - label: Outdated
+        name: outdated
+        widget: boolean
+        default: false
+        required: false
+      - label: Body
+        name: body
+        widget: markdown
