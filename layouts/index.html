@@ -17,7 +17,7 @@
     <div class="floating-shape-2 absolute bottom-32 left-10 w-80 h-80 bg-magazine-secondary/12 pointer-events-none hidden md:block" style="clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
     <div class="floating-shape-3 absolute top-1/2 right-1/4 w-56 h-56 rounded-full bg-magazine-accent-light/12 pointer-events-none hidden lg:block"></div>
 
-    <div class="relative z-10 text-center md:text-left w-full">
+    <div class="relative z-10 text-center w-full">
       <!-- Profile and intro -->
       <div class="mb-16 md:mb-24">
         {{ with .Site.Params.profilePic }}
@@ -58,8 +58,8 @@
             <div class="absolute pointer-events-none hidden md:block" style="width: 16px; height: 16px; border-right: 1px solid rgba(148,163,184,0.2); border-bottom: 1px solid rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(calc(-50% + 264px), calc(-50% + 264px));"></div>
           </div>
 
-          <!-- Gradient border wrapper with hue-shifting gray/blue -->
-          <div class="avatar-ring relative p-3 md:p-4 rounded-full bg-gradient-to-r from-slate-400/60 via-blue-400/50 to-slate-500/60" style="z-index: 2;">
+          <!-- Gradient border wrapper using tiling background colors -->
+          <div class="avatar-ring relative p-3 md:p-4 rounded-full" style="z-index: 2; background: linear-gradient(135deg, rgba(144,190,109,0.4), rgba(255,167,64,0.35), rgba(255,215,90,0.35), rgba(200,220,140,0.4));">
             <!-- Inner beige border -->
             <div class="p-2 md:p-3 rounded-full bg-magazine-cream">
               <img class="w-32 h-32 md:w-48 md:h-48 rounded-full" src="{{ . }}" alt="{{ $.Site.Title }}" />
@@ -68,18 +68,18 @@
         </div>
         {{ end }}
 
-        <h1 class="text-5xl md:text-7xl lg:text-9xl font-black leading-none tracking-tighter text-balance mb-4 md:mb-6">
+        <h1 class="text-5xl lg:text-7xl xl:text-9xl font-name font-bold leading-none tracking-tighter text-balance mb-4 md:mb-6">
           {{ .Site.Title }}
         </h1>
 
-        <p class="text-xl md:text-2xl lg:text-3xl text-magazine-black/70 max-w-3xl leading-relaxed mb-8 md:mb-12 mx-auto md:mx-0">
+        <p class="text-xl md:text-2xl lg:text-3xl text-magazine-black/70 max-w-3xl leading-relaxed mb-8 md:mb-12 mx-auto">
           I like to make things.
         </p>
 
         <!-- Quick links - Grid on mobile, flex on desktop -->
-        <nav class="grid grid-cols-2 gap-3 mb-8 md:flex md:flex-wrap md:gap-6 md:mb-12 max-w-md mx-auto md:max-w-none md:mx-0">
+        <nav class="flex flex-wrap justify-center gap-3 mb-8 max-w-xs mx-auto md:max-w-none md:gap-6 md:mb-12">
           {{ range sort .Site.Menus.main }}
-          <a href="{{ .URL }}" class="relative font-medium py-3 px-4 md:py-2 md:px-3 transition-colors duration-200 text-base md:text-2xl font-bold bg-magazine-accent text-magazine-white hover:bg-magazine-accent-dark hover:text-magazine-white md:bg-transparent md:text-magazine-black md:hover:bg-magazine-accent-dark md:hover:text-magazine-white rounded-lg text-center md:text-left shadow-sm md:shadow-none">
+          <a href="{{ .URL }}" class="relative font-medium py-3 px-4 md:py-2 md:px-3 transition-colors duration-200 text-base md:text-2xl font-bold bg-magazine-accent text-magazine-white hover:bg-magazine-accent-dark hover:text-magazine-white md:bg-transparent md:text-magazine-black md:hover:bg-magazine-accent-dark md:hover:text-magazine-white rounded-lg text-center shadow-sm md:shadow-none">
             {{ .Name }}
           </a>
           {{ end }}
@@ -87,7 +87,7 @@
 
         <!-- Social links - Single line -->
         {{ if .Site.Menus.icon }}
-        <div class="flex flex-wrap gap-3 md:gap-4 justify-center md:justify-start">
+        <div class="flex flex-wrap gap-3 md:gap-4 justify-center">
           {{ range sort .Site.Menus.icon }}
           <a
             href="{{ .URL }}"

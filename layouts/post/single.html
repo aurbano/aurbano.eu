@@ -28,9 +28,6 @@
           </a>
         </div>
 
-        <div class="flex justify-center">
-          {{ partial "tags" . }}
-        </div>
       </header>
 
       {{ if (.Param "outdated") }}
@@ -43,6 +40,11 @@
       <!-- Content -->
       <div class="content prose prose-lg mx-auto">
         {{ .Content }}
+      </div>
+
+      <!-- Tags -->
+      <div class="mt-12 flex flex-wrap gap-2">
+        {{ partial "tags" . }}
       </div>
 
       <!-- Related posts -->

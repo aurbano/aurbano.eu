@@ -783,7 +783,7 @@
       
       // Inner pages have much lower max opacity for subtler background
       const maxOpacity = this.isHomepage
-        ? (this.isMobile ? 0.25 : 0.7)
+        ? (this.isMobile ? 0.15 : 0.4)
         : 0.08;
       
       // Distance from each edge minus the padding zone, normalized by fade distance

@@ -223,20 +223,25 @@
     @apply bg-magazine-tertiary/20 border-l-4 border-magazine-secondary p-6 rounded-r;
   }
 
-  /* List items */
+  /* List items (taxonomy, related posts) */
   .list-item {
-    @apply py-6 border-b border-magazine-black/10;
-    @apply hover:bg-magazine-black/5 transition-colors px-4 -mx-4;
+    @apply py-5 border-b border-magazine-black/10;
+    @apply transition-colors px-4 -mx-4;
     display: block;
     list-style: none;
   }
 
   .list-item h6 {
-    @apply text-2xl font-bold mb-2;
+    @apply text-xl font-bold;
   }
 
   .list-item a {
     @apply text-magazine-black hover:text-magazine-accent;
+  }
+
+  /* Post list items (main index) */
+  .post-list-item + .post-list-item {
+    margin-top: 0.25rem;
   }
 
   /* Masonry Grid for Photography */
@@ -429,19 +434,19 @@
 
   @keyframes hue-shift {
     0%, 100% {
-      filter: hue-rotate(0deg);
+      filter: hue-rotate(-10deg);
     }
     50% {
-      filter: hue-rotate(30deg);
+      filter: hue-rotate(10deg);
     }
   }
 
   @keyframes hue-shift-counter {
     0%, 100% {
-      filter: hue-rotate(0deg);
+      filter: hue-rotate(10deg);
     }
     50% {
-      filter: hue-rotate(-30deg);
+      filter: hue-rotate(-10deg);
     }
   }
 }

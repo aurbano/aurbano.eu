@@ -1,19 +1,55 @@
 {{ partial "header" . }}
 
-<div class="accent-line"></div>
+<main class="flex-1 py-12 md:py-20">
+  <div class="container mx-auto px-8 max-w-3xl">
 
-<main class="flex-1 py-16">
-  <div class="container mx-auto px-8 max-w-4xl">
-    <header class="mb-16">
-      <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tight">{{ .Title }}</h1>
-      <div class="h-1 w-24 bg-magazine-accent"></div>
-    </header>
-
-    <div class="space-y-0">
-      {{ range (.Paginator 40).Pages }}
-        {{ partial "list-item" . }}
+    <!-- Posts grouped by year -->
+    {{ $pages := (.Paginator 40).Pages }}
+    {{ $prevYear := "" }}
+    {{ range $pages }}
+      {{ $year := .Date.Format "2006" }}
+      {{ if ne $year $prevYear }}
+        {{ if ne $prevYear "" }}
+          <div class="mb-6"></div>
+        {{ end }}
+        <div class="flex items-center gap-4 mb-6 mt-2">
+          <span class="text-3xl md:text-4xl font-display font-bold text-magazine-black/15 leading-none">{{ $year }}</span>
+          <div class="flex-1 h-px bg-magazine-black/10"></div>
+        </div>
       {{ end }}
-    </div>
+
+      <article class="post-list-item group">
+        {{ $.Scratch.Set "link" .RelPermalink }}
+        {{ with .Params.repo }}
+          {{ $repoHost := default "github" $.Params.repoHost }}
+          {{ if eq "github" $repoHost }}
+            {{ printf "https://github.com/%s/%s/" $.Site.Params.githubUsername . | $.Scratch.Set "link" }}
+          {{ else if eq "gitlab" $repoHost }}
+            {{ printf "https://gitlab.com/%s/%s/" $.Site.Params.gitlabUsername . | $.Scratch.Set "link" }}
+          {{ else if eq "bitbucket" $repoHost }}
+            {{ printf "https://bitbucket.org/%s/%s/" $.Site.Params.bitbucketUsername . | $.Scratch.Set "link" }}
+          {{ end }}
+        {{ end }}
+        {{ with .Params.link }} {{ $.Scratch.Set "link" . }} {{ end }}
+
+        <a href="{{ .Scratch.Get "link" }}" class="block py-3 -mx-4 px-4 rounded transition-colors duration-200 hover:bg-magazine-accent/5">
+          <div class="flex items-baseline justify-between gap-4">
+            <span class="text-xl md:text-2xl font-display font-bold text-magazine-black group-hover:text-magazine-accent transition-colors leading-snug">
+              {{ .Title }}
+            </span>
+            <time class="flex-shrink-0 text-sm tabular-nums text-magazine-black/30 group-hover:text-magazine-accent/60 transition-colors">
+              {{ .Date.Format "Jan 02" }}
+            </time>
+          </div>
+          {{ with .Description }}
+          <p class="text-sm text-magazine-black/40 mt-1 leading-relaxed">{{ . }}</p>
+          {{ end }}
+        </a>
+      </article>
+
+      {{ $prevYear = $year }}
+    {{ end }}
+
   </div>
 </main>
 

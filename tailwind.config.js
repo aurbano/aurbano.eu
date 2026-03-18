@@ -21,8 +21,9 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Raleway', 'sans-serif'],
-        display: ['Raleway', 'sans-serif'],
+        display: ['Martel', 'Georgia', 'serif'],
         headline: ['Bebas Neue', 'Impact', 'Arial Black', 'sans-serif'],
+        name: ['Nunito', 'sans-serif'],
       },
       spacing: {
         '128': '32rem',
