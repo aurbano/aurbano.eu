@@ -2,12 +2,7 @@ backend:
   name: github
   repo: aurbano/aurbano.eu
   branch: master
-  # Auth requires an OAuth client. Options:
-  # 1. Deploy Sveltia CMS Authenticator on Cloudflare Workers (free),
-  #    then uncomment and set base_url:
-  # base_url: https://your-authenticator.workers.dev
-  # 2. Or use Netlify as OAuth provider (even with GitHub Pages hosting)
-  # 3. Or sign in with a GitHub personal access token (no setup needed)
+  app_id: 3173807
 
 media_folder: assets/thumbnails
 public_folder: thumbnails
