@@ -2,7 +2,7 @@ backend:
   name: github
   repo: aurbano/aurbano.eu
   branch: master
-  base_url: https://aurbano-cms.personal-account-3c7.workers.dev
+  base_url: https://github-auth.aurbano.eu
 
 media_folder: assets/thumbnails
 public_folder: thumbnails
