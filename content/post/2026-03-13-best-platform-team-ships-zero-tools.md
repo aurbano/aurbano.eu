@@ -10,7 +10,7 @@ tags:
   - Developer Experience
 ---
 
-Instead of one tool that half the company tolerates, imagine twelve that each perfectly serve the people who asked for them. That's where I think internal tooling is heading. As the cost of building software drops the natural endpoint isn't fewer, better applications - it's many more - each built for a narrow audience, maybe even a single team or workflow! 
+Instead of one tool that half the company tolerates, imagine twelve that each perfectly serve the people who asked for them. That's where I think internal tooling is heading. As the cost of building software drops, the natural endpoint isn't fewer, better applications. It's many more, each built for a narrow audience, maybe even a single team or workflow. 
 
 But that only works if building and deploying them is nearly free, and right now, it isn't.
 
@@ -86,7 +86,7 @@ Democratisation is the compounding benefit, not the launch story. Once the CLI i
 
 One thing that tends to happen when building gets cheap is an explosion of internal apps that nobody uses.
 
-However when things are cheap to build and share a common substrate, it's fine for something to serve three people. It doesn't need to justify a platform team's investment because the platform team didn't build it. It just needs to exist, do its job, and not become a security liability.
+But when things are cheap to build and share a common substrate, it's fine for something to serve three people. It doesn't need to justify a platform team's investment because the platform team didn't build it. It just needs to exist, do its job, and not become a security liability.
 
 ## What the platform team becomes
 

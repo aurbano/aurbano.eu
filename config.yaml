@@ -1,6 +1,6 @@
 baseURL: https://aurbano.eu
 disablePathToLower: true
-languageCode: en-us
+locale: en-gb
 title: Alejandro U. Alvarez
 
 build:
