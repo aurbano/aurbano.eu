@@ -1,6 +1,8 @@
+{{ if .IsHome }}
 <!-- Einstein tile aperiodic tiling background -->
 <canvas 
   id="einstein-tiling-canvas" 
-  class="fixed inset-0 w-screen h-screen pointer-events-none"
-  style="z-index: -1;"
+  class="home-pattern pointer-events-none"
+  aria-hidden="true"
 ></canvas>
+{{ end }}

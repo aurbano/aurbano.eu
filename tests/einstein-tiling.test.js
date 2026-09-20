@@ -1,469 +1,240 @@
-/**
- * Einstein Tiling Test Suite
- * 
- * Tests the T(a,b) continuum tiling to ensure tiles fit together
- * correctly across the full spectrum of shape parameters.
- * 
- * Run with: npm test
- */
-
-const { test, describe } = require('node:test');
-const assert = require('node:assert');
-
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
 const {
-  generateTiling,
-  generateTilingAB,
-  generateTilingAt,
-  getOutlineForT,
-  verifyTilingEdges,
-  scaleTransformForAB,
-  setReferencePoint,
-  getReferencePoint,
-  testTilingAcrossSpectrum,
-  HAT_OUTLINE,
-  HAT_OUTLINE_AB,
-  evaluateOutline,
-  getABFromT,
-  SQRT3,
-  // ABQuad functions for testing
-  makeABQuad,
-  abToQuad,
-  constToQuad,
-  evalABQuad,
-  addABQuad,
-  mulABQuadPair,
-  isLinearQuad,
-  makeABQuadMatrix,
-  matMulABQuad,
-  evalABQuadMatrix
+  MORPH_CENTER,
+  MORPH_MIN,
+  MORPH_MAX,
+  createMorphingPatch,
+  evaluateMorph,
 } = require('../assets/js/einstein-tiling-core.js');
 
-// ============================================================
-// CONFIGURATION
-// ============================================================
-
-const TILING_LEVELS = 3;  // Number of substitution levels (3 is fast, 4+ is slow)
-const TOLERANCE = 0.01;   // Vertex matching tolerance (increased for float precision)
-
-// T values to test across the continuum
-const T_VALUES = [
-  { t: 0.1, name: 'near chevrons' },
-  { t: 0.2, name: 'between chevrons and hats' },
-  { t: 0.366, name: 'classic hat (a=1, b=√3)' },
-  { t: 0.5, name: 'equilateral (a=b)' },
-  { t: 0.634, name: 'classic turtle (a=√3, b=1)' },
-  { t: 0.7, name: 'between turtles and comets' },
-  { t: 0.9, name: 'near comets' },
+const EPSILON = 1e-7;
+const VERTICES = 13;
+const patch = createMorphingPatch(2);
+const ratios = [
+  MORPH_MIN,
+  (MORPH_MIN + MORPH_CENTER) / 2,
+  MORPH_CENTER,
+  (MORPH_CENTER + MORPH_MAX) / 2,
+  MORPH_MAX,
 ];
 
-// ============================================================
-// HELPER FUNCTIONS
-// ============================================================
-
-function formatResults(result) {
-  return `total=${result.total}, matched=${result.matched}, unmatched=${result.unmatched}, partial=${result.partial}`;
+function cross(ax, ay, bx, by) {
+  return ax * by - ay * bx;
 }
 
-// ============================================================
-// TESTS
-// ============================================================
+function signedArea(points) {
+  return points.reduce((sum, p, i) => {
+    const q = points[(i + 1) % points.length];
+    return sum + cross(p[0], p[1], q[0], q[1]);
+  }, 0) / 2;
+}
 
-describe('Einstein Tiling T(a,b) Continuum', () => {
-  
-  // Generate tiling once for all tests
-  let tiles;
-  
-  test('generates tiling without errors', () => {
-    tiles = generateTiling(TILING_LEVELS);
-    assert.ok(tiles.length > 0, 'Should generate at least one tile');
-    console.log(`  Generated ${tiles.length} tiles at level ${TILING_LEVELS}`);
-  });
-  
-  test('BASELINE: tiling is valid with HAT_OUTLINE (no morphing)', () => {
-    // This tests that the basic tiling algorithm produces a working tiling
-    // at the reference shape (a=1, b=√3)
-    assert.ok(tiles, 'Tiles should be generated');
-    
-    const result = verifyTilingEdges(tiles, HAT_OUTLINE, TOLERANCE);
-    console.log(`  BASELINE (HAT_OUTLINE): ${formatResults(result)}`);
-    
-    // Show sample partial matches for debugging
-    if (result.errors.length > 0) {
-      console.log(`  Sample partial matches (first 3):`);
-      for (let i = 0; i < Math.min(3, result.errors.length); i++) {
-        const err = result.errors[i];
-        console.log(`    Tile ${err.tileIndex}, edge ${err.edgeIndex}: (${err.p1.x.toFixed(4)}, ${err.p1.y.toFixed(4)}) → (${err.p2.x.toFixed(4)}, ${err.p2.y.toFixed(4)})`);
-      }
-    }
-    
-    // Key metrics:
-    // - matched: interior edges where adjacent tiles share the edge perfectly
-    // - unmatched: boundary edges + corner-sharing edges (normal)
-    // - partial: collinear edges that share one vertex but not both (potential gaps/overlaps)
-    const problemRatio = result.partial / result.total;
-    console.log(`  Problem ratio: ${(problemRatio * 100).toFixed(1)}% partial matches`);
-    
-    // The tiling algorithm has some known imperfections (<20% partial matches)
-    // This is acceptable for visual rendering but documents room for improvement
-    assert.ok(
-      problemRatio < 0.25,
-      `Too many partial matches: ${result.partial}/${result.total} = ${(problemRatio * 100).toFixed(1)}%`
-    );
-    
-    // Should have significant interior edge matches (>50% = good tiling structure)
-    assert.ok(
-      result.matched > result.total * 0.5,
-      `Should have >50% matched interior edges, got ${result.matched}/${result.total}`
-    );
-  });
-  
-  test('classic hat outline (t=0.366) has correct properties', () => {
-    const { a, b } = getABFromT(0.366);
-    // Classic hat should have a ≈ 1, b ≈ √3
-    assert.ok(Math.abs(a - 1) < 0.1, `a should be ≈ 1, got ${a}`);
-    assert.ok(Math.abs(b - SQRT3) < 0.1, `b should be ≈ √3, got ${b}`);
-    
-    const outline = getOutlineForT(0.366);
-    assert.equal(outline.length, 13, 'Hat outline should have 13 vertices');
-  });
-  
-  test('AB outline at a=1, b=√3 matches HAT_OUTLINE', () => {
-    // Verify that the AB-generated outline matches the hex-based one
-    const abOutline = evaluateOutline(HAT_OUTLINE_AB, 1, SQRT3);
-    
-    assert.equal(abOutline.length, HAT_OUTLINE.length, 'Outline lengths should match');
-    
-    // Compute centroids
-    let abCx = 0, abCy = 0, hexCx = 0, hexCy = 0;
-    for (let i = 0; i < abOutline.length; i++) {
-      abCx += abOutline[i].x;
-      abCy += abOutline[i].y;
-      hexCx += HAT_OUTLINE[i].x;
-      hexCy += HAT_OUTLINE[i].y;
-    }
-    abCx /= abOutline.length; abCy /= abOutline.length;
-    hexCx /= HAT_OUTLINE.length; hexCy /= HAT_OUTLINE.length;
-    console.log(`  AB centroid: (${abCx.toFixed(4)}, ${abCy.toFixed(4)})`);
-    console.log(`  HEX centroid: (${hexCx.toFixed(4)}, ${hexCy.toFixed(4)})`);
-    
-    // Compute edge lengths to verify same shape (independent of rotation/position)
-    function edgeLength(outline, i) {
-      const j = (i + 1) % outline.length;
-      const dx = outline[j].x - outline[i].x;
-      const dy = outline[j].y - outline[i].y;
-      return Math.sqrt(dx * dx + dy * dy);
-    }
-    
-    const abLengths = [];
-    const hexLengths = [];
-    for (let i = 0; i < abOutline.length; i++) {
-      abLengths.push(edgeLength(abOutline, i));
-      hexLengths.push(edgeLength(HAT_OUTLINE, i));
-    }
-    
-    console.log(`  AB edge lengths: [${abLengths.map(l => l.toFixed(3)).join(', ')}]`);
-    console.log(`  HEX edge lengths: [${hexLengths.map(l => l.toFixed(3)).join(', ')}]`);
-    
-    // Check first few vertices (after centering)
-    for (let i = 0; i < Math.min(3, HAT_OUTLINE.length); i++) {
-      const abCentered = { x: abOutline[i].x - abCx, y: abOutline[i].y - abCy };
-      const hexCentered = { x: HAT_OUTLINE[i].x - hexCx, y: HAT_OUTLINE[i].y - hexCy };
-      console.log(`  Vertex ${i} (centered): AB=(${abCentered.x.toFixed(4)}, ${abCentered.y.toFixed(4)}), HEX=(${hexCentered.x.toFixed(4)}, ${hexCentered.y.toFixed(4)})`);
-    }
-  });
-  
-  // Test morphed shapes at different t values
-  // With transform scaling for different a,b values, tiles should fit
-  // at any t value across the T(a,b) continuum.
-  
-  test('tiling at t=0.366 (reference shape) should match baseline', () => {
-    const outline = getOutlineForT(0.366);
-    
-    // At reference, tiles should already match since tiling was generated at this point
-    const result = verifyTilingEdges(tiles, outline, TOLERANCE);
-    console.log(`  t=0.366: ${formatResults(result)}`);
-    
-    // At reference t, should have same results as baseline
-    assert.ok(result.matched > result.total * 0.5, 
-      `At t=0.366, should have >50% matched (got ${result.matched})`);
-  });
-  
-  test('tilings generated at different reference points (documents limitation)', () => {
-    // Generate tilings at different reference points and check edge matching.
-    // NOTE: Due to the complexity of the substitution rules and edge matching,
-    // perfect tiling at non-reference points requires full symbolic AB computation
-    // throughout the entire tiling pipeline, which is not yet implemented.
-    // This test documents the current state.
-    const nonRefTValues = T_VALUES.filter(v => Math.abs(v.t - 0.366) > 0.1);
-    
-    for (const { t, name } of nonRefTValues) {
-      const { a, b } = getABFromT(t);
-      const outline = getOutlineForT(t);
-      
-      // Generate a new tiling at this specific reference point
-      const tilingAtT = generateTilingAt(TILING_LEVELS, a, b);
-      
-      // Verify the tiling with its own outline
-      const result = verifyTilingEdges(tilingAtT, outline, TOLERANCE);
-      console.log(`  t=${t} (${name}): ${formatResults(result)}`);
-    }
-    
-    // This test documents the current state but doesn't fail
-    // Full AB coordinate implementation would be needed for perfect matching
-    console.log(`  NOTE: Perfect matching at non-reference t values requires`);
-    console.log(`  full symbolic AB computation throughout substitution rules.`);
-    console.log(`  Shape morphing works visually; edge matching is approximate.`);
-    assert.ok(true, 'Documented morphing limitation');
-  });
-  
-  test('summary: tiling validity across spectrum', () => {
-    // Test using HAT_OUTLINE directly for reference case (a=1, b=√3)
-    const baselineResult = verifyTilingEdges(tiles, HAT_OUTLINE, TOLERANCE);
-    
-    // Also test with AB-evaluated outline at t=0.366
-    const refOutline = getOutlineForT(0.366);
-    const refResult = verifyTilingEdges(tiles, refOutline, TOLERANCE);
-    
-    console.log(`  BASELINE (HAT_OUTLINE): ${formatResults(baselineResult)}`);
-    console.log(`  t=0.366 (AB outline): ${formatResults(refResult)}`);
-    
-    // The baseline with HAT_OUTLINE should always work (>50% matched)
-    const baselineWorks = baselineResult.matched > baselineResult.total * 0.5;
-    console.log(`  Baseline works: ${baselineWorks}`);
-    
-    // Document current state of non-reference t values
-    const nonRefTValues = T_VALUES.filter(v => Math.abs(v.t - 0.366) > 0.1);
-    let nonRefWorking = 0;
-    for (const { t } of nonRefTValues) {
-      const { a, b } = getABFromT(t);
-      const outline = getOutlineForT(t);
-      const tilingAtT = generateTilingAt(TILING_LEVELS, a, b);
-      const result = verifyTilingEdges(tilingAtT, outline, TOLERANCE);
-      if (result.matched > result.total * 0.3) {  // Lower threshold due to known limitations
-        nonRefWorking++;
-      }
-    }
-    
-    console.log(`  Non-reference t values with >30% matching: ${nonRefWorking}/${nonRefTValues.length}`);
-    
-    // The baseline with original HAT_OUTLINE must work
-    assert.ok(baselineWorks, 'Baseline tiling with HAT_OUTLINE must work');
-    
-    // Shape morphing is working (shapes change visually)
-    // Perfect edge matching at non-reference points requires further development
-  });
-});
+function geometry(t) {
+  const output = new Float64Array(patch.tileCount * VERTICES * 2);
+  evaluateMorph(patch, t, output);
+  return Array.from({ length: patch.tileCount }, (_, tile) =>
+    Array.from({ length: VERTICES }, (_, vertex) => {
+      const offset = (tile * VERTICES + vertex) * 2;
+      return [output[offset], output[offset + 1]];
+    }));
+}
 
-describe('Edge Verification Logic', () => {
-  
-  test('detects exact edge matches', () => {
-    // Create a simple case with two tiles sharing an edge
-    const mockTiles = [
-      { transform: [1, 0, 0, 0, 1, 0], label: 'A' },  // Identity
-      { transform: [1, 0, 1, 0, 1, 0], label: 'B' },  // Shifted by 1 in x
-    ];
-    
-    // Simple square outline
-    const squareOutline = [
-      { x: 0, y: 0 },
-      { x: 1, y: 0 },
-      { x: 1, y: 1 },
-      { x: 0, y: 1 }
-    ];
-    
-    const result = verifyTilingEdges(mockTiles, squareOutline, 0.001);
-    
-    // Two squares sharing edge at x=1:
-    // Tile A has edge (1,0)→(1,1)
-    // Tile B has edge (1,0)→(1,1) which is (2,0)→(2,1) in world coords... wait that's not sharing
-    // Let me reconsider - tile B at x=1 means its edge at x=0 is at world x=1
-    // So Tile B's left edge (0,0)→(0,1) becomes (1,0)→(1,1) in world coords
-    // Tile A's right edge (1,0)→(1,1) is already (1,0)→(1,1)
-    // These are the SAME edge, not reverse edges. They would overlap, not share.
-    
-    // For proper edge sharing, tile B should have its left edge be the REVERSE of tile A's right edge
-    // Actually in a proper tiling, adjacent tiles have REVERSE edges (going in opposite directions)
-    
-    console.log(`  Mock result: ${formatResults(result)}`);
-    
-    // This test case isn't a proper tiling, so don't assert much
-    assert.ok(result.total > 0, 'Should find edges');
-  });
-  
-  test('detects partial matches (gaps/overlaps)', () => {
-    // Create a case where one endpoint matches but not the other
-    // This simulates the bug we're trying to detect
-    const mockTiles = [
-      { transform: [1, 0, 0, 0, 1, 0], label: 'A' },
-      { transform: [-1, 0, 1, 0, -1, 0.5], label: 'B' },  // Rotated 180° and offset - creates partial match
-    ];
-    
-    const triangleOutline = [
-      { x: 0, y: 0 },
-      { x: 1, y: 0 },
-      { x: 0.5, y: 1 }
-    ];
-    
-    const result = verifyTilingEdges(mockTiles, triangleOutline, 0.001);
-    console.log(`  Partial match test: ${formatResults(result)}`);
-    
-    // With this transform, we should get some partial matches
-    // (This is a deliberately broken tiling to test detection)
-  });
-});
+function edgesOf(polygons) {
+  return polygons.flatMap((points, tile) => points.map((p, i) => {
+    const q = points[(i + 1) % points.length];
+    const dx = q[0] - p[0];
+    const dy = q[1] - p[1];
+    return {
+      x: p[0], y: p[1], dx, dy, length: Math.hypot(dx, dy),
+      tile, winding: Math.sign(signedArea(points)), cuts: [0, 1],
+    };
+  }));
+}
 
-describe('Outline Generation', () => {
-  
-  test('outline closes properly (last edge returns to origin)', () => {
-    for (const t of [0.1, 0.366, 0.5, 0.9]) {
-      const outline = getOutlineForT(t);
-      
-      // Walk the edges and sum the displacements
-      let totalX = 0, totalY = 0;
-      for (let i = 0; i < outline.length; i++) {
-        const j = (i + 1) % outline.length;
-        totalX += outline[j].x - outline[i].x;
-        totalY += outline[j].y - outline[i].y;
-      }
-      
-      // Should sum to zero (closed polygon)
-      assert.ok(
-        Math.abs(totalX) < 0.0001 && Math.abs(totalY) < 0.0001,
-        `Outline at t=${t} should be closed. Total displacement: (${totalX}, ${totalY})`
-      );
+// Geometric oracle, independent of the substitution and coefficient machinery.
+// Split at all contacts: hats need partial-edge matches, not just equal endpoints.
+function topology(polygons, context) {
+  const edges = edgesOf(polygons);
+  function cut(edge, t) {
+    if (t >= -EPSILON && t <= 1 + EPSILON) {
+      edge.cuts.push(Math.max(0, Math.min(1, t)));
     }
-  });
-  
-  test('outline has 13 vertices at all t values', () => {
-    for (const t of [0.1, 0.366, 0.5, 0.9]) {
-      const outline = getOutlineForT(t);
-      assert.equal(outline.length, 13, `Outline at t=${t} should have 13 vertices`);
-    }
-  });
-});
-
-// ============================================================
-// ABQUAD COORDINATE SYSTEM TESTS
-// ============================================================
-
-describe('ABQuad Arithmetic', () => {
-  
-  test('constToQuad creates constant ABQuad', () => {
-    const q = constToQuad(5);
-    assert.equal(evalABQuad(q, 1, SQRT3), 5, 'Constant should evaluate to itself');
-    assert.equal(evalABQuad(q, 2, 1), 5, 'Constant should be same at any a,b');
-  });
-  
-  test('abToQuad creates linear ABQuad', () => {
-    // Create 2*a + 3*b as ABQuad
-    const q = abToQuad({ a: 2, b: 3 });
-    
-    // At a=1, b=√3: 2*1 + 3*√3 = 2 + 5.196 = 7.196
-    const val1 = evalABQuad(q, 1, SQRT3);
-    assert.ok(Math.abs(val1 - (2 + 3*SQRT3)) < 0.001, `Expected ~7.196, got ${val1}`);
-    
-    // At a=2, b=1: 2*2 + 3*1 = 7
-    const val2 = evalABQuad(q, 2, 1);
-    assert.equal(val2, 7, 'At a=2, b=1 should be 7');
-  });
-  
-  test('addABQuad adds two ABQuad values', () => {
-    const q1 = abToQuad({ a: 1, b: 2 }); // a + 2b
-    const q2 = abToQuad({ a: 3, b: -1 }); // 3a - b
-    const sum = addABQuad(q1, q2);
-    
-    // Sum should be 4a + b
-    assert.equal(evalABQuad(sum, 1, SQRT3), 4 + SQRT3, 'Sum at a=1, b=√3');
-    assert.equal(evalABQuad(sum, 2, 1), 9, 'Sum at a=2, b=1 should be 9');
-  });
-  
-  test('mulABQuadPair multiplies two ABQuad values', () => {
-    const q1 = abToQuad({ a: 1, b: 0 }); // a
-    const q2 = abToQuad({ a: 0, b: 1 }); // b
-    const product = mulABQuadPair(q1, q2);
-    
-    // a * b should give ab term
-    assert.equal(evalABQuad(product, 1, SQRT3), SQRT3, 'a*b at a=1, b=√3 should be √3');
-    assert.equal(evalABQuad(product, 2, 3), 6, 'a*b at a=2, b=3 should be 6');
-    
-    // Verify it's quadratic (has ab term)
-    assert.ok(!isLinearQuad(product), 'Product should be quadratic');
-  });
-  
-  test('isLinearQuad correctly identifies linear vs quadratic', () => {
-    const linear = abToQuad({ a: 5, b: 3 });
-    const quadratic = mulABQuadPair(abToQuad({ a: 1, b: 0 }), abToQuad({ a: 1, b: 0 })); // a²
-    const constant = constToQuad(42);
-    
-    assert.ok(isLinearQuad(linear), 'Linear ABQuad should be identified as linear');
-    assert.ok(!isLinearQuad(quadratic), 'Quadratic ABQuad should not be identified as linear');
-    assert.ok(isLinearQuad(constant), 'Constant should be identified as linear');
-  });
-});
-
-describe('ABQuad Matrix Operations', () => {
-  
-  test('identity matrix evaluates correctly', () => {
-    const identity = makeABQuadMatrix([1, 0, 0, 0, 1, 0]);
-    const evaluated = evalABQuadMatrix(identity, 1, SQRT3);
-    
-    assert.deepEqual(evaluated, [1, 0, 0, 0, 1, 0], 'Identity should evaluate to itself');
-  });
-  
-  test('matMulABQuad computes matrix multiplication', () => {
-    // Two identity matrices
-    const id1 = makeABQuadMatrix([1, 0, 0, 0, 1, 0]);
-    const id2 = makeABQuadMatrix([1, 0, 0, 0, 1, 0]);
-    const product = matMulABQuad(id1, id2);
-    const evaluated = evalABQuadMatrix(product, 1, SQRT3);
-    
-    assert.deepEqual(evaluated, [1, 0, 0, 0, 1, 0], 'Identity × Identity = Identity');
-    
-    // Translation matrices
-    const trans1 = makeABQuadMatrix([1, 0, 3, 0, 1, 2]);
-    const trans2 = makeABQuadMatrix([1, 0, 1, 0, 1, 4]);
-    const combined = matMulABQuad(trans1, trans2);
-    const evalCombined = evalABQuadMatrix(combined, 1, SQRT3);
-    
-    // Translation by (3,2) then (1,4) = total (4, 6)
-    assert.equal(evalCombined[2], 4, 'Combined x translation');
-    assert.equal(evalCombined[5], 6, 'Combined y translation');
-  });
-});
-
-describe('AB Tiling Generation', () => {
-  
-  test('generateTilingAB produces tiles with transformAB', () => {
-    const tilesAB = generateTilingAB(2);
-    
-    assert.ok(tilesAB.length > 0, 'Should generate tiles');
-    assert.ok(tilesAB[0].transformAB, 'Tiles should have transformAB property');
-    assert.ok(tilesAB[0].label, 'Tiles should have label property');
-    
-    // Verify transformAB is an array of ABQuad values
-    const t = tilesAB[0].transformAB;
-    assert.equal(t.length, 6, 'Transform should have 6 elements');
-    assert.ok(t[0].hasOwnProperty('a2'), 'Transform elements should be ABQuad');
-  });
-  
-  test('generateTilingAB transforms evaluate to same as generateTiling at reference', () => {
-    const tilesNumeric = generateTiling(2);
-    const tilesAB = generateTilingAB(2);
-    
-    assert.equal(tilesNumeric.length, tilesAB.length, 'Should generate same number of tiles');
-    
-    // Check first few tiles
-    for (let i = 0; i < Math.min(5, tilesNumeric.length); i++) {
-      const numT = tilesNumeric[i].transform;
-      const abT = evalABQuadMatrix(tilesAB[i].transformAB, 1, SQRT3);
-      
-      for (let j = 0; j < 6; j++) {
+  }
+  for (let i = 0; i < edges.length; i++) {
+    const a = edges[i];
+    assert.ok(a.length > EPSILON, `${context}: collapsed edge on tile ${a.tile}`);
+    for (let j = i + 1; j < edges.length; j++) {
+      const b = edges[j];
+      const dx = b.x - a.x;
+      const dy = b.y - a.y;
+      const determinant = cross(a.dx, a.dy, b.dx, b.dy);
+      if (Math.abs(determinant) <= EPSILON * a.length * b.length) {
+        if (Math.abs(cross(dx, dy, a.dx, a.dy)) > EPSILON * a.length) continue;
+        const aa = a.length ** 2;
+        const bb = b.length ** 2;
+        cut(a, (dx * a.dx + dy * a.dy) / aa);
+        cut(a, ((dx + b.dx) * a.dx + (dy + b.dy) * a.dy) / aa);
+        cut(b, (-dx * b.dx - dy * b.dy) / bb);
+        cut(b, ((a.dx - dx) * b.dx + (a.dy - dy) * b.dy) / bb);
+      } else {
+        const u = cross(dx, dy, b.dx, b.dy) / determinant;
+        const v = cross(dx, dy, a.dx, a.dy) / determinant;
+        if (u < -EPSILON || u > 1 + EPSILON || v < -EPSILON || v > 1 + EPSILON) continue;
         assert.ok(
-          Math.abs(numT[j] - abT[j]) < 0.001,
-          `Tile ${i} element ${j}: numeric=${numT[j]}, AB=${abT[j]}`
+          !(u > EPSILON && u < 1 - EPSILON && v > EPSILON && v < 1 - EPSILON),
+          `${context}: crossing edges on tiles ${a.tile} and ${b.tile}`,
         );
+        cut(a, u);
+        cut(b, v);
       }
     }
-  });
+  }
+
+  // Neighbor-bin lookup avoids rounding two coincident endpoints to different keys.
+  const vertices = [];
+  const bins = new Map();
+  function vertex(x, y) {
+    const bx = Math.floor(x / EPSILON);
+    const by = Math.floor(y / EPSILON);
+    for (let ix = bx - 1; ix <= bx + 1; ix++) {
+      for (let iy = by - 1; iy <= by + 1; iy++) {
+        for (const id of bins.get(`${ix},${iy}`) || []) {
+          if (Math.hypot(vertices[id][0] - x, vertices[id][1] - y) <= EPSILON) return id;
+        }
+      }
+    }
+    const id = vertices.push([x, y]) - 1;
+    const key = `${bx},${by}`;
+    if (!bins.has(key)) bins.set(key, []);
+    bins.get(key).push(id);
+    return id;
+  }
+
+  const segments = new Map();
+  for (const edge of edges) {
+    edge.cuts.sort((a, b) => a - b);
+    for (let i = 1; i < edge.cuts.length; i++) {
+      const lo = edge.cuts[i - 1];
+      const hi = edge.cuts[i];
+      if ((hi - lo) * edge.length <= EPSILON) continue;
+      const a = vertex(edge.x + lo * edge.dx, edge.y + lo * edge.dy);
+      const b = vertex(edge.x + hi * edge.dx, edge.y + hi * edge.dy);
+      const key = a < b ? `${a},${b}` : `${b},${a}`;
+      if (!segments.has(key)) segments.set(key, { a, b, owners: [] });
+      segments.get(key).owners.push({
+        tile: edge.tile, direction: (a < b ? 1 : -1) * edge.winding,
+      });
+    }
+  }
+
+  const adjacency = polygons.map(() => new Set());
+  const boundary = [];
+  for (const { a, b, owners } of segments.values()) {
+    assert.ok(owners.length <= 2, `${context}: multiply covered boundary segment`);
+    if (owners.length === 1) {
+      boundary.push([vertices[a], vertices[b]]);
+    } else {
+      assert.notEqual(owners[0].tile, owners[1].tile, `${context}: self-overlapping tile`);
+      assert.equal(owners[0].direction, -owners[1].direction, `${context}: tiles on same side of shared edge`);
+      adjacency[owners[0].tile].add(owners[1].tile);
+      adjacency[owners[1].tile].add(owners[0].tile);
+    }
+  }
+  const reached = new Set([0]);
+  for (const tile of reached) {
+    for (const neighbor of adjacency[tile]) reached.add(neighbor);
+  }
+  assert.equal(reached.size, polygons.length, `${context}: disconnected shared boundaries`);
+  // With crossings excluded and a connected planar graph, Euler detects every hole.
+  // The official finite H8 supertile is a topological disk; the exterior is one face.
+  assert.equal(vertices.length - segments.size + polygons.length, 1, `${context}: hole in patch`);
+  return boundary;
+}
+
+function contains(points, x, y) {
+  let inside = false;
+  for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+    const a = points[i];
+    const b = points[j];
+    if ((a[1] > y) !== (b[1] > y) && x < (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]) + a[0]) {
+      inside = !inside;
+    }
+  }
+  return inside;
+}
+
+function distanceToSegment(x, y, a, b) {
+  const dx = b[0] - a[0];
+  const dy = b[1] - a[1];
+  const t = Math.max(0, Math.min(1, ((x - a[0]) * dx + (y - a[1]) * dy) / (dx * dx + dy * dy)));
+  return Math.hypot(x - a[0] - t * dx, y - a[1] - t * dy);
+}
+
+const reference = geometry(MORPH_CENTER);
+const frames = ratios.map(t => ({ t, polygons: geometry(t) }));
+
+test('the hat shape changes non-uniformly while every tile keeps its classic area', () => {
+  // A classic a=1, b=sqrt(3) hat consists of eight kites, each of area sqrt(3).
+  const classicArea = 8 * Math.sqrt(3);
+  for (const { t, polygons } of frames) {
+    for (const [tile, points] of polygons.entries()) {
+      assert.ok(Math.abs(Math.abs(signedArea(points)) - classicArea) < EPSILON,
+        `t=${t}, tile=${tile}: area changed`);
+    }
+  }
+  function relativeEdges(points) {
+    const lengths = points.map((p, i) => {
+      const q = points[(i + 1) % points.length];
+      return Math.hypot(q[0] - p[0], q[1] - p[1]);
+    });
+    const perimeter = lengths.reduce((sum, length) => sum + length, 0);
+    return lengths.map(length => length / perimeter);
+  }
+  const low = relativeEdges(frames[0].polygons[0]);
+  const high = relativeEdges(frames[frames.length - 1].polygons[0]);
+  assert.ok(low.reduce((change, length, i) => change + Math.abs(length - high[i]), 0) > 0.05,
+    'edge proportions must change, not just position, rotation, or global zoom');
 });
 
+test('all morph frames have connected, opposite shared boundaries and no crossings or holes', () => {
+  for (const { t, polygons } of frames) topology(polygons, `t=${t}`);
+});
+
+test('a deterministic interior sampling oracle sees exactly one tile throughout the morph', () => {
+  const boundary = topology(reference, 'reference sampling domain');
+  const points = reference.flat();
+  const minX = Math.min(...points.map(p => p[0]));
+  const maxX = Math.max(...points.map(p => p[0]));
+  const minY = Math.min(...points.map(p => p[1]));
+  const maxY = Math.max(...points.map(p => p[1]));
+  for (const { t, polygons } of frames) {
+    let displacement = 0;
+    for (let tile = 0; tile < polygons.length; tile++) {
+      for (let i = 0; i < VERTICES; i++) {
+        displacement = Math.max(displacement, Math.hypot(
+          polygons[tile][i][0] - reference[tile][i][0],
+          polygons[tile][i][1] - reference[tile][i][1],
+        ));
+      }
+    }
+    let checked = 0;
+    // Inset the reference boundary by the largest vertex displacement. These
+    // points cannot leave a valid continuously deformed patch through its exterior.
+    for (let ix = 0; ix < 25; ix++) {
+      for (let iy = 0; iy < 25; iy++) {
+        const x = minX + (ix + 0.371) / 25 * (maxX - minX);
+        const y = minY + (iy + 0.613) / 25 * (maxY - minY);
+        if (!reference.some(polygon => contains(polygon, x, y))) continue;
+        if (boundary.some(([a, b]) => distanceToSegment(x, y, a, b) <= displacement + EPSILON)) continue;
+        // Boundary ownership is immaterial; the exact edge oracle covers seams.
+        if (polygons.some(polygon => polygon.some((a, i) =>
+          distanceToSegment(x, y, a, polygon[(i + 1) % VERTICES]) <= EPSILON))) continue;
+        const coverage = polygons.reduce((count, polygon) => count + Number(contains(polygon, x, y)), 0);
+        assert.equal(coverage, 1, `t=${t}, (${x}, ${y}): interior gap or overlap`);
+        checked++;
+      }
+    }
+    assert.ok(checked > 0, `t=${t}: no interior samples survived the boundary inset`);
+  }
+});

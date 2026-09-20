@@ -1,202 +1,112 @@
 {{ partial "head" . }}
 
-<body class="relative flex flex-col min-h-screen" data-page-type="homepage">
+<body class="relative isolate flex flex-col min-h-screen" data-page-type="homepage">
+  <a class="skip-link" href="#main-content">Skip to content</a>
   {{ partial "body-open" . }}
 
-  <!-- Decorative grid lines -->
-  <div class="grid-line-vertical left-1/4 hidden md:block"></div>
-  <div class="grid-line-vertical right-1/4 hidden md:block"></div>
-
-  <!-- Colorful accent line at top -->
-  <div class="h-2 bg-gradient-to-r from-magazine-accent via-magazine-secondary to-magazine-accent-light"></div>
-
-  <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center py-24 container mx-auto px-8 max-w-7xl overflow-hidden md:overflow-visible">
-    <!-- Floating animated shapes with muted colors - hidden on mobile -->
-    <div class="floating-shape-1 absolute top-20 right-10 w-64 h-64 rounded-full bg-magazine-accent/12 pointer-events-none hidden md:block"></div>
-    <div class="floating-shape-2 absolute bottom-32 left-10 w-80 h-80 bg-magazine-secondary/12 pointer-events-none hidden md:block" style="clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
-    <div class="floating-shape-3 absolute top-1/2 right-1/4 w-56 h-56 rounded-full bg-magazine-accent-light/12 pointer-events-none hidden lg:block"></div>
-
-    <div class="relative z-10 text-center w-full">
-      <!-- Profile and intro -->
-      <div class="mb-16 md:mb-24">
-        {{ with .Site.Params.profilePic }}
-        <!-- Avatar with architectural diagram elements -->
-        <div class="relative inline-flex items-center justify-center mb-8 w-44 h-44 md:w-64 md:h-64" style="z-index: 1;">
-          <!-- Architectural diagram decorations (behind everything) -->
-          <div class="absolute pointer-events-none" style="z-index: -1;">
-            <!-- Concentric circles -->
-            <div class="absolute rounded-full pointer-events-none" style="width: 280px; height: 280px; border: 1px solid rgba(148,163,184,0.3); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
-            <div class="absolute rounded-full pointer-events-none" style="width: 380px; height: 380px; border: 1px solid rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
-            <div class="absolute rounded-full pointer-events-none hidden md:block" style="width: 500px; height: 500px; border: 1px solid rgba(148,163,184,0.15); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
-            <div class="absolute rounded-full pointer-events-none hidden md:block" style="width: 640px; height: 640px; border: 1px dashed rgba(148,163,184,0.1); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
-
-            <!-- Main crosshair lines (horizontal & vertical) -->
-            <div class="absolute pointer-events-none hidden md:block" style="width: 750px; height: 1px; background: rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
-            <div class="absolute pointer-events-none hidden md:block" style="width: 1px; height: 750px; background: rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
-
-            <!-- Diagonal lines (45 degrees) -->
-            <div class="absolute pointer-events-none hidden md:block" style="width: 650px; height: 1px; background: rgba(148,163,184,0.15); top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg);"></div>
-            <div class="absolute pointer-events-none hidden md:block" style="width: 650px; height: 1px; background: rgba(148,163,184,0.15); top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);"></div>
-
-            <!-- Tick marks on horizontal axis -->
-            <div class="absolute pointer-events-none hidden md:block" style="width: 12px; height: 1px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(calc(-50% - 190px), -50%);"></div>
-            <div class="absolute pointer-events-none hidden md:block" style="width: 12px; height: 1px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(calc(-50% + 190px), -50%);"></div>
-            <div class="absolute pointer-events-none hidden md:block" style="width: 12px; height: 1px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(calc(-50% - 250px), -50%);"></div>
-            <div class="absolute pointer-events-none hidden md:block" style="width: 12px; height: 1px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(calc(-50% + 250px), -50%);"></div>
-
-            <!-- Tick marks on vertical axis -->
-            <div class="absolute pointer-events-none hidden md:block" style="width: 1px; height: 12px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(-50%, calc(-50% - 190px));"></div>
-            <div class="absolute pointer-events-none hidden md:block" style="width: 1px; height: 12px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(-50%, calc(-50% + 190px));"></div>
-            <div class="absolute pointer-events-none hidden md:block" style="width: 1px; height: 12px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(-50%, calc(-50% - 250px));"></div>
-            <div class="absolute pointer-events-none hidden md:block" style="width: 1px; height: 12px; background: rgba(148,163,184,0.25); top: 50%; left: 50%; transform: translate(-50%, calc(-50% + 250px));"></div>
-
-            <!-- Corner markers -->
-            <div class="absolute pointer-events-none hidden md:block" style="width: 16px; height: 16px; border-left: 1px solid rgba(148,163,184,0.2); border-top: 1px solid rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(calc(-50% - 280px), calc(-50% - 280px));"></div>
-            <div class="absolute pointer-events-none hidden md:block" style="width: 16px; height: 16px; border-right: 1px solid rgba(148,163,184,0.2); border-top: 1px solid rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(calc(-50% + 264px), calc(-50% - 280px));"></div>
-            <div class="absolute pointer-events-none hidden md:block" style="width: 16px; height: 16px; border-left: 1px solid rgba(148,163,184,0.2); border-bottom: 1px solid rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(calc(-50% - 280px), calc(-50% + 264px));"></div>
-            <div class="absolute pointer-events-none hidden md:block" style="width: 16px; height: 16px; border-right: 1px solid rgba(148,163,184,0.2); border-bottom: 1px solid rgba(148,163,184,0.2); top: 50%; left: 50%; transform: translate(calc(-50% + 264px), calc(-50% + 264px));"></div>
-          </div>
-
-          <!-- Gradient border wrapper using tiling background colors -->
-          <div class="avatar-ring relative p-3 md:p-4 rounded-full" style="z-index: 2; background: linear-gradient(135deg, rgba(144,190,109,0.4), rgba(255,167,64,0.35), rgba(255,215,90,0.35), rgba(200,220,140,0.4));">
-            <!-- Inner beige border -->
-            <div class="p-2 md:p-3 rounded-full bg-magazine-cream">
-              <img class="w-32 h-32 md:w-48 md:h-48 rounded-full" src="{{ . }}" alt="{{ $.Site.Title }}" />
-            </div>
-          </div>
+  <main id="main-content" tabindex="-1">
+    <section class="home-panel page-shell relative isolate overflow-hidden py-12 md:py-16 text-center" aria-labelledby="home-title">
+      {{ with .Site.Params.profilePic }}
+      <div class="relative inline-flex items-center justify-center w-44 h-44 md:w-56 md:h-56 mb-6">
+        <div class="avatar-portrait">
+          <img src="{{ . }}" alt="{{ $.Site.Title }}" width="160" height="160" />
         </div>
+      </div>
+      {{ end }}
+
+      <h1 id="home-title" class="font-name font-bold tracking-tight text-balance break-words mb-4" style="font-size: clamp(2.5rem, 6.5vw, 5.5rem); line-height: 1.08;">
+        {{ .Site.Title }}
+      </h1>
+      <p class="text-xl md:text-2xl text-magazine-black/70 leading-relaxed mb-6">
+        I like to make things.
+      </p>
+
+      <nav class="flex flex-wrap justify-center gap-2 md:gap-4 mb-5" aria-label="Main navigation">
+        {{ range sort .Site.Menus.main }}
+        <a href="{{ .URL }}" class="inline-flex items-center min-h-11 px-4 py-2 rounded-full border border-magazine-accent/30 text-magazine-accent-dark font-semibold hover:bg-magazine-accent hover:text-magazine-white transition-colors"{{ if eq .URL "/" }} aria-current="page"{{ end }}>
+          {{ .Name }}
+        </a>
         {{ end }}
+      </nav>
 
-        <h1 class="text-5xl lg:text-7xl xl:text-9xl font-name font-bold leading-none tracking-tighter text-balance mb-4 md:mb-6">
-          {{ .Site.Title }}
-        </h1>
-
-        <p class="text-xl md:text-2xl lg:text-3xl text-magazine-black/70 max-w-3xl leading-relaxed mb-8 md:mb-12 mx-auto">
-          I like to make things.
-        </p>
-
-        <!-- Quick links - Grid on mobile, flex on desktop -->
-        <nav class="flex flex-wrap justify-center gap-3 mb-8 max-w-xs mx-auto md:max-w-none md:gap-6 md:mb-12">
-          {{ range sort .Site.Menus.main }}
-          <a href="{{ .URL }}" class="relative font-medium py-3 px-4 md:py-2 md:px-3 transition-colors duration-200 text-base md:text-2xl font-bold bg-magazine-accent text-magazine-white hover:bg-magazine-accent-dark hover:text-magazine-white md:bg-transparent md:text-magazine-black md:hover:bg-magazine-accent-dark md:hover:text-magazine-white rounded-lg text-center shadow-sm md:shadow-none">
-            {{ .Name }}
-          </a>
+      {{ if .Site.Menus.icon }}
+      <div class="flex flex-wrap gap-2 justify-center">
+        {{ range sort .Site.Menus.icon }}
+        <a href="{{ .URL }}" title="{{ .Name }}" aria-label="{{ .Name }} (opens in a new tab)" class="w-11 h-11 flex items-center justify-center rounded-full text-magazine-accent-dark hover:bg-magazine-accent/10 transition-colors" target="_blank" rel="noopener">
+          {{ if eq .Name "rss" }}
+          <i class="fa-solid fa-rss" aria-hidden="true"></i>
+          {{ else }}
+          <i class="fa-brands fa-{{ .Name }}" aria-hidden="true"></i>
           {{ end }}
-        </nav>
-
-        <!-- Social links - Single line -->
-        {{ if .Site.Menus.icon }}
-        <div class="flex flex-wrap gap-3 md:gap-4 justify-center">
-          {{ range sort .Site.Menus.icon }}
-          <a
-            href="{{ .URL }}"
-            title="{{ .Name }}"
-            class="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-magazine-black md:bg-magazine-accent text-magazine-white hover:bg-magazine-black/80 md:hover:bg-magazine-accent-dark transition-all duration-300 hover:scale-110 shadow-[0_2px_8px_rgba(0,0,0,0.2)] md:shadow-[0_2px_8px_rgba(107,123,75,0.2)]"
-            target="_blank"
-            rel="noopener"
-          >
-            {{ if eq .Name "rss" }}
-            <i class="fa-solid fa-rss text-sm md:text-base"></i>
-            {{ else }}
-            <i class="fa-brands fa-{{ .Name }} text-sm md:text-base"></i>
-            {{ end }}
-          </a>
-          {{ end }}
-        </div>
+        </a>
         {{ end }}
       </div>
-    </div>
-  </section>
+      {{ end }}
+    </section>
 
-  <!-- Featured Projects Section -->
-  <section class="pt-8 pb-12 md:pt-16 md:pb-24 relative container mx-auto px-8 max-w-7xl">
-    <h2 class="text-5xl md:text-6xl font-black mb-16 tracking-tight">
-      Things
-    </h2>
+    <div class="pattern-band" aria-hidden="true"></div>
 
-    <!-- Projects grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-      {{ $posts := .Site.RegularPages }}
-      {{ with $posts }}
-        {{ range where . ".Params.thumbnail" "!=" nil }}
-          {{ $assetPath := printf "thumbnails/%s" .Params.thumbnail }}
-          {{ $asset := resources.Get $assetPath }}
-          {{ $color := index hugo.Data.colors .Params.thumbnail }}
-          {{ $borderStyle := printf "border: 8px solid rgb%s; box-shadow: 0 0 0 1px rgba%s / 0.1) inset;" $color (strings.TrimPrefix "(" $color) }}
+    {{ $latest := first 3 (where .Site.RegularPages "Section" "post").ByDate.Reverse }}
+    {{ with $latest }}
+    <section class="home-panel page-shell py-10 md:py-12" aria-labelledby="writing-title">
+      <div class="flex flex-wrap items-baseline justify-between gap-4 mb-8">
+        <h2 id="writing-title" class="text-3xl md:text-4xl font-display font-bold tracking-tight">Latest writing</h2>
+        <a href="{{ "/post/" | relURL }}" class="inline-flex items-center min-h-11 text-magazine-accent-dark font-semibold underline underline-offset-4 decoration-magazine-accent/40 hover:decoration-current">All posts <span class="ml-2" aria-hidden="true">→</span></a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+        {{ range . }}
+        <article class="min-w-0">
+          <time class="text-sm text-magazine-black/60" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+          <h3 class="text-xl md:text-2xl font-display font-bold leading-snug mt-3 mb-3 break-words">
+            <a href="{{ .RelPermalink }}" class="hover:text-magazine-accent-dark underline decoration-transparent underline-offset-4 hover:decoration-current">{{ .Title }}</a>
+          </h3>
+          {{ with .Description }}
+          <p class="text-base text-magazine-black/75 leading-relaxed">{{ . }}</p>
+          {{ end }}
+        </article>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
 
-          <article class="project-card relative overflow-hidden transition-all duration-500 hover:-translate-y-3 bg-magazine-white shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] group">
-            <a
-              href="{{ cond (isset .Params "link") .Params.link .RelPermalink }}"
-              class="relative flex flex-col h-full"
-              style="{{ $borderStyle | safeCSS }}"
-            >
-              <!-- Project image -->
-              {{ if $asset }}
-              <div class="relative h-56 overflow-hidden">
-                <img
-                  src="{{ $asset.Permalink }}"
-                  alt="{{ .Title }}"
-                  class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:blur-[2px]"
-                />
-                <div class="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-30" style="background: linear-gradient(135deg, rgba{{ strings.TrimPrefix "(" $color }} / 0.9), rgba(107, 123, 75, 0.9)); mix-blend-mode: multiply;"></div>
+    <section class="home-panel page-shell pt-10 pb-16 md:pt-12 md:pb-20" aria-labelledby="projects-title">
+      <div class="border-t border-magazine-accent/25 pt-8 mb-8">
+        <h2 id="projects-title" class="text-3xl md:text-4xl font-display font-bold tracking-tight">Selected work</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
+        {{ range where .Site.RegularPages ".Params.thumbnail" "!=" nil }}
+          {{ $asset := resources.Get (printf "thumbnails/%s" .Params.thumbnail) }}
+          {{ $color := index hugo.Data.colors .Params.thumbnail | default "(107, 123, 75)" }}
+          <article class="min-w-0 bg-magazine-white rounded-sm">
+            <a href="{{ cond (isset .Params "link") .Params.link .RelPermalink }}" class="motion-card group flex flex-col h-full border-4 rounded-sm hover:shadow-md" style="{{ printf "border-color: rgb%s;" $color | safeCSS }}">
+              {{ with $asset }}
+              <div class="h-52 md:h-56 overflow-hidden">
+                <img src="{{ .RelPermalink }}" alt="" class="w-full h-full object-cover" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async" />
               </div>
               {{ end }}
 
-              <!-- Project info -->
-              <div class="p-6 flex-1 flex flex-col relative z-10">
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="inline-block px-3 py-1 text-xs font-black text-magazine-black rounded-full shadow-md" style="background-color: rgb{{ $color }};">
-                    {{ .Date.Format "2006" }}
-                  </span>
-                  {{ if .Params.tags }}
-                    {{ range first 2 .Params.tags }}
-                    <span class="inline-block px-3 py-1 text-xs font-medium bg-magazine-accent/10 text-magazine-accent rounded-full">
-                      {{ . }}
-                    </span>
-                    {{ end }}
+              <div class="p-5 md:p-6 flex-1 flex flex-col min-w-0">
+                <div class="flex flex-wrap items-center gap-2 mb-4 text-xs">
+                  <span class="font-semibold text-magazine-black/65">{{ .Date.Format "2006" }}</span>
+                  {{ with .Params.tags }}
+                  {{ range first 2 . }}
+                  <span class="px-2 py-1 font-medium bg-magazine-sage text-magazine-accent-dark rounded-full break-words max-w-full">{{ . }}</span>
+                  {{ end }}
                   {{ end }}
                 </div>
-
-                <h3 class="text-2xl font-black mb-3 text-magazine-black transition-colors duration-300 group-hover:text-magazine-accent" style="line-height: 1.2;">
-                  {{ .Title }}
-                </h3>
-
-                <p class="text-magazine-black/70 text-sm leading-relaxed mb-4 flex-1">
-                  {{ .Description }}
-                </p>
-
-                <!-- Read more indicator -->
-                <div class="flex items-center gap-2 text-magazine-accent font-bold text-sm opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                  <span>Explore</span>
-                  <i class="fa-solid fa-arrow-right"></i>
-                </div>
+                <h3 class="text-2xl font-bold leading-tight mb-3 break-words group-hover:text-magazine-accent-dark">{{ .Title }}</h3>
+                <p class="text-magazine-black/75 text-base leading-relaxed mb-6 flex-1 break-words">{{ .Description }}</p>
+                <span class="flex items-center gap-2 text-magazine-accent-dark font-semibold text-sm underline underline-offset-4 decoration-magazine-accent/40 group-hover:decoration-current">
+                  Explore <span aria-hidden="true">→</span>
+                </span>
               </div>
-
-              <!-- Decorative corner accent -->
-              <div class="project-card-corner absolute top-0 right-0 w-20 h-20 opacity-15 transition-all duration-500 group-hover:opacity-30" style="background: linear-gradient(135deg, transparent 50%, rgb{{ $color }} 50%); filter: blur(8px);"></div>
             </a>
           </article>
         {{ end }}
-      {{ end }}
-    </div>
-
-    <!-- View all link -->
-    <div class="mt-16 text-center">
-      <a href="/post/" class="inline-block px-8 py-4 bg-magazine-black text-magazine-white text-xl font-bold hover:bg-magazine-accent transition-colors">
-        View All Posts →
-      </a>
-    </div>
-  </section>
-
-  <!-- Decorative horizontal line -->
-  <div class="container mx-auto px-8 max-w-7xl mt-24">
-    <div class="grid grid-cols-3 gap-4">
-      <div class="h-px bg-magazine-accent"></div>
-      <div class="h-px bg-magazine-accent-light"></div>
-      <div class="h-px bg-magazine-secondary"></div>
-    </div>
-  </div>
+      </div>
+    </section>
+    <div class="pattern-band" aria-hidden="true"></div>
+  </main>
 
   {{ partial "footer" . }}
-</body>

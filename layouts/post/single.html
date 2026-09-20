@@ -1,69 +1,38 @@
 {{ partial "header" . }}
 
-<div class="accent-line"></div>
-
-<main class="flex-1 py-16">
-  <div class="container mx-auto px-8 max-w-4xl">
-    <article>
-      <header class="mb-16 text-center">
-        <!-- Title -->
-        <h1 class="text-3xl md:text-5xl font-black mb-6 leading-none tracking-tight">
-          {{ .Title }}
-        </h1>
-
-        <!-- Meta -->
-        <div class="flex flex-wrap items-center justify-center gap-3 text-sm text-magazine-black/50 mb-4">
-          <time class="font-medium">
-            {{ .Date.Format "January 2, 2006" }}
-          </time>
-          <span>&middot;</span>
-          <span>{{ .ReadingTime }} min read</span>
-          <span>&middot;</span>
-          <a
-            href="{{ .Site.Params.repo }}/blob/master/content/{{ .File.Path }}"
-            class="hover:text-magazine-accent transition-colors"
-            title="Edit on GitHub"
-          >
-            <i class="fa-solid fa-pencil"></i> Edit
-          </a>
-        </div>
-
-      </header>
-
-      {{ if (.Param "outdated") }}
-      <div class="alert-warning mb-12">
-        <b class="font-bold text-lg">⚠️ Here be dragons!</b> <br />
-        I wrote this ages ago and is very likely outdated. Time flies!
+<main id="main-content" class="flex-1 page-spacing">
+  <article class="reading-shell">
+    <header class="mb-10 md:mb-12 pb-8 border-b border-magazine-black/15">
+      <a href="/post/" class="eyebrow inline-block mb-6 hover:underline underline-offset-4">All writing <span aria-hidden="true">/</span></a>
+      <h1 class="page-title mb-6">{{ .Title }}</h1>
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-magazine-black/70">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        <span aria-hidden="true">·</span>
+        <span>{{ .ReadingTime }} min read</span>
       </div>
-      {{end}}
+    </header>
 
-      <!-- Content -->
-      <div class="content prose prose-lg mx-auto">
-        {{ .Content }}
-      </div>
+    {{ if (.Param "outdated") }}
+      <aside class="alert-warning mb-8">
+        <strong>From the archive.</strong> This is an older post; some information may be out of date.
+      </aside>
+    {{ end }}
 
-      <!-- Tags -->
-      <div class="mt-12 flex flex-wrap gap-2">
-        {{ partial "tags" . }}
-      </div>
+    <div class="content">{{ .Content }}</div>
 
-      <!-- Related posts -->
-      {{ $related := first 5 (where (where (where .Site.Pages.ByDate.Reverse
-      ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags)
-      "Permalink" "!=" .Permalink) }}
-      {{ if $related }}
-      <div class="section-divider"></div>
-      <div class="mt-16">
-        <h3 class="text-3xl font-bold mb-8">Related Posts</h3>
-        <div class="space-y-0">
-          {{ range $related }}
-            {{ partial "list-item" . }}
-          {{ end }}
-        </div>
-      </div>
-      {{ end }}
-    </article>
-  </div>
+    <footer class="mt-10 pt-6 border-t border-magazine-black/15">
+      <div class="flex flex-wrap gap-2">{{ partial "tags" . }}</div>
+      <a href="{{ .Site.Params.repo }}/blob/master/content/{{ .File.Path }}" class="text-link inline-block mt-6 text-sm">Suggest an edit on GitHub</a>
+    </footer>
+
+    {{ $related := first 3 (where (where (where .Site.RegularPages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
+    {{ if $related }}
+      <section class="mt-16" aria-labelledby="related-heading">
+        <h2 id="related-heading" class="text-2xl mb-3">Keep reading</h2>
+        {{ range $related }}{{ partial "list-item" . }}{{ end }}
+      </section>
+    {{ end }}
+  </article>
 </main>
 
 {{ partial "footer" . }}

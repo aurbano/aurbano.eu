@@ -7,33 +7,12 @@
     <script>hljs.initHighlightingOnLoad();</script>
 {{ end }}
 
-<!-- Einstein tiling background (all pages) -->
+<!-- Keep the animated background away from reading and photography pages. -->
 {{ $einsteinJS := resources.Get "js/einstein-tiling.js" }}
-{{ if $einsteinJS }}
-    {{ $einsteinJS = $einsteinJS | minify | fingerprint }}
-    <script src="{{ $einsteinJS.Permalink }}" defer></script>
+{{ if and .IsHome $einsteinJS }}
+    {{ $einsteinJS = $einsteinJS | js.Build (dict "target" "es2020" "minify" true) | fingerprint }}
+    <script src="{{ $einsteinJS.RelPermalink }}" defer></script>
 {{ end }}
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-<!-- Mobile navigation toggle -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const navToggle = document.querySelector('.navbar-toggler');
-    const navMenu = document.querySelector('.navbar-collapse');
-
-    if (navToggle && navMenu) {
-      navToggle.addEventListener('click', function() {
-        navMenu.classList.toggle('show');
-      });
-
-      // Close menu when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
-          navMenu.classList.remove('show');
-        }
-      });
-    }
-  });
-</script>

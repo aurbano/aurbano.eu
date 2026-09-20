@@ -1,189 +1,61 @@
 {{ partial "header" . }}
 
-<div class="accent-line"></div>
-
-<main class="flex-1 py-16">
-  <div class="container mx-auto px-8 max-w-[1600px]">
-    <!-- Back Link -->
-    <a href="/photography/" class="inline-flex items-center gap-2 text-magazine-accent hover:text-magazine-accent-dark font-medium mb-12 transition-colors">
-      <i class="fa-solid fa-arrow-left"></i>
-      <span>Back to Gallery</span>
-    </a>
-
-    <!-- Event Header -->
-    <header class="mb-16">
-      {{ if .Params.location }}
-        <p class="text-2xl text-magazine-black/60 mb-4">{{ .Params.location }}</p>
-      {{ end }}
-
-      <h1 class="text-6xl md:text-8xl font-headline font-black mb-6 tracking-wide uppercase text-magazine-accent-dark">
-        {{ .Title }}
-      </h1>
-
-      <div class="flex items-center gap-4 text-magazine-black/60 mb-8">
-        <time class="font-medium">{{ .Date.Format "January 2, 2006" }}</time>
-        <span>·</span>
-        <span>{{ len .Params.photos }} photos</span>
+{{ $album := . }}
+{{ $photos := .Params.photos | default slice }}
+<main id="main-content" class="photography-page photography-detail flex-1">
+  <div class="page-shell">
+    <a class="photography-back" href="{{ "photography/" | relURL }}"><span aria-hidden="true">←</span> All photography</a>
+    <header class="photography-detail-header">
+      <div class="photography-meta">
+        {{ with .Params.location }}<span>{{ . }}</span>{{ end }}
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        <span>{{ len $photos }} photos</span>
       </div>
-
-      <div class="h-1 w-24 bg-magazine-accent mb-8"></div>
-
-      <!-- Description -->
-      <div class="prose prose-lg max-w-none text-magazine-black/80 leading-relaxed">
-        {{ .Content }}
-      </div>
+      <h1 class="page-title">{{ .Title }}</h1>
+      <div class="content photography-section-copy">{{ .Content }}</div>
     </header>
-  </div>
 
-  <!-- All Photos Grid - Full Width -->
-  {{ if .Params.photos }}
-  <div class="w-full px-12 lg:px-24">
-    <div class="masonry-grid masonry-packed w-full">
-      {{ range $index, $photo := .Params.photos }}
-        {{ $thumbUrl := replace $photo.url (path.Ext $photo.url) (printf "__thumb%s" (path.Ext $photo.url)) }}
-        <div class="masonry-item relative overflow-hidden bg-magazine-black/5 group cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox({{ $index }})">
-          <img
-            src="{{ $thumbUrl }}"
-            alt=""
-            class="transition-transform duration-700 group-hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      {{ end }}
+    {{ if $photos }}
+      <p class="photography-gallery-hint">Select a photograph to view it full size.</p>
+      <div class="photography-grid" id="photo-gallery" aria-label="{{ .Title }} photographs">
+        {{ range $index, $photo := $photos }}
+          {{ $thumbUrl := replace $photo.url (path.Ext $photo.url) (printf "__thumb%s" (path.Ext $photo.url)) }}
+          {{ $filename := path.Base $photo.url | replaceRE "\\.[^.]+$" "" }}
+          {{ $label := $photo.alt | default (printf "Photo %d from %s" (add $index 1) $album.Title) }}
+          <button class="photography-photo" type="button" data-photo-url="{{ $photo.url }}" data-photo-filename="{{ $filename }}" data-photo-label="{{ $label }}" aria-label="Open {{ $label }}" aria-haspopup="dialog" aria-controls="photo-viewer">
+            <img src="{{ $thumbUrl }}" alt="{{ $label }}" loading="lazy" decoding="async"{{ with $photo.width }} width="{{ . }}"{{ end }}{{ with $photo.height }} height="{{ . }}"{{ end }} />
+            <span class="photography-photo-caption" aria-hidden="true"><span>{{ printf "%02d" (add $index 1) }}</span><span>View photo <span aria-hidden="true">↗</span></span></span>
+          </button>
+        {{ end }}
+      </div>
+      <noscript><p class="photography-empty">Enable JavaScript to open the full-size photo viewer.</p></noscript>
+    {{ else }}
+      <p class="photography-empty">There are no photographs in this gallery yet.</p>
+    {{ end }}
+
+    <div class="photography-follow">
+      <a class="photography-gallery-link" href="https://instagram.com/framed_humans" target="_blank" rel="noopener">Follow me on Instagram <span aria-hidden="true">↗</span><span class="photography-sr-only"> (opens in a new tab)</span></a>
     </div>
-  </div>
-  {{ end }}
-
-  <!-- Instagram Link -->
-  <div class="container mx-auto px-8 max-w-[1600px] mt-20 text-center">
-    <a href="https://instagram.com/framed_humans" target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-8 py-4 bg-magazine-black text-magazine-white font-bold rounded-full hover:bg-magazine-accent transition-colors">
-      <i class="fa-brands fa-instagram text-xl"></i>
-      <span>Follow me on Instagram</span>
-    </a>
   </div>
 </main>
 
-<!-- Lightbox Gallery -->
-<div id="lightbox" class="fixed inset-0 bg-magazine-black/95 z-50 hidden items-center justify-center p-8">
-  <!-- Close Button -->
-  <button class="absolute top-8 right-8 text-magazine-white text-4xl hover:text-magazine-accent transition-colors z-10" onclick="closeLightbox()">
-    <i class="fa-solid fa-xmark"></i>
-  </button>
-
-  <!-- Previous Button -->
-  <button id="prev-btn" class="absolute left-8 top-1/2 -translate-y-1/2 text-magazine-white text-5xl hover:text-magazine-accent transition-colors z-10" onclick="navigateLightbox(-1)">
-    <i class="fa-solid fa-chevron-left"></i>
-  </button>
-
-  <!-- Image -->
-  <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain" onclick="event.stopPropagation()" />
-
-  <!-- Next Button -->
-  <button id="next-btn" class="absolute right-8 top-1/2 -translate-y-1/2 text-magazine-white text-5xl hover:text-magazine-accent transition-colors z-10" onclick="navigateLightbox(1)">
-    <i class="fa-solid fa-chevron-right"></i>
-  </button>
-
-  <!-- Counter -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-magazine-white text-lg font-medium" style="text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);">
-    <span id="current-index">1</span> / <span id="total-photos">{{ len .Params.photos }}</span>
-  </div>
-</div>
-
-<script>
-  // Store all photo URLs
-  const photos = [
-    {{ range .Params.photos }}
-      "{{ .url }}",
-    {{ end }}
-  ];
-
-  let currentIndex = 0;
-
-  function getFilename(url) {
-    return decodeURIComponent(url.split('/').pop().replace(/\.[^.]+$/, ''));
-  }
-
-  function findIndexByFilename(filename) {
-    const decoded = decodeURIComponent(filename);
-    return photos.findIndex(url => getFilename(url) === decoded);
-  }
-
-  function openLightbox(index, updateHash = true) {
-    currentIndex = index;
-    updateLightboxImage();
-    const lightbox = document.getElementById('lightbox');
-    lightbox.classList.remove('hidden');
-    lightbox.classList.add('flex');
-    document.body.style.overflow = 'hidden';
-    if (updateHash) {
-      history.replaceState(null, '', '#photo-' + encodeURIComponent(getFilename(photos[currentIndex])));
-    }
-  }
-
-  function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    lightbox.classList.add('hidden');
-    lightbox.classList.remove('flex');
-    document.body.style.overflow = '';
-    history.replaceState(null, '', window.location.pathname);
-  }
-
-  function navigateLightbox(direction) {
-    currentIndex = (currentIndex + direction + photos.length) % photos.length;
-    updateLightboxImage();
-    history.replaceState(null, '', '#photo-' + encodeURIComponent(getFilename(photos[currentIndex])));
-  }
-
-  function updateLightboxImage() {
-    const img = document.getElementById('lightbox-img');
-    const counter = document.getElementById('current-index');
-    img.src = photos[currentIndex];
-    counter.textContent = currentIndex + 1;
-  }
-
-  // Keyboard navigation
-  document.addEventListener('keydown', function(e) {
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox.classList.contains('hidden')) {
-      if (e.key === 'Escape') {
-        closeLightbox();
-      } else if (e.key === 'ArrowLeft') {
-        navigateLightbox(-1);
-      } else if (e.key === 'ArrowRight') {
-        navigateLightbox(1);
-      }
-    }
-  });
-
-  // Close when clicking outside image
-  document.getElementById('lightbox').addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeLightbox();
-    }
-  });
-
-  // Check for photo hash in URL on page load
-  function checkUrlHash() {
-    const hash = window.location.hash;
-    if (hash && hash.startsWith('#photo-')) {
-      const filename = hash.replace('#photo-', '');
-      const index = findIndexByFilename(filename);
-      if (index >= 0) {
-        openLightbox(index, false);
-      }
-    }
-  }
-
-  // Run on page load
-  checkUrlHash();
-
-  // Also handle hash changes (back/forward navigation)
-  window.addEventListener('hashchange', checkUrlHash);
-</script>
-
-<!-- Masonry.js -->
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-<script src="/js/masonry-gallery.js"></script>
+{{ if $photos }}
+  <dialog class="photo-viewer" id="photo-viewer" aria-labelledby="photo-viewer-title">
+    <header class="photo-viewer-header">
+      <h2 id="photo-viewer-title">{{ .Title }}</h2>
+      <button class="photo-viewer-button" type="button" id="photo-viewer-close" aria-label="Close photo viewer" autofocus>Close <span aria-hidden="true">×</span></button>
+    </header>
+    <div class="photo-viewer-stage" id="photo-viewer-stage">
+      <div class="photo-viewer-image-host" id="photo-viewer-image-host"></div>
+      <p class="photo-viewer-status" id="photo-viewer-status" role="status"></p>
+    </div>
+    <footer class="photo-viewer-controls">
+      <button class="photo-viewer-button" type="button" id="photo-viewer-prev" aria-label="Previous photograph"><span aria-hidden="true">←</span> Previous</button>
+      <p id="photo-viewer-counter" class="photo-viewer-counter" aria-live="polite" aria-atomic="true"></p>
+      <button class="photo-viewer-button" type="button" id="photo-viewer-next" aria-label="Next photograph">Next <span aria-hidden="true">→</span></button>
+    </footer>
+  </dialog>
+  <script src="{{ "js/photography.js" | relURL }}" defer></script>
+{{ end }}
 
 {{ partial "footer" . }}

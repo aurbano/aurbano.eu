@@ -1,19 +1,14 @@
 {{ partial "header" . }}
 
-<main class="flex-1 py-12">
-  <div class="container mx-auto px-4">
-    <div class="flex justify-center">
-      <div class="w-full lg:w-2/3">
-        <header>
-          <h1>{{ .Title }}</h1>
-          <small>{{ .Description }}</small>
-          {{ partial "tags" . }}
-        </header>
-
-        <div align="start" class="content">{{ .Content }}</div>
-      </div>
-    </div>
-  </div>
+<main id="main-content" class="flex-1 page-spacing">
+  <article class="reading-shell">
+    <header class="mb-10 pb-8 border-b border-magazine-black/15">
+      <h1 class="page-title mb-4">{{ .Title }}</h1>
+      {{ with .Description }}<p class="text-lg text-magazine-black/70">{{ . }}</p>{{ end }}
+    </header>
+    <div class="content">{{ .Content }}</div>
+    {{ with .Params.tags }}<div class="flex flex-wrap gap-2 mt-10">{{ partial "tags" $ }}</div>{{ end }}
+  </article>
 </main>
 
 {{ partial "footer" . }}

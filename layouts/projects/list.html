@@ -1,21 +1,14 @@
 {{ partial "header" . }}
 
-<main class="flex-1 py-12">
-  <div class="container mx-auto px-4">
-    <div class="flex justify-center">
-      <div class="w-full lg:w-2/3">
-        <header>
-          <h1>{{ .Title }}</h1>
-          <h5 class="date text-gray-300">
-            Some apps & websites I've worked on over the years
-          </h5>
-          {{ partial "tags" . }}
+<main id="main-content" class="flex-1 page-spacing">
+  <div class="reading-shell">
+        <header class="mb-10">
+          <h1 class="page-title mb-4">{{ .Title }}</h1>
+          <p class="text-magazine-black/70">Some apps &amp; websites I've worked on over the years.</p>
         </header>
 
         {{ range sort .Pages "Params.year" "desc" }} {{ partial "project-card" .
         }} {{ end }}
-      </div>
-    </div>
   </div>
 </main>
 

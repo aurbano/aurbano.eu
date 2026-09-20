@@ -12,15 +12,15 @@
     {{ end }}
     {{ with .Params.link }} {{ $.Scratch.Set "link" . }} {{ end }}
 
-    <div class="flex items-start justify-between gap-4">
-      <div class="flex-1">
-        <h6>
-          <a href="{{ .Scratch.Get "link" }}" class="text-magazine-black hover:text-magazine-accent transition-colors">
+    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-5">
+      <div class="flex-1 min-w-0">
+        <h3 class="text-xl leading-snug">
+          <a href="{{ .Scratch.Get "link" }}" class="text-magazine-black hover:text-magazine-accent-dark transition-colors">
             {{ .Title }}
           </a>
-        </h6>
+        </h3>
 
-        <p class="text-magazine-black/60 mt-2">{{ .Description }}</p>
+        {{ with .Description }}<p class="text-sm text-magazine-black/70 mt-2 leading-relaxed">{{ . }}</p>{{ end }}
 
         {{ if .Params.tags }}
         <div class="flex flex-wrap gap-2 mt-3">
@@ -33,8 +33,8 @@
         {{ end }}
       </div>
 
-      <div class="text-right flex-shrink-0">
-        <time class="inline-block px-3 py-1 text-sm font-bold bg-magazine-accent text-magazine-white rounded-full">
+      <div class="flex-shrink-0">
+        <time datetime="{{ .Date.Format "2006-01-02" }}" class="text-sm text-magazine-black/65">
           {{ .Date.Format "Jan 2006" }}
         </time>
       </div>

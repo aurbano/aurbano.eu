@@ -1,6 +1,6 @@
 {{ if or .Paginator.HasPrev .Paginator.HasNext }}
 
-<div class="pages">
+<nav class="pages" aria-label="Pagination">
 
     {{ if .Paginator.HasPrev }}
         <a class="icon pages-icon" href="{{ .Paginator.Prev.URL }}" rel="prev">
@@ -14,6 +14,6 @@
         </a>
     {{ end }}
 
-</div>
+</nav>
 
 {{ end }}

@@ -1,19 +1,14 @@
 {{ partial "header" . }}
 
-<main class="flex-1 py-12">
-  <div class="container mx-auto px-4">
-    <div class="flex justify-center">
-      <div class="w-full lg:w-2/3">
-        <header>
-          <h1>{{ humanize .Data.Singular }}: {{ .Title }}</h1>
-        </header>
-
-        {{ range (.Paginator 20).Pages }} {{ partial "list-item" . }} {{ end }}
-      </div>
-    </div>
+<main id="main-content" class="flex-1 page-spacing">
+  <div class="reading-shell">
+    <header class="mb-8">
+      <p class="eyebrow mb-3">{{ humanize .Data.Singular }}</p>
+      <h1 class="page-title">{{ .Title }}</h1>
+    </header>
+    {{ range (.Paginator 20).Pages }}{{ partial "list-item" . }}{{ end }}
+    {{ partial "paginator" . }}
   </div>
 </main>
-
-{{ partial "paginator" . }}
 
 {{ partial "footer" . }}

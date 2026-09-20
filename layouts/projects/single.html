@@ -1,9 +1,10 @@
 {{ partial "header" . }}
 
-<div class="container mx-auto px-4">
-  <div class="flex justify-center">
-    <div class="w-full lg:w-2/3 text-left">{{ partial "project-card" . }}</div>
+<main id="main-content" class="flex-1 page-spacing">
+  <div class="reading-shell">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ partial "project-card" . }}
   </div>
-</div>
+</main>
 
 {{ partial "footer" . }}

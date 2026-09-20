@@ -1,19 +1,16 @@
 {{ partial "header" . }}
 
-<div class="accent-line"></div>
-
-<main class="flex-1 py-16">
-  <div class="container mx-auto px-8 max-w-4xl">
-    <header class="mb-16">
-      <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tight">{{ .Title }}</h1>
-      <div class="h-1 w-24 bg-magazine-accent"></div>
+<main id="main-content" class="flex-1 page-spacing">
+  <div class="reading-shell">
+    <header class="mb-10">
+      <h1 class="page-title">{{ .Title }}</h1>
     </header>
 
     {{ with .Pages }}
       <div class="flex flex-wrap gap-3">
         {{ range sort . }}
           <a href="{{ .RelPermalink }}" class="tag">
-            {{ .Title }} <span class="opacity-60">({{ len .Pages }})</span>
+            {{ .Title }} <span>({{ len .Pages }})</span>
           </a>
         {{ end }}
       </div>

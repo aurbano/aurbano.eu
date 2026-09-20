@@ -1,117 +1,50 @@
-<nav class="transition-all duration-300 bg-magazine-white/80 backdrop-blur-md border-b border-magazine-black/5 sticky top-0 z-50 shadow-sm">
-  <div class="container mx-auto px-8 py-6 max-w-7xl">
-    <!-- Mobile header with hamburger and title -->
-    <div class="flex items-center justify-between lg:hidden">
-      <a class="nav-link relative font-name font-black py-2 px-3 hover:text-magazine-accent transition-colors duration-200 text-2xl text-magazine-accent hover:text-magazine-accent-dark" href="/">
-        {{ .Site.Title }}
-      </a>
-      <button
-        id="navToggle"
-        class="p-3 text-magazine-black hover:text-magazine-accent transition-colors"
-        type="button"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fa-solid fa-bars text-xl"></i>
-      </button>
-    </div>
-
-    <div class="navbar-collapse hidden lg:flex items-center justify-between w-full" id="navbarSupportedContent">
-      {{ if .Site.Menus.main }}
-      <ul class="flex items-center gap-2">
-        <li class="hidden lg:flex items-center gap-3">
-          {{ with .Site.Params.profilePic }}
-          <a href="/" class="flex-shrink-0">
-            <img src="{{ . }}" alt="{{ $.Site.Title }}" class="w-10 h-10 rounded-full object-cover" />
-          </a>
-          {{ end }}
-          <a class="nav-link relative font-name font-medium py-2 px-3 hover:text-magazine-accent transition-colors duration-200 text-2xl text-magazine-accent hover:text-magazine-accent-dark" href="/">
-            {{ .Site.Title }}
-          </a>
-        </li>
-        <li class="hidden lg:block">
-          <span class="text-magazine-black/20 mx-2">·</span>
-        </li>
-        {{ $currentPage := . }} {{ range sort .Site.Menus.main }} {{ $is :=
-        $currentPage.IsMenuCurrent "main" . }} {{ $has :=
-        $currentPage.HasMenuCurrent "main" . }}
-        <li>
-          <a class="nav-link relative font-medium py-2 px-3 hover:text-magazine-accent transition-colors duration-200 text-base{{ if or $is $has }} text-magazine-accent{{ end }}" href="{{ .URL }}">
-            {{ .Name }}
-          </a>
-        </li>
-        {{ end }}
-      </ul>
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="/">
+      {{ with .Site.Params.profilePic }}
+        <img src="{{ . }}" alt="" width="32" height="32" />
       {{ end }}
-      {{ if .Site.Menus.icon }}
-      <ul class="flex items-center gap-3">
-        {{ range sort .Site.Menus.icon }}
-        <li>
-          <a
-            title="{{ .Name }}"
-            class="inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-magazine-accent/10 transition-all duration-200 text-magazine-accent hover:text-magazine-accent-dark text-lg"
-            href="{{ .URL }}"
-            target="_blank"
-            rel="noopener"
-          >
-            {{ if eq .Name "rss" }}
-            <i class="fa-solid fa-rss"></i>
-            {{ else }}
-            <i class="fa-brands fa-{{ .Name }}"></i>
-            {{ end }}
-          </a>
-        </li>
-        {{ end }}
-      </ul>
+      <span>{{ .Site.Title }}</span>
+    </a>
+    <button id="navToggle" class="nav-toggle" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" hidden>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+    </button>
+    <ul class="site-menu" id="navbarSupportedContent">
+      {{ $currentPage := . }}
+      {{ range sort .Site.Menus.main }}
+        {{ $active := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+        {{ if and (ne .URL "/") (hasPrefix $currentPage.RelPermalink .URL) }}{{ $active = true }}{{ end }}
+        <li><a class="nav-link" href="{{ .URL }}"{{ if $active }} aria-current="{{ if eq $currentPage.RelPermalink .URL }}page{{ else }}location{{ end }}"{{ end }}>{{ .Name }}</a></li>
       {{ end }}
-    </div>
+    </ul>
   </div>
 </nav>
-
 <script>
-  (function() {
-    // Mobile menu toggle
-    const navToggle = document.getElementById('navToggle');
-    const navbarContent = document.getElementById('navbarSupportedContent');
-
-    if (navToggle && navbarContent) {
-      navToggle.addEventListener('click', function() {
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-        navbarContent.classList.toggle('hidden');
-        this.setAttribute('aria-expanded', !isExpanded);
-      });
-    }
-
-    // Auto-hide header on scroll down, show on scroll up
-    const nav = document.querySelector('nav');
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    function onScroll() {
-      const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
-
-      if (Math.abs(delta) < 5) {
-        ticking = false;
-        return;
+  (() => {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navbarSupportedContent');
+    const nav = toggle.closest('nav');
+    const mobile = window.matchMedia('(max-width: 639px)');
+    const close = () => {
+      menu.hidden = mobile.matches;
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+    toggle.hidden = false;
+    close();
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      menu.hidden = expanded;
+      toggle.setAttribute('aria-expanded', String(!expanded));
+    });
+    nav.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && mobile.matches && !menu.hidden) {
+        close();
+        toggle.focus();
       }
-
-      if (delta > 0 && currentScrollY > 80) {
-        nav.style.transform = 'translateY(-100%)';
-      } else {
-        nav.style.transform = 'translateY(0)';
-      }
-
-      lastScrollY = currentScrollY;
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', function() {
-      if (!ticking) {
-        requestAnimationFrame(onScroll);
-        ticking = true;
-      }
-    }, { passive: true });
+    });
+    document.addEventListener('click', event => {
+      if (!nav.contains(event.target)) close();
+    });
+    mobile.addEventListener('change', close);
   })();
 </script>

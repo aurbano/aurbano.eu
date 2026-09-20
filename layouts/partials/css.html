@@ -1,9 +1,8 @@
 
-<!-- google fonts -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family={{ .Site.Params.font }}">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel:wght@400;600;700;900&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap">
+<!-- Typography: readable system UI text, editorial headings, personal wordmark. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel:wght@400;700&family=Nunito:wght@400;700;900&display=swap">
 
 <!-- highlight.js -->
 {{ if .Site.Params.highlight | default false }} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/{{ .Site.Params.highlightStyle | default "default" }}.min.css"> {{ end }}
@@ -17,3 +16,10 @@
   {{ $style = $style | minify | fingerprint }}
 {{ end }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+{{ if eq .Section "photography" }}
+  {{ $photographyStyle := resources.Get "css/photography.css" | postCSS $options }}
+  {{ if hugo.IsProduction }}
+    {{ $photographyStyle = $photographyStyle | minify | fingerprint }}
+  {{ end }}
+  <link rel="stylesheet" href="{{ $photographyStyle.RelPermalink }}">
+{{ end }}
