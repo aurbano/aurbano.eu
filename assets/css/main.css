@@ -45,6 +45,16 @@
   .home-panel { background: theme('colors.magazine.white'); }
   .pattern-band { height: clamp(4rem, 8vw, 8rem); }
 
+  .home-hero {
+    width: calc(100% - 2 * clamp(1rem, 4vw, 4rem));
+    max-width: 64rem;
+    margin-inline: auto;
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(1rem, 4vw, 3.5rem) clamp(3rem, 6vw, 5rem);
+    border: 1px solid #e3dfd4;
+    background: #fffefa;
+    box-shadow: 0 2px 5px rgb(35 40 28 / 8%), 0 16px 40px -12px rgb(35 40 28 / 18%);
+  }
+
   .avatar-portrait {
     width: 80%;
     padding: 7px 7px 15px;
