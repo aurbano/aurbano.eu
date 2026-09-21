@@ -9,17 +9,17 @@
     "test": "node --test tests/einstein-tiling.test.js"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.15",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.49",
-    "postcss-cli": "^11.0.0",
-    "tailwindcss": "^3.4.17"
+    "@tailwindcss/typography": "^0.5.20",
+    "autoprefixer": "^10.6.0",
+    "postcss": "^8.5.28",
+    "postcss-cli": "^12.0.0",
+    "tailwindcss": "^4.3.3"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.709.0",
-    "dotenv": "^17.2.3",
+    "@aws-sdk/client-s3": "^3.1131.0",
+    "dotenv": "^17.4.2",
     "gray-matter": "^4.0.3",
-    "sharp": "^0.33.5",
-    "yargs": "^17.7.2"
+    "sharp": "^0.35.4",
+    "yargs": "^18.1.0"
   }
 }
