@@ -1,6 +1,6 @@
 ---
 title: Distributed agent knowledge isn’t a solved problem
-description: I built a first version of long-term memory for my agents. Storing things was the easy part. The real work was organising them, getting the right one back, and eventually retrieving by intent rather than similarity. This is the start of a build log.
+description: Building a SOTA knowledge base system for agents, with intent-based recall and solid trust controls.
 date: 2026-05-31
 thumbnail: ''
 categories: []
