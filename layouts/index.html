@@ -6,6 +6,7 @@
 
   <main id="main-content" tabindex="-1">
     <section class="home-hero home-panel relative isolate text-center" aria-labelledby="home-title">
+      {{ partial "theme-toggle" "absolute top-3 right-3 md:top-4 md:right-4" }}
       {{ with .Site.Params.profilePic }}
       <div class="relative inline-flex items-center justify-center w-44 h-44 md:w-56 md:h-56 mb-6">
         <div class="avatar-portrait">

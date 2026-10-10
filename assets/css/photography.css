@@ -1,5 +1,5 @@
 .photography-page {
-  color: #4b5b3b;
+  color: rgb(var(--magazine-accent-dark));
 }
 
 .photography-page .photography-intro {
@@ -14,7 +14,7 @@
 
 .photography-intro-copy {
   max-width: 44rem;
-  color: #51564b;
+  color: rgb(var(--magazine-black) / 0.72);
   font-size: clamp(1rem, 1.5vw, 1.125rem);
   line-height: 1.85;
 }
@@ -24,7 +24,7 @@
   align-items: center;
   gap: 0.8rem;
   margin-top: 1.5rem;
-  color: #4b5b3b;
+  color: rgb(var(--magazine-accent-dark));
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: underline;
@@ -40,11 +40,11 @@
 
 .photography-album {
   padding-block: clamp(2.5rem, 6vw, 5rem);
-  border-top: 1px solid #4b5b3b30;
+  border-top: 1px solid rgb(var(--magazine-accent-dark) / 0.19);
 }
 
 .photography-album:nth-of-type(even) {
-  background: #f5f7f2;
+  background: rgb(var(--magazine-sage));
 }
 
 .photography-album-header {
@@ -57,7 +57,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 1.25rem;
-  color: #606751;
+  color: rgb(var(--magazine-black) / 0.65);
   font-size: 0.8125rem;
   line-height: 1.6;
 }
@@ -81,7 +81,7 @@
 .photography-album-title a:hover,
 .photography-gallery-link:hover,
 .photography-back:hover {
-  color: #6b7b4b;
+  color: rgb(var(--magazine-accent));
 }
 
 .photography-album-description {
@@ -96,7 +96,7 @@
   align-items: center;
   gap: 0.75rem;
   min-height: 2.75rem;
-  color: #4b5b3b;
+  color: rgb(var(--magazine-accent-dark));
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: underline;
@@ -126,7 +126,7 @@
   display: block;
   width: 100%;
   height: auto;
-  background: #e8e8df;
+  background: rgb(var(--magazine-black) / 0.08);
   aspect-ratio: auto 2 / 3;
   transition: opacity 180ms ease-out;
 }
@@ -152,7 +152,7 @@
   gap: 0.5rem;
   min-height: 2.25rem;
   padding-top: 0.35rem;
-  color: #606751;
+  color: rgb(var(--magazine-black) / 0.65);
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
 }
@@ -180,13 +180,13 @@
   margin-top: clamp(2rem, 5vw, 3.5rem);
   margin-bottom: 1.25rem;
   font-size: 0.8125rem;
-  color: #606751;
+  color: rgb(var(--magazine-black) / 0.65);
 }
 
 .photography-follow {
   margin-top: 3rem;
   padding-block: 1.5rem 3rem;
-  border-top: 1px solid #4b5b3b30;
+  border-top: 1px solid rgb(var(--magazine-accent-dark) / 0.19);
 }
 
 .photography-empty {

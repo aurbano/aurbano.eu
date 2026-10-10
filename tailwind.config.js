@@ -8,15 +8,15 @@ module.exports = {
     extend: {
       colors: {
         magazine: {
-          black: '#0A0A0A',
-          white: '#FDFCF8',
-          cream: '#FFF9F0',
-          sage: '#F5F7F2',
-          accent: '#6B7B4B',
-          'accent-light': '#8B9B6B',
-          'accent-dark': '#4B5B3B',
-          secondary: '#9B8B7B',
-          tertiary: '#B5A895',
+          black: 'rgb(var(--magazine-black) / <alpha-value>)',
+          white: 'rgb(var(--magazine-white) / <alpha-value>)',
+          cream: 'rgb(var(--magazine-cream) / <alpha-value>)',
+          sage: 'rgb(var(--magazine-sage) / <alpha-value>)',
+          accent: 'rgb(var(--magazine-accent) / <alpha-value>)',
+          'accent-light': 'rgb(var(--magazine-accent-light) / <alpha-value>)',
+          'accent-dark': 'rgb(var(--magazine-accent-dark) / <alpha-value>)',
+          secondary: 'rgb(var(--magazine-secondary) / <alpha-value>)',
+          tertiary: 'rgb(var(--magazine-tertiary) / <alpha-value>)',
         },
       },
       fontFamily: {
