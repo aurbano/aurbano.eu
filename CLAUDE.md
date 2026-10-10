@@ -47,11 +47,10 @@ hugo new projects/project-name.md
 When adding new post thumbnails, run the color extraction script to update the dominant colors used for homepage project tiles:
 
 ```bash
-# From project root
-python3 scripts/colors.py
+uv run scripts/colors.py
 ```
 
-**Requirements**: `pip install colorthief`
+**Requirements**: [uv](https://docs.astral.sh/uv/). Dependencies are declared inline in the script, so uv installs them on the fly.
 
 **How it works**: Extracts dominant RGB color from each image in `assets/thumbnails/` and saves results to `data/colors.json`.
 

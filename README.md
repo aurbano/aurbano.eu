@@ -28,9 +28,9 @@ Photography uses `assets/css/photography.css` and dependency-free `static/js/pho
 The photo host blocks localhost referrers. For local visual verification, send `https://aurbano.eu/` as the referrer on requests to `photos.aurbano.eu`; otherwise images return HTTP 403. This is an existing hosting restriction, not a gallery layout failure.
 
 ## Update thumbnail colors
-For posts in the homepage, I extract the dominant color and use it as the background for each tile. This is done by running `python3 scripts/colors.py`.
+For posts in the homepage, I extract the dominant color and use it as the background for each tile. This is done by running `uv run scripts/colors.py`.
 
-The script uses the `ColorThief` module, which must be installed (`pip install colorthief`)
+The script declares its dependencies (`colorthief`, `pillow`) inline, so [uv](https://docs.astral.sh/uv/) installs them automatically.
 
 - - - -
 
