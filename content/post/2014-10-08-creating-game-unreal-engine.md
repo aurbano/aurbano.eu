@@ -9,6 +9,7 @@ tags:
 - Journey
 title: Creating a game with Unreal Engine 4
 aliases: [ /blog/creating-game-unreal-engine/ ]
+draft: false
 ---
 
 Github just started giving out "[Student packs](https://education.github.com/pack)", which include quite a big list of gifts, including a 1 year license of Unreal Engine. I decided to use that to create a game and learn about game development all together.

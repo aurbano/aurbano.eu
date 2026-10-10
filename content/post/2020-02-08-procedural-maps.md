@@ -8,6 +8,7 @@ categories:
 tags:
 - JavaScript
 - Procedural
+draft: false
 ---
 
 At [#socialgorithm](https://socialgorithm.org) we recently started working on a new game, let's call it "**Ant Colony**" for now. It's a bit like simplified Age of Empires, where you write the code that drives a bunch of ants, and they need to survive and ultimately be the only ones alive in the map.

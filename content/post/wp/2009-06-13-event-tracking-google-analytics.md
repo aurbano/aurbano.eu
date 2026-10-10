@@ -8,6 +8,7 @@ tags:
 title: Event tracking - Google Analytics
 aliases: [ /blog/2009/06/13/event-tracking-google-analytics/ ]
 outdated: true
+draft: false
 ---
 
 ## What is event tracking?

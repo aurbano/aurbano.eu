@@ -9,7 +9,7 @@ tags:
   - Platform Engineering
   - AI
   - Developer Experience
-draft: true
+draft: false
 outdated: false
 ---
 

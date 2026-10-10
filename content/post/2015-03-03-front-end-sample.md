@@ -11,6 +11,7 @@ tags:
 title: Using the latest front-end tech
 aliases: [ /blog/front-end-sample/ ]
 outdated: true
+draft: false
 ---
 
 There are so many new technologies popping up every week on **JavaScript front end** ways of doing things that it becomes really hard to stay on top of everything.

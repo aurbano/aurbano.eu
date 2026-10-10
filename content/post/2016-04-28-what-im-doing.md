@@ -8,6 +8,7 @@ tags:
 - Update
 title: 2016 Q1 Update
 aliases: [ /blog/what-im-doing/ ]
+draft: false
 ---
 
 ### Actions

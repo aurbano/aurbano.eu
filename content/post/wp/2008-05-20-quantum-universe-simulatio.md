@@ -8,6 +8,7 @@ tags:
 - Philosophy
 title: Quantum Universe Simulation - The Unique beings paradox
 aliases: [ /blog/2008/05/20/quantum-universe-simulatio/ ]
+draft: false
 ---
  
 Completely off topic for this blog, but at the time it is the best place to write about this. Read through the whole thing before judging what you see, then think about it, and then express your opinion.

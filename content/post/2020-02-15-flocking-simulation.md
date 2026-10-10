@@ -16,6 +16,7 @@ tags:
 # // REF2
 # // Reynolds, Craig (1987). "Flocks, herds and schools: A distributed behavioral model.". SIGGRAPH '87: Proceedings of the 14th annual conference on Computer graphics and interactive techniques. Association for Computing Machinery
 
+draft: false
 ---
 
 This post details my journey learning about flocking behaviours, the mathematical models behind them, and my own implementation using WebGL. You can also see [the final product](https://aurbano.github.io/flocking-simulation/) before you read it if you want!

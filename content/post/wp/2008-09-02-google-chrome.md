@@ -7,6 +7,7 @@ tags:
 - Browsers
 title: Google Chrome
 aliases: [ /blog/2008/09/02/google-chrome/ ]
+draft: false
 ---
  
 > I've kept updating this post, scroll down for that!

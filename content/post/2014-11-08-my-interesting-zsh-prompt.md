@@ -11,6 +11,7 @@ tags:
 title: My Interesting Zsh Prompt
 aliases: [ /blog/my-interesting-zsh-prompt/ ]
 outdated: true
+draft: false
 ---
 
 > Yes, this is outdated - I've now moved on to use Oh My Zsh, mostly with the default setup to keep things simple.
