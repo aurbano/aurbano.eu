@@ -75,7 +75,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
-        {{ range where .Site.RegularPages ".Params.thumbnail" "!=" nil }}
+        {{ range where (where .Site.RegularPages ".Params.thumbnail" "!=" nil) ".Params.thumbnail" "!=" "" }}
           {{ $asset := resources.Get (printf "thumbnails/%s" .Params.thumbnail) }}
           {{ $color := index hugo.Data.colors .Params.thumbnail | default "(107, 123, 75)" }}
           <article class="min-w-0 bg-magazine-white rounded-sm">
