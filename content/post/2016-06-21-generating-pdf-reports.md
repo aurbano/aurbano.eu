@@ -9,6 +9,7 @@ tags:
 - Java
 title: Generating Pixel Perfect PDF Reports
 aliases: [ /blog/generating-pdf-reports/ ]
+draft: false
 ---
 
 Have you been tasked with generating PDF reports? If you have tried using the typical tools (iText for Java, ReportLab in Python... ) you understand why it's bad.

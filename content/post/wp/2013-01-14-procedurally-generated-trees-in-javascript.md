@@ -11,6 +11,7 @@ tags:
 title: Procedurally generated trees in JavaScript
 aliases: [ /blog/2013/01/14/procedurally-generated-trees-in-javascript/ ]
 description: Recursive procedural function that draws tree-like shapes - highly configurable
+draft: false
 ---
 
 Over the past year I\'ve been more and more interested in HTML5 canvas, since it allows very fast development of graphical animations using JavaScript.

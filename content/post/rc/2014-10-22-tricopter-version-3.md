@@ -7,6 +7,7 @@ tags:
 date: "2014-10-22"
 tagline: My second try at a tricopter
 title: Tricopter v3 build
+draft: false
 ---
 
 As you may have seen at the end of [my first Tricopter post](/blog/tricopter-v2.5-build-and-first-flight/), after the crash I decided that I was going to upgrade the body to the [v3 Tricopter kit](http://rcexplorer.se/product/tricopter-v3-kit/) on David's new shop.

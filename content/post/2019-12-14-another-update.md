@@ -6,6 +6,7 @@ description: How do I get back into blogging?
 tags:
 - Update
 title: 2019 Q4 Update
+draft: false
 ---
 
 After putting this aside for a few years (3 apparently... ) I finally decided to spend a weekend bringing my personal website back to life.

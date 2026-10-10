@@ -4,6 +4,7 @@ description: Tomorrow?
 date: "2020-02-04"
 tags:
 - Agile
+draft: false
 ---
 
 At work we have a decently sized pile of bugs in our backlog. Most of them are not business impacting or critical, so they just sit there.

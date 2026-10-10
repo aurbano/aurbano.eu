@@ -6,6 +6,7 @@ title: I am my family's password manager
 description: Is there any way to fix this?
 tags:
 - Authentication
+draft: false
 ---
 
 I wrote this right after a phone call from my mum, asking me for her gmail password. Which she set herself last time I was with them (because she couldn't remember the previous one). So I saved it in my password manager just in case...

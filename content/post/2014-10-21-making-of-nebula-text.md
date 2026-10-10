@@ -11,6 +11,7 @@ tags:
 - Procedural
 aliases: [ /blog/making-of-nebula-text/ ]
 title: "Nebula text: WebGL experiment"
+draft: false
 ---
 
 When I was doing the [Tree Generator](/blog/2013/01/14/procedurally-generated-trees-in-javascript/), I used [dat.gui](https://code.google.com/p/dat-gui/) for the first time, and on their workshop they have the following text to play with:

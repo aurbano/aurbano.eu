@@ -8,6 +8,7 @@ tags:
 title: Display previous/next posts in single or category in WordPress
 aliases: [ /blog/2008/09/14/display-previous-next-posts-wordpress/ ]
 outdated: true
+draft: false
 ---
 
 This is a really good option in WordPress, yet very few know how to do it. Well the code is relatively simple, and it gives a good navigation point for users that, if they liked your article, might want to keep reading your stuff.

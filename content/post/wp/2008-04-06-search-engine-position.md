@@ -9,6 +9,7 @@ tags:
 title: SEO Tool Search Engine position checker
 aliases: [ /blog/2008/04/06/search-engine-position/ ]
 outdated: true
+draft: false
 ---
 
 Hello!

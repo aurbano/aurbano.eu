@@ -7,6 +7,7 @@ tags:
 - AI
 title: Developing more intelligent algorithms
 aliases: [ /blog/2009/11/22/developing-more-intelligent-algorithms/ ]
+draft: false
 ---
  
 

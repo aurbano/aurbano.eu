@@ -8,6 +8,7 @@ tags:
 - Journey
 title: Journey into Haskell
 
+draft: false
 ---
 
 I just came across a great read called ["The one time I thought I understood recursion"](https://functional.christmas/2019/18), which talked about a developer's first steps with Haskell.

@@ -8,6 +8,7 @@ tags:
 title: Use the browser to spell check your website
 aliases: [ /blog/2008/09/14/use-firefox-to-spell-check-your-website/ ]
 outdated: true
+draft: false
 ---
  
 

@@ -10,6 +10,7 @@ tags:
   - TypeScript
   - AI
   - Claude
+draft: false
 ---
 
 If you had asked me a year ago how long it would take to build a fully-featured clinic management system from scratch, I would have said at least a month. And then a few more months to fix bugs, and I would've recommended starting small, and using third party products at the start just to validate the business at first. We're talking authentication, booking systems, payment processing, third-party integrations, a CMS, PDF generation... the list goes on.

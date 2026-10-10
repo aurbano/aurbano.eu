@@ -7,6 +7,7 @@ tags:
 - Analytics
 title: Stumble Upon Low Bounce Rate
 aliases: [ /blog/2008/09/14/stumble-upon-low-bounce-rate/ ]
+draft: false
 ---
 
 This might seem strange, but the lowest bounce rate in my blog comes from Stumble Upon visitors. And this is not surprising, since I think that Stumble Upon is the most accurate way of getting your blog to your exact target audience.

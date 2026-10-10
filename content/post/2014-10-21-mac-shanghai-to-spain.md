@@ -7,6 +7,7 @@ tags:
 - Update
 title: 'Mac: Shanghai to Spain'
 aliases: [ /blog/mac-shanghai-to-spain/ ]
+draft: false
 ---
 
 I just ordered a new Macbook Air, exactly when the October 16<sup>th</sup> Keynote was over (In case they presented a new one with retina display).

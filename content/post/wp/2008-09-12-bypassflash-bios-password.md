@@ -9,6 +9,7 @@ tags:
 title: 'Bypass/Flash BIOS password:'
 aliases: [ /blog/2008/09/12/bypassflash-bios-password/ ]
 outdated: true
+draft: false
 ---
 
 Have you ever tried to access a computer\'s BIOS settings to find they are protected? Or maybe it was you and forgot the password. Either way don\'t worry since bypassing this simple password is as simple as following the following solutions:

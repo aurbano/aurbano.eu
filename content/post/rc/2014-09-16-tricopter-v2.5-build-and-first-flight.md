@@ -8,6 +8,7 @@ date: "2014-09-16"
 tagline: My first try at a tricopter
 title: Tricopter v2.5 build and first flight
 aliases: [ /blog/tricopter-v2.5-build-and-first-flight/ ]
+draft: false
 ---
 
 ## Project
