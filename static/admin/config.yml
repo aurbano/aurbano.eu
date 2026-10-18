@@ -27,19 +27,32 @@ collections:
       - label: Published
         field: draft
         pattern: false
+    # Writing-first editor: title, standfirst and body form the canvas; the
+    # rest lives in a collapsible sidebar. Styled in static/admin/writing.css.
+    editor:
+      preview: false
     fields:
       - label: Title
         name: title
-        widget: string
+        widget: text
       - label: Description
         name: description
-        widget: string
+        widget: text
+      - label: Body
+        name: body
+        widget: markdown
+      - label: Draft
+        name: draft
+        widget: boolean
+        default: true
+        required: false
       - label: Date
         name: date
         widget: datetime
         format: "YYYY-MM-DD"
         date_format: "YYYY-MM-DD"
         time_format: false
+        default: "{{now}}"
       - label: Thumbnail
         name: thumbnail
         widget: image
@@ -54,16 +67,8 @@ collections:
         name: tags
         widget: list
         required: false
-      - label: Draft
-        name: draft
-        widget: boolean
-        default: true
-        required: false
       - label: Outdated
         name: outdated
         widget: boolean
         default: false
         required: false
-      - label: Body
-        name: body
-        widget: markdown

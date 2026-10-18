@@ -43,6 +43,8 @@ hugo new post/YYYY-MM-DD-post-title.md
 hugo new projects/project-name.md
 ```
 
+Posts are also edited in [Sveltia CMS](https://github.com/sveltia/sveltia-cms) at `/admin/` (`static/admin/config.yml`). The post editor is restyled into a writing canvas by `static/admin/writing.css` and `writing.js`: title, description and body form the page, every other field sits in a collapsible sidebar (`⌘\` / `Ctrl+\`). They hook onto Sveltia's `data-key-path` attributes and `--sui-*` variables, so re-check the editor after bumping the pinned Sveltia version in `static/admin/index.html`.
+
 ### Thumbnail Color Extraction
 When adding new post thumbnails, run the color extraction script to update the dominant colors used for homepage project tiles:
 
