@@ -24,6 +24,7 @@
     --chart-cool: 62 110 150;
     --chart-grey: 160 160 154;
     --chart-good: 46 140 87;
+    --chart-band-alpha: 0.24;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -48,6 +49,7 @@
       --chart-cool: 128 172 210;
       --chart-grey: 118 122 114;
       --chart-good: 110 196 140;
+      --chart-band-alpha: 0.42;
     }
   }
 
@@ -72,6 +74,7 @@
     --chart-cool: 128 172 210;
     --chart-grey: 118 122 114;
     --chart-good: 110 196 140;
+    --chart-band-alpha: 0.42;
   }
 
   html {
@@ -267,9 +270,7 @@
 .chart .s-after { --c: var(--magazine-accent); }
 .chart .s-change { --c: var(--magazine-tertiary); }
 .chart .s-base { --c: var(--chart-grey); }
-.chart .s-good { --c: var(--chart-good); }
-.chart .s-bad { --c: var(--chart-warm); }
-.chart .s-off { --c: var(--chart-grey); }
+.chart .s-neutral { --c: var(--prose-body); }
 .chart .zone-good { fill: rgb(var(--chart-good) / 0.1); }
 .chart .good-text { fill: rgb(var(--chart-good)); }
 .chart .bad-text { fill: rgb(var(--chart-warm)); }
@@ -283,6 +284,8 @@
 .chart .arrow { fill: none; stroke: rgb(var(--magazine-black) / 0.55); stroke-width: 1.75; }
 .chart .arrowhead { fill: rgb(var(--magazine-black) / 0.55); }
 .chart .solid { fill: rgb(var(--c)); stroke: none; }
+.chart .band-good { fill: rgb(var(--chart-good) / var(--chart-band-alpha)); stroke: none; }
+.chart .band-bad { fill: rgb(var(--chart-warm) / var(--chart-band-alpha)); stroke: none; }
 .chart .series { fill: none; stroke: rgb(var(--c)); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
 .chart .area { fill: rgb(var(--c) / 0.22); stroke: rgb(var(--c)); stroke-width: 1.5; stroke-linejoin: round; }
 .chart .dashed { stroke-dasharray: 5 4; }

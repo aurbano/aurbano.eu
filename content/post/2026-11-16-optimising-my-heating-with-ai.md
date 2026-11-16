@@ -45,7 +45,7 @@ The agent's recommendation was to change one thing at a time, give each change t
 
 The condensing problem went away almost overnight.
 
-{{< chart "posts/heating-with-ai/trace.svg" "The water coming back to the boiler, midnight to 3 am, on a night before and a night after the change. Green: the burner is firing and the return is below 55 °C, so it condenses. Orange: firing above 55 °C, not condensing. Grey: the burner is off, when the return temperature doesn't matter. The grey bars on top are the burner runs; there are still a lot of them, which is the next problem." >}}
+{{< chart "posts/heating-with-ai/trace.svg" "The water coming back to the boiler, midnight to 3 am, on a night before and a night after the change. Each band is the burner running: green while the return is below 55 °C and the boiler condenses, orange while it's above and it doesn't. Gaps are the burner off. After the change most bands turn green, but there are still a lot of them, which is the next problem." >}}
 
 {{< chart "posts/heating-with-ai/daily.svg" "Share of heating time with the return below 55 °C, per day. Friday is the change day: the dial went to 60 °C at 13:19." >}}
 
