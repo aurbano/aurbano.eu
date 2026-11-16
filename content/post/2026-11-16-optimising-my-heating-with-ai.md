@@ -31,8 +31,6 @@ The first pass was blunt. Heating cycles averaged about five minutes, and **77 %
 
 The second finding was about condensing. A condensing boiler only gets its efficiency bonus when the water coming back from the radiators is cool enough, below roughly 55 °C, to condense the steam in its own exhaust. My flow temperature was set to 69 °C on the front dial. The return was above 55 °C for about 70 % of the time the burner was heating. I'd been paying for a condensing boiler and mostly not using that part of it.
 
-{{< chart "posts/heating-with-ai/trace.svg" "Flow and return temperature between midnight and 3 am, before and after the change. The bars along the top are burner runs. At 69 °C the return sits above the shaded condensing zone while the burner is cycling; at 60 °C most of the sawtooth drops into it, but the burner still starts every few minutes." >}}
-
 ## The agent checks its own work
 
 Before trusting any of this, the agent built per-room trackers: how fast each room warms up, how fast it loses heat overnight, how hard each radiator works. Then it validated them against the raw history, and found three bugs in its own automations.
@@ -46,6 +44,8 @@ None of these would have crashed. They'd have produced plausible-looking numbers
 The agent's recommendation was to change one thing at a time, give each change three days, and compare against degree days so a cold snap doesn't look like a regression. First change: lower the flow temperature to 60 °C. Tado only switches the boiler on and off through a relay, so the flow temperature is whatever the dial says. On 13 November I turned the dial.
 
 The condensing problem went away almost overnight.
+
+{{< chart "posts/heating-with-ai/trace.svg" "The water coming back to the boiler, midnight to 3 am, on a night before and a night after the change. Green: the burner is firing and the return is below 55 °C, so it condenses. Orange: firing above 55 °C, not condensing. Grey: the burner is off, when the return temperature doesn't matter. The grey bars on top are the burner runs; there are still a lot of them, which is the next problem." >}}
 
 {{< chart "posts/heating-with-ai/daily.svg" "Share of heating time with the return below 55 °C, per day. Friday is the change day: the dial went to 60 °C at 13:19." >}}
 

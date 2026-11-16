@@ -87,37 +87,60 @@ def daily():
         "93 to 97 percent at 60 °C.", body)
 
 
-# 2. Flow and return over three hours of a night, before and after ------------------------------
+# 2. Return temperature over three hours of a night, before and after ----------------------------
 def trace():
-    h, panel, gap, left, right = 494, 160, 74, 44, W - 10
+    # Only the return is drawn: condensing depends on it alone. Its colour says what it means:
+    # green while firing below 55 °C (condensing), warm while firing above, grey with the burner off.
+    h, panel, gap, left, right = 566, 160, 112, 58, W - 10
     body = []
-    legend(body, left, 18, [("s-flow", "flow (water leaving the boiler)"), ("s-ret", "return (water coming back)")])
+    legend(body, left, 18, [("s-good", "condensing (good)"), ("s-bad", "not condensing (bad)"), ("s-off", "burner off")])
+    heads = {"before": ("Before", "69 °C flow"), "after": ("After the first change", "60 °C flow")}
     for p, key in enumerate(["before", "after"]):
         t = DATA["trace"][key]
-        top = 76 + p * (panel + gap)
+        top = 108 + p * (panel + gap)
         bottom = top + panel
         xs = scale(0, 180, left, right)
         ys = scale(35, 75, bottom, top)
-        body.append(rect(left, ys(55), right - left, bottom - ys(55), "zone"))
+        pts = t["points"]
+        body.append(rect(left, ys(55), right - left, bottom - ys(55), "zone-good"))
         y_axis(body, ys, [40, 50, 60, 70], left, right, lambda v: f"{v}°")
         body.append(line(left, ys(55), right, ys(55), "target"))
-        body.append(text(left + 6, bottom - 6, "condensing zone, below 55 °C", "note"))
-        pts = t["points"]
+        body.append(text(left + 6, bottom - 7, "condensing zone: return below 55 °C", "note good-text"))
+        body.append(text(left - 8, top - 8, "burner", "tick", "end"))
         starts, on = 0, None
         for i, (m, fl, rt, firing) in enumerate(pts):
             if firing and (i == 0 or not pts[i - 1][3]):
                 on, starts = m, starts + 1
             if on is not None and (not firing or i == len(pts) - 1):
-                body.append(rect(xs(on), top - 9, xs(m) - xs(on), 5, "burner solid", 1))
+                body.append(rect(xs(on), top - 14, max(xs(m) - xs(on), 1.5), 8, "s-off solid", 1))
                 on = None
-        body.append(path([(xs(m), ys(min(max(fl, 35), 75))) for m, fl, _, _ in pts if fl is not None], "series s-flow"))
-        body.append(path([(xs(m), ys(min(max(rt, 35), 75))) for m, _, rt, _ in pts if rt is not None], "series s-ret"))
+        state = lambda rt, firing: "s-off" if not firing else ("s-good" if rt < 55 else "s-bad")
+        seg, cur = [], None
+        for m, fl, rt, firing in pts:
+            if rt is None:
+                continue
+            pt, s = (xs(m), ys(min(max(rt, 35), 75))), state(rt, firing)
+            if s != cur and seg:
+                seg.append(pt)
+                body.append(path(seg, f"series {cur}"))
+                seg = []
+            seg.append(pt)
+            cur = s
+        if len(seg) > 1:
+            body.append(path(seg, f"series {cur}"))
+        firing_rt = [rt for _, _, rt, firing in pts if firing and rt is not None]
+        share = round(100 * sum(rt < 55 for rt in firing_rt) / len(firing_rt))
         for m in (0, 60, 120, 180):
             body.append(text(xs(m), bottom + 16, ["00:00", "01:00", "02:00", "03:00"][m // 60], "tick", "middle"))
-        body.append(text(left, top - 16, f"{t['label']}: {starts} burner starts in 3 hours, {t['outdoor']:.0f} °C outside", "label strong"))
-    svg("trace", h, "Boiler flow and return temperature between midnight and 3 am, at 69 °C and at 60 °C",
-        "Two panels. At 69 °C the return rarely drops below 55 °C. At 60 °C the whole sawtooth sits in the condensing zone, "
-        "but the burner still starts every few minutes.", body)
+        title, setting = heads[key]
+        night = t["label"].split(", ", 1)[1]
+        body.append(text(left, top - 44, f"{title}: {setting}", "label strong"))
+        body.append(text(right, top - 44, f"{starts} starts · {share} % condensing",
+                         f"label strong {'good-text' if share >= 50 else 'bad-text'}", "end"))
+        body.append(text(left, top - 26, f"{night}, midnight to 3 am, {t['outdoor']:.0f} °C outside", "note"))
+    svg("trace", h, "Return water temperature between midnight and 3 am, before and after lowering the flow to 60 °C",
+        "Two panels. Before, at 69 °C, the return stays above 55 °C whenever the burner fires, so it almost never condenses. "
+        "After, at 60 °C, most of the firing time is below 55 °C and condensing, but the burner still starts every few minutes.", body)
 
 
 # 3. Where the return temperature sat while the burner was heating --------------------------------
@@ -129,7 +152,7 @@ def return_hist():
     ymax = 25
     xs = scale(lo, hi, left, right)
     ys = scale(0, ymax, bottom, top)
-    body = [rect(left, top, xs(55) - left, bottom - top, "zone")]
+    body = [rect(left, top, xs(55) - left, bottom - top, "zone-good")]
     y_axis(body, ys, [0, 5, 10, 15, 20, 25], left, right, lambda v: f"{v}%")
     for key, cls in (("before", "s-before"), ("after", "s-after")):
         pts = [(xs(lo), ys(0))]
@@ -139,8 +162,8 @@ def return_hist():
         pts.append((xs(hi), ys(0)))
         body.append(path(pts, f"area {cls}"))
     body.append(line(xs(55), top, xs(55), bottom, "target"))
-    body.append(text(xs(55) - 6, top - 8, "← condensing", "note", "end"))
-    body.append(text(xs(55) + 6, top - 8, "not condensing →", "note"))
+    body.append(text(xs(55) - 6, top - 8, "← condensing (good)", "note good-text", "end"))
+    body.append(text(xs(55) + 6, top - 8, "not condensing →", "note bad-text"))
     for t in range(40, hi + 1, 5):
         body.append(text(xs(t), bottom + 18, f"{t} °C", "tick", "middle"))
     body.append(text(xs(44.5), ys(15), "60 °C flow", "label strong s-after-text", "middle"))

@@ -23,6 +23,7 @@
     --chart-warm: 190 92 56;
     --chart-cool: 62 110 150;
     --chart-grey: 160 160 154;
+    --chart-good: 46 140 87;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -46,6 +47,7 @@
       --chart-warm: 228 132 96;
       --chart-cool: 128 172 210;
       --chart-grey: 118 122 114;
+      --chart-good: 110 196 140;
     }
   }
 
@@ -69,6 +71,7 @@
     --chart-warm: 228 132 96;
     --chart-cool: 128 172 210;
     --chart-grey: 118 122 114;
+    --chart-good: 110 196 140;
   }
 
   html {
@@ -260,11 +263,16 @@
 .chart .axis { stroke: rgb(var(--magazine-black) / 0.4); }
 .chart .target { stroke: rgb(var(--magazine-black) / 0.45); stroke-width: 1; stroke-dasharray: 4 4; }
 .chart .zone { fill: rgb(var(--chart-cool) / 0.08); }
-.chart .s-before, .chart .s-flow, .chart .burner { --c: var(--chart-warm); }
+.chart .s-before { --c: var(--chart-warm); }
 .chart .s-after { --c: var(--magazine-accent); }
 .chart .s-change { --c: var(--magazine-tertiary); }
-.chart .s-ret { --c: var(--chart-cool); }
 .chart .s-base { --c: var(--chart-grey); }
+.chart .s-good { --c: var(--chart-good); }
+.chart .s-bad { --c: var(--chart-warm); }
+.chart .s-off { --c: var(--chart-grey); }
+.chart .zone-good { fill: rgb(var(--chart-good) / 0.1); }
+.chart .good-text { fill: rgb(var(--chart-good)); }
+.chart .bad-text { fill: rgb(var(--chart-warm)); }
 .chart .faint { opacity: 0.85; }
 .chart .box { fill: rgb(var(--magazine-black) / 0.04); stroke: rgb(var(--magazine-black) / 0.25); stroke-width: 1.5; }
 .chart .box-accent { stroke: rgb(var(--magazine-accent)); stroke-width: 2; }
@@ -276,7 +284,6 @@
 .chart .arrowhead { fill: rgb(var(--magazine-black) / 0.55); }
 .chart .solid { fill: rgb(var(--c)); stroke: none; }
 .chart .series { fill: none; stroke: rgb(var(--c)); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
-.chart .series.s-ret { stroke-width: 1.6; }
 .chart .area { fill: rgb(var(--c) / 0.22); stroke: rgb(var(--c)); stroke-width: 1.5; stroke-linejoin: round; }
 .chart .dashed { stroke-dasharray: 5 4; }
 .chart .s-before-text { fill: rgb(var(--chart-warm)); }
