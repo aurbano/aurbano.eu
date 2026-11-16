@@ -1,0 +1,10 @@
+{{- /* Inline an SVG chart from assets/ so the page CSS (`.chart` in main.css) styles it for light and dark mode.
+  Usage: {{< chart "posts/<post>/<name>.svg" "Caption, markdown allowed" >}} */ -}}
+{{- $asset := resources.Get (.Get 0) -}}
+{{- if not $asset -}}{{- errorf "chart shortcode: %s not found in assets/ (%s)" (.Get 0) .Position -}}{{- end -}}
+<figure class="chart">
+  {{ $asset.Content | safeHTML }}
+  {{- with .Get 1 }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>
