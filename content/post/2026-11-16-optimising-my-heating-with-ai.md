@@ -51,7 +51,7 @@ The condensing problem went away almost overnight.
 
 The return temperature distribution shows why: almost the whole hump moved below the line.
 
-{{< chart "posts/heating-with-ai/return-temps.svg" "Return temperature while the burner was heating, as a share of firing time. Only hours when the tado relay was online." >}}
+{{< chart "posts/heating-with-ai/return-temps.svg" "Return temperature while the burner was heating, as a share of firing time." >}}
 
 ## What didn't change
 
@@ -71,19 +71,21 @@ The bedroom is the real limit. Before the change it spent 13 % of the time with 
 
 I like that this came out of the data rather than a rule of thumb. The plan said "go to 55 if the rooms keep up". They didn't, so we don't.
 
-## The thing nobody was looking for
-
-The most useful finding was one neither of us was looking for.
-
-Tado talks to the boiler through a small wireless relay. After the change, that relay kept dropping off tado's network: about 26 of the next 72 hours. When it's offline, every room shows as offline in the tado app, and nothing is really in charge of the boiler. What it does then is not consistent. Through the long outage on Friday night, at 1 °C outside, the burner ran 35 minutes an hour, against a 25-minute average with the relay online. Through the four-hour outage on Saturday afternoon it didn't run at all.
-
-{{< chart "posts/heating-with-ai/relay.svg" "Burner minutes per hour after the change. The shaded spans are the tado relay's outages: sometimes the burner kept going, sometimes it stopped." >}}
-
-Some of that may be wasted gas, and some may be a house that wasn't heating when it should have been. Home Assistant loses sight of every room during an outage, so there's no way to tell. Either way it spoils the experiment, because more than a third of the "after" period comes from a boiler nobody is controlling. Every comparison in this post uses only hours with the relay online. Fixing the relay comes before the next tuning step.
-
 ## Gas, honestly
 
-I'd love to give you a percentage saved. I can't yet. Gas per degree day went from 7.5–9.3 kWh before to 7.3–10.0 after. The after days were a weekend with ten-plus hours of relay outage each, and there are only 26 clean hours with smart-meter data. The textbook says better condensing is worth a few percent. I'll know in a month, with the relay fixed and enough data to compare.
+The usual way to compare heating across different weather is gas per degree day, and it's too blunt here. It assumes the house is always kept at the same temperature, and ours isn't. This November we're keeping it about a degree cooler than in November 2024, and that alone shifts the figure more than any boiler setting.
+
+So the agent built a model of what the house *should* have used at the old settings. It predicts daily gas from four things: the average gap between indoor and outdoor temperature (indoor from the tado sensors in all six rooms), sunshine, wind, and whether it's a weekend. It's fitted on November 2024 plus two days from this November, all at 69 °C. The agent tried simpler versions first and kept the one that predicted best on days it hadn't seen: plain degree days missed by 14 kWh a day, this one by 9.7, about 18 %. Heating hours, the obvious extra input, were left out on purpose. At a lower flow temperature the valves stay open longer for the same heat, so a model built on them would invent a saving.
+
+{{< chart "posts/heating-with-ai/model.svg" "How expected gas is worked out. The numbers are what the model learned from the old-settings days: for example, each extra degree between indoors and outdoors costs about 6 kWh a day." >}}
+
+{{< chart "posts/heating-with-ai/gas-expected.svg" "Measured gas against what the old settings would have used on the same day, one dot per day. The grey dots are November 2024, each predicted with that day left out of the fit; the shaded band is the model's typical daily error." >}}
+
+10 and 11 November, still at 69 °C, land on the line, so the model still describes this year's house. There is no usable day at 60 °C yet. The first ones arrive this week, and they go on this chart as they come in: dots below the band mean the tuning is saving gas.
+
+What to expect: better condensing is typically worth 3–6 % of heating gas, roughly £20–45 over a winter at my tariff. Each day is noisy (±10 kWh), and the model itself carries about ±1.5 kWh a day of error that more days don't remove. It will take about a month of days to see a 6 % change, and a 3 % one may never be provable this way.
+
+The boiler dashboard now keeps the running total. Each morning it compares yesterday's metered gas with the model and adds the difference, skipping days with gaps in the data.
 
 ## What the agent was good at
 
@@ -95,7 +97,7 @@ I'd love to give you a percentage saved. I can't yet. Gas per degree day went fr
 
 - **Turning the dial.** Physical changes, and anything that could leave the house cold, are mine.
 - **Judgement about the house.** The bedroom runs humid, so lowering its target to save gas is a bad trade. That's not in the data.
-- **Unblocking the plumbing.** At one point macOS quietly withdrew the terminal's permission to talk to anything on my local network, and every connection to the Pi failed with "No route to host". The agent eventually worked out that processes started by `launchd` aren't covered by that permission and built itself a small relay. But noticing that the permission had gone was a human-in-the-loop moment.
+- **Unblocking the plumbing.** At one point macOS quietly withdrew the terminal's permission to talk to anything on my local network, and every connection to the Pi failed with "No route to host". The agent eventually worked out that processes started by `launchd` aren't covered by that permission and built itself a small proxy. But noticing that the permission had gone was a human-in-the-loop moment.
 
 ## Next
 
@@ -105,4 +107,4 @@ The boiler dashboard now shows exactly that: what changed, what we expect, and h
 
 ## Notes on the charts
 
-The charts come from Home Assistant's recorder database: raw ten-second history from the EMS-ESP gateway and the tado integration, between 10 and 16 November 2026. "Heating" means the burner was on, the boiler was in heating mode and the hot-water valve was closed, so hot water doesn't muddy the figures. Unless noted, only hours with the tado relay online are counted. The SVGs are generated by a small script from a JSON export that lives next to this post.
+The boiler charts come from Home Assistant's recorder database: raw ten-second history from the EMS-ESP gateway and the tado integration, between 10 and 16 November 2026. "Heating" means the burner was on, the boiler was in heating mode and the hot-water valve was closed, so hot water doesn't muddy the figures. Hours when the heating controls were offline are left out of every figure. The gas chart uses hourly smart-meter readings, room and outdoor temperatures from Home Assistant's long-term statistics, and sunshine and wind from the [Open-Meteo](https://open-meteo.com/) historical weather archive. The SVGs are generated by a small script from a JSON export that lives next to this post.

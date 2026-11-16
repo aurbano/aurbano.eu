@@ -59,7 +59,7 @@ def legend(body, x, y, items):
     for cls, label in items:
         body.append(rect(x, y - 9, 12, 12, f"{cls} solid", 2))
         body.append(text(x + 18, y + 1, label, "label"))
-        x += 30 + 7.2 * len(label)
+        x += 30 + 7.9 * len(label)
 
 
 # 1. Condensing share per day ---------------------------------------------------------------
@@ -82,8 +82,6 @@ def daily():
         body.append(rect(x, ys(v), bw, bottom - ys(v), f"{cls} solid", 3))
         body.append(text(x + bw / 2, ys(v) - 7, f"{v}%", "value", "middle"))
         body.append(text(x + bw / 2, bottom + 18, day.strftime("%a %-d"), "tick", "middle"))
-        if d["relay_offline_h"] >= 1:
-            body.append(text(x + bw / 2, bottom + 34, f"relay off {d['relay_offline_h']:.0f} h", "note warn", "middle"))
     svg("daily", h, "Share of heating time spent condensing, per day",
         "Bars per day from 10 to 16 November. 25 to 31 percent while the flow was 69 °C, 53 percent on the change day, "
         "93 to 97 percent at 60 °C.", body)
@@ -91,12 +89,12 @@ def daily():
 
 # 2. Flow and return over three hours of a night, before and after ------------------------------
 def trace():
-    h, panel, gap, left, right = 470, 160, 74, 44, W - 10
+    h, panel, gap, left, right = 494, 160, 74, 44, W - 10
     body = []
     legend(body, left, 18, [("s-flow", "flow (water leaving the boiler)"), ("s-ret", "return (water coming back)")])
     for p, key in enumerate(["before", "after"]):
         t = DATA["trace"][key]
-        top = 52 + p * (panel + gap)
+        top = 76 + p * (panel + gap)
         bottom = top + panel
         xs = scale(0, 180, left, right)
         ys = scale(35, 75, bottom, top)
@@ -199,49 +197,104 @@ def heatup():
         m_end, t_end = r["points"][-1]
         rate = (t_end - t0) / (m_end / 60)
         body.append(f'<circle cx="{xs(m_end):.1f}" cy="{ys(t_end - t0):.1f}" r="3.5" class="{cls.split()[0]} solid"/>')
-        ly = ys(0.33 - 0.14 * row) + 4
-        lx = xs(54)
+        ly = ys(1.48 - 0.14 * row) + 4
+        lx = xs(3)
         body.append(path([(lx, ly - 4), (lx + 24, ly - 4)], f"series {cls}"))
         body.append(text(lx + 32, ly, f"{r['label']}: {rate:.2f} °C/h", f"label strong {cls.split()[0]}-text"))
-        body.append(text(right, ly, f"flow {r['mean_flow']:.0f} °C, {r['outdoor']:.0f} °C outside", "note", "end"))
+        body.append(text(right, ly, f"{r['mean_flow']:.0f} °C flow, {r['outdoor']:.0f} °C out", "note", "end"))
     svg("heatup", h, "Living Room warming up in the morning with its valve fully open",
         "Temperature rise since the valve opened fully. At 69 °C the room rose 1.3 °C in 75 minutes; at 60 °C it rose "
         "0.9 °C in 80 minutes and 0.9 °C in 125 minutes, on milder mornings.", body)
 
 
-# 6. The relay outages ----------------------------------------------------------------------
-def relay():
-    h, top, bottom, left, right = 280, 46, 228, 44, W - 10
-    rows = DATA["relay_hourly"]
-    n = len(rows)
-    xs = scale(0, n, left, right)
-    ys = scale(0, 60, bottom, top)
+# 6. Measured gas against what the old settings would have used ------------------------------------
+def gas_expected():
+    h, top, bottom, left, right = 460, 58, 410, 50, W - 10
+    gm = DATA["gas_model"]
+    rm = gm["loo_rmse_kwh"]
+    lo, hi = 0, 110
+    xs = scale(lo, hi, left, right)
+    ys = scale(lo, hi, bottom, top)
     body = []
-    legend(body, left, 18, [("s-after", "burner minutes per hour, relay online"), ("s-before", "relay offline (shaded)")])
-    i = 0
-    while i < n:
-        if rows[i][2] < 0.5:
-            j = i
-            while j < n and rows[j][2] < 0.5:
-                j += 1
-            body.append(rect(xs(i), top, xs(j) - xs(i), bottom - top, "offline"))
-            i = j
-        else:
-            i += 1
-    y_axis(body, ys, [0, 20, 40, 60], left, right, lambda v: f"{v}")
-    bw = (right - left) / n
-    for i, (hour, mins, online) in enumerate(rows):
-        cls = "s-after" if online >= 0.5 else "s-before"
-        body.append(rect(xs(i) + 0.6, ys(mins), bw - 1.2, bottom - ys(mins), f"{cls} solid", 1))
-        stamp = datetime.strptime(hour, "%Y-%m-%dT%H")
-        if stamp.hour == 0 or i == 0:
-            body.append(line(xs(i), bottom, xs(i), bottom + 5, "axis"))
-            body.append(text(xs(i) + 4, bottom + 18, stamp.strftime("%a %-d" if stamp.hour == 0 else "%a %-d, %H:%M"), "tick"))
-    svg("relay", h, "Burner minutes per hour from 13 to 16 November, with the tado relay's outages shaded",
-        "Hourly bars. The relay was offline for about 26 of the 72 hours. During the long overnight outage the burner ran "
-        "about 35 minutes an hour; during the Saturday afternoon outage it did not run at all.", body)
+    # Days with the heating controls offline for an hour or more are left out: the boiler was uncontrolled.
+    days = [d for d in gm["nov2026"] if (d["relay_off_h"] or 0) < 1]
+    items = [("s-base faint solid", "Nov 2024 (69 °C)")]
+    items += [(f"{cls} solid", f"Nov 2026, {s}") for s, cls in (("69 °C", "s-before"), ("60 °C", "s-after")) if any(d["setting"] == s for d in days)]
+    x = left
+    for cls, label in items:
+        body.append(f'<circle cx="{x + 6:.1f}" cy="13" r="5" class="{cls}"/>')
+        body.append(text(x + 16, 17, label, "label"))
+        x += 34 + 7.9 * len(label)
+    # ±1 RMSE band around "as expected"
+    band = [(xs(lo), ys(lo + rm)), (xs(hi - rm), ys(hi)), (xs(hi), ys(hi)), (xs(hi), ys(hi - rm)), (xs(lo + rm), ys(lo)), (xs(lo), ys(lo))]
+    body.append(path(band + [band[0]], "zone"))
+    for v in range(0, hi + 1, 20):
+        body.append(line(left, ys(v), right, ys(v), "grid"))
+        body.append(text(left - 8, ys(v) + 4, f"{v}", "tick", "end"))
+        body.append(text(xs(v), bottom + 18, f"{v}", "tick", "middle"))
+    body.append(line(xs(lo), ys(lo), xs(hi), ys(hi), "target"))
+    body.append(text(xs(100), ys(100) - 8, "as expected", "note", "end"))
+    body.append(text(xs(104), ys(60), "less gas than expected ↓", "note", "end"))
+    body.append(text(xs(4), ys(72), "↑ more gas than expected", "note"))
+    body.append(text((left + right) / 2, bottom + 40, "expected gas, kWh per day (old settings, same weather and indoor temperatures)", "note", "middle"))
+    body.append(f'<text x="{left - 36}" y="{(top + bottom) / 2:.1f}" transform="rotate(-90 {left - 36} {(top + bottom) / 2:.1f})" text-anchor="middle" class="note">measured gas, kWh per day</text>')
+    for e, a in gm["baseline"]:
+        body.append(f'<circle cx="{xs(e):.1f}" cy="{ys(a):.1f}" r="3.5" class="s-base faint solid"/>')
+    offsets = {"2026-11-10": (10, 15, "start"), "2026-11-11": (-10, 4, "end")}
+    for d in days:
+        series = "s-after" if d["setting"] == "60 °C" else "s-before"
+        cx, cy = xs(d["expected"]), ys(d["actual"])
+        body.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="5.5" class="{series} solid"/>')
+        dx, dy, anchor = offsets.get(d["date"], (10, 4, "start"))
+        body.append(text(cx + dx, cy + dy, datetime.strptime(d["date"], "%Y-%m-%d").strftime("%-d Nov"), "note", anchor))
+    svg("gas-expected", h, "Measured daily gas against the gas the old boiler settings would have used",
+        "Scatter of measured against expected daily gas. November 2024 days scatter around the diagonal within about "
+        "10 kWh, and 10 and 11 November 2026 sit on it.", body)
 
 
-for chart in (daily, trace, return_hist, cycles, heatup, relay):
+# 7. How expected gas is worked out (diagram) --------------------------------------------------
+def model_diagram():
+    h = 470
+    c = [round(x, 1) for x in DATA["gas_model"]["coef"]]
+    rm = DATA["gas_model"]["loo_rmse_kwh"]
+    sign = lambda v: f"{'+' if v >= 0 else '−'}{abs(v):.1f}"
+    body = ['<defs><marker id="model-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" '
+            'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker></defs>']
+
+    def box(x, y, w, hh, title, lines, cls="box"):
+        body.append(rect(x, y, w, hh, cls, 10))
+        body.append(text(x + 14, y + 25, title, "d-title"))
+        for i, s in enumerate(lines):
+            body.append(text(x + 14, y + 46 + 18 * i, s, "d-note"))
+
+    def arrow(d):
+        body.append(f'<path d="{d}" class="arrow" marker-end="url(#model-arrow)"/>')
+
+    inputs = [("Indoor − outdoor", "6 rooms vs outside"), ("Sunshine", "weather archive"),
+              ("Wind", "weather archive"), ("Weekend", "more people home")]
+    for i, (t, n) in enumerate(inputs):
+        y = 10 + i * 76
+        box(0, y, 180, 62, t, [n])
+        arrow(f"M182,{y + 31} L224,{160 + (i - 1.5) * 18:.0f}")
+    box(228, 40, 222, 214, "Old-settings model", [f"{sign(c[1])} per °C indoor − outdoor",
+        f"{sign(c[2])} per kWh/m² of sun", f"{sign(c[3])} per km/h of wind", f"{sign(c[4])} at weekends",
+        f"{sign(c[0])} to start from", "kWh per day, fitted on", "40 days at 69 °C"], "box box-accent")
+    body.append(text(242, 238, f"typical error ±{rm:.0f} kWh/day", "d-note warn"))
+    box(492, 10, 188, 62, "Expected gas", ["at the old settings"], "box box-accent")
+    arrow("M452,110 L490,60")
+    box(492, 120, 188, 62, "Difference", ["expected − measured"])
+    box(492, 230, 188, 62, "Measured gas", ["smart meter"])
+    arrow("M586,74 L586,118")
+    arrow("M586,228 L586,184")
+    arrow("M492,151 L470,151 L470,336")
+    box(360, 340, 320, 120, "Running total", ["adds up the daily differences", "on the Boiler tab, skipping", "days with gaps in the data"], "box box-accent")
+    box(0, 340, 330, 120, "Left out: heating hours", ["at 60 °C the valves stay open longer", "for the same heat, so they would", "fake a saving"], "box box-muted")
+    svg("model", h, "How expected gas is worked out",
+        "Four inputs (indoor minus outdoor temperature, sunshine, wind, weekend) feed a model fitted at the old boiler "
+        "settings. Its expected gas is compared with the smart meter each day, and the differences are added up. "
+        "Heating hours are left out because they change with the flow temperature.", body)
+
+
+for chart in (daily, trace, return_hist, cycles, heatup, gas_expected, model_diagram):
     chart()
 print("wrote", ", ".join(sorted(p.name for p in DIR.glob("*.svg"))))

@@ -22,6 +22,7 @@
     --shadow: 35 40 28;
     --chart-warm: 190 92 56;
     --chart-cool: 62 110 150;
+    --chart-grey: 160 160 154;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -44,6 +45,7 @@
       --shadow: 0 0 0;
       --chart-warm: 228 132 96;
       --chart-cool: 128 172 210;
+      --chart-grey: 118 122 114;
     }
   }
 
@@ -66,6 +68,7 @@
     --shadow: 0 0 0;
     --chart-warm: 228 132 96;
     --chart-cool: 128 172 210;
+    --chart-grey: 118 122 114;
   }
 
   html {
@@ -247,21 +250,30 @@
 /* Inline SVG charts (`chart` shortcode). Unlayered so Tailwind's purge, which does not scan
    assets/, keeps them. Series pick a colour through --c; everything follows the theme. */
 .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
-.chart text { font-family: theme('fontFamily.sans'); font-size: 12px; fill: rgb(var(--prose-body) / 0.85); }
-.chart .tick, .chart .note { font-size: 11px; fill: rgb(var(--magazine-black) / 0.55); }
-.chart .label { font-size: 12.5px; fill: rgb(var(--prose-body)); }
-.chart .value { font-size: 11.5px; font-weight: 600; fill: rgb(var(--prose-body)); }
+.chart text { font-family: theme('fontFamily.sans'); font-size: 13px; fill: rgb(var(--prose-body) / 0.85); }
+.chart .tick, .chart .note { font-size: 12px; fill: rgb(var(--magazine-black) / 0.6); }
+.chart .label { font-size: 13.5px; fill: rgb(var(--prose-body)); }
+.chart .value { font-size: 12.5px; font-weight: 600; fill: rgb(var(--prose-body)); }
 .chart .strong { font-weight: 600; }
 .chart .warn { fill: rgb(var(--chart-warm)); }
 .chart .grid { stroke: rgb(var(--hairline)); stroke-width: 1; }
 .chart .axis { stroke: rgb(var(--magazine-black) / 0.4); }
 .chart .target { stroke: rgb(var(--magazine-black) / 0.45); stroke-width: 1; stroke-dasharray: 4 4; }
 .chart .zone { fill: rgb(var(--chart-cool) / 0.08); }
-.chart .offline { fill: rgb(var(--chart-warm) / 0.1); }
 .chart .s-before, .chart .s-flow, .chart .burner { --c: var(--chart-warm); }
 .chart .s-after { --c: var(--magazine-accent); }
 .chart .s-change { --c: var(--magazine-tertiary); }
 .chart .s-ret { --c: var(--chart-cool); }
+.chart .s-base { --c: var(--chart-grey); }
+.chart .faint { opacity: 0.85; }
+.chart .box { fill: rgb(var(--magazine-black) / 0.04); stroke: rgb(var(--magazine-black) / 0.25); stroke-width: 1.5; }
+.chart .box-accent { stroke: rgb(var(--magazine-accent)); stroke-width: 2; }
+.chart .box-muted { fill: none; stroke-dasharray: 6 5; }
+.chart .d-title { font-size: 15px; font-weight: 600; fill: rgb(var(--prose-heading)); }
+.chart .d-note { font-size: 13px; fill: rgb(var(--prose-body) / 0.8); }
+.chart .d-note.warn { fill: rgb(var(--chart-warm)); }
+.chart .arrow { fill: none; stroke: rgb(var(--magazine-black) / 0.55); stroke-width: 1.75; }
+.chart .arrowhead { fill: rgb(var(--magazine-black) / 0.55); }
 .chart .solid { fill: rgb(var(--c)); stroke: none; }
 .chart .series { fill: none; stroke: rgb(var(--c)); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
 .chart .series.s-ret { stroke-width: 1.6; }

@@ -18,17 +18,17 @@
 <text x="621.8" y="268.0" text-anchor="middle" class="tick">120 min</text>
 <path d="M44.0,250.0 L68.1,235.6 L116.2,208.0 L164.4,181.7 L212.5,156.8 L284.8,129.2 L332.9,101.7 L405.2,74.1" class="series s-before"/>
 <circle cx="405.2" cy="74.1" r="3.5" class="s-before solid"/>
-<path d="M304.0,206.7 L328.0,206.7" class="series s-before"/>
-<text x="336.0" y="210.7" text-anchor="start" class="label strong s-before-text">13 Nov, 69 °C: 1.07 °C/h</text>
-<text x="670.0" y="210.7" text-anchor="end" class="note">flow 68 °C, 0 °C outside</text>
+<path d="M58.4,55.8 L82.4,55.8" class="series s-before"/>
+<text x="90.4" y="59.8" text-anchor="start" class="label strong s-before-text">13 Nov, 69 °C: 1.07 °C/h</text>
+<text x="670.0" y="59.8" text-anchor="end" class="note">68 °C flow, 0 °C out</text>
 <path d="M44.0,250.0 L140.3,226.4 L212.5,204.1 L284.8,180.4 L381.1,158.1 L429.2,130.6" class="series s-after"/>
 <circle cx="429.2" cy="130.6" r="3.5" class="s-after solid"/>
-<path d="M304.0,225.1 L328.0,225.1" class="series s-after"/>
-<text x="336.0" y="229.1" text-anchor="start" class="label strong s-after-text">16 Nov, 60 °C: 0.68 °C/h</text>
-<text x="670.0" y="229.1" text-anchor="end" class="note">flow 58 °C, 4 °C outside</text>
+<path d="M58.4,74.1 L82.4,74.1" class="series s-after"/>
+<text x="90.4" y="78.1" text-anchor="start" class="label strong s-after-text">16 Nov, 60 °C: 0.68 °C/h</text>
+<text x="670.0" y="78.1" text-anchor="end" class="note">58 °C flow, 4 °C out</text>
 <path d="M44.0,250.0 L116.2,238.2 L212.5,215.9 L308.8,192.2 L501.5,152.9 L573.7,154.2 L645.9,126.6" class="series s-after dashed"/>
 <circle cx="645.9" cy="126.6" r="3.5" class="s-after solid"/>
-<path d="M304.0,243.4 L328.0,243.4" class="series s-after dashed"/>
-<text x="336.0" y="247.4" text-anchor="start" class="label strong s-after-text">15 Nov, 60 °C: 0.45 °C/h</text>
-<text x="670.0" y="247.4" text-anchor="end" class="note">flow 59 °C, 4 °C outside</text>
+<path d="M58.4,92.5 L82.4,92.5" class="series s-after dashed"/>
+<text x="90.4" y="96.5" text-anchor="start" class="label strong s-after-text">15 Nov, 60 °C: 0.45 °C/h</text>
+<text x="670.0" y="96.5" text-anchor="end" class="note">59 °C flow, 4 °C out</text>
 </svg>
