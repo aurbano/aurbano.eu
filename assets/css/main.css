@@ -270,7 +270,10 @@
 .chart .s-after { --c: var(--magazine-accent); }
 .chart .s-change { --c: var(--magazine-tertiary); }
 .chart .s-base { --c: var(--chart-grey); }
-.chart .s-neutral { --c: var(--prose-body); }
+.chart .s-good { --c: var(--chart-good); }
+.chart .s-bad { --c: var(--chart-warm); }
+.chart .s-off { --c: var(--chart-grey); }
+.chart .series.trace-line { stroke-width: 2.5; }
 .chart .zone-good { fill: rgb(var(--chart-good) / 0.1); }
 .chart .good-text { fill: rgb(var(--chart-good)); }
 .chart .bad-text { fill: rgb(var(--chart-warm)); }

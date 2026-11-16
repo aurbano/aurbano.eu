@@ -89,12 +89,13 @@ def daily():
 
 # 2. Return temperature over three hours of a night, before and after ----------------------------
 def trace():
-    # Bands show the burner runs, coloured by what they achieve: green while firing with the return
-    # below 55 °C (condensing), orange while firing above it. The return itself is one neutral line.
+    # Burner runs are full-height bands and the return line is coloured the same way: green while
+    # firing with the return below 55 °C (condensing), orange while firing above it, grey (no band)
+    # with the burner off, when the return temperature doesn't matter.
     h, panel, gap, left, right = 548, 160, 100, 44, W - 10
     body = []
-    legend(body, left, 18, [("band-good", "burner on, condensing"), ("band-bad", "burner on, not condensing"),
-                            ("s-neutral", "return water")])
+    legend(body, left, 18, [("s-good", "burner on, condensing"), ("s-bad", "burner on, not condensing"),
+                            ("s-off", "burner off")])
     heads = {"before": ("Before", "69 °C flow"), "after": ("After the first change", "60 °C flow")}
     for p, key in enumerate(["before", "after"]):
         t = DATA["trace"][key]
@@ -118,7 +119,20 @@ def trace():
         y_axis(body, ys, [40, 50, 60, 70], left, right, lambda v: f"{v}°")
         body.append(line(left, ys(55), right, ys(55), "target"))
         body.append(text(left - 8, ys(55) + 4, "55°", "tick strong good-text", "end"))
-        body.append(path([(xs(m), ys(min(max(rt, 35), 75))) for m, _, rt, _ in pts if rt is not None], "series s-neutral"))
+        line_cls = {"band-good": "s-good", "band-bad": "s-bad", None: "s-off"}
+        seg, cur = [], None
+        for m, fl, rt, firing in pts:
+            if rt is None:
+                continue
+            pt, s = (xs(m), ys(min(max(rt, 35), 75))), line_cls[state(rt, firing)]
+            if s != cur and seg:
+                seg.append(pt)
+                body.append(path(seg, f"series trace-line {cur}"))
+                seg = []
+            seg.append(pt)
+            cur = s
+        if len(seg) > 1:
+            body.append(path(seg, f"series trace-line {cur}"))
         firing_rt = [rt for _, _, rt, firing in pts if firing and rt is not None]
         share = round(100 * sum(rt < 55 for rt in firing_rt) / len(firing_rt))
         for m in (0, 60, 120, 180):
