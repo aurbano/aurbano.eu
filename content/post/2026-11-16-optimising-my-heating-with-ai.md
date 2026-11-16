@@ -13,11 +13,11 @@ draft: true
 outdated: false
 ---
 
-My boiler has started 311,903 times. That's the lifetime counter on a 24 kW Worcester combi, and it was the first number that made me think something was off. A boiler that starts that often is short-cycling: it lights, overshoots, switches off, cools, and lights again, burning gas on every ignition and never settling into the long, gentle runs it's designed for.
+My boiler has started 311,903 times. That's the lifetime counter on a 24 kW [Worcester Bosch][worcester] combi, and it was the first number that made me think something was off. A boiler that starts that often is short-cycling: it lights, overshoots, switches off, cools, and lights again, burning gas on every ignition and never settling into the long, gentle runs it's designed for.
 
-I'd had the parts to look into this for a while. Home Assistant on a Raspberry Pi, tado valves on every radiator, and an EMS-ESP gateway on the boiler's own data bus that publishes flow and return temperatures, burner state, modulation and counters every ten seconds. What I didn't have was the patience to turn a few hundred thousand data points into a decision.
+I'd had the parts to look into this for a while: [Home Assistant][home-assistant] on a [Raspberry Pi 4][raspberry-pi], [tado smart radiator thermostats][tado] on every radiator, and an [EMS-ESP][ems-esp] gateway from [BBQKees][bbqkees] on the boiler's own data bus, which publishes flow and return temperatures, burner state, modulation and counters every ten seconds. What I didn't have was the patience to turn a few hundred thousand data points into a decision.
 
-So I handed the job to an AI agent. This is the log of the first week.
+So I handed the job to an AI agent. This is the story so far.
 
 ## The setup
 
@@ -59,7 +59,7 @@ Short-cycling didn't improve at all. Lowering the flow temperature moved the boi
 
 {{< chart "posts/heating-with-ai/cycles.svg" "Length of each burner run. Almost identical before and after: about three quarters of runs are under five minutes either way." >}}
 
-That's the next lever: the restart hysteresis, which sets how far the water has to cool before the burner lights again. More on that below.
+That's the next lever: the restart band, which sets how far the water has to cool before the burner lights again. More on that below.
 
 ## The cost: slower rooms
 
@@ -70,6 +70,14 @@ Cooler radiators give out less heat. The textbook figure for going from about 61
 The bedroom is the real limit. Before the change it spent 13 % of the time with its valve wide open and still more than half a degree below target. After, 37 %. That's why the agent's recommendation was to stay at 60 °C rather than go to 55 °C, as originally planned. The efficiency gain from 60 to 55 is small now that the boiler is condensing almost all the time, and the rooms would lose another 15 % or so of radiator output they can't spare.
 
 I like that this came out of the data rather than a rule of thumb. The plan said "go to 55 if the rooms keep up". They didn't, so we don't.
+
+## Second change: a wider restart band
+
+Cycling was the one thing the first change didn't touch, so the second one went straight at it. On 16 November the agent widened the restart band from −6 K to −10 K: the burner now waits until the water has cooled to about 50 °C before lighting again, instead of about 53 °C, and still stops at about 64 °C. Unlike the flow temperature, this one the boiler accepts over its data bus, so the agent made the change through Home Assistant once I'd said yes.
+
+The expectation was written down before the change: about 25 % fewer starts, seven or more minutes per run, condensing still above 90 %, and rooms no slower than at 60 °C. Long heat-up runs never cool down to the restart point, so they shouldn't notice; the change mostly stretches the short on-off cycles in between. If the rooms suffer, it goes back to −6 K. The boiler dashboard now shows each change, what we expect from it, and how each day measures up.
+
+<!-- Draft: results of the 19 Nov review go here (starts per degree day, minutes per run, off time, rooms), with a before/after cycles chart. -->
 
 ## Gas, honestly
 
@@ -99,12 +107,13 @@ The boiler dashboard now keeps the running total. Each morning it compares yeste
 - **Judgement about the house.** The bedroom runs humid, so lowering its target to save gas is a bad trade. That's not in the data.
 - **Unblocking the plumbing.** At one point macOS quietly withdrew the terminal's permission to talk to anything on my local network, and every connection to the Pi failed with "No route to host". The agent eventually worked out that processes started by `launchd` aren't covered by that permission and built itself a small proxy. But noticing that the permission had gone was a human-in-the-loop moment.
 
-## Next
-
-Today I approved the second change: widening the restart band from −6 K to −10 K, so the burner waits until the water has cooled to about 50 °C before lighting again. The expectation, written down before the change, is about 25 % fewer starts, seven-plus minutes per run, condensing above 90 %, and no slower rooms. The review is on Thursday. If the rooms suffer, it goes back.
-
-The boiler dashboard now shows exactly that: what changed, what we expect, and how each day measures up.
-
 ## Notes on the charts
 
 The boiler charts come from Home Assistant's recorder database: raw ten-second history from the EMS-ESP gateway and the tado integration, between 10 and 16 November 2026. "Heating" means the burner was on, the boiler was in heating mode and the hot-water valve was closed, so hot water doesn't muddy the figures. Hours when the heating controls were offline are left out of every figure. The gas chart uses hourly smart-meter readings, room and outdoor temperatures from Home Assistant's long-term statistics, and sunshine and wind from the [Open-Meteo](https://open-meteo.com/) historical weather archive. The SVGs are generated by a small script from a JSON export that lives next to this post.
+
+[worcester]: https://www.worcester-bosch.co.uk/products/boilers
+[home-assistant]: https://www.home-assistant.io/
+[raspberry-pi]: https://www.raspberrypi.com/products/raspberry-pi-4-model-b/
+[tado]: https://www.tado.com/gb-en/smart-radiator-thermostat
+[ems-esp]: https://emsesp.org/
+[bbqkees]: https://bbqkees-electronics.nl/
