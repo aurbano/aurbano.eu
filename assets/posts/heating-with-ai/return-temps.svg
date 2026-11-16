@@ -1,0 +1,33 @@
+<svg viewBox="0 0 680 300" role="img" aria-labelledby="return-temps-t return-temps-d" xmlns="http://www.w3.org/2000/svg">
+<title id="return-temps-t">Return water temperature while the burner was heating, as a share of firing time</title>
+<desc id="return-temps-d">Distribution of return temperature. At 69 °C most firing time had the return between 55 and 65 °C; at 60 °C it moved to 46 to 54 °C.</desc>
+<rect x="44.0" y="40.0" width="313.0" height="212.0" rx="0" class="zone"/>
+<line x1="44.0" y1="252.0" x2="670.0" y2="252.0" class="grid"/>
+<text x="36.0" y="256.0" text-anchor="end" class="tick">0%</text>
+<line x1="44.0" y1="209.6" x2="670.0" y2="209.6" class="grid"/>
+<text x="36.0" y="213.6" text-anchor="end" class="tick">5%</text>
+<line x1="44.0" y1="167.2" x2="670.0" y2="167.2" class="grid"/>
+<text x="36.0" y="171.2" text-anchor="end" class="tick">10%</text>
+<line x1="44.0" y1="124.8" x2="670.0" y2="124.8" class="grid"/>
+<text x="36.0" y="128.8" text-anchor="end" class="tick">15%</text>
+<line x1="44.0" y1="82.4" x2="670.0" y2="82.4" class="grid"/>
+<text x="36.0" y="86.4" text-anchor="end" class="tick">20%</text>
+<line x1="44.0" y1="40.0" x2="670.0" y2="40.0" class="grid"/>
+<text x="36.0" y="44.0" text-anchor="end" class="tick">25%</text>
+<path d="M44.0,252.0 L44.0,246.5 L62.4,246.5 L62.4,246.2 L80.8,246.2 L80.8,244.4 L99.2,244.4 L99.2,244.2 L117.6,244.2 L117.6,244.1 L136.1,244.1 L136.1,241.3 L154.5,241.3 L154.5,241.1 L172.9,241.1 L172.9,242.9 L191.3,242.9 L191.3,242.3 L209.7,242.3 L209.7,243.7 L228.1,243.7 L228.1,242.7 L246.5,242.7 L246.5,239.1 L264.9,239.1 L264.9,238.2 L283.4,238.2 L283.4,238.2 L301.8,238.2 L301.8,233.6 L320.2,233.6 L320.2,233.0 L338.6,233.0 L338.6,231.9 L357.0,231.9 L357.0,233.8 L375.4,233.8 L375.4,225.7 L393.8,225.7 L393.8,218.7 L412.2,218.7 L412.2,204.3 L430.6,204.3 L430.6,200.8 L449.1,200.8 L449.1,170.7 L467.5,170.7 L467.5,51.9 L485.9,51.9 L485.9,217.2 L504.3,217.2 L504.3,190.4 L522.7,190.4 L522.7,202.1 L541.1,202.1 L541.1,249.1 L559.5,249.1 L559.5,251.1 L577.9,251.1 L577.9,252.0 L596.4,252.0 L596.4,252.0 L614.8,252.0 L614.8,252.0 L633.2,252.0 L633.2,252.0 L651.6,252.0 L651.6,252.0 L670.0,252.0 L670.0,252.0" class="area s-before"/>
+<path d="M44.0,252.0 L44.0,244.0 L62.4,244.0 L62.4,244.3 L80.8,244.3 L80.8,242.6 L99.2,242.6 L99.2,238.1 L117.6,238.1 L117.6,237.7 L136.1,237.7 L136.1,236.8 L154.5,236.8 L154.5,235.9 L172.9,235.9 L172.9,235.2 L191.3,235.2 L191.3,231.6 L209.7,231.6 L209.7,227.4 L228.1,227.4 L228.1,223.4 L246.5,223.4 L246.5,217.4 L264.9,217.4 L264.9,194.1 L283.4,194.1 L283.4,163.3 L301.8,163.3 L301.8,128.7 L320.2,128.7 L320.2,69.7 L338.6,69.7 L338.6,177.6 L357.0,177.6 L357.0,207.8 L375.4,207.8 L375.4,239.5 L393.8,239.5 L393.8,251.6 L412.2,251.6 L412.2,252.0 L430.6,252.0 L430.6,252.0 L449.1,252.0 L449.1,252.0 L467.5,252.0 L467.5,252.0 L485.9,252.0 L485.9,252.0 L504.3,252.0 L504.3,252.0 L522.7,252.0 L522.7,252.0 L541.1,252.0 L541.1,252.0 L559.5,252.0 L559.5,252.0 L577.9,252.0 L577.9,252.0 L596.4,252.0 L596.4,252.0 L614.8,252.0 L614.8,252.0 L633.2,252.0 L633.2,252.0 L651.6,252.0 L651.6,252.0 L670.0,252.0 L670.0,252.0" class="area s-after"/>
+<line x1="357.0" y1="40.0" x2="357.0" y2="252.0" class="target"/>
+<text x="351.0" y="32.0" text-anchor="end" class="note">← condensing</text>
+<text x="363.0" y="32.0" text-anchor="start" class="note">not condensing →</text>
+<text x="80.8" y="270.0" text-anchor="middle" class="tick">40 °C</text>
+<text x="172.9" y="270.0" text-anchor="middle" class="tick">45 °C</text>
+<text x="264.9" y="270.0" text-anchor="middle" class="tick">50 °C</text>
+<text x="357.0" y="270.0" text-anchor="middle" class="tick">55 °C</text>
+<text x="449.1" y="270.0" text-anchor="middle" class="tick">60 °C</text>
+<text x="541.1" y="270.0" text-anchor="middle" class="tick">65 °C</text>
+<text x="633.2" y="270.0" text-anchor="middle" class="tick">70 °C</text>
+<text x="163.7" y="124.8" text-anchor="middle" class="label strong s-after-text">60 °C flow</text>
+<text x="163.7" y="140.8" text-anchor="middle" class="label s-after-text">93 % below 55 °C</text>
+<text x="605.6" y="124.8" text-anchor="middle" class="label strong s-before-text">69 °C flow</text>
+<text x="605.6" y="140.8" text-anchor="middle" class="label s-before-text">28 % below 55 °C</text>
+</svg>
