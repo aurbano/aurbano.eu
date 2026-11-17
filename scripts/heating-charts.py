@@ -3,6 +3,10 @@
 
     python3 scripts/heating-charts.py
 
+Refresh data.json first with the export script in the Home Assistant repo (needs the LAN):
+    ~/dev/hass/scripts/heating-post-export.py --out assets/posts/heating-with-ai/data.json
+Numbers quoted in the post's text are written by hand; update them after a refresh.
+
 The SVGs carry no colours of their own: classes map to the site's theme variables
 (`.chart` rules in assets/css/main.css), so they follow light and dark mode. The post inlines
 them with the `chart` shortcode.
