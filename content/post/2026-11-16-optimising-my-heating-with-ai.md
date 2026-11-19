@@ -15,137 +15,194 @@ outdated: false
 
 I know almost nothing about boilers. Mine is a 24 kW Worcester Bosch combi, it heats the house and the hot water, and the gas bill goes up every winter. That was about the extent of it.
 
-What I did have was data. I'd had the parts to look into this for a while: [Home Assistant][home-assistant] on a [Raspberry Pi 4][raspberry-pi], [tado smart radiator thermostats][tado] on every radiator, and an [EMS-ESP][ems-esp] gateway from [BBQKees][bbqkees] on the boiler's own data bus, which publishes flow and return temperatures, burner state, power level and counters every ten seconds. That's a few hundred thousand data points a week, and I had no idea how to read them.
+What I did have was data. I'd had the parts to look into this for a while: [Home Assistant][home-assistant] on a [Raspberry Pi 4][raspberry-pi], [tado smart radiator thermostats][tado] on every radiator, and an [EMS-ESP][ems-esp] gateway from [BBQKees][bbqkees] on the boiler's own data bus, which publishes its temperatures, burner state, power level and counters every ten seconds. That's a few hundred thousand data points a week, and I had no idea how to read them.
 
-So I asked an AI agent to do the reading: work out how the boiler actually behaves, explain it to me in plain terms, and propose changes, each one backed by the data and checked afterwards against a prediction written down first. I'd make the decisions and turn the dial. It found two problems. This is how it fixed them, and what that has been worth so far.
+So I asked an AI agent to do the reading. It found two problems I didn't know I had, explained both, and proposed a fix for each. This is what they were, what changed, and what that has been worth so far.
 
-## The setup
+## What I asked the agent to do
 
-The agent works from a git repository on my Mac. It has SSH into the Pi and a [Home Assistant MCP server](https://github.com/homeassistant-ai/ha-mcp) for live state, history, dashboards and service calls. Every change it makes is committed with what and why; every finding goes into a markdown file. The rules are short: read and diagnose freely, back up before anything risky, and ask me before touching the boiler, restarting anything, or deleting anything.
+The brief was short: work out how the boiler actually behaves, explain it to me in plain terms, and propose changes, each one backed by the data. I'd make the decisions.
 
-That last rule matters more than it sounds. Most of the useful work here is reading, and an agent can read for hours without getting bored. The changes are few and physical, so I want to make them myself.
+{{< chart "posts/heating-with-ai/setup.svg" "Who does what. The boiler sends hot water out to the radiators (the flow) and gets cooler water back (the return)." >}}
 
-## First, the agent checks its own tools
+The agent works from a git repository on my Mac. It can log into the Pi and it talks to Home Assistant through an [MCP server](https://github.com/homeassistant-ai/ha-mcp), which gives it live readings, history and dashboards. Every finding goes into a markdown file, and every change it makes is committed with what and why.
 
-Before trusting any finding, the agent built per-room trackers: how fast each room warms up, how fast it loses heat overnight, how hard each radiator works. Then it validated them against the raw history, and found three bugs in its own automations.
+The rules are short too: read and diagnose freely, back up before anything risky, and ask me before touching the boiler, restarting anything, or deleting anything. Most of the useful work here is reading, and an agent can read for hours without getting bored. The changes are few and physical, so I want to make those myself.
 
-{{< chart "posts/heating-with-ai/rooms.svg" "What the trackers see, for the three rooms we actually heat: temperature every 15 minutes, red while the room's radiator valve was open and grey while it was closed. The bedroom's radiator is on far longer than the others, which matters later." >}}
+Its method was the same for each problem: change one thing at a time, write down beforehand what should happen, then wait three days and check, adjusting for the weather so a cold snap doesn't look like a step backwards.
 
-The best one: the sensor that decides whether a room is "calling for heat" used a threshold of exactly zero with no hysteresis. When a valve closed to 0 %, the value sat right on the threshold and Home Assistant kept the previous state. Once a room asked for heat, it asked forever. That quietly broke the overnight heat-loss measurements (they never started) and made the dashboard claim the living room had been heating for 18 hours. Another bug double-counted valve opening time, and gave one room a mean valve position of 155 %.
-
-None of these would have crashed. They'd have produced plausible-looking numbers that were wrong. The agent caught them because I asked it to recompute every recorded value from raw history and compare. That has become the default: every metric gets reproduced by hand at least once before it goes on a dashboard.
+Everything below comes from raw ten-second history between 10 and 19 November 2026. "Heating" means the burner was on for the radiators, not for hot water, so showers don't muddy the figures. Hours when the heating controls were offline are left out of every figure. The gas figures use hourly smart-meter readings, and sunshine and wind from the [Open-Meteo](https://open-meteo.com/) weather archive.
 
 ## Problem one: a condensing boiler that wasn't condensing
 
+Two words first. The *flow* is the hot water the boiler sends out to the radiators; the *return* is the cooler water that comes back. The dial on the front of the boiler sets the flow temperature.
+
 The first finding needed some explaining. Burning gas produces water vapour, and that vapour carries heat out of the flue. A condensing boiler has an extra heat exchanger that cools its exhaust until the vapour turns back into water, and puts the heat it recovers into the water going to the radiators. That's where most of its efficiency advantage over an older boiler comes from.
 
-{{< chart "posts/heating-with-ai/condensing.svg" "What happens inside the boiler. The exhaust rises through two heat exchangers, and the water coming back from the radiators enters at the top one. If that water is cool enough, the exhaust's vapour condenses on it and hands over its heat. If not, the heat goes up the flue." >}}
+{{< chart "posts/heating-with-ai/condensing.svg" "Inside the boiler. The exhaust rises through two heat exchangers, and the return water enters at the top one. If that water is cool enough, the vapour condenses on it and hands over its heat. If not, the heat goes up the flue." >}}
 
-The catch is that it only works when the water coming back from the radiators, the return, is cool enough to chill the exhaust that far: below roughly 55 °C. Any hotter and the boiler behaves like an old non-condensing one, and that heat goes out of the flue.
+The catch is that it only works when the return is cool enough to chill the exhaust that far: below roughly 55 °C, the figure the agent used as its threshold. Any hotter and the boiler behaves like an old non-condensing one.
 
-A well set-up condensing boiler should spend nearly all of its heating time condensing, and since 2022 new and fully replaced heating systems in England have to be designed to run at a flow temperature of 55 °C or lower ([Approved Document L][adl], section 5). My boiler's dial was set to 69 °C. The agent found that the return was above 55 °C for about 70 % of the time the burner was heating, so it condensed less than a third of the time. I had a condensing boiler that mostly wasn't condensing, and no idea until the agent pointed it out.
+So what does good look like? A well set-up condensing boiler should have a return below 55 °C nearly all the time it's heating. The building regulations for England say new or fully replaced heating systems should be designed for a flow temperature of 55 °C or lower ([Approved Document L][adl], 2021 edition, section 5).
 
-### The fix: 69 → 60 °C
+My boiler's dial was set to 69 °C. The agent found that the return was below 55 °C for only 28 % of the time the burner was heating. I had a condensing boiler that mostly wasn't condensing, and no idea until the agent pointed it out.
 
-The agent's method was to change one thing at a time, give each change three days, and adjust for the weather so a cold snap doesn't look like a regression. Its first proposal: lower the flow temperature, the temperature of the water sent out to the radiators, from 69 to 60 °C. Cooler water out means cooler water back. It couldn't make that change itself. Tado only switches the boiler on and off through a relay, so the flow temperature is whatever the dial on the front says. On 13 November I turned the dial.
+### The fix: flow temperature from 69 to 60 °C
 
-The condensing problem went away almost overnight.
+The agent's proposal was to lower the flow temperature from 69 to 60 °C. Cooler water out means cooler water back. Its plan was to go on to 55 °C afterwards if the rooms kept up.
 
-{{< chart "posts/heating-with-ai/trace.svg" "The water coming back to the boiler, midnight to 3 am, on a night before and a night after the change. Each band is the burner running, and the line is coloured the same way: green while the return is below 55 °C and the boiler condenses, orange while it's above and it doesn't, grey while the burner is off. After the change most of it turns green, but there are still a lot of bands, which is the next problem." >}}
+The agent didn't make this change itself. Tado only switches the boiler on and off, and although the boiler accepts settings over its data bus, the related heating setting is known to snap back to the dial within minutes, so the dial was the safe route. On 13 November I turned it.
 
-{{< chart "posts/heating-with-ai/daily.svg" "Share of heating time with the return below 55 °C, per day. Friday is the change day: the dial went to 60 °C at 13:19. The blue days come after the second change, on Monday afternoon." >}}
+### The result: condensing 93 % of the time
 
-The return temperature distribution shows why: almost the whole hump moved below the line.
+The condensing problem went away almost overnight. The share of heating time spent condensing went from 28 % to 93 %.
 
-{{< chart "posts/heating-with-ai/return-temps.svg" "Return temperature while the burner was heating, as a share of firing time." >}}
+{{< chart "posts/heating-with-ai/daily.svg" "Share of heating time with the return below 55 °C, per day. Friday 13 was the change day: the dial went to 60 °C at 13:19. Monday 16 was the day of the second change, described below." >}}
+
+Here is what that looks like over three hours of a night, before and after.
+
+{{< chart "posts/heating-with-ai/trace.svg" "The return temperature from midnight to 3 am. Each band is the burner running: green while the return is below 55 °C and the boiler condenses, orange while it doesn't. The line is grey while the burner is off." >}}
+
+After the change most of the bands are green. There are still a lot of bands, though: 22 starts in three hours, against 17 before, on a colder night. That is the second problem, and I'll come back to it.
 
 ### The trade-off: slower rooms
 
-Cooler radiators give out less heat. The agent's textbook estimate for going from about 61 °C mean water temperature to 54 °C was roughly 20 % less output, and the rooms noticed. The living room used to warm about a degree an hour with its valve fully open. At 60 °C it managed 0.4 to 0.7, on milder mornings. There's no standard figure for how fast a room should warm up, since it depends on the room and the radiator, so the agent compared each room with itself.
+Cooler radiators give out less heat. The agent's textbook estimate was roughly 20 % less output, and the rooms noticed.
 
-{{< chart "posts/heating-with-ai/heatup.svg" "Living Room warming up in the morning with its valve fully open, measured from the moment the valve hit 100 %." >}}
+The living room used to warm up at about 1 °C an hour with its radiator valve fully open. At 60 °C it managed 0.4 to 0.7 °C an hour, and that was on milder mornings. There's no standard for how fast a room should warm up, since it depends on the room and the radiator, so the agent compared each room with itself.
 
-The bedroom is the real limit; its radiator was already the one on longest in the room chart above. The agent's rule of thumb is that a radiator big enough for its room should rarely be wide open and still behind. Before the change the bedroom's was wide open and still more than half a degree below target 13 % of the time. After, 37 %. The agent's original plan was to go down to 55 °C if the rooms kept up. They didn't, so it recommended staying at 60. The efficiency gain from 60 to 55 is small now that the boiler condenses almost all the time, and the rooms would lose another 15 % or so of radiator output they can't spare. I like that this came out of the data rather than a rule of thumb.
+{{< chart "posts/heating-with-ai/heatup.svg" "The living room warming up in the morning, measured from the moment its valve was fully open. The right-hand column gives the flow and outdoor temperature on each morning." >}}
+
+The bedroom is the real limit. Its radiator already worked far harder than the others: about 12 hours a day, against 7 for the living room and 3 for the office.
+
+{{< chart "posts/heating-with-ai/rooms.svg" "The three rooms we heat, 10 to 18 November. The line is the room temperature, coloured and banded while its radiator valve was open, grey while it was closed." >}}
+
+There's no standard here either, so the agent used a rule of thumb of its own: a radiator that's big enough for its room should rarely be wide open and still behind. Before the change the bedroom's was wide open and still more than half a degree below its target 13 % of the time. After, 36 %.
+
+That settled the question of 55 °C. The rooms hadn't kept up, so the agent recommended staying at 60. With the boiler already condensing 93 % of the time there was little left to gain, and by its estimate the radiators would lose another 15 % or so of output that the bedroom can't spare. So my boiler runs 5 °C above the design figure for a new system. The agent's explanation is that my radiators were sized for hotter water. I like that this came out of my own house's data rather than a general rule.
 
 ## Problem two: short-cycling
 
-The trace above shows the second problem: even after the fix, the burner keeps lighting and going out. The agent called this short-cycling. UK heating guidance puts a healthy run at 8 to 15 minutes, with 3 or 4 starts an hour in mild weather; switching on and off every few minutes, 5 to 10 times an hour, is short-cycling ([City Plumbing][cityplumbing]). On a mild day, around 8 °C outside, my boiler lit about 60 times for heating alone. Its runs averaged 6 minutes, and 72 % of them lasted less than five. By its own lifetime counters, its heating runs used to average 13 minutes.
+Look at the night trace again: even after the fix, the burner keeps lighting and going out every few minutes. The agent called this short-cycling.
 
-The agent explained why it happens. The burner can't turn itself down below about 30 % of its power, roughly 7 kW, and on those days the house needed about 2.3 kW on average. Even at its lowest setting the boiler is three times too big for the job, so all it can do is light, overshoot, switch off, cool down and light again.
+Here good is easier to pin down. UK heating guidance puts a healthy burner run at 8 to 15 minutes; switching on and off every few minutes, 5 to 10 times an hour, is short-cycling ([City Plumbing][cityplumbing]). In mild weather a boiler that's working normally starts about 3 or 4 times an hour ([Boiler Cover UK][boilercover]).
 
-And why it's bad: every start begins with the fan blowing air through the boiler to clear it before it lights, which carries some heat up the flue, and each one wears the parts that do the starting, like the igniter, the fan and the gas valve. A boiler is designed for long, steady runs, and short ones are where it's least efficient.
+Before any changes, my boiler's heating runs averaged 6 minutes, and 72 % of them lasted less than five. On a mild day, around 8 °C outside, it lit about 60 times for heating alone. By the boiler's own lifetime counters, its heating runs used to average 13 minutes, so it hadn't always been like this.
 
-Lowering the flow temperature didn't help with this at all. It moved the boiler's on/off band down by nine degrees, from roughly 61–72 °C to 53–63 °C, but didn't make it any wider, so the burner still covered the same ten degrees in the same few minutes and switched off. About three quarters of runs were under five minutes either way: 72 % before, 73 % after.
+The agent explained why it happens. The burner can't turn itself down below about 30 % of its power, roughly 7 kW; the agent read that floor off the boiler's own power readings. On a mild day the house needs about 2.3 kW on average, by the agent's estimate. Even on its lowest flame the boiler makes three times too much heat, so all it can do is light, overshoot, switch off, cool down and light again.
+
+{{< chart "posts/heating-with-ai/sizing.svg" "Why it cycles: the burner's lowest flame is about three times what the house needs on a mild day. Both figures are the agent's estimates from the boiler's data." >}}
+
+And why it's bad. Every start begins with the fan blowing air through the boiler to clear it before it lights, which carries some heat up the flue. Every start also wears the parts that do the starting: the igniter, the fan and the gas valve. A boiler is at its best on long, steady runs.
+
+### Why the first fix didn't help
+
+The agent's explanation: the boiler switches its burner off when the water gets a few degrees hotter than the dial setting, and lights it again once the water has cooled by a set amount. Lowering the flow temperature moved that on/off band down by about nine degrees, from roughly 61–72 °C to 53–63 °C. It didn't make the band any wider, so the burner still covered the same ten degrees in the same few minutes. Runs under five minutes: 72 % before, 73 % after.
 
 ### The fix: a wider restart band
 
-The agent's next lever was the restart band, which sets how far the water has to cool before the burner lights again. On 16 November it widened the band from −6 K to −10 K: the burner now waits until the water has cooled to about 50 °C before lighting again, instead of about 54 °C, and still stops at about 64 °C. Unlike the flow temperature, this one the boiler accepts over its data bus, so the agent made the change through Home Assistant once I'd said yes.
+The setting that controls the bottom of that band is called the restart band: how far the water has to cool before the burner lights again. It was −6 K (K is kelvin; a gap of 1 K is the same as 1 °C). There's no standard figure for this setting; it depends on the boiler and the house. The agent proposed −10 K: the burner still stops at about 64 °C, but waits until the water has cooled to about 50 °C before lighting again, instead of about 54 °C.
 
-{{< chart "posts/heating-with-ai/band.svg" "What the restart band does. The water heats up while the burner runs and cools while it rests; the burner stops at 64 °C and lights again at the restart point. A wider band means longer runs and longer rests, so fewer starts. The run and rest lengths are the medians measured at each setting; real runs vary a lot more." >}}
+{{< chart "posts/heating-with-ai/band.svg" "What the restart band does. The water heats up while the burner runs and cools while it rests. A wider band means longer runs and longer rests, so fewer starts. The lengths are the typical (median) run and rest measured at each setting; real ones vary a lot more." >}}
 
-The agent wrote its expectations down before the change: about 25 % fewer starts, seven or more minutes per run, condensing still above 90 %, and rooms no slower than at 60 °C. Long heat-up runs never cool down to the restart point, so they shouldn't notice; the change mostly stretches the short on-off cycles in between. If the rooms suffered, it would go back to −6 K. The boiler dashboard now shows each change, what the agent expects from it, and how each day measures up.
+Unlike the flow temperature, this is a setting the boiler keeps when it's sent over its data bus. On 16 November I said yes and the agent made the change through Home Assistant.
 
-Three days later, the agent ran its review. The clearest change is the pause between runs: the median off time went from 3.8 minutes to 9.8, so the burner now rests for ten minutes instead of lighting again almost straight away. Runs shorter than three minutes halved, from 54 % of all runs to 26 %, and the average run grew from 5.4 to 6.7 minutes. That's just short of the seven the agent had predicted, and still short of the 8 to 15 minutes of a healthy run: the boiler is still too big for a mild day, and no setting changes that.
+It wrote its predictions down first: about 25 % fewer starts, seven or more minutes per run, condensing still above 90 %, and rooms no slower than before. Long warm-up runs never cool down to the restart point, so they shouldn't notice; the change stretches the short on-off cycles in between. If the rooms suffered, it would go back to −6 K.
 
-{{< chart "posts/heating-with-ai/cycles.svg" "Length of each burner run at each setting. Lowering the flow temperature barely changed it; widening the restart band moved most of the very short runs up to three minutes and longer." >}}
+### The result: fewer, longer runs
 
-Starts fell by about a quarter, as predicted. Per degree of difference between indoors and outdoors, the boiler lit 8.5 times a day at 60 °C with the old band and 6.5 times with the new one, fewer even than the 7.4 at the original settings. Burner time per degree barely moved, 45.8 minutes against 43.6. That's the point: the same heat, in fewer and longer pieces.
+Three days later the agent ran its review, prediction by prediction.
 
-Condensing slipped a little, from 93 % to 90 %, right on the agent's threshold. Tuesday was 96 %. Wednesday dropped to 76 % because of two stretches of almost continuous firing, around midday and in the evening, that pushed the return to 56–57 °C. Long runs at high demand are where a 60 °C flow runs out of headroom, and they aren't what this change was about.
+**Starts: down by about a quarter, as predicted.** The agent counts starts per degree of difference between indoors and outdoors, so that a cold day isn't blamed for needing more heat. On that measure the boiler lit 8.5 times a day for each degree with the old band and 6.5 with the new one, 24 % fewer. That's also fewer than the 7.4 at the original settings. There's no standard for this figure; it's the boiler compared with itself.
 
-The rooms didn't notice. On Tuesday morning the living room warmed at 0.8 °C an hour with its valve fully open, against 0.4–0.7 before the change, and the bedroom spent 13 % of the time wide open and still behind, down from 37 %. It was a milder week, about 9 °C outside against 5 °C, so the agent didn't give the boiler credit for the rooms, but nothing got worse. Its verdict: keep the wider band.
+**Runs: longer, but not yet healthy.** The average run grew from 5.4 to 6.7 minutes, just short of the seven the agent predicted and still short of the healthy 8 to 15. Runs shorter than three minutes halved, from 54 % of all runs to 26 %. The boiler is still too big for a mild day, and no setting changes that.
+
+{{< chart "posts/heating-with-ai/cycles.svg" "Length of each burner run at each setting. Lowering the flow temperature barely changed it. Widening the restart band moved most of the very short runs up to three minutes and longer." >}}
+
+**Pauses: much longer.** This is the clearest change. There's no standard for a pause, but longer means fewer starts. The typical pause between runs went from 3.8 minutes to 9.8, so the burner now rests for ten minutes instead of lighting again almost straight away. A typical run plus a typical pause now takes about 14 minutes, which works out at about four starts an hour while it's cycling, down from nearer ten. That's back in the normal range and out of the 5-to-10 the guidance calls short-cycling, though the runs themselves are still shorter than a healthy 8 minutes.
+
+**Same heat.** Burner time per degree barely moved: 45.8 minutes a day before, 43.6 after. That's the point: the same heat, in fewer and longer pieces.
+
+**Condensing: 90 %, right on the line.** It slipped from 93 %. Tuesday was 96 %. Wednesday dropped to 76 % because of two stretches of almost continuous firing, around midday and in the evening, that pushed the return to 56–57 °C. Long runs at high demand are where a 60 °C flow runs out of room, and they aren't what this change was about.
+
+**Rooms: no slower.** The living room warmed at 0.6 to 0.8 °C an hour with its valve fully open, against 0.4 to 0.7 before, and the bedroom was wide open and still behind 13 % of the time, down from 36 %. It was a milder week, about 9 °C outside against 5 °C, so the agent didn't give the boiler credit for that. But nothing got worse.
+
+Its verdict: keep the wider band.
 
 ## Is it saving gas?
 
-This is the question that matters, and the hardest one to answer, because the weather changes every day. The simplest fair measure is what a day of heating costs per degree of warmth: the day's gas bill divided by how many degrees warmer the house was than outside, on average. A cold day burns more gas but also gets more degrees, so the two roughly cancel. Lower is better.
+This is the question that matters, and the hardest one to answer, because the weather changes every day.
 
-On its own that still swings a lot. Last November, at the old settings, it was typically anywhere between about 22p and 52p a degree, depending on sunshine, wind and whether we were home. So for each day the agent also worked out what the old settings would have cost in the same conditions. That's the line on each bar: a bar below its line means the new settings saved money that day.
+The agent's yardstick is what a day of heating costs per degree of warmth: the day's gas cost divided by how many degrees warmer the house was than outside, on average. A cold day burns more gas but also gets more degrees, so the two roughly cancel. Lower is better.
 
-{{< chart "posts/heating-with-ai/gas-cost.svg" "Gas cost per degree of warmth: the day's gas at 6.22p per kWh, divided by how many degrees warmer the house was than outside on average. The line on each bar is what the old settings would have cost on the same day. Faded bars are days when the heating controls dropped out for part of the day, so they can't be compared." >}}
+On its own that still swings a lot. In November 2024, at the old settings, eight days in ten fell between 27p and 47p a degree (the shaded band in the chart), depending on sunshine, wind and whether we were home. So for each day the agent also worked out what the old settings would have cost in the same conditions. That's the line on each bar below: a bar under its line means the new settings saved money that day.
 
-10 and 11 November, still at the old settings, sit close to their lines, 4 % and 11 % above, though they're part of what the model learned from, so that's a sanity check rather than proof. Since the changes, only Tuesday 17 November has complete data: 46p a degree, against 43p at the old settings, so 8 % more. One day says very little, though. A single day's prediction is typically off by about 18 %, and it will take about a month of complete days to see a 6 % saving.
+{{< chart "posts/heating-with-ai/gas-cost.svg" "Gas cost per degree of warmth, at 6.22p per kWh. The line on each bar is what the old settings would have cost on the same day." >}}
 
-The line comes from a model the agent fitted on November 2024 and the two old-settings days this month. It predicts a day's gas from four things: the gap between indoor and outdoor temperature (indoor from the tado sensors in all six rooms), sunshine, wind, and whether it's a weekend. The agent tried simpler versions first and kept the one that predicted best on days it hadn't seen. It left heating hours out on purpose: at a lower flow temperature the valves stay open longer for the same heat, so a model built on them would invent a saving.
+Most of the bars are faded. On six of the nine days the heating controls were offline for an hour or more, and a day with gaps in the data can't be compared fairly.
 
-{{< chart "posts/heating-with-ai/model.svg" "How the old-settings line is worked out. The numbers are what the model learned from the old-settings days: for example, each extra degree between indoors and outdoors costs about 6 kWh a day." >}}
+That leaves three days. 10 and 11 November, still at the old settings, sit 4 % and 11 % above their lines. The model learned from those two days, so that's a sanity check rather than proof.
 
-The boiler dashboard keeps the running total. Each morning it compares yesterday's metered gas with the model and adds the difference, skipping days with gaps in the data.
+Since the changes, only Tuesday 17 November is complete: 46p a degree, against 43p at the old settings. That's 8 % more, not less. But one day says very little; that's inside the model's day-to-day noise (next section). The agent's sums say it will take about a month of complete days to see a 6 % saving.
+
+So the honest answer is: I don't know yet.
+
+### Where the line comes from
+
+The line is a model the agent fitted on gas use from late October and November 2024, at the old settings, plus the two old-settings days this month: 40 days in all. It predicts a day's gas from four things: the gap between indoor and outdoor temperature (indoor from the tado sensors in six rooms), sunshine, wind, and whether it's a weekend.
+
+{{< chart "posts/heating-with-ai/model.svg" "How the old-settings line is worked out. The numbers are what the model learned: for example, each extra degree between indoors and outdoors costs about 6 kWh a day." >}}
+
+The agent tried simpler versions and kept the one that predicted best on days it hadn't seen; a single day's prediction is typically off by about 10 kWh, roughly 18 %. It left heating hours out on purpose: at a lower flow temperature the valves stay open longer for the same heat, so a model built on them would invent a saving. The boiler dashboard keeps the running total, skipping days with gaps in the data.
 
 ## What it's been worth so far
 
-Before is the original 69 °C flow with a −6 K restart band; now is 60 °C with −10 K.
+Before is the original 69 °C flow with a −6 K restart band. Now is 60 °C with −10 K.
 
 | | Before | Now | Good |
 |---|---|---|---|
-| Heating time spent condensing | 28 % | 90 % | nearly all of it |
+| Heating time spent condensing | 28 % | 90 % | nearly all of it (the agent's target: over 90 %) |
 | Average burner run | 6.0 min | 6.7 min | 8–15 min |
-| Runs shorter than three minutes | 45 % | 26 % | few |
-| Median pause between runs | 3.5 min | 9.8 min | longer is better |
-| Burner starts per degree of indoor–outdoor difference, per day | 7.4 | 6.5 | fewer is better |
+| Runs shorter than three minutes | 45 % | 26 % | few; no standard figure |
+| Typical pause between runs | 3.5 min | 9.8 min | no standard figure; longer is better |
+| Burner starts per degree of indoor–outdoor difference, per day | 7.4 | 6.5 | no standard figure; fewer is better |
 | Living room warm-up, valve fully open | about 1 °C an hour | 0.6–0.8 °C an hour | no standard; compared with itself |
-| Gas against the old settings | baseline | not provable yet: one clean day, +8 % | 3–6 % less (the agent's estimate) |
+| Gas against the old settings | baseline | not provable yet: one complete day, +8 % | 3–6 % less (the agent's estimate) |
 
-- **Efficiency.** The boiler now condenses for most of its heating time instead of a quarter of it. The agent's estimate is that this is typically worth 3–6 % of heating gas, roughly £20–45 over a winter at my tariff. That's an estimate from typical efficiency curves, not a measurement. Each day's gas is noisy (±10 kWh) and the model carries about ±1.5 kWh a day of error that more days don't remove, so it will take about a month of clean days to see a 6 % change, and a 3 % one may never be provable this way.
-- **Wear.** About an eighth fewer ignitions than at the original settings, for the same heat, and the very short runs have halved. Starts are what wear the igniter, fan and gas valve, so this should help the boiler last. Nobody can put a number of years on that, and the agent didn't try.
-- **Comfort.** Heating isn't faster; it's a little slower. That was the price of condensing, and the agent measured it rather than assumed it away. The rooms still reach their targets, and the bedroom, the one that struggles, was kept out of any further cuts.
+- **Efficiency.** The boiler now condenses for nine tenths of its heating time instead of barely more than a quarter. The agent's estimate, from typical efficiency curves, is that this is worth 3–6 % of heating gas. It's an estimate, not a measurement.
+- **Wear.** About an eighth fewer starts than at the original settings for the same heat, and far fewer very short runs. Starts are what wear the igniter, fan and gas valve, so this should be kinder to the boiler. Nobody can put a number of years on that, and the agent didn't try.
+- **Cost.** Nothing I can show yet. If the 3–6 % holds, it's roughly £20–45 over a winter at my tariff. The one complete day so far came out 8 % above the model, well inside its noise; a 3 % saving may never be provable this way. The changes themselves cost nothing.
+- **Comfort.** Heating isn't faster; it's a little slower. That was the price of condensing, and the agent measured it rather than assumed it away. The rooms still reach their targets, and the bedroom, the one that struggles, is the reason the flow stayed at 60 °C.
 
-## What the agent was good at
+## Working with the agent
 
-- **Explaining.** I started out not knowing what short-cycling or a return temperature was. Every finding came with the why, in plain terms, and with the number that backed it up, so I could follow the reasoning well enough to say yes or no.
-- **Reading everything.** It went through days of ten-second history for a dozen sensors, matched it against valve positions and outdoor temperature, and kept the definitions consistent across days. I would have looked at three charts and guessed.
-- **Predicting before changing.** Each proposal came with numbers it expected to see and a condition for undoing it, written down before anything changed. The review then simply checks them.
-- **Distrusting its own numbers.** The tracker bugs, and a mistake it made in this week's review (it briefly concluded the living room "never reached 20 °C" at 60 °C; the 20 °C target only lasts an hour, so that was an artefact), were both caught by going back to the raw data.
+What it was good at:
+
+- **Explaining.** I started out not knowing what short-cycling or a return temperature was. Every finding came with the why, in plain terms, and with the number behind it, so I could follow the reasoning well enough to say yes or no.
+- **Reading everything.** It went through days of ten-second history for a dozen sensors, matched it against valve positions and outdoor temperature, and kept the definitions consistent from one review to the next. I would have looked at three charts and guessed.
+- **Predicting before changing.** Each proposal came with the numbers it expected to see and a condition for undoing it, written down before anything changed. The review then simply checks them.
 - **Writing everything down.** The repo has a decision log, a tuning log with a baseline and a review date for each change, and a backlog. When a session picks up three days later, it starts from the notes, not from memory.
+- **Distrusting its own numbers.** Before trusting any finding, it built a tracker for each room: how fast it warms up, how fast it loses heat overnight, how hard its radiator works. I then asked it to recompute every recorded value from the raw history and compare, and it found three bugs in its own work. The best one: the sensor that decides whether a room is "calling for heat" compared the valve opening with a threshold of exactly zero, so when a valve closed to 0 % the value sat on the threshold and Home Assistant kept the previous state. Once a room asked for heat, it asked forever, and the dashboard claimed the living room had been heating for 18 hours. Another bug counted valve time twice and gave one room an average valve position of 155 %. None of these would have crashed anything; they'd have produced plausible numbers that were wrong. Every figure now gets reproduced from raw data at least once before it goes on a dashboard.
 
-## What it needed me for
+What it needed me for:
 
 - **Turning the dial.** Physical changes, and anything that could leave the house cold, are mine.
 - **Judgement about the house.** The bedroom runs humid, so lowering its target to save gas is a bad trade. That's not in the data.
-- **Unblocking the plumbing.** At one point macOS quietly withdrew the terminal's permission to talk to anything on my local network, and every connection to the Pi failed with "No route to host". The agent eventually worked out that processes started by `launchd` aren't covered by that permission and built itself a small proxy. But noticing that the permission had gone was a human-in-the-loop moment.
+- **Unblocking it.** At one point macOS quietly withdrew the terminal's permission to talk to anything on my local network, and every connection to the Pi failed with "No route to host". The agent eventually found a way round it, but noticing that the permission had gone took a human.
 
-## Notes on the charts
+## What's next: going after cost
 
-The boiler charts come from Home Assistant's recorder database: raw ten-second history from the EMS-ESP gateway and the tado integration, between 10 and 19 November 2026. "Heating" means the burner was on, the boiler was in heating mode and the hot-water valve was closed, so hot water doesn't muddy the figures. Hours when the heating controls were offline are left out of every figure. The gas chart uses hourly smart-meter readings, room and outdoor temperatures from Home Assistant's long-term statistics, and sunshine and wind from the [Open-Meteo](https://open-meteo.com/) historical weather archive. The SVGs are generated by a small script from a JSON export that lives next to this post.
+Both changes so far were about how well the boiler runs. Neither goes after the gas bill directly, and the agent's view is that the boiler settings worth changing are now changed. What's left is how much heat the house asks for. So on 19 November we agreed a second phase, again one change at a time.
+
+**First, stop heating rooms nobody uses.** Three rooms (the entrance, a hobby room and the guest room) had schedules of 18 °C or more, and one of them was the warmest room in the house. I'm turning them down to 14–15 °C in the tado app. The agent's estimate is 3 to 7 kWh a day, £30–70 over a winter. It's a rough estimate, because the rooms next door will keep them warmer than their setting.
+
+Measuring this needed a new yardstick. The six-room model above would see cooler spare rooms as a house that's less warm, expect less gas, and give the change no credit. So the agent built a second model on the three rooms we actually heat. It predicts almost as well, typically off by 9.9 kWh a day against 9.7.
+
+There's a way back here too. Cool rooms can get damp, so the agent set a rollback rule: if the dashboard's damp check flags any of the three rooms, or their humidity stays above 70 % (its own threshold, not a standard), they go back up to 16–17 °C.
+
+**Then, a flow temperature that follows the weather.** On a mild day the radiators don't need 60 °C water. The agent wants to trial Home Assistant lowering the flow when it's mild, for example to 55 °C when it's above 8 °C outside. It first has to check that the boiler keeps a flow setting sent over the data bus rather than snapping back to the dial, and that the bedroom still keeps up. It expects 1–2 %, since the boiler already condenses most of the time.
+
+Neither has results yet. When they do, they'll get their own chapter here.
 
 [home-assistant]: https://www.home-assistant.io/
 [raspberry-pi]: https://www.raspberrypi.com/products/raspberry-pi-4-model-b/
@@ -154,3 +211,4 @@ The boiler charts come from Home Assistant's recorder database: raw ten-second h
 [bbqkees]: https://bbqkees-electronics.nl/
 [adl]: https://www.gov.uk/government/publications/conservation-of-fuel-and-power-approved-document-l
 [cityplumbing]: https://www.cityplumbing.co.uk/blog/boiler-short-cycling
+[boilercover]: https://boilercoveruk.co.uk/blog/boiler-short-cycling

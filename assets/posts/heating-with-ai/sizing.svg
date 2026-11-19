@@ -1,0 +1,16 @@
+<svg viewBox="1.2 0 680 166" role="img" aria-labelledby="sizing-t sizing-d" xmlns="http://www.w3.org/2000/svg">
+<title id="sizing-t">The burner's range against what the house needs</title>
+<desc id="sizing-d">Two bars on a scale from 0 to 24 kW. The house needs about 2.3 kW on a mild day; the burner can only run between about 7 and 24 kW, so even its lowest flame is three times too much.</desc>
+<text x="10.0" y="18.0" text-anchor="start" class="label strong s-after2-text">What the house needs on a mild day: about 2.3 kW</text>
+<rect x="10.0" y="28.0" width="63.2" height="22.0" rx="3" class="s-after2 solid"/>
+<text x="202.5" y="82.0" text-anchor="start" class="label strong s-before-text">What the burner can do: about 7 to 24 kW</text>
+<rect x="202.5" y="92.0" width="467.5" height="22.0" rx="3" class="s-before solid"/>
+<line x1="202.5" y1="24.0" x2="202.5" y2="122.0" class="target"/>
+<text x="210.5" y="44.0" text-anchor="start" class="note">lowest flame: three times what's needed</text>
+<line x1="10.0" y1="122.0" x2="670.0" y2="122.0" class="grid"/>
+<text x="10.0" y="140.0" text-anchor="middle" class="tick">0 kW</text>
+<text x="175.0" y="140.0" text-anchor="middle" class="tick">6 kW</text>
+<text x="340.0" y="140.0" text-anchor="middle" class="tick">12 kW</text>
+<text x="505.0" y="140.0" text-anchor="middle" class="tick">18 kW</text>
+<text x="670.0" y="140.0" text-anchor="middle" class="tick">24 kW</text>
+</svg>

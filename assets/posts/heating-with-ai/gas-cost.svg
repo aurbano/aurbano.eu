@@ -1,6 +1,7 @@
-<svg viewBox="8.1 0 680 330" role="img" aria-labelledby="gas-cost-t gas-cost-d" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="8.1 0 680 348" role="img" aria-labelledby="gas-cost-t gas-cost-d" xmlns="http://www.w3.org/2000/svg">
 <title id="gas-cost-t">Gas cost per degree of warmth, per day</title>
-<desc id="gas-cost-d">Bars per day from 10 to 18 November: what the day's gas cost, divided by how many degrees warmer the house was than outside. A marker on each complete day shows what the old settings would have cost on the same day. 10 and 11 November sit on their markers; 17 November, the only complete day at the new settings, is a little above its marker.</desc>
+<desc id="gas-cost-d">Bars per day from 10 to 18 November: what the day's gas cost, divided by how many degrees warmer the house was than outside. A marker on each complete day shows what the old settings would have cost on the same day. 10 and 11 November sit 4 % and 11 % above their markers; 17 November, the only complete day at the new settings, is 8 % above its marker.</desc>
+<rect x="48.0" y="97.4" width="622.0" height="69.0" rx="0" class="zone"/>
 <rect x="48.0" y="9.0" width="12.0" height="12.0" rx="2" class="s-before solid"/>
 <text x="66.0" y="19.0" text-anchor="start" class="label">69 °C</text>
 <rect x="117.5" y="9.0" width="12.0" height="12.0" rx="2" class="s-after solid"/>
@@ -47,5 +48,6 @@
 <rect x="614.7" y="99.1" width="41.5" height="162.9" rx="3" fill-opacity="0.25" class="s-after2 solid"/>
 <text x="635.4" y="91.1" text-anchor="middle" class="note">gap</text>
 <text x="635.4" y="280.0" text-anchor="middle" class="tick">Wed 18</text>
-<text x="48.0" y="306.0" text-anchor="start" class="note">Faded: heating controls offline for part of the day, so not comparable.</text>
+<text x="48.0" y="306.0" text-anchor="start" class="note">Shaded: the usual range in November 2024 at the old settings, 27p to 47p.</text>
+<text x="48.0" y="324.0" text-anchor="start" class="note">Faded: heating controls offline for part of the day, so not comparable.</text>
 </svg>

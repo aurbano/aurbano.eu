@@ -103,12 +103,12 @@ def daily():
     body = []
     legend(body, left, 18, [("s-before", "69 °C"), ("s-change", "change day"), ("s-after", "60 °C, −6 K"), ("s-after2", "60 °C, −10 K")])
     y_axis(body, ys, [0, 25, 50, 75, 100], left, right, lambda v: f"{v}%")
-    body.append(line(left, ys(60), right, ys(60), "target"))
-    body.append(text(left + 4, ys(60) - 6, "good: over 60 %", "note"))
+    body.append(line(left, ys(90), right, ys(90), "target"))
+    body.append(text(left + 4, ys(90) - 6, "the agent's target: over 90 %", "note"))
     slot = (right - left) / len(days)
     for i, d in enumerate(days):
         day = datetime.strptime(d["day"], "%Y-%m-%d")
-        cls = "s-before" if day.day < 13 else "s-change" if day.day == 13 else "s-after" if day.day <= 16 else "s-after2"
+        cls = "s-before" if day.day < 13 else "s-change" if day.day in (13, 16) else "s-after" if day.day < 16 else "s-after2"
         v = d["condensing_pct"]
         x = left + i * slot + slot * 0.22
         bw = slot * 0.56
@@ -181,38 +181,6 @@ def trace():
         "After, at 60 °C, most of the firing time is below 55 °C and condensing, but the burner still starts every few minutes.", body)
 
 
-# 3. Where the return temperature sat while the burner was heating --------------------------------
-def return_hist():
-    h, top, bottom, left, right = 300, 40, 252, 44, W - 10
-    rh = DATA["return_hist"]
-    lo, hi = 38, 72
-    shares = {k: {int(t): 100 * m / rh[k]["total_min"] for t, m in rh[k]["minutes"].items()} for k in rh}
-    ymax = 25
-    xs = scale(lo, hi, left, right)
-    ys = scale(0, ymax, bottom, top)
-    body = [rect(left, top, xs(55) - left, bottom - top, "zone-good")]
-    y_axis(body, ys, [0, 5, 10, 15, 20, 25], left, right, lambda v: f"{v}%")
-    for key, cls in (("before", "s-before"), ("after", "s-after")):
-        pts = [(xs(lo), ys(0))]
-        for t in range(lo, hi):
-            v = shares[key].get(t, 0)
-            pts += [(xs(t), ys(v)), (xs(t + 1), ys(v))]
-        pts.append((xs(hi), ys(0)))
-        body.append(path(pts, f"area {cls}"))
-    body.append(line(xs(55), top, xs(55), bottom, "target"))
-    body.append(text(xs(55) - 6, top - 8, "← condensing (good)", "note good-text", "end"))
-    body.append(text(xs(55) + 6, top - 8, "not condensing →", "note bad-text"))
-    for t in range(40, hi + 1, 5):
-        body.append(text(xs(t), bottom + 18, f"{t} °C", "tick", "middle"))
-    body.append(text(xs(44.5), ys(15), "60 °C flow", "label strong s-after-text", "middle"))
-    body.append(text(xs(44.5), ys(15) + 16, f"{rh['after']['condensing_pct']:.0f} % below 55 °C", "label s-after-text", "middle"))
-    body.append(text(xs(68.5), ys(15), "69 °C flow", "label strong s-before-text", "middle"))
-    body.append(text(xs(68.5), ys(15) + 16, f"{rh['before']['condensing_pct']:.0f} % below 55 °C", "label s-before-text", "middle"))
-    svg("return-temps", h, "Return water temperature while the burner was heating, as a share of firing time",
-        "Distribution of return temperature. At 69 °C most firing time had the return between 55 and 65 °C; "
-        "at 60 °C it moved to 46 to 54 °C.", body)
-
-
 # 4. Burner cycle lengths -----------------------------------------------------------------
 def cycles():
     h, top, bottom, left, right = 290, 46, 240, 44, W - 10
@@ -237,13 +205,16 @@ def cycles():
     x5 = left + 4 * slot
     body.append(line(x5, top - 4, x5, bottom, "target"))
     body.append(text(x5 - 8, top + 10, "under 5 min: " + " → ".join(f"{cy[k]['under5_pct']} %" for k in keys), "label strong", "end"))
+    x8 = left + 5 * slot
+    body.append(line(x8, top - 4, x8, bottom, "target"))
+    body.append(text(x8 + 8, top + 10, "healthy: 8 min and up →", "note good-text"))
     svg("cycles", h, "How long each burner run lasted at each setting",
         "Grouped bars of run length. Lowering the flow to 60 °C left the distribution almost unchanged, about three "
         "quarters of runs under five minutes; widening the restart band to −10 K moved runs from under three minutes "
-        "to three to five minutes and longer.", body)
+        "to three to five minutes and longer. Runs of eight minutes or more, the healthy length, stay a minority.", body)
 
 
-# 5. Living Room warming up with the valve fully open ------------------------------------------
+# 5. Living room warming up with the valve fully open ------------------------------------------
 def heatup():
     h, top, bottom, left, right = 300, 40, 250, 44, W - 10
     hu = DATA["heatup"]
@@ -266,14 +237,14 @@ def heatup():
         body.append(path([(lx, ly - 4), (lx + 24, ly - 4)], f"series {cls}"))
         body.append(text(lx + 32, ly, f"{r['label']}: {rate:.2f} °C/h", f"label strong {cls.split()[0]}-text"))
         body.append(text(right, ly, f"{r['mean_flow']:.0f} °C flow, {r['outdoor']:.0f} °C out", "note", "end"))
-    svg("heatup", h, "Living Room warming up in the morning with its valve fully open",
+    svg("heatup", h, "Living room warming up in the morning with its valve fully open",
         "Temperature rise since the valve opened fully. At 69 °C the room rose 1.3 °C in 75 minutes; at 60 °C it rose "
         "0.9 °C in 80 minutes and 0.9 °C in 125 minutes, on milder mornings.", body)
 
 
 # 6. Gas cost per degree of warmth, per day, against the old settings on the same day ---------------
 def gas_cost():
-    h, top, bottom, left, right = 330, 50, 262, 48, W - 10
+    h, top, bottom, left, right = 348, 50, 262, 48, W - 10
     gm = DATA["gas_model"]
     rate = gm["rate_p_per_kwh"]
     days = gm["nov2026"]
@@ -301,12 +272,17 @@ def gas_cost():
             body.append(text(x + bw / 2, ys(v) - 8, "gap", "note", "middle"))
         day = datetime.strptime(d["date"], "%Y-%m-%d")
         body.append(text(x + bw / 2, bottom + 18, day.strftime("%a %-d"), "tick", "middle"))
-    body.append(text(left, bottom + 44, "Faded: heating controls offline for part of the day, so not comparable.", "note"))
+    # Usual range at the old settings: the middle 80 % of the baseline days' cost per degree.
+    base = sorted(g * rate / dt for g, dt in gm["baseline_gas_dT"])
+    p10, p90 = base[round(0.1 * (len(base) - 1))], base[round(0.9 * (len(base) - 1))]
+    body.insert(0, rect(left, ys(p90), right - left, ys(p10) - ys(p90), "zone"))
+    body.append(text(left, bottom + 44, f"Shaded: the usual range in November 2024 at the old settings, {p10:.0f}p to {p90:.0f}p.", "note"))
+    body.append(text(left, bottom + 62, "Faded: heating controls offline for part of the day, so not comparable.", "note"))
     svg("gas-cost", h, "Gas cost per degree of warmth, per day",
         "Bars per day from 10 to 18 November: what the day's gas cost, divided by how many degrees warmer the house was "
         "than outside. A marker on each complete day shows what the old settings would have cost on the same day. "
-        "10 and 11 November sit on their markers; 17 November, the only complete day at the new settings, is a little "
-        "above its marker.", body)
+        "10 and 11 November sit 4 % and 11 % above their markers; 17 November, the only complete day at the new "
+        "settings, is 8 % above its marker.", body)
 
 
 # 7. How expected gas is worked out (diagram) --------------------------------------------------
@@ -500,6 +476,70 @@ def band_diagram():
         "run and pause at each setting: the wider band gives longer runs, longer pauses and fewer starts.", body)
 
 
-for chart in (daily, trace, return_hist, cycles, heatup, gas_cost, model_diagram, rooms, condensing_diagram, band_diagram):
+# 11. Who does what (diagram) --------------------------------------------------------------------
+def setup_diagram():
+    h = 352
+    body = ['<defs><marker id="setup-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" '
+            'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker>'
+            + "".join(f'<marker id="setup-pipe-{k}" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="2.6" markerHeight="2.6" '
+                      f'orient="auto"><path d="M0,0 L10,5 L0,10 z" class="pipe-head-{k}"/></marker>' for k in ("cold", "hot"))
+            + '</defs>']
+
+    def box(x, y, w, hh, title, lines, cls="box"):
+        body.append(rect(x, y, w, hh, cls, 10))
+        body.append(text(x + 14, y + 25, title, "d-title"))
+        for i, s in enumerate(lines):
+            body.append(text(x + 14, y + 46 + 18 * i, s, "d-note"))
+
+    def arrow(d):
+        body.append(f'<path d="{d}" class="arrow" marker-end="url(#setup-arrow)"/>')
+
+    box(0, 24, 190, 100, "Boiler", ["24 kW gas combi; a dial", "on the front sets the", "flow temperature"])
+    box(490, 24, 190, 100, "Radiators", ["one per room, each", "with a tado valve that", "opens when it's cold"])
+    body.append('<path d="M196.0,52.0 L482.0,52.0" class="pipe pipe-hot" marker-end="url(#setup-pipe-hot)"/>')
+    body.append(text(340, 40, "flow: hot water out", "d-note warn", "middle"))
+    body.append('<path d="M484.0,98.0 L198.0,98.0" class="pipe pipe-cold" marker-end="url(#setup-pipe-cold)"/>')
+    body.append(text(340, 120, "return: cooler water back", "d-note cool", "middle"))
+    box(0, 170, 190, 62, "EMS-ESP gateway", ["boiler data every 10 s"])
+    box(245, 170, 190, 62, "Home Assistant", ["keeps all the history"])
+    box(490, 170, 190, 62, "tado", ["room temperatures, valves"])
+    arrow("M95.0,126.0 L95.0,168.0")
+    arrow("M585.0,126.0 L585.0,168.0")
+    arrow("M192.0,201.0 L243.0,201.0")
+    arrow("M488.0,201.0 L437.0,201.0")
+    box(100, 280, 220, 62, "AI agent", ["reads, explains, proposes"], "box box-accent")
+    box(380, 280, 200, 62, "Me", ["decide, and turn the dial"])
+    arrow("M300.0,234.0 L230.0,278.0")
+    arrow("M322.0,311.0 L378.0,311.0")
+    svg("setup", h, "Who does what",
+        "The boiler sends hot water, the flow, to the radiators and gets cooler water, the return, back. A gateway reads "
+        "the boiler and tado reads the rooms; both feed Home Assistant, which keeps the history. The AI agent reads that "
+        "history, explains and proposes; I decide and turn the dial.", body)
+
+
+# 13. Why it short-cycles: the burner's range against what the house needs (diagram) ----------------
+def sizing_diagram():
+    # From the tuning notes, not data.json: 24 kW nominal, modulation floor about 30 % (about 7 kW), and an
+    # average heating need of about 2.3 kW on a mild day.
+    max_kw, min_kw, need_kw = 24, 7, 2.3
+    h, left, right = 166, 10, W - 10
+    xs = scale(0, max_kw, left, right)
+    body = []
+    body.append(text(left, 18, f"What the house needs on a mild day: about {need_kw} kW", "label strong s-after2-text"))
+    body.append(rect(xs(0), 28, xs(need_kw) - xs(0), 22, "s-after2 solid", 3))
+    body.append(text(xs(min_kw), 82, f"What the burner can do: about {min_kw} to {max_kw} kW", "label strong s-before-text"))
+    body.append(rect(xs(min_kw), 92, xs(max_kw) - xs(min_kw), 22, "s-before solid", 3))
+    body.append(line(xs(min_kw), 24, xs(min_kw), 122, "target"))
+    body.append(text(xs(min_kw) + 8, 44, "lowest flame: three times what's needed", "note"))
+    body.append(line(left, 122, right, 122, "grid"))
+    for v in range(0, max_kw + 1, 6):
+        body.append(text(xs(v), 140, f"{v} kW", "tick", "middle"))
+    svg("sizing", h, "The burner's range against what the house needs",
+        "Two bars on a scale from 0 to 24 kW. The house needs about 2.3 kW on a mild day; the burner can only run "
+        "between about 7 and 24 kW, so even its lowest flame is three times too much.", body)
+
+
+for chart in (daily, trace, cycles, heatup, gas_cost, model_diagram, rooms, condensing_diagram, band_diagram,
+              setup_diagram, sizing_diagram):
     chart()
 print("wrote", ", ".join(sorted(p.name for p in DIR.glob("*.svg"))))

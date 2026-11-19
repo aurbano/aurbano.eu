@@ -1,0 +1,40 @@
+<svg viewBox="0.0 0 680 352" role="img" aria-labelledby="setup-t setup-d" xmlns="http://www.w3.org/2000/svg">
+<title id="setup-t">Who does what</title>
+<desc id="setup-d">The boiler sends hot water, the flow, to the radiators and gets cooler water, the return, back. A gateway reads the boiler and tado reads the rooms; both feed Home Assistant, which keeps the history. The AI agent reads that history, explains and proposes; I decide and turn the dial.</desc>
+<defs><marker id="setup-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker><marker id="setup-pipe-cold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="2.6" markerHeight="2.6" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="pipe-head-cold"/></marker><marker id="setup-pipe-hot" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="2.6" markerHeight="2.6" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="pipe-head-hot"/></marker></defs>
+<rect x="0.0" y="24.0" width="190.0" height="100.0" rx="10" class="box"/>
+<text x="14.0" y="49.0" text-anchor="start" class="d-title">Boiler</text>
+<text x="14.0" y="70.0" text-anchor="start" class="d-note">24 kW gas combi; a dial</text>
+<text x="14.0" y="88.0" text-anchor="start" class="d-note">on the front sets the</text>
+<text x="14.0" y="106.0" text-anchor="start" class="d-note">flow temperature</text>
+<rect x="490.0" y="24.0" width="190.0" height="100.0" rx="10" class="box"/>
+<text x="504.0" y="49.0" text-anchor="start" class="d-title">Radiators</text>
+<text x="504.0" y="70.0" text-anchor="start" class="d-note">one per room, each</text>
+<text x="504.0" y="88.0" text-anchor="start" class="d-note">with a tado valve that</text>
+<text x="504.0" y="106.0" text-anchor="start" class="d-note">opens when it's cold</text>
+<path d="M196.0,52.0 L482.0,52.0" class="pipe pipe-hot" marker-end="url(#setup-pipe-hot)"/>
+<text x="340.0" y="40.0" text-anchor="middle" class="d-note warn">flow: hot water out</text>
+<path d="M484.0,98.0 L198.0,98.0" class="pipe pipe-cold" marker-end="url(#setup-pipe-cold)"/>
+<text x="340.0" y="120.0" text-anchor="middle" class="d-note cool">return: cooler water back</text>
+<rect x="0.0" y="170.0" width="190.0" height="62.0" rx="10" class="box"/>
+<text x="14.0" y="195.0" text-anchor="start" class="d-title">EMS-ESP gateway</text>
+<text x="14.0" y="216.0" text-anchor="start" class="d-note">boiler data every 10 s</text>
+<rect x="245.0" y="170.0" width="190.0" height="62.0" rx="10" class="box"/>
+<text x="259.0" y="195.0" text-anchor="start" class="d-title">Home Assistant</text>
+<text x="259.0" y="216.0" text-anchor="start" class="d-note">keeps all the history</text>
+<rect x="490.0" y="170.0" width="190.0" height="62.0" rx="10" class="box"/>
+<text x="504.0" y="195.0" text-anchor="start" class="d-title">tado</text>
+<text x="504.0" y="216.0" text-anchor="start" class="d-note">room temperatures, valves</text>
+<path d="M95.0,126.0 L95.0,168.0" class="arrow" marker-end="url(#setup-arrow)"/>
+<path d="M585.0,126.0 L585.0,168.0" class="arrow" marker-end="url(#setup-arrow)"/>
+<path d="M192.0,201.0 L243.0,201.0" class="arrow" marker-end="url(#setup-arrow)"/>
+<path d="M488.0,201.0 L437.0,201.0" class="arrow" marker-end="url(#setup-arrow)"/>
+<rect x="100.0" y="280.0" width="220.0" height="62.0" rx="10" class="box box-accent"/>
+<text x="114.0" y="305.0" text-anchor="start" class="d-title">AI agent</text>
+<text x="114.0" y="326.0" text-anchor="start" class="d-note">reads, explains, proposes</text>
+<rect x="380.0" y="280.0" width="200.0" height="62.0" rx="10" class="box"/>
+<text x="394.0" y="305.0" text-anchor="start" class="d-title">Me</text>
+<text x="394.0" y="326.0" text-anchor="start" class="d-note">decide, and turn the dial</text>
+<path d="M300.0,234.0 L230.0,278.0" class="arrow" marker-end="url(#setup-arrow)"/>
+<path d="M322.0,311.0 L378.0,311.0" class="arrow" marker-end="url(#setup-arrow)"/>
+</svg>

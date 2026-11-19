@@ -1,6 +1,6 @@
 <svg viewBox="6.1 0 680 290" role="img" aria-labelledby="cycles-t cycles-d" xmlns="http://www.w3.org/2000/svg">
 <title id="cycles-t">How long each burner run lasted at each setting</title>
-<desc id="cycles-d">Grouped bars of run length. Lowering the flow to 60 °C left the distribution almost unchanged, about three quarters of runs under five minutes; widening the restart band to −10 K moved runs from under three minutes to three to five minutes and longer.</desc>
+<desc id="cycles-d">Grouped bars of run length. Lowering the flow to 60 °C left the distribution almost unchanged, about three quarters of runs under five minutes; widening the restart band to −10 K moved runs from under three minutes to three to five minutes and longer. Runs of eight minutes or more, the healthy length, stay a minority.</desc>
 <rect x="44.0" y="9.0" width="12.0" height="12.0" rx="2" class="s-before solid"/>
 <text x="62.0" y="19.0" text-anchor="start" class="label">69 °C (258 runs)</text>
 <rect x="200.4" y="9.0" width="12.0" height="12.0" rx="2" class="s-after solid"/>
@@ -52,4 +52,6 @@
 <text x="357.0" y="280.0" text-anchor="middle" class="note">minutes per burner run</text>
 <line x1="357.0" y1="42.0" x2="357.0" y2="240.0" class="target"/>
 <text x="349.0" y="56.0" text-anchor="end" class="label strong">under 5 min: 72 % → 73 % → 64 %</text>
+<line x1="435.2" y1="42.0" x2="435.2" y2="240.0" class="target"/>
+<text x="443.2" y="56.0" text-anchor="start" class="note good-text">healthy: 8 min and up →</text>
 </svg>
