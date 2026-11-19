@@ -1,6 +1,6 @@
 ---
 title: I let an AI agent tune my boiler
-description: A week of data from the boiler bus, one dial turned, and what an AI agent is (and isn't) good at when the system it's optimising is your house.
+description: Ten days of data from the boiler bus, two settings changed, and what an AI agent is (and isn't) good at when the system it's optimising is your house.
 date: 2026-11-16
 thumbnail: ''
 categories: []
@@ -47,7 +47,7 @@ The condensing problem went away almost overnight.
 
 {{< chart "posts/heating-with-ai/trace.svg" "The water coming back to the boiler, midnight to 3 am, on a night before and a night after the change. Each band is the burner running, and the line is coloured the same way: green while the return is below 55 °C and the boiler condenses, orange while it's above and it doesn't, grey while the burner is off. After the change most of it turns green, but there are still a lot of bands, which is the next problem." >}}
 
-{{< chart "posts/heating-with-ai/daily.svg" "Share of heating time with the return below 55 °C, per day. Friday is the change day: the dial went to 60 °C at 13:19." >}}
+{{< chart "posts/heating-with-ai/daily.svg" "Share of heating time with the return below 55 °C, per day. Friday is the change day: the dial went to 60 °C at 13:19. The blue days come after the second change, on Monday afternoon." >}}
 
 The return temperature distribution shows why: almost the whole hump moved below the line.
 
@@ -55,9 +55,7 @@ The return temperature distribution shows why: almost the whole hump moved below
 
 ## What didn't change
 
-Short-cycling didn't improve at all. Lowering the flow temperature moved the boiler's on/off band down by nine degrees, from roughly 61–72 °C to 53–63 °C, but didn't make it any wider. So the burner still covers the same ten degrees in the same few minutes and switches off.
-
-{{< chart "posts/heating-with-ai/cycles.svg" "Length of each burner run. Almost identical before and after: about three quarters of runs are under five minutes either way." >}}
+Short-cycling didn't improve at all. Lowering the flow temperature moved the boiler's on/off band down by nine degrees, from roughly 61–72 °C to 53–63 °C, but didn't make it any wider. So the burner still covers the same ten degrees in the same few minutes and switches off. About three quarters of runs were under five minutes either way: 72 % before, 73 % after.
 
 That's the next lever: the restart band, which sets how far the water has to cool before the burner lights again. More on that below.
 
@@ -77,7 +75,15 @@ Cycling was the one thing the first change didn't touch, so the second one went 
 
 The expectation was written down before the change: about 25 % fewer starts, seven or more minutes per run, condensing still above 90 %, and rooms no slower than at 60 °C. Long heat-up runs never cool down to the restart point, so they shouldn't notice; the change mostly stretches the short on-off cycles in between. If the rooms suffer, it goes back to −6 K. The boiler dashboard now shows each change, what we expect from it, and how each day measures up.
 
-<!-- Draft: results of the 19 Nov review go here (starts per degree day, minutes per run, off time, rooms), with a before/after cycles chart. -->
+Three days later, the review. The clearest change is the pause between runs: the median off time went from 3.8 minutes to 9.8, so the burner now rests for ten minutes instead of lighting again almost straight away. Runs shorter than three minutes halved, from 54 % of all runs to 26 %, and the average run grew from 5.4 to 6.8 minutes, just short of the seven I'd hoped for.
+
+{{< chart "posts/heating-with-ai/cycles.svg" "Length of each burner run at each setting. Lowering the flow temperature barely changed it; widening the restart band moved most of the very short runs up to three minutes and longer." >}}
+
+Starts fell by about a quarter, as predicted. Per degree of difference between indoors and outdoors, the boiler lit 8.5 times a day at 60 °C with the old band and 6.5 times with the new one, fewer even than the 7.4 at the original settings. Burner time per degree barely moved, 45.8 minutes against 43.7. That's the point: the same heat, in fewer and longer pieces.
+
+Condensing slipped a little, from 93 % to 90 %, right on the line I'd set. Tuesday was 96 %. Wednesday dropped to 76 % because of two stretches of almost continuous firing, around midday and in the evening, that pushed the return to 56–57 °C. Long runs at high demand are where a 60 °C flow runs out of headroom, and they aren't what this change was about.
+
+The rooms didn't notice. On Tuesday morning the living room warmed at 0.8 °C an hour with its valve fully open, against 0.4–0.7 before the change, and the bedroom spent 13 % of the time wide open and still behind, down from 37 %. It was a milder week, about 9 °C outside against 5 °C, so I wouldn't credit the boiler for the rooms, but nothing got worse. The wider band stays.
 
 ## Gas, honestly
 
@@ -87,9 +93,9 @@ So the agent built a model of what the house *should* have used at the old setti
 
 {{< chart "posts/heating-with-ai/model.svg" "How expected gas is worked out. The numbers are what the model learned from the old-settings days: for example, each extra degree between indoors and outdoors costs about 6 kWh a day." >}}
 
-{{< chart "posts/heating-with-ai/gas-expected.svg" "Measured gas against what the old settings would have used on the same day, one dot per day. The grey dots are November 2024, each predicted with that day left out of the fit; the shaded band is the model's typical daily error." >}}
+{{< chart "posts/heating-with-ai/gas-expected.svg" "Measured gas against what the old settings would have used on the same day, one dot per day. The grey dots are November 2024, each predicted with that day left out of the fit; the coloured dots are this November, only days with complete data. The shaded band is the model's typical daily error." >}}
 
-10 and 11 November, still at 69 °C, land on the line, so the model still describes this year's house. There is no usable day at 60 °C yet. The first ones arrive this week, and they go on this chart as they come in: dots below the band mean the tuning is saving gas.
+10 and 11 November, still at 69 °C, land on the line, so the model still describes this year's house. So far only one day at the new settings has complete data: Tuesday 17 November, which used 63 kWh against 59 expected. That's 4.5 kWh more, about 8 %, well inside the band, so on its own it says nothing either way. More days go on this chart as they come in: dots below the band mean the tuning is saving gas.
 
 What to expect: better condensing is typically worth 3–6 % of heating gas, roughly £20–45 over a winter at my tariff. Each day is noisy (±10 kWh), and the model itself carries about ±1.5 kWh a day of error that more days don't remove. It will take about a month of days to see a 6 % change, and a 3 % one may never be provable this way.
 
@@ -109,7 +115,7 @@ The boiler dashboard now keeps the running total. Each morning it compares yeste
 
 ## Notes on the charts
 
-The boiler charts come from Home Assistant's recorder database: raw ten-second history from the EMS-ESP gateway and the tado integration, between 10 and 16 November 2026. "Heating" means the burner was on, the boiler was in heating mode and the hot-water valve was closed, so hot water doesn't muddy the figures. Hours when the heating controls were offline are left out of every figure. The gas chart uses hourly smart-meter readings, room and outdoor temperatures from Home Assistant's long-term statistics, and sunshine and wind from the [Open-Meteo](https://open-meteo.com/) historical weather archive. The SVGs are generated by a small script from a JSON export that lives next to this post.
+The boiler charts come from Home Assistant's recorder database: raw ten-second history from the EMS-ESP gateway and the tado integration, between 10 and 19 November 2026. "Heating" means the burner was on, the boiler was in heating mode and the hot-water valve was closed, so hot water doesn't muddy the figures. Hours when the heating controls were offline are left out of every figure. The gas chart uses hourly smart-meter readings, room and outdoor temperatures from Home Assistant's long-term statistics, and sunshine and wind from the [Open-Meteo](https://open-meteo.com/) historical weather archive. The SVGs are generated by a small script from a JSON export that lives next to this post.
 
 [home-assistant]: https://www.home-assistant.io/
 [raspberry-pi]: https://www.raspberrypi.com/products/raspberry-pi-4-model-b/

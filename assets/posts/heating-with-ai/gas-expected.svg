@@ -1,10 +1,12 @@
 <svg viewBox="0 0 680 460" role="img" aria-labelledby="gas-expected-t gas-expected-d" xmlns="http://www.w3.org/2000/svg">
 <title id="gas-expected-t">Measured daily gas against the gas the old boiler settings would have used</title>
-<desc id="gas-expected-d">Scatter of measured against expected daily gas. November 2024 days scatter around the diagonal within about 10 kWh, and 10 and 11 November 2026 sit on it.</desc>
+<desc id="gas-expected-d">Scatter of measured against expected daily gas. November 2024 days scatter around the diagonal within about 10 kWh; 10 and 11 November 2026 sit on it, and 17 November, the first clean day at the new settings, is 4.5 kWh above it, inside the band.</desc>
 <circle cx="56.0" cy="13" r="5" class="s-base faint solid"/>
 <text x="66.0" y="17.0" text-anchor="start" class="label">Nov 2024 (69 °C)</text>
 <circle cx="216.4" cy="13" r="5" class="s-before solid"/>
 <text x="226.4" y="17.0" text-anchor="start" class="label">Nov 2026, 69 °C</text>
+<circle cx="368.9" cy="13" r="5" class="s-after2 solid"/>
+<text x="378.9" y="17.0" text-anchor="start" class="label">Nov 2026, 60 °C, −10 K</text>
 <path d="M50.0,378.9 L615.2,58.0 L670.0,58.0 L670.0,89.1 L104.8,410.0 L50.0,410.0 L50.0,378.9" class="zone"/>
 <line x1="50.0" y1="410.0" x2="670.0" y2="410.0" class="grid"/>
 <text x="42.0" y="414.0" text-anchor="end" class="tick">0</text>
@@ -72,4 +74,6 @@
 <text x="371.7" y="240.7" text-anchor="start" class="note">10 Nov</text>
 <circle cx="323.9" cy="237.2" r="5.5" class="s-before solid"/>
 <text x="313.9" y="241.2" text-anchor="end" class="note">11 Nov</text>
+<circle cx="380.9" cy="207.8" r="5.5" class="s-after2 solid"/>
+<text x="390.9" y="211.8" text-anchor="start" class="note">17 Nov</text>
 </svg>

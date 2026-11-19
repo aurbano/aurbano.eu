@@ -268,6 +268,7 @@
 .chart .zone { fill: rgb(var(--chart-cool) / 0.08); }
 .chart .s-before { --c: var(--chart-warm); }
 .chart .s-after { --c: var(--magazine-accent); }
+.chart .s-after2 { --c: var(--chart-cool); }
 .chart .s-change { --c: var(--magazine-tertiary); }
 .chart .s-base { --c: var(--chart-grey); }
 .chart .s-good { --c: var(--chart-good); }

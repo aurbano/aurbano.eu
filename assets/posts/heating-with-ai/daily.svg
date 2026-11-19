@@ -1,12 +1,14 @@
 <svg viewBox="0 0 680 300" role="img" aria-labelledby="daily-t daily-d" xmlns="http://www.w3.org/2000/svg">
 <title id="daily-t">Share of heating time spent condensing, per day</title>
-<desc id="daily-d">Bars per day from 10 to 16 November. 25 to 31 percent while the flow was 69 °C, 53 percent on the change day, 93 to 97 percent at 60 °C.</desc>
+<desc id="daily-d">Bars per day from 10 to 18 November. 25 to 31 percent while the flow was 69 °C, 53 percent on the change day, 93 to 97 percent at 60 °C, and 96 and 76 percent after the restart band was widened on 16 November.</desc>
 <rect x="44.0" y="9.0" width="12.0" height="12.0" rx="2" class="s-before solid"/>
-<text x="62.0" y="19.0" text-anchor="start" class="label">69 °C flow</text>
-<rect x="153.0" y="9.0" width="12.0" height="12.0" rx="2" class="s-change solid"/>
-<text x="171.0" y="19.0" text-anchor="start" class="label">change day</text>
-<rect x="262.0" y="9.0" width="12.0" height="12.0" rx="2" class="s-after solid"/>
-<text x="280.0" y="19.0" text-anchor="start" class="label">60 °C flow</text>
+<text x="62.0" y="19.0" text-anchor="start" class="label">69 °C</text>
+<rect x="113.5" y="9.0" width="12.0" height="12.0" rx="2" class="s-change solid"/>
+<text x="131.5" y="19.0" text-anchor="start" class="label">change day</text>
+<rect x="222.5" y="9.0" width="12.0" height="12.0" rx="2" class="s-after solid"/>
+<text x="240.5" y="19.0" text-anchor="start" class="label">60 °C, −6 K</text>
+<rect x="339.4" y="9.0" width="12.0" height="12.0" rx="2" class="s-after2 solid"/>
+<text x="357.4" y="19.0" text-anchor="start" class="label">60 °C, −10 K</text>
 <line x1="44.0" y1="250.0" x2="670.0" y2="250.0" class="grid"/>
 <text x="36.0" y="254.0" text-anchor="end" class="tick">0%</text>
 <line x1="44.0" y1="199.0" x2="670.0" y2="199.0" class="grid"/>
@@ -19,25 +21,31 @@
 <text x="36.0" y="50.0" text-anchor="end" class="tick">100%</text>
 <line x1="44.0" y1="127.6" x2="670.0" y2="127.6" class="target"/>
 <text x="48.0" y="121.6" text-anchor="start" class="note">good: over 60 %</text>
-<rect x="63.7" y="186.8" width="50.1" height="63.2" rx="3" class="s-before solid"/>
-<text x="88.7" y="179.8" text-anchor="middle" class="value">31%</text>
-<text x="88.7" y="268.0" text-anchor="middle" class="tick">Tue 10</text>
-<rect x="153.1" y="190.8" width="50.1" height="59.2" rx="3" class="s-before solid"/>
-<text x="178.1" y="183.8" text-anchor="middle" class="value">29%</text>
-<text x="178.1" y="268.0" text-anchor="middle" class="tick">Wed 11</text>
-<rect x="242.5" y="199.0" width="50.1" height="51.0" rx="3" class="s-before solid"/>
-<text x="267.6" y="192.0" text-anchor="middle" class="value">25%</text>
-<text x="267.6" y="268.0" text-anchor="middle" class="tick">Thu 12</text>
-<rect x="332.0" y="141.9" width="50.1" height="108.1" rx="3" class="s-change solid"/>
-<text x="357.0" y="134.9" text-anchor="middle" class="value">53%</text>
-<text x="357.0" y="268.0" text-anchor="middle" class="tick">Fri 13</text>
-<rect x="421.4" y="52.1" width="50.1" height="197.9" rx="3" class="s-after solid"/>
-<text x="446.4" y="45.1" text-anchor="middle" class="value">97%</text>
-<text x="446.4" y="268.0" text-anchor="middle" class="tick">Sat 14</text>
-<rect x="510.8" y="60.3" width="50.1" height="189.7" rx="3" class="s-after solid"/>
-<text x="535.9" y="53.3" text-anchor="middle" class="value">93%</text>
-<text x="535.9" y="268.0" text-anchor="middle" class="tick">Sun 15</text>
-<rect x="600.2" y="56.2" width="50.1" height="193.8" rx="3" class="s-after solid"/>
-<text x="625.3" y="49.2" text-anchor="middle" class="value">95%</text>
-<text x="625.3" y="268.0" text-anchor="middle" class="tick">Mon 16</text>
+<rect x="59.3" y="186.8" width="39.0" height="63.2" rx="3" class="s-before solid"/>
+<text x="78.8" y="179.8" text-anchor="middle" class="value">31%</text>
+<text x="78.8" y="268.0" text-anchor="middle" class="tick">Tue 10</text>
+<rect x="128.9" y="190.8" width="39.0" height="59.2" rx="3" class="s-before solid"/>
+<text x="148.3" y="183.8" text-anchor="middle" class="value">29%</text>
+<text x="148.3" y="268.0" text-anchor="middle" class="tick">Wed 11</text>
+<rect x="198.4" y="199.0" width="39.0" height="51.0" rx="3" class="s-before solid"/>
+<text x="217.9" y="192.0" text-anchor="middle" class="value">25%</text>
+<text x="217.9" y="268.0" text-anchor="middle" class="tick">Thu 12</text>
+<rect x="268.0" y="141.9" width="39.0" height="108.1" rx="3" class="s-change solid"/>
+<text x="287.4" y="134.9" text-anchor="middle" class="value">53%</text>
+<text x="287.4" y="268.0" text-anchor="middle" class="tick">Fri 13</text>
+<rect x="337.5" y="52.1" width="39.0" height="197.9" rx="3" class="s-after solid"/>
+<text x="357.0" y="45.1" text-anchor="middle" class="value">97%</text>
+<text x="357.0" y="268.0" text-anchor="middle" class="tick">Sat 14</text>
+<rect x="407.1" y="60.3" width="39.0" height="189.7" rx="3" class="s-after solid"/>
+<text x="426.6" y="53.3" text-anchor="middle" class="value">93%</text>
+<text x="426.6" y="268.0" text-anchor="middle" class="tick">Sun 15</text>
+<rect x="476.6" y="56.2" width="39.0" height="193.8" rx="3" class="s-after solid"/>
+<text x="496.1" y="49.2" text-anchor="middle" class="value">95%</text>
+<text x="496.1" y="268.0" text-anchor="middle" class="tick">Mon 16</text>
+<rect x="546.2" y="54.2" width="39.0" height="195.8" rx="3" class="s-after2 solid"/>
+<text x="565.7" y="47.2" text-anchor="middle" class="value">96%</text>
+<text x="565.7" y="268.0" text-anchor="middle" class="tick">Tue 17</text>
+<rect x="615.7" y="95.0" width="39.0" height="155.0" rx="3" class="s-after2 solid"/>
+<text x="635.2" y="88.0" text-anchor="middle" class="value">76%</text>
+<text x="635.2" y="268.0" text-anchor="middle" class="tick">Wed 18</text>
 </svg>

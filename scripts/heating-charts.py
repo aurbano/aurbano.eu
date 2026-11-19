@@ -72,14 +72,14 @@ def daily():
     h, top, bottom, left, right = 300, 46, 250, 44, W - 10
     ys = scale(0, 100, bottom, top)
     body = []
-    legend(body, left, 18, [("s-before", "69 °C flow"), ("s-change", "change day"), ("s-after", "60 °C flow")])
+    legend(body, left, 18, [("s-before", "69 °C"), ("s-change", "change day"), ("s-after", "60 °C, −6 K"), ("s-after2", "60 °C, −10 K")])
     y_axis(body, ys, [0, 25, 50, 75, 100], left, right, lambda v: f"{v}%")
     body.append(line(left, ys(60), right, ys(60), "target"))
     body.append(text(left + 4, ys(60) - 6, "good: over 60 %", "note"))
     slot = (right - left) / len(days)
     for i, d in enumerate(days):
         day = datetime.strptime(d["day"], "%Y-%m-%d")
-        cls = "s-before" if day.day < 13 else ("s-change" if day.day == 13 else "s-after")
+        cls = "s-before" if day.day < 13 else "s-change" if day.day == 13 else "s-after" if day.day <= 16 else "s-after2"
         v = d["condensing_pct"]
         x = left + i * slot + slot * 0.22
         bw = slot * 0.56
@@ -87,8 +87,8 @@ def daily():
         body.append(text(x + bw / 2, ys(v) - 7, f"{v}%", "value", "middle"))
         body.append(text(x + bw / 2, bottom + 18, day.strftime("%a %-d"), "tick", "middle"))
     svg("daily", h, "Share of heating time spent condensing, per day",
-        "Bars per day from 10 to 16 November. 25 to 31 percent while the flow was 69 °C, 53 percent on the change day, "
-        "93 to 97 percent at 60 °C.", body)
+        "Bars per day from 10 to 18 November. 25 to 31 percent while the flow was 69 °C, 53 percent on the change day, "
+        "93 to 97 percent at 60 °C, and 96 and 76 percent after the restart band was widened on 16 November.", body)
 
 
 # 2. Return temperature over three hours of a night, before and after ----------------------------
@@ -192,23 +192,26 @@ def cycles():
     pct = {k: [100 * n / cy[k]["n"] for _, n in cy[k]["bins"]] for k in cy}
     ys = scale(0, 40, bottom, top)
     body = []
-    legend(body, left, 18, [("s-before", f"69 °C ({cy['before']['n']} cycles)"), ("s-after", f"60 °C ({cy['after']['n']} cycles)")])
+    keys = ("before", "after", "after2")
+    legend(body, left, 18, [("s-before", f"69 °C ({cy['before']['n']} runs)"), ("s-after", f"60 °C, −6 K ({cy['after']['n']})"),
+                            ("s-after2", f"60 °C, −10 K ({cy['after2']['n']})")])
     y_axis(body, ys, [0, 10, 20, 30, 40], left, right, lambda v: f"{v}%")
     slot = (right - left) / len(labels)
     for i, lab in enumerate(labels):
-        x0 = left + i * slot + slot * 0.16
-        bw = slot * 0.32
-        for j, key in enumerate(("before", "after")):
+        x0 = left + i * slot + slot * 0.11
+        bw = slot * 0.26
+        for j, key in enumerate(keys):
             v = pct[key][i]
             body.append(rect(x0 + j * bw, ys(v), bw - 3, bottom - ys(v), f"s-{key} solid", 2))
         body.append(text(left + (i + 0.5) * slot, bottom + 18, lab, "tick", "middle"))
     body.append(text(left + (right - left) / 2, bottom + 40, "minutes per burner run", "note", "middle"))
     x5 = left + 4 * slot
     body.append(line(x5, top - 4, x5, bottom, "target"))
-    body.append(text(x5 - 8, top + 10, f"under 5 min: {cy['before']['under5_pct']} % → {cy['after']['under5_pct']} %", "label strong", "end"))
-    svg("cycles", h, "How long each burner run lasted, at 69 °C and at 60 °C",
-        "Grouped bars of run length. The two distributions are almost identical: about three quarters of runs are shorter "
-        "than five minutes either way.", body)
+    body.append(text(x5 - 8, top + 10, "under 5 min: " + " → ".join(f"{cy[k]['under5_pct']} %" for k in keys), "label strong", "end"))
+    svg("cycles", h, "How long each burner run lasted at each setting",
+        "Grouped bars of run length. Lowering the flow to 60 °C left the distribution almost unchanged, about three "
+        "quarters of runs under five minutes; widening the restart band to −10 K moved runs from under three minutes "
+        "to three to five minutes and longer.", body)
 
 
 # 5. Living Room warming up with the valve fully open ------------------------------------------
@@ -251,7 +254,8 @@ def gas_expected():
     # Days with the heating controls offline for an hour or more are left out: the boiler was uncontrolled.
     days = [d for d in gm["nov2026"] if (d["relay_off_h"] or 0) < 1]
     items = [("s-base faint solid", "Nov 2024 (69 °C)")]
-    items += [(f"{cls} solid", f"Nov 2026, {s}") for s, cls in (("69 °C", "s-before"), ("60 °C", "s-after")) if any(d["setting"] == s for d in days)]
+    series_of = {"69 °C": "s-before", "60 °C": "s-after", "60 °C, −10 K": "s-after2"}
+    items += [(f"{cls} solid", f"Nov 2026, {s}") for s, cls in series_of.items() if any(d["setting"] == s for d in days)]
     x = left
     for cls, label in items:
         body.append(f'<circle cx="{x + 6:.1f}" cy="13" r="5" class="{cls}"/>')
@@ -274,14 +278,15 @@ def gas_expected():
         body.append(f'<circle cx="{xs(e):.1f}" cy="{ys(a):.1f}" r="3.5" class="s-base faint solid"/>')
     offsets = {"2026-11-10": (10, 15, "start"), "2026-11-11": (-10, 4, "end")}
     for d in days:
-        series = "s-after" if d["setting"] == "60 °C" else "s-before"
+        series = series_of[d["setting"]]
         cx, cy = xs(d["expected"]), ys(d["actual"])
         body.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="5.5" class="{series} solid"/>')
         dx, dy, anchor = offsets.get(d["date"], (10, 4, "start"))
         body.append(text(cx + dx, cy + dy, datetime.strptime(d["date"], "%Y-%m-%d").strftime("%-d Nov"), "note", anchor))
     svg("gas-expected", h, "Measured daily gas against the gas the old boiler settings would have used",
         "Scatter of measured against expected daily gas. November 2024 days scatter around the diagonal within about "
-        "10 kWh, and 10 and 11 November 2026 sit on it.", body)
+        "10 kWh; 10 and 11 November 2026 sit on it, and 17 November, the first clean day at the new settings, is "
+        "4.5 kWh above it, inside the band.", body)
 
 
 # 7. How expected gas is worked out (diagram) --------------------------------------------------
