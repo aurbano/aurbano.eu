@@ -261,11 +261,19 @@
 /* Charts bleed past the text column, up to 920px wide or the viewport minus a margin; captions stay at
    column width. --bleed resolves against the column (the SVG's containing block) where it is used. */
 .chart { --bleed: max(0px, (min(100vw - 2rem, 920px) - 100%) / 2); }
+/* SVG text is sized in viewBox units (680 wide) and scales with the chart, so --k converts the intended
+   rendered size back to viewBox units: 680 / rendered width. Steps: 920px wide on wide screens, ~810px in
+   between; below 760px the chart is at most ~1.07x, so sizes apply unscaled and shrink with small screens.
+   Rendered sizes stay under the 19.5px body text: diagram titles 16px (table text), labels and legends
+   14.5px, diagram notes 14px (captions), values 13.5px, ticks and annotations 12.5px. */
+.chart { --k: 0.739; }
+@media (max-width: 951px) { .chart { --k: 0.8; } }
+@media (max-width: 759px) { .chart { --k: 1; } }
 .chart svg { display: block; width: calc(100% + 2 * var(--bleed)); max-width: none; margin-inline: calc(-1 * var(--bleed)); height: auto; overflow: visible; }
-.chart text { font-family: theme('fontFamily.sans'); font-size: 13px; fill: rgb(var(--prose-body) / 0.85); }
-.chart .tick, .chart .note { font-size: 12px; fill: rgb(var(--magazine-black) / 0.6); }
-.chart .label { font-size: 13.5px; fill: rgb(var(--prose-body)); }
-.chart .value { font-size: 12.5px; font-weight: 600; fill: rgb(var(--prose-body)); }
+.chart text { font-family: theme('fontFamily.sans'); font-size: calc(var(--k) * 14px); fill: rgb(var(--prose-body) / 0.85); }
+.chart .tick, .chart .note { font-size: calc(var(--k) * 12.5px); fill: rgb(var(--magazine-black) / 0.6); }
+.chart .label { font-size: calc(var(--k) * 14.5px); fill: rgb(var(--prose-body)); }
+.chart .value { font-size: calc(var(--k) * 13.5px); font-weight: 600; fill: rgb(var(--prose-body)); }
 .chart .strong { font-weight: 600; }
 .chart .warn { fill: rgb(var(--chart-warm)); }
 .chart .grid { stroke: rgb(var(--hairline)); stroke-width: 1; }
@@ -290,8 +298,8 @@
 .chart .box { fill: rgb(var(--magazine-black) / 0.04); stroke: rgb(var(--magazine-black) / 0.25); stroke-width: 1.5; }
 .chart .box-accent { stroke: rgb(var(--magazine-accent)); stroke-width: 2; }
 .chart .box-muted { fill: none; stroke-dasharray: 6 5; }
-.chart .d-title { font-size: 15px; font-weight: 600; fill: rgb(var(--prose-heading)); }
-.chart .d-note { font-size: 13px; fill: rgb(var(--prose-body) / 0.8); }
+.chart .d-title { font-size: calc(var(--k) * 16px); font-weight: 600; fill: rgb(var(--prose-heading)); }
+.chart .d-note { font-size: calc(var(--k) * 14px); fill: rgb(var(--prose-body) / 0.8); }
 .chart .d-note.warn { fill: rgb(var(--chart-warm)); }
 .chart .d-note.cool { fill: rgb(var(--chart-cool)); }
 .chart .pipe { fill: none; stroke-width: 7; stroke-linecap: round; }
