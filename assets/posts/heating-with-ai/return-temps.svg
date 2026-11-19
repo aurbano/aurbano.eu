@@ -1,4 +1,4 @@
-<svg viewBox="0 0 680 300" role="img" aria-labelledby="return-temps-t return-temps-d" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="6.1 0 680 300" role="img" aria-labelledby="return-temps-t return-temps-d" xmlns="http://www.w3.org/2000/svg">
 <title id="return-temps-t">Return water temperature while the burner was heating, as a share of firing time</title>
 <desc id="return-temps-d">Distribution of return temperature. At 69 °C most firing time had the return between 55 and 65 °C; at 60 °C it moved to 46 to 54 °C.</desc>
 <rect x="44.0" y="40.0" width="313.0" height="212.0" rx="0" class="zone-good"/>

@@ -1,4 +1,4 @@
-<svg viewBox="0 0 680 470" role="img" aria-labelledby="model-t model-d" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0.0 0 680 470" role="img" aria-labelledby="model-t model-d" xmlns="http://www.w3.org/2000/svg">
 <title id="model-t">How expected gas is worked out</title>
 <desc id="model-d">Four inputs (indoor minus outdoor temperature, sunshine, wind, weekend) feed a model fitted at the old boiler settings. Its expected gas is compared with the smart meter each day, and the differences are added up. Heating hours are left out because they change with the flow temperature.</desc>
 <defs><marker id="model-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker></defs>

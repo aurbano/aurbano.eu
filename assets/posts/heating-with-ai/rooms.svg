@@ -1,4 +1,4 @@
-<svg viewBox="0 0 680 408" role="img" aria-labelledby="rooms-t rooms-d" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="30.1 0 680 408" role="img" aria-labelledby="rooms-t rooms-d" xmlns="http://www.w3.org/2000/svg">
 <title id="rooms-t">Temperature and heating in the three rooms we heat, 10 to 18 November</title>
 <desc id="rooms-d">Three rows, one per room, with the room temperature as a line, red while its radiator valve was open and grey while it was closed. The bedroom's valve is open far longer than the others; the living room and office heat in shorter spells.</desc>
 <path d="M92.0,12.0 L116.0,12.0" class="series s-bad"/>

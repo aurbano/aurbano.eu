@@ -1,4 +1,4 @@
-<svg viewBox="0 0 680 356" role="img" aria-labelledby="band-t band-d" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="18.5 0 680 356" role="img" aria-labelledby="band-t band-d" xmlns="http://www.w3.org/2000/svg">
 <title id="band-t">What the restart band does</title>
 <desc id="band-d">An illustration of the water temperature rising while the burner runs and falling while it rests, between the stop point at 64 °C and the restart point: 54 °C with the −6 K band, 50 °C with −10 K. Built from the median run and pause at each setting: the wider band gives longer runs, longer pauses and fewer starts.</desc>
 <rect x="92.0" y="51.8" width="578.0" height="54.5" rx="0" class="zone"/>
@@ -21,10 +21,10 @@
 <line x1="92.0" y1="294.2" x2="670.0" y2="294.2" class="target"/>
 <text x="84.0" y="221.8" text-anchor="end" class="tick">stop 64°</text>
 <text x="84.0" y="298.2" text-anchor="end" class="tick">restart 50°</text>
-<rect x="92.0" y="322.0" width="62.1" height="8.0" rx="2" class="s-after2 solid"/>
-<rect x="295.7" y="322.0" width="62.1" height="8.0" rx="2" class="s-after2 solid"/>
-<rect x="499.5" y="322.0" width="62.1" height="8.0" rx="2" class="s-after2 solid"/>
-<path d="M92.0,294.2 L154.1,217.8 L154.1,217.8 L295.7,294.2 L295.7,294.2 L357.9,217.8 L357.9,217.8 L499.5,294.2 L499.5,294.2 L561.6,217.8 L561.6,217.8 L670.0,276.3" class="series s-after2"/>
+<rect x="92.0" y="322.0" width="60.7" height="8.0" rx="2" class="s-after2 solid"/>
+<rect x="294.3" y="322.0" width="60.7" height="8.0" rx="2" class="s-after2 solid"/>
+<rect x="496.6" y="322.0" width="60.7" height="8.0" rx="2" class="s-after2 solid"/>
+<path d="M92.0,294.2 L152.7,217.8 L152.7,217.8 L294.3,294.2 L294.3,294.2 L355.0,217.8 L355.0,217.8 L496.6,294.2 L496.6,294.2 L557.3,217.8 L557.3,217.8 L670.0,278.6" class="series s-after2"/>
 <text x="92.0" y="186.0" text-anchor="start" class="label strong s-after2-text">Restart band −10 K: runs of about 4 min, pauses of about 10 min, 3 starts in 40 minutes</text>
 <text x="84.0" y="331.0" text-anchor="end" class="tick">burner</text>
 <text x="92.0" y="350.0" text-anchor="middle" class="tick">0 min</text>

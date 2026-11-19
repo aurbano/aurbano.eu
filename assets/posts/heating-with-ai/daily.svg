@@ -1,4 +1,4 @@
-<svg viewBox="0 0 680 300" role="img" aria-labelledby="daily-t daily-d" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="3.8 0 680 300" role="img" aria-labelledby="daily-t daily-d" xmlns="http://www.w3.org/2000/svg">
 <title id="daily-t">Share of heating time spent condensing, per day</title>
 <desc id="daily-d">Bars per day from 10 to 18 November. 25 to 31 percent while the flow was 69 °C, 53 percent on the change day, 93 to 97 percent at 60 °C, and 96 and 76 percent after the restart band was widened on 16 November.</desc>
 <rect x="44.0" y="9.0" width="12.0" height="12.0" rx="2" class="s-before solid"/>

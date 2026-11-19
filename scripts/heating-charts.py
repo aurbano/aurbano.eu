@@ -12,7 +12,9 @@ The SVGs carry no colours of their own: classes map to the site's theme variable
 them with the `chart` shortcode.
 """
 import json
+import re
 from datetime import datetime, timedelta
+from html import unescape
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -21,9 +23,36 @@ DATA = json.loads((DIR / "data.json").read_text())
 W = 680
 
 
+# Rendered text sizes (px) at the widest layout and its viewBox scale (assets/css/main.css, --k), used to
+# estimate how far text reaches so each chart's contents can be centred in its frame.
+FONT_PX = {"d-title": 16, "label": 14.5, "d-note": 14, "value": 13.5, "tick": 12.5, "note": 12.5}
+K_WIDE = 0.739
+
+
+def x_extent(body):
+    """Leftmost and rightmost x reached by the drawing, with text widths estimated from their size."""
+    xs = []
+    for el in body:
+        if el.startswith("<defs"):
+            continue
+        for m in re.finditer(r'<text x="([-\d.]+)" y="[-\d.]+" text-anchor="(\w+)"(?: class="([^"]*)")?[^>]*>([^<]*)</text>', el):
+            x, anchor, cls, s = float(m[1]), m[2], (m[3] or "").split(), unescape(m[4])
+            w = len(s) * K_WIDE * next((FONT_PX[c] for c in cls if c in FONT_PX), 14) * 0.5
+            xs += {"end": [x - w, x], "middle": [x - w / 2, x + w / 2]}.get(anchor, [x, x + w])
+        for m in re.finditer(r'<rect x="([-\d.]+)" y="[-\d.]+" width="([\d.]+)"', el):
+            xs += [float(m[1]), float(m[1]) + float(m[2])]
+        for m in re.finditer(r'\b(?:x1|x2|cx)="([-\d.]+)"', el):
+            xs.append(float(m[1]))
+        for m in re.finditer(r' d="([^"]+)"', el):
+            xs += [float(a) for a in re.findall(r"[ML]([-\d.]+),", m[1])]
+    return min(xs), max(xs)
+
+
 def svg(name, height, title, desc, body):
+    lo, hi = x_extent(body)
+    x0 = (lo + hi) / 2 - W / 2  # shift the viewBox so the drawing sits in the middle of the frame
     out = (
-        f'<svg viewBox="0 0 {W} {height}" role="img" aria-labelledby="{name}-t {name}-d" '
+        f'<svg viewBox="{x0:.1f} 0 {W} {height}" role="img" aria-labelledby="{name}-t {name}-d" '
         f'xmlns="http://www.w3.org/2000/svg">\n'
         f'<title id="{name}-t">{escape(title)}</title>\n<desc id="{name}-d">{escape(desc)}</desc>\n'
         + "\n".join(body) + "\n</svg>\n"
@@ -242,51 +271,42 @@ def heatup():
         "0.9 °C in 80 minutes and 0.9 °C in 125 minutes, on milder mornings.", body)
 
 
-# 6. Measured gas against what the old settings would have used ------------------------------------
-def gas_expected():
-    h, top, bottom, left, right = 460, 58, 410, 50, W - 10
+# 6. Gas cost per degree of warmth, per day, against the old settings on the same day ---------------
+def gas_cost():
+    h, top, bottom, left, right = 330, 50, 262, 48, W - 10
     gm = DATA["gas_model"]
-    rm = gm["loo_rmse_kwh"]
-    lo, hi = 0, 110
-    xs = scale(lo, hi, left, right)
-    ys = scale(lo, hi, bottom, top)
+    rate = gm["rate_p_per_kwh"]
+    days = gm["nov2026"]
+    ys = scale(0, 60, bottom, top)
+    series_of = {"69 °C": "s-before", "change day": "s-change", "60 °C": "s-after", "60 °C, −10 K": "s-after2"}
     body = []
-    # Days with the heating controls offline for an hour or more are left out: the boiler was uncontrolled.
-    days = [d for d in gm["nov2026"] if (d["relay_off_h"] or 0) < 1]
-    items = [("s-base faint solid", "Nov 2024 (69 °C)")]
-    series_of = {"69 °C": "s-before", "60 °C": "s-after", "60 °C, −10 K": "s-after2"}
-    items += [(f"{cls} solid", f"Nov 2026, {s}") for s, cls in series_of.items() if any(d["setting"] == s for d in days)]
-    x = left
-    for cls, label in items:
-        body.append(f'<circle cx="{x + 6:.1f}" cy="13" r="5" class="{cls}"/>')
-        body.append(text(x + 16, 17, label, "label"))
-        x += 34 + 7.9 * len(label)
-    # ±1 RMSE band around "as expected"
-    band = [(xs(lo), ys(lo + rm)), (xs(hi - rm), ys(hi)), (xs(hi), ys(hi)), (xs(hi), ys(hi - rm)), (xs(lo + rm), ys(lo)), (xs(lo), ys(lo))]
-    body.append(path(band + [band[0]], "zone"))
-    for v in range(0, hi + 1, 20):
+    legend(body, left, 18, [("s-before", "69 °C"), ("s-after", "60 °C, −6 K"), ("s-after2", "60 °C, −10 K")])
+    body.append(line(left + 400, 12, left + 424, 12, "marker"))
+    body.append(text(left + 432, 17, "old settings, same day", "label"))
+    for v in range(0, 61, 20):
         body.append(line(left, ys(v), right, ys(v), "grid"))
-        body.append(text(left - 8, ys(v) + 4, f"{v}", "tick", "end"))
-        body.append(text(xs(v), bottom + 18, f"{v}", "tick", "middle"))
-    body.append(line(xs(lo), ys(lo), xs(hi), ys(hi), "target"))
-    body.append(text(xs(100), ys(100) - 8, "as expected", "note", "end"))
-    body.append(text(xs(104), ys(60), "less gas than expected ↓", "note", "end"))
-    body.append(text(xs(4), ys(72), "↑ more gas than expected", "note"))
-    body.append(text((left + right) / 2, bottom + 40, "expected gas, kWh per day (old settings, same weather and indoor temperatures)", "note", "middle"))
-    body.append(f'<text x="{left - 36}" y="{(top + bottom) / 2:.1f}" transform="rotate(-90 {left - 36} {(top + bottom) / 2:.1f})" text-anchor="middle" class="note">measured gas, kWh per day</text>')
-    for e, a in gm["baseline"]:
-        body.append(f'<circle cx="{xs(e):.1f}" cy="{ys(a):.1f}" r="3.5" class="s-base faint solid"/>')
-    offsets = {"2026-11-10": (10, 15, "start"), "2026-11-11": (-10, 4, "end")}
-    for d in days:
-        series = series_of[d["setting"]]
-        cx, cy = xs(d["expected"]), ys(d["actual"])
-        body.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="5.5" class="{series} solid"/>')
-        dx, dy, anchor = offsets.get(d["date"], (10, 4, "start"))
-        body.append(text(cx + dx, cy + dy, datetime.strptime(d["date"], "%Y-%m-%d").strftime("%-d Nov"), "note", anchor))
-    svg("gas-expected", h, "Measured daily gas against the gas the old boiler settings would have used",
-        "Scatter of measured against expected daily gas. November 2024 days scatter around the diagonal within about "
-        "10 kWh; 10 and 11 November 2026 sit on it, and 17 November, the first clean day at the new settings, is "
-        "4.5 kWh above it, inside the band.", body)
+        body.append(text(left - 8, ys(v) + 4, f"{v}p", "tick", "end"))
+    slot = (right - left) / len(days)
+    for i, d in enumerate(days):
+        clean = (d["relay_off_h"] or 0) < 1
+        v, e = d["actual"] * rate / d["dT"], d["expected"] * rate / d["dT"]
+        x, bw = left + i * slot + slot * 0.2, slot * 0.6
+        cls = series_of[d["setting"]]
+        bar = rect(x, ys(v), bw, bottom - ys(v), f"{cls} solid", 3)
+        body.append(bar if clean else bar.replace('class="', 'fill-opacity="0.25" class="'))
+        if clean:
+            body.append(line(x - 5, ys(e), x + bw + 5, ys(e), "marker"))
+            body.append(text(x + bw / 2, min(ys(v), ys(e)) - 8, f"{v:.0f}p", "value", "middle"))
+        else:
+            body.append(text(x + bw / 2, ys(v) - 8, "gap", "note", "middle"))
+        day = datetime.strptime(d["date"], "%Y-%m-%d")
+        body.append(text(x + bw / 2, bottom + 18, day.strftime("%a %-d"), "tick", "middle"))
+    body.append(text(left, bottom + 44, "Faded: heating controls offline for part of the day, so not comparable.", "note"))
+    svg("gas-cost", h, "Gas cost per degree of warmth, per day",
+        "Bars per day from 10 to 18 November: what the day's gas cost, divided by how many degrees warmer the house was "
+        "than outside. A marker on each complete day shows what the old settings would have cost on the same day. "
+        "10 and 11 November sit on their markers; 17 November, the only complete day at the new settings, is a little "
+        "above its marker.", body)
 
 
 # 7. How expected gas is worked out (diagram) --------------------------------------------------
@@ -480,6 +500,6 @@ def band_diagram():
         "run and pause at each setting: the wider band gives longer runs, longer pauses and fewer starts.", body)
 
 
-for chart in (daily, trace, return_hist, cycles, heatup, gas_expected, model_diagram, rooms, condensing_diagram, band_diagram):
+for chart in (daily, trace, return_hist, cycles, heatup, gas_cost, model_diagram, rooms, condensing_diagram, band_diagram):
     chart()
 print("wrote", ", ".join(sorted(p.name for p in DIR.glob("*.svg"))))
