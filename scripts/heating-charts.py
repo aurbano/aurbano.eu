@@ -12,7 +12,7 @@ The SVGs carry no colours of their own: classes map to the site's theme variable
 them with the `chart` shortcode.
 """
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -332,41 +332,70 @@ def model_diagram():
         "Heating hours are left out because they change with the flow temperature.", body)
 
 
-# 8. Hours per day each room's valve was open ------------------------------------------------------
+# 8. Room temperature with the heating spells, for the rooms we heat --------------------------------
 def rooms():
     rm = DATA["rooms"]
-    names = {"living_room": "Living room", "bedroom": "Bedroom", "office": "Office", "entrance": "Entrance",
-             "vr": "VR room", "guests": "Guest room"}
-    left, top, ch = 104, 34, 40
-    cw = (W - left - 4) / len(rm["days"])
-    h = top + ch * len(names) + 36
+    names = {"living_room": "Living room", "office": "Office", "bedroom": "Bedroom"}
+    left, right, top, row, gap = 92, W - 10, 40, 96, 18
+    span = rm["days"] * 1440
+    xs = scale(0, span, left, right)
+    temps = [v for k in names for v in rm["temps"][k] if v is not None]
+    lo, hi = int(min(temps)), int(max(temps)) + 1
+    h = top + len(names) * (row + gap) + 26
     body = []
-    for j, dd in enumerate(rm["days"]):
-        body.append(text(left + (j + 0.5) * cw, top - 12, datetime.strptime(dd, "%Y-%m-%d").strftime("%a %-d"), "tick", "middle"))
+    body.append(path([(left, 12), (left + 24, 12)], "series s-bad"))
+    body.append(text(left + 32, 17, "heating (radiator valve open)", "label"))
+    body.append(path([(left + 270, 12), (left + 294, 12)], "series s-off"))
+    body.append(text(left + 302, 17, "not heating", "label"))
+    start = datetime.strptime(rm["start"], "%Y-%m-%d")
     for i, (key, label) in enumerate(names.items()):
-        y = top + i * ch
-        body.append(text(left - 10, y + ch / 2 + 4, label, "label", "end"))
-        for j, v in enumerate(rm["hours"][key]):
-            x = left + j * cw
-            body.append(f'<rect x="{x + 2:.1f}" y="{y + 2:.1f}" width="{cw - 4:.1f}" height="{ch - 4:.1f}" rx="4" '
-                        f'class="s-before solid" fill-opacity="{0.06 + 0.82 * min(v, 16) / 16:.2f}"/>')
-            s = f"{v:.0f} h" if v >= 1 else ("<1 h" if v > 0 else "0")
-            body.append(text(x + cw / 2, y + ch / 2 + 4, s, "value on-dark" if v >= 9 else "value", "middle"))
-    bottom = top + ch * len(names)
-    body.append(text(left, bottom + 22, "Flow 60 °C from Friday 13 at 13:19; restart band −10 K from Monday 16 at 13:21.", "note"))
-    svg("rooms", h, "Hours per day each room's radiator valve was open",
-        "A grid of rooms by day, 10 to 18 November. The bedroom's valve was open 8 to 15 hours a day, the living room's "
-        "3 to 12, and the office, entrance, VR room and guest room mostly a few hours or less.", body)
+        y0 = top + i * (row + gap)
+        ys = scale(lo, hi, y0 + row, y0)
+        step = rm["step_min"]
+        spells = rm["heating"][key]
+        heating = lambda m: any(a < m + step and b > m for a, b in spells)
+        for v in range(lo, hi + 1, 2):
+            body.append(line(left, ys(v), right, ys(v), "grid"))
+            body.append(text(left - 8, ys(v) + 4, f"{v}°", "tick", "end"))
+        for d in range(1, rm["days"]):
+            body.append(line(xs(d * 1440), y0, xs(d * 1440), y0 + row, "grid"))
+        # Runs of consecutive points with the same state; each run repeats the previous point so the line is unbroken.
+        runs, prev = [], None
+        for j, v in enumerate(rm["temps"][key]):
+            if v is None:
+                prev = None
+                continue
+            pt, on = (xs(j * step + step / 2), ys(v)), heating(j * step)
+            if prev is None or on != runs[-1][0]:
+                runs.append((on, [prev[1]] if prev else []))
+            runs[-1][1].append(pt)
+            prev = (on, pt)
+        for on, seg in runs:
+            if len(seg) > 1:
+                body.append(path(seg, "series s-bad" if on else "series s-off"))
+        body.append(text(left, y0 - 5, label, "label strong"))
+    bottom = top + len(names) * (row + gap) - gap
+    for d in range(rm["days"]):
+        body.append(text(xs(d * 1440 + 720), bottom + 18, (start + timedelta(days=d)).strftime("%a %-d"), "tick", "middle"))
+    svg("rooms", h, "Temperature and heating in the three rooms we heat, 10 to 18 November",
+        "Three rows, one per room, with the room temperature as a line, red while its radiator valve was open and grey "
+        "while it was closed. The bedroom's valve is open far longer than the others; the living room and office heat in shorter spells.", body)
 
 
 # 9. What condensing means (diagram) -------------------------------------------------------------
 def condensing_diagram():
     h = 330
     body = ['<defs><marker id="cond-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" '
-            'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker></defs>']
+            'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker>'
+            + "".join(f'<marker id="pipe-{k}" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="2.6" markerHeight="2.6" '
+                      f'orient="auto"><path d="M0,0 L10,5 L0,10 z" class="pipe-head-{k}"/></marker>' for k in ("cold", "hot"))
+            + '</defs>']
 
     def arrow(d):
         body.append(f'<path d="{d}" class="arrow" marker-end="url(#cond-arrow)"/>')
+
+    def pipe(d, kind):
+        body.append(f'<path d="{d}" class="pipe pipe-{kind}" marker-end="url(#pipe-{kind})"/>')
 
     panels = [(0, "Return below 55 °C", "good-text", "box box-accent", ["vapour turns to water:", "its heat goes into the", "radiator water"],
                ["cooler, drier", "exhaust"]),
@@ -388,12 +417,12 @@ def condensing_diagram():
         arrow(f"M{cx},304 L{cx},272")
         body.append(rect(x0 + 10, 286, 190, 40, "box box-muted", 10))
         body.append(text(x0 + 22, 311, "Burner: gas + air", "d-note"))
-        arrow(f"M{x0 + 330},150 L{x0 + 204},150")
-        body.append(text(x0 + 214, 128, "water back from", "d-note"))
-        body.append(text(x0 + 214, 143, "the radiators", "d-note"))
-        arrow(f"M{x0 + 204},248 L{x0 + 330},248")
-        body.append(text(x0 + 214, 272, "hot water out to", "d-note"))
-        body.append(text(x0 + 214, 287, "the radiators", "d-note"))
+        pipe(f"M{x0 + 332},150 L{x0 + 212},150", "cold")
+        body.append(text(x0 + 214, 118, "cool water back", "d-note cool"))
+        body.append(text(x0 + 214, 133, "from the radiators", "d-note cool"))
+        pipe(f"M{x0 + 202},248 L{x0 + 318},248", "hot")
+        body.append(text(x0 + 214, 272, "hot water out to", "d-note warn"))
+        body.append(text(x0 + 214, 287, "the radiators", "d-note warn"))
     svg("condensing", h, "What condensing means",
         "Two side-by-side sketches of a condensing boiler. Exhaust from the burner rises through the main heat exchanger "
         "and then the condensing exchanger, where the cooler water coming back from the radiators enters. With the return "

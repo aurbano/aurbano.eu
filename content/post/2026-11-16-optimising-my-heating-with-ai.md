@@ -29,7 +29,7 @@ That last rule matters more than it sounds. Most of the useful work here is read
 
 Before trusting any finding, the agent built per-room trackers: how fast each room warms up, how fast it loses heat overnight, how hard each radiator works. Then it validated them against the raw history, and found three bugs in its own automations.
 
-{{< chart "posts/heating-with-ai/rooms.svg" "One of the trackers: how many hours a day each room's radiator valve was open. The bedroom's radiator works far harder than any other, which matters later." >}}
+{{< chart "posts/heating-with-ai/rooms.svg" "What the trackers see, for the three rooms we actually heat: temperature every 15 minutes, red while the room's radiator valve was open and grey while it was closed. The bedroom's radiator is on far longer than the others, which matters later." >}}
 
 The best one: the sensor that decides whether a room is "calling for heat" used a threshold of exactly zero with no hysteresis. When a valve closed to 0 %, the value sat right on the threshold and Home Assistant kept the previous state. Once a room asked for heat, it asked forever. That quietly broke the overnight heat-loss measurements (they never started) and made the dashboard claim the living room had been heating for 18 hours. Another bug double-counted valve opening time, and gave one room a mean valve position of 155 %.
 
@@ -65,7 +65,7 @@ Cooler radiators give out less heat. The agent's textbook estimate for going fro
 
 {{< chart "posts/heating-with-ai/heatup.svg" "Living Room warming up in the morning with its valve fully open, measured from the moment the valve hit 100 %." >}}
 
-The bedroom is the real limit; it was already the hardest-working room in the grid above. The agent's rule of thumb is that a radiator big enough for its room should rarely be wide open and still behind. Before the change the bedroom's was wide open and still more than half a degree below target 13 % of the time. After, 37 %. The agent's original plan was to go down to 55 °C if the rooms kept up. They didn't, so it recommended staying at 60. The efficiency gain from 60 to 55 is small now that the boiler condenses almost all the time, and the rooms would lose another 15 % or so of radiator output they can't spare. I like that this came out of the data rather than a rule of thumb.
+The bedroom is the real limit; its radiator was already the one on longest in the room chart above. The agent's rule of thumb is that a radiator big enough for its room should rarely be wide open and still behind. Before the change the bedroom's was wide open and still more than half a degree below target 13 % of the time. After, 37 %. The agent's original plan was to go down to 55 °C if the rooms kept up. They didn't, so it recommended staying at 60. The efficiency gain from 60 to 55 is small now that the boiler condenses almost all the time, and the rooms would lose another 15 % or so of radiator output they can't spare. I like that this came out of the data rather than a rule of thumb.
 
 ## Problem two: short-cycling
 
