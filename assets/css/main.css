@@ -258,7 +258,10 @@
 
 /* Inline SVG charts (`chart` shortcode). Unlayered so Tailwind's purge, which does not scan
    assets/, keeps them. Series pick a colour through --c; everything follows the theme. */
-.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+/* Charts bleed past the text column, up to 920px wide or the viewport minus a margin; captions stay at
+   column width. --bleed resolves against the column (the SVG's containing block) where it is used. */
+.chart { --bleed: max(0px, (min(100vw - 2rem, 920px) - 100%) / 2); }
+.chart svg { display: block; width: calc(100% + 2 * var(--bleed)); max-width: none; margin-inline: calc(-1 * var(--bleed)); height: auto; overflow: visible; }
 .chart text { font-family: theme('fontFamily.sans'); font-size: 13px; fill: rgb(var(--prose-body) / 0.85); }
 .chart .tick, .chart .note { font-size: 12px; fill: rgb(var(--magazine-black) / 0.6); }
 .chart .label { font-size: 13.5px; fill: rgb(var(--prose-body)); }
