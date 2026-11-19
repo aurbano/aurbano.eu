@@ -1,0 +1,35 @@
+<svg viewBox="0 0 680 356" role="img" aria-labelledby="band-t band-d" xmlns="http://www.w3.org/2000/svg">
+<title id="band-t">What the restart band does</title>
+<desc id="band-d">An illustration of the water temperature rising while the burner runs and falling while it rests, between the stop point at 64 °C and the restart point: 54 °C with the −6 K band, 50 °C with −10 K. Built from the median run and pause at each setting: the wider band gives longer runs, longer pauses and fewer starts.</desc>
+<rect x="92.0" y="51.8" width="578.0" height="54.5" rx="0" class="zone"/>
+<line x1="92.0" y1="51.8" x2="670.0" y2="51.8" class="target"/>
+<line x1="92.0" y1="106.4" x2="670.0" y2="106.4" class="target"/>
+<text x="84.0" y="55.8" text-anchor="end" class="tick">stop 64°</text>
+<text x="84.0" y="110.4" text-anchor="end" class="tick">restart 54°</text>
+<rect x="92.0" y="156.0" width="33.2" height="8.0" rx="2" class="s-after solid"/>
+<rect x="180.1" y="156.0" width="33.2" height="8.0" rx="2" class="s-after solid"/>
+<rect x="268.3" y="156.0" width="33.2" height="8.0" rx="2" class="s-after solid"/>
+<rect x="356.4" y="156.0" width="33.2" height="8.0" rx="2" class="s-after solid"/>
+<rect x="444.6" y="156.0" width="33.2" height="8.0" rx="2" class="s-after solid"/>
+<rect x="532.7" y="156.0" width="33.2" height="8.0" rx="2" class="s-after solid"/>
+<rect x="620.9" y="156.0" width="33.2" height="8.0" rx="2" class="s-after solid"/>
+<path d="M92.0,106.4 L125.2,51.8 L125.2,51.8 L180.1,106.4 L180.1,106.4 L213.4,51.8 L213.4,51.8 L268.3,106.4 L268.3,106.4 L301.5,51.8 L301.5,51.8 L356.4,106.4 L356.4,106.4 L389.7,51.8 L389.7,51.8 L444.6,106.4 L444.6,106.4 L477.8,51.8 L477.8,51.8 L532.7,106.4 L532.7,106.4 L566.0,51.8 L566.0,51.8 L620.9,106.4 L620.9,106.4 L654.1,51.8 L654.1,51.8 L670.0,67.6" class="series s-after"/>
+<text x="92.0" y="20.0" text-anchor="start" class="label strong s-after-text">Restart band −6 K: runs of about 2 min, pauses of about 4 min, 7 starts in 40 minutes</text>
+<text x="84.0" y="165.0" text-anchor="end" class="tick">burner</text>
+<rect x="92.0" y="217.8" width="578.0" height="76.4" rx="0" class="zone"/>
+<line x1="92.0" y1="217.8" x2="670.0" y2="217.8" class="target"/>
+<line x1="92.0" y1="294.2" x2="670.0" y2="294.2" class="target"/>
+<text x="84.0" y="221.8" text-anchor="end" class="tick">stop 64°</text>
+<text x="84.0" y="298.2" text-anchor="end" class="tick">restart 50°</text>
+<rect x="92.0" y="322.0" width="62.1" height="8.0" rx="2" class="s-after2 solid"/>
+<rect x="295.7" y="322.0" width="62.1" height="8.0" rx="2" class="s-after2 solid"/>
+<rect x="499.5" y="322.0" width="62.1" height="8.0" rx="2" class="s-after2 solid"/>
+<path d="M92.0,294.2 L154.1,217.8 L154.1,217.8 L295.7,294.2 L295.7,294.2 L357.9,217.8 L357.9,217.8 L499.5,294.2 L499.5,294.2 L561.6,217.8 L561.6,217.8 L670.0,276.3" class="series s-after2"/>
+<text x="92.0" y="186.0" text-anchor="start" class="label strong s-after2-text">Restart band −10 K: runs of about 4 min, pauses of about 10 min, 3 starts in 40 minutes</text>
+<text x="84.0" y="331.0" text-anchor="end" class="tick">burner</text>
+<text x="92.0" y="350.0" text-anchor="middle" class="tick">0 min</text>
+<text x="236.5" y="350.0" text-anchor="middle" class="tick">10 min</text>
+<text x="381.0" y="350.0" text-anchor="middle" class="tick">20 min</text>
+<text x="525.5" y="350.0" text-anchor="middle" class="tick">30 min</text>
+<text x="670.0" y="350.0" text-anchor="middle" class="tick">40 min</text>
+</svg>

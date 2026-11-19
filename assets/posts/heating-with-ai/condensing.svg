@@ -1,0 +1,47 @@
+<svg viewBox="0 0 680 330" role="img" aria-labelledby="condensing-t condensing-d" xmlns="http://www.w3.org/2000/svg">
+<title id="condensing-t">What condensing means</title>
+<desc id="condensing-d">Two side-by-side sketches of a condensing boiler. Exhaust from the burner rises through the main heat exchanger and then the condensing exchanger, where the cooler water coming back from the radiators enters. With the return below 55 °C the water vapour in the exhaust condenses and its heat goes into the water; above 55 °C it is too warm to condense and the heat leaves through the flue.</desc>
+<defs><marker id="cond-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker></defs>
+<text x="0.0" y="18.0" text-anchor="start" class="d-title good-text">Return below 55 °C</text>
+<path d="M105,106 L105,40" class="arrow" marker-end="url(#cond-arrow)"/>
+<text x="117.0" y="62.0" text-anchor="start" class="d-note">cooler, drier</text>
+<text x="117.0" y="79.0" text-anchor="start" class="d-note">exhaust</text>
+<rect x="10.0" y="108.0" width="190.0" height="82.0" rx="10" class="box box-accent"/>
+<text x="22.0" y="128.0" text-anchor="start" class="d-title">Condensing exchanger</text>
+<text x="22.0" y="146.0" text-anchor="start" class="d-note">vapour turns to water:</text>
+<text x="22.0" y="161.0" text-anchor="start" class="d-note">its heat goes into the</text>
+<text x="22.0" y="176.0" text-anchor="start" class="d-note">radiator water</text>
+<path d="M105,224 L105,192" class="arrow" marker-end="url(#cond-arrow)"/>
+<rect x="10.0" y="226.0" width="190.0" height="44.0" rx="10" class="box"/>
+<text x="22.0" y="253.0" text-anchor="start" class="d-title">Main exchanger</text>
+<path d="M105,304 L105,272" class="arrow" marker-end="url(#cond-arrow)"/>
+<rect x="10.0" y="286.0" width="190.0" height="40.0" rx="10" class="box box-muted"/>
+<text x="22.0" y="311.0" text-anchor="start" class="d-note">Burner: gas + air</text>
+<path d="M330,150 L204,150" class="arrow" marker-end="url(#cond-arrow)"/>
+<text x="214.0" y="128.0" text-anchor="start" class="d-note">water back from</text>
+<text x="214.0" y="143.0" text-anchor="start" class="d-note">the radiators</text>
+<path d="M204,248 L330,248" class="arrow" marker-end="url(#cond-arrow)"/>
+<text x="214.0" y="272.0" text-anchor="start" class="d-note">hot water out to</text>
+<text x="214.0" y="287.0" text-anchor="start" class="d-note">the radiators</text>
+<text x="345.0" y="18.0" text-anchor="start" class="d-title bad-text">Return above 55 °C</text>
+<path d="M450,106 L450,40" class="arrow" marker-end="url(#cond-arrow)"/>
+<text x="462.0" y="62.0" text-anchor="start" class="d-note warn">hot, wet exhaust:</text>
+<text x="462.0" y="79.0" text-anchor="start" class="d-note warn">that heat is lost</text>
+<rect x="355.0" y="108.0" width="190.0" height="82.0" rx="10" class="box"/>
+<text x="367.0" y="128.0" text-anchor="start" class="d-title">Condensing exchanger</text>
+<text x="367.0" y="146.0" text-anchor="start" class="d-note">too warm to condense:</text>
+<text x="367.0" y="161.0" text-anchor="start" class="d-note">the vapour passes</text>
+<text x="367.0" y="176.0" text-anchor="start" class="d-note">straight through</text>
+<path d="M450,224 L450,192" class="arrow" marker-end="url(#cond-arrow)"/>
+<rect x="355.0" y="226.0" width="190.0" height="44.0" rx="10" class="box"/>
+<text x="367.0" y="253.0" text-anchor="start" class="d-title">Main exchanger</text>
+<path d="M450,304 L450,272" class="arrow" marker-end="url(#cond-arrow)"/>
+<rect x="355.0" y="286.0" width="190.0" height="40.0" rx="10" class="box box-muted"/>
+<text x="367.0" y="311.0" text-anchor="start" class="d-note">Burner: gas + air</text>
+<path d="M675,150 L549,150" class="arrow" marker-end="url(#cond-arrow)"/>
+<text x="559.0" y="128.0" text-anchor="start" class="d-note">water back from</text>
+<text x="559.0" y="143.0" text-anchor="start" class="d-note">the radiators</text>
+<path d="M549,248 L675,248" class="arrow" marker-end="url(#cond-arrow)"/>
+<text x="559.0" y="272.0" text-anchor="start" class="d-note">hot water out to</text>
+<text x="559.0" y="287.0" text-anchor="start" class="d-note">the radiators</text>
+</svg>

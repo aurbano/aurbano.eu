@@ -332,6 +332,119 @@ def model_diagram():
         "Heating hours are left out because they change with the flow temperature.", body)
 
 
-for chart in (daily, trace, return_hist, cycles, heatup, gas_expected, model_diagram):
+# 8. Hours per day each room's valve was open ------------------------------------------------------
+def rooms():
+    rm = DATA["rooms"]
+    names = {"living_room": "Living room", "bedroom": "Bedroom", "office": "Office", "entrance": "Entrance",
+             "vr": "VR room", "guests": "Guest room"}
+    left, top, ch = 104, 34, 40
+    cw = (W - left - 4) / len(rm["days"])
+    h = top + ch * len(names) + 36
+    body = []
+    for j, dd in enumerate(rm["days"]):
+        body.append(text(left + (j + 0.5) * cw, top - 12, datetime.strptime(dd, "%Y-%m-%d").strftime("%a %-d"), "tick", "middle"))
+    for i, (key, label) in enumerate(names.items()):
+        y = top + i * ch
+        body.append(text(left - 10, y + ch / 2 + 4, label, "label", "end"))
+        for j, v in enumerate(rm["hours"][key]):
+            x = left + j * cw
+            body.append(f'<rect x="{x + 2:.1f}" y="{y + 2:.1f}" width="{cw - 4:.1f}" height="{ch - 4:.1f}" rx="4" '
+                        f'class="s-before solid" fill-opacity="{0.06 + 0.82 * min(v, 16) / 16:.2f}"/>')
+            s = f"{v:.0f} h" if v >= 1 else ("<1 h" if v > 0 else "0")
+            body.append(text(x + cw / 2, y + ch / 2 + 4, s, "value on-dark" if v >= 9 else "value", "middle"))
+    bottom = top + ch * len(names)
+    body.append(text(left, bottom + 22, "Flow 60 °C from Friday 13 at 13:19; restart band −10 K from Monday 16 at 13:21.", "note"))
+    svg("rooms", h, "Hours per day each room's radiator valve was open",
+        "A grid of rooms by day, 10 to 18 November. The bedroom's valve was open 8 to 15 hours a day, the living room's "
+        "3 to 12, and the office, entrance, VR room and guest room mostly a few hours or less.", body)
+
+
+# 9. What condensing means (diagram) -------------------------------------------------------------
+def condensing_diagram():
+    h = 330
+    body = ['<defs><marker id="cond-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" '
+            'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker></defs>']
+
+    def arrow(d):
+        body.append(f'<path d="{d}" class="arrow" marker-end="url(#cond-arrow)"/>')
+
+    panels = [(0, "Return below 55 °C", "good-text", "box box-accent", ["vapour turns to water:", "its heat goes into the", "radiator water"],
+               ["cooler, drier", "exhaust"]),
+              (345, "Return above 55 °C", "bad-text", "box", ["too warm to condense:", "the vapour passes", "straight through"],
+               ["hot, wet exhaust:", "that heat is lost"])]
+    for x0, title, tcls, ccls, cond_lines, flue_lines in panels:
+        cx = x0 + 105
+        body.append(text(x0, 18, title, f"d-title {tcls}"))
+        arrow(f"M{cx},106 L{cx},40")
+        for k, s in enumerate(flue_lines):
+            body.append(text(cx + 12, 62 + 17 * k, s, "d-note warn" if tcls == "bad-text" else "d-note"))
+        body.append(rect(x0 + 10, 108, 190, 82, ccls, 10))
+        body.append(text(x0 + 22, 128, "Condensing exchanger", "d-title"))
+        for k, s in enumerate(cond_lines):
+            body.append(text(x0 + 22, 146 + 15 * k, s, "d-note"))
+        arrow(f"M{cx},224 L{cx},192")
+        body.append(rect(x0 + 10, 226, 190, 44, "box", 10))
+        body.append(text(x0 + 22, 253, "Main exchanger", "d-title"))
+        arrow(f"M{cx},304 L{cx},272")
+        body.append(rect(x0 + 10, 286, 190, 40, "box box-muted", 10))
+        body.append(text(x0 + 22, 311, "Burner: gas + air", "d-note"))
+        arrow(f"M{x0 + 330},150 L{x0 + 204},150")
+        body.append(text(x0 + 214, 128, "water back from", "d-note"))
+        body.append(text(x0 + 214, 143, "the radiators", "d-note"))
+        arrow(f"M{x0 + 204},248 L{x0 + 330},248")
+        body.append(text(x0 + 214, 272, "hot water out to", "d-note"))
+        body.append(text(x0 + 214, 287, "the radiators", "d-note"))
+    svg("condensing", h, "What condensing means",
+        "Two side-by-side sketches of a condensing boiler. Exhaust from the burner rises through the main heat exchanger "
+        "and then the condensing exchanger, where the cooler water coming back from the radiators enters. With the return "
+        "below 55 °C the water vapour in the exhaust condenses and its heat goes into the water; above 55 °C it is too "
+        "warm to condense and the heat leaves through the flue.", body)
+
+
+# 10. What the restart band does (illustration from the measured medians) --------------------------
+def band_diagram():
+    cy = DATA["cycles"]
+    h, left, right, panel = 356, 92, W - 10, 120
+    window = 40  # minutes shown
+    xs = scale(0, window, left, right)
+    body = []
+    # Run and pause lengths: medians of the measured runs and off gaps at each setting.
+    rows = [("after", "−6 K", 54, "s-after"), ("after2", "−10 K", 50, "s-after2")]
+    for r, (key, label, restart, cls) in enumerate(rows):
+        top = 30 + r * (panel + 46)
+        bottom = top + panel
+        ys = scale(46, 68, bottom, top)
+        on = DATA["cycles"][key]["median_min"]
+        off = DATA["cycles"][key]["gap_median_min"]
+        body.append(rect(left, ys(64), right - left, ys(restart) - ys(64), "zone", 0))
+        body.append(line(left, ys(64), right, ys(64), "target"))
+        body.append(line(left, ys(restart), right, ys(restart), "target"))
+        body.append(text(left - 8, ys(64) + 4, "stop 64°", "tick", "end"))
+        body.append(text(left - 8, ys(restart) + 4, f"restart {restart}°", "tick", "end"))
+        pts, t, temp, firing = [], 0.0, restart, True
+        starts = 0
+        while t < window:
+            dur = on if firing else off
+            t1 = min(window, t + dur)
+            frac = (t1 - t) / dur
+            nxt = temp + (64 - restart) * frac * (1 if firing else -1)
+            if firing:
+                starts += 1
+                body.append(rect(xs(t), bottom + 6, xs(t1) - xs(t), 8, f"{cls} solid", 2))
+            pts += [(xs(t), ys(temp)), (xs(t1), ys(nxt))]
+            t, temp, firing = t1, nxt, not firing
+        body.append(path(pts, f"series {cls}"))
+        body.append(text(left, top - 10, f"Restart band {label}: runs of about {on:.0f} min, pauses of about {off:.0f} min, "
+                                         f"{starts} starts in {window} minutes", f"label strong {cls}-text"))
+        body.append(text(left - 8, bottom + 15, "burner", "tick", "end"))
+    for m in range(0, window + 1, 10):
+        body.append(text(xs(m), h - 6, f"{m} min", "tick", "middle"))
+    svg("band", h, "What the restart band does",
+        "An illustration of the water temperature rising while the burner runs and falling while it rests, between the "
+        "stop point at 64 °C and the restart point: 54 °C with the −6 K band, 50 °C with −10 K. Built from the median "
+        "run and pause at each setting: the wider band gives longer runs, longer pauses and fewer starts.", body)
+
+
+for chart in (daily, trace, return_hist, cycles, heatup, gas_expected, model_diagram, rooms, condensing_diagram, band_diagram):
     chart()
 print("wrote", ", ".join(sorted(p.name for p in DIR.glob("*.svg"))))

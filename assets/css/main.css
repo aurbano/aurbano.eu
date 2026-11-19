@@ -269,6 +269,8 @@
 .chart .s-before { --c: var(--chart-warm); }
 .chart .s-after { --c: var(--magazine-accent); }
 .chart .s-after2 { --c: var(--chart-cool); }
+.chart .s-after2-text { fill: rgb(var(--chart-cool)); }
+.chart .on-dark { fill: rgb(var(--magazine-white)); }
 .chart .s-change { --c: var(--magazine-tertiary); }
 .chart .s-base { --c: var(--chart-grey); }
 .chart .s-good { --c: var(--chart-good); }
