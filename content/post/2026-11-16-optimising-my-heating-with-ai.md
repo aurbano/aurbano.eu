@@ -129,32 +129,6 @@ Three days later the agent ran its review, prediction by prediction.
 
 Its verdict: keep the wider band.
 
-## Is it saving gas?
-
-This is the question that matters, and the hardest one to answer, because the weather changes every day.
-
-The agent's yardstick is what a day of heating costs per degree of warmth: the day's gas cost divided by how many degrees warmer the house was than outside, on average. A cold day burns more gas but also gets more degrees, so the two roughly cancel. Lower is better.
-
-On its own that still swings a lot. In November 2024, at the old settings, eight days in ten fell between 27p and 47p a degree (the shaded band in the chart), depending on sunshine, wind and whether we were home. So for each day the agent also worked out what the old settings would have cost in the same conditions. That's the line on each bar below: a bar under its line means the new settings saved money that day.
-
-{{< chart "posts/heating-with-ai/gas-cost.svg" "Gas cost per degree of warmth, at 6.22p per kWh. The line on each bar is what the old settings would have cost on the same day." >}}
-
-Most of the bars are faded. On six of the nine days the heating controls were offline for an hour or more, and a day with gaps in the data can't be compared fairly.
-
-That leaves three days. 10 and 11 November, still at the old settings, sit 4 % and 11 % above their lines. The model learned from those two days, so that's a sanity check rather than proof.
-
-Since the changes, only Tuesday 17 November is complete: 46p a degree, against 43p at the old settings. That's 8 % more, not less. But one day says very little; that's inside the model's day-to-day noise (next section). The agent's sums say it will take about a month of complete days to see a 6 % saving.
-
-So the honest answer is: I don't know yet.
-
-### Where the line comes from
-
-The line is a model the agent fitted on gas use from late October and November 2024, at the old settings, plus the two old-settings days this month: 40 days in all. It predicts a day's gas from four things: the gap between indoor and outdoor temperature (indoor from the tado sensors in six rooms), sunshine, wind, and whether it's a weekend.
-
-{{< chart "posts/heating-with-ai/model.svg" "How the old-settings line is worked out. The numbers are what the model learned: for example, each extra degree between indoors and outdoors costs about 6 kWh a day." >}}
-
-The agent tried simpler versions and kept the one that predicted best on days it hadn't seen; a single day's prediction is typically off by about 10 kWh, roughly 18 %. It left heating hours out on purpose: at a lower flow temperature the valves stay open longer for the same heat, so a model built on them would invent a saving. The boiler dashboard keeps the running total, skipping days with gaps in the data.
-
 ## What it's been worth so far
 
 Before is the original 69 °C flow with a −6 K restart band. Now is 60 °C with −10 K.
@@ -167,11 +141,11 @@ Before is the original 69 °C flow with a −6 K restart band. Now is 60 °C wit
 | Typical pause between runs | 3.5 min | 9.8 min | no standard figure; longer is better |
 | Burner starts per degree of indoor–outdoor difference, per day | 7.4 | 6.5 | no standard figure; fewer is better |
 | Living room warm-up, valve fully open | about 1 °C an hour | 0.6–0.8 °C an hour | no standard; compared with itself |
-| Gas against the old settings | baseline | not provable yet: one complete day, +8 % | 3–6 % less (the agent's estimate) |
+| Gas against the old settings | baseline | too early to tell | 3–6 % less (the agent's estimate) |
 
 - **Efficiency.** The boiler now condenses for nine tenths of its heating time instead of barely more than a quarter. The agent's estimate, from typical efficiency curves, is that this is worth 3–6 % of heating gas. It's an estimate, not a measurement.
 - **Wear.** About an eighth fewer starts than at the original settings for the same heat, and far fewer very short runs. Starts are what wear the igniter, fan and gas valve, so this should be kinder to the boiler. Nobody can put a number of years on that, and the agent didn't try.
-- **Cost.** Nothing I can show yet. If the 3–6 % holds, it's roughly £20–45 over a winter at my tariff. The one complete day so far came out 8 % above the model, well inside its noise; a 3 % saving may never be provable this way. The changes themselves cost nothing.
+- **Cost.** Nothing I can show yet. If the 3–6 % holds, it's roughly £20–45 over a winter at my tariff, and proving it will take about a month of complete days (more on that below). The changes themselves cost nothing.
 - **Comfort.** Heating isn't faster; it's a little slower. That was the price of condensing, and the agent measured it rather than assumed it away. The rooms still reach their targets, and the bedroom, the one that struggles, is the reason the flow stayed at 60 °C.
 
 ## Working with the agent
@@ -190,19 +164,20 @@ What it needed me for:
 - **Judgement about the house.** The bedroom runs humid, so lowering its target to save gas is a bad trade. That's not in the data.
 - **Unblocking it.** At one point macOS quietly withdrew the terminal's permission to talk to anything on my local network, and every connection to the Pi failed with "No route to host". The agent eventually found a way round it, but noticing that the permission had gone took a human.
 
-## What's next: going after cost
+## Next steps
 
-Both changes so far were about how well the boiler runs. Neither goes after the gas bill directly, and the agent's view is that the boiler settings worth changing are now changed. What's left is how much heat the house asks for. So on 19 November we agreed a second phase, again one change at a time.
+Both changes so far were about how well the boiler runs. Neither goes after the gas bill directly, and the agent's view is that the boiler settings worth changing are now changed. What's left is proving the saving, and then reducing how much heat the house asks for.
 
-**First, stop heating rooms nobody uses.** Three rooms (the entrance, a hobby room and the guest room) had schedules of 18 °C or more, and one of them was the warmest room in the house. I'm turning them down to 14–15 °C in the tado app. The agent's estimate is 3 to 7 kWh a day, £30–70 over a winter. It's a rough estimate, because the rooms next door will keep them warmer than their setting.
+### What we're waiting for
 
-Measuring this needed a new yardstick. The six-room model above would see cooler spare rooms as a house that's less warm, expect less gas, and give the change no credit. So the agent built a second model on the three rooms we actually heat. It predicts almost as well, typically off by 9.9 kWh a day against 9.7.
+- **Enough complete days to judge the gas.** Each morning the agent compares the day's metered gas with what the old settings would have used in the same weather and at the same indoor temperatures, using a model it fitted on last November. A single day's prediction is typically off by about 18 %, so seeing a 6 % saving takes about a month of complete days. So far there's one, 17 November, and it came out 8 % above: inside the noise, so no verdict yet.
+- **A steadier connection to the heating controls.** On six of the first nine days they dropped offline for an hour or more, and those days can't be compared. I've moved some hardware that may have been interfering, and the agent is watching for a week to see whether that fixed it.
+- **The spare rooms.** Three rooms nobody uses (the entrance, a hobby room and the guest room) had schedules of 18 °C or more, and one of them was the warmest room in the house. I'm turning them down to 14–15 °C in the tado app. The agent's estimate is 3 to 7 kWh a day, £30–70 over a winter, rough because the rooms next door will keep them warmer than their setting. To measure it, the agent built a second model on only the three rooms we heat, since the first one would treat cooler spare rooms as a house that's less warm and give the change no credit. Cool rooms can get damp, so there's a rollback rule: if the dashboard's damp check flags any of the three rooms, or their humidity stays above 70 % (the agent's threshold, not a standard), they go back up to 16–17 °C.
 
-There's a way back here too. Cool rooms can get damp, so the agent set a rollback rule: if the dashboard's damp check flags any of the three rooms, or their humidity stays above 70 % (its own threshold, not a standard), they go back up to 16–17 °C.
+### What we'll do after that
 
-**Then, a flow temperature that follows the weather.** On a mild day the radiators don't need 60 °C water. The agent wants to trial Home Assistant lowering the flow when it's mild, for example to 55 °C when it's above 8 °C outside. It first has to check that the boiler keeps a flow setting sent over the data bus rather than snapping back to the dial, and that the bedroom still keeps up. It expects 1–2 %, since the boiler already condenses most of the time.
-
-Neither has results yet. When they do, they'll get their own chapter here.
+- **A flow temperature that follows the weather.** On a mild day the radiators don't need 60 °C water. The agent wants to trial Home Assistant lowering the flow when it's mild, for example to 55 °C above 8 °C outside. It first has to check that the boiler keeps a flow setting sent over its data bus rather than snapping back to the dial, and that the bedroom still keeps up. It expects 1–2 %, since the boiler already condenses most of the time.
+- **A results chapter.** Once there's a gas verdict and the spare rooms have had their review, they'll get their own chapter here.
 
 [home-assistant]: https://www.home-assistant.io/
 [raspberry-pi]: https://www.raspberrypi.com/products/raspberry-pi-4-model-b/

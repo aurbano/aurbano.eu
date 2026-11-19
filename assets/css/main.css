@@ -278,7 +278,6 @@
 .chart .warn { fill: rgb(var(--chart-warm)); }
 .chart .grid { stroke: rgb(var(--hairline)); stroke-width: 1; }
 .chart .axis { stroke: rgb(var(--magazine-black) / 0.4); }
-.chart .marker { stroke: rgb(var(--prose-heading)); stroke-width: 3; stroke-linecap: round; }
 .chart .target { stroke: rgb(var(--magazine-black) / 0.45); stroke-width: 1; stroke-dasharray: 4 4; }
 .chart .zone { fill: rgb(var(--chart-cool) / 0.08); }
 .chart .s-before { --c: var(--chart-warm); }

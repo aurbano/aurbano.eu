@@ -242,92 +242,6 @@ def heatup():
         "0.9 °C in 80 minutes and 0.9 °C in 125 minutes, on milder mornings.", body)
 
 
-# 6. Gas cost per degree of warmth, per day, against the old settings on the same day ---------------
-def gas_cost():
-    h, top, bottom, left, right = 348, 50, 262, 48, W - 10
-    gm = DATA["gas_model"]
-    rate = gm["rate_p_per_kwh"]
-    days = gm["nov2026"]
-    ys = scale(0, 60, bottom, top)
-    series_of = {"69 °C": "s-before", "change day": "s-change", "60 °C": "s-after", "60 °C, −10 K": "s-after2"}
-    body = []
-    legend(body, left, 18, [("s-before", "69 °C"), ("s-after", "60 °C, −6 K"), ("s-after2", "60 °C, −10 K")])
-    body.append(line(left + 400, 12, left + 424, 12, "marker"))
-    body.append(text(left + 432, 17, "old settings, same day", "label"))
-    for v in range(0, 61, 20):
-        body.append(line(left, ys(v), right, ys(v), "grid"))
-        body.append(text(left - 8, ys(v) + 4, f"{v}p", "tick", "end"))
-    slot = (right - left) / len(days)
-    for i, d in enumerate(days):
-        clean = (d["relay_off_h"] or 0) < 1
-        v, e = d["actual"] * rate / d["dT"], d["expected"] * rate / d["dT"]
-        x, bw = left + i * slot + slot * 0.2, slot * 0.6
-        cls = series_of[d["setting"]]
-        bar = rect(x, ys(v), bw, bottom - ys(v), f"{cls} solid", 3)
-        body.append(bar if clean else bar.replace('class="', 'fill-opacity="0.25" class="'))
-        if clean:
-            body.append(line(x - 5, ys(e), x + bw + 5, ys(e), "marker"))
-            body.append(text(x + bw / 2, min(ys(v), ys(e)) - 8, f"{v:.0f}p", "value", "middle"))
-        else:
-            body.append(text(x + bw / 2, ys(v) - 8, "gap", "note", "middle"))
-        day = datetime.strptime(d["date"], "%Y-%m-%d")
-        body.append(text(x + bw / 2, bottom + 18, day.strftime("%a %-d"), "tick", "middle"))
-    # Usual range at the old settings: the middle 80 % of the baseline days' cost per degree.
-    base = sorted(g * rate / dt for g, dt in gm["baseline_gas_dT"])
-    p10, p90 = base[round(0.1 * (len(base) - 1))], base[round(0.9 * (len(base) - 1))]
-    body.insert(0, rect(left, ys(p90), right - left, ys(p10) - ys(p90), "zone"))
-    body.append(text(left, bottom + 44, f"Shaded: the usual range in November 2024 at the old settings, {p10:.0f}p to {p90:.0f}p.", "note"))
-    body.append(text(left, bottom + 62, "Faded: heating controls offline for part of the day, so not comparable.", "note"))
-    svg("gas-cost", h, "Gas cost per degree of warmth, per day",
-        "Bars per day from 10 to 18 November: what the day's gas cost, divided by how many degrees warmer the house was "
-        "than outside. A marker on each complete day shows what the old settings would have cost on the same day. "
-        "10 and 11 November sit 4 % and 11 % above their markers; 17 November, the only complete day at the new "
-        "settings, is 8 % above its marker.", body)
-
-
-# 7. How expected gas is worked out (diagram) --------------------------------------------------
-def model_diagram():
-    h = 470
-    c = [round(x, 1) for x in DATA["gas_model"]["coef"]]
-    rm = DATA["gas_model"]["loo_rmse_kwh"]
-    sign = lambda v: f"{'+' if v >= 0 else '−'}{abs(v):.1f}"
-    body = ['<defs><marker id="model-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" '
-            'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker></defs>']
-
-    def box(x, y, w, hh, title, lines, cls="box"):
-        body.append(rect(x, y, w, hh, cls, 10))
-        body.append(text(x + 14, y + 25, title, "d-title"))
-        for i, s in enumerate(lines):
-            body.append(text(x + 14, y + 46 + 18 * i, s, "d-note"))
-
-    def arrow(d):
-        body.append(f'<path d="{d}" class="arrow" marker-end="url(#model-arrow)"/>')
-
-    inputs = [("Indoor − outdoor", "6 rooms vs outside"), ("Sunshine", "weather archive"),
-              ("Wind", "weather archive"), ("Weekend", "more people home")]
-    for i, (t, n) in enumerate(inputs):
-        y = 10 + i * 76
-        box(0, y, 180, 62, t, [n])
-        arrow(f"M182,{y + 31} L224,{160 + (i - 1.5) * 18:.0f}")
-    box(228, 40, 222, 214, "Old-settings model", [f"{sign(c[1])} per °C indoor − outdoor",
-        f"{sign(c[2])} per kWh/m² of sun", f"{sign(c[3])} per km/h of wind", f"{sign(c[4])} at weekends",
-        f"{sign(c[0])} to start from", "kWh per day, fitted on", "40 days at 69 °C"], "box box-accent")
-    body.append(text(242, 238, f"typical error ±{rm:.0f} kWh/day", "d-note warn"))
-    box(492, 10, 188, 62, "Expected gas", ["at the old settings"], "box box-accent")
-    arrow("M452,110 L490,60")
-    box(492, 120, 188, 62, "Difference", ["expected − measured"])
-    box(492, 230, 188, 62, "Measured gas", ["smart meter"])
-    arrow("M586,74 L586,118")
-    arrow("M586,228 L586,184")
-    arrow("M492,151 L470,151 L470,336")
-    box(360, 340, 320, 120, "Running total", ["adds up the daily differences", "on the Boiler tab, skipping", "days with gaps in the data"], "box box-accent")
-    box(0, 340, 330, 120, "Left out: heating hours", ["at 60 °C the valves stay open longer", "for the same heat, so they would", "fake a saving"], "box box-muted")
-    svg("model", h, "How expected gas is worked out",
-        "Four inputs (indoor minus outdoor temperature, sunshine, wind, weekend) feed a model fitted at the old boiler "
-        "settings. Its expected gas is compared with the smart meter each day, and the differences are added up. "
-        "Heating hours are left out because they change with the flow temperature.", body)
-
-
 # 8. Room temperature with the heating spells, for the rooms we heat --------------------------------
 def rooms():
     rm = DATA["rooms"]
@@ -539,7 +453,7 @@ def sizing_diagram():
         "between about 7 and 24 kW, so even its lowest flame is three times too much.", body)
 
 
-for chart in (daily, trace, cycles, heatup, gas_cost, model_diagram, rooms, condensing_diagram, band_diagram,
+for chart in (daily, trace, cycles, heatup, rooms, condensing_diagram, band_diagram,
               setup_diagram, sizing_diagram):
     chart()
 print("wrote", ", ".join(sorted(p.name for p in DIR.glob("*.svg"))))
