@@ -354,6 +354,8 @@ def rooms():
         step = rm["step_min"]
         spells = rm["heating"][key]
         heating = lambda m: any(a < m + step and b > m for a, b in spells)
+        for a, b in spells:
+            body.append(rect(xs(a), y0, xs(b) - xs(a), row, "s-bad solid", 0).replace('class="', 'fill-opacity="0.16" class="'))
         for v in range(lo, hi + 1, 2):
             body.append(line(left, ys(v), right, ys(v), "grid"))
             body.append(text(left - 8, ys(v) + 4, f"{v}°", "tick", "end"))
@@ -384,11 +386,11 @@ def rooms():
 
 # 9. What condensing means (diagram) -------------------------------------------------------------
 def condensing_diagram():
-    h = 330
+    h = 350
     body = ['<defs><marker id="cond-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" '
             'orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker>'
             + "".join(f'<marker id="pipe-{k}" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="2.6" markerHeight="2.6" '
-                      f'orient="auto"><path d="M0,0 L10,5 L0,10 z" class="pipe-head-{k}"/></marker>' for k in ("cold", "hot"))
+                      f'orient="auto"><path d="M0,0 L10,5 L0,10 z" class="pipe-head-{k}"/></marker>' for k in ("cold", "warm", "hot"))
             + '</defs>']
 
     def arrow(d):
@@ -399,30 +401,34 @@ def condensing_diagram():
 
     panels = [(0, "Return below 55 °C", "good-text", "box box-accent", ["vapour turns to water:", "its heat goes into the", "radiator water"],
                ["cooler, drier", "exhaust"]),
-              (345, "Return above 55 °C", "bad-text", "box", ["too warm to condense:", "the vapour passes", "straight through"],
+              (346, "Return above 55 °C", "bad-text", "box", ["too warm to condense:", "the vapour passes", "straight through"],
                ["hot, wet exhaust:", "that heat is lost"])]
-    for x0, title, tcls, ccls, cond_lines, flue_lines in panels:
-        cx = x0 + 105
-        body.append(text(x0, 18, title, f"d-title {tcls}"))
-        arrow(f"M{cx},106 L{cx},40")
+    for card, title, tcls, ccls, cond_lines, flue_lines in panels:
+        # Each case is its own card; ox is the left edge of its contents.
+        ox = card + 10
+        cx = ox + 93
+        ret, ret_word = ("cold", "cool") if tcls == "good-text" else ("warm", "warm")
+        body.append(rect(card, 1, 334, h - 2, "panel", 14))
+        body.append(text(ox, 28, title, f"d-title {tcls}"))
+        arrow(f"M{cx},114 L{cx},48")
         for k, s in enumerate(flue_lines):
-            body.append(text(cx + 12, 62 + 17 * k, s, "d-note warn" if tcls == "bad-text" else "d-note"))
-        body.append(rect(x0 + 10, 108, 190, 82, ccls, 10))
-        body.append(text(x0 + 22, 128, "Condensing exchanger", "d-title"))
+            body.append(text(cx + 12, 70 + 17 * k, s, "d-note warn" if tcls == "bad-text" else "d-note"))
+        body.append(rect(ox, 116, 186, 82, ccls, 10))
+        body.append(text(ox + 12, 136, "Condensing exchanger", "d-title"))
         for k, s in enumerate(cond_lines):
-            body.append(text(x0 + 22, 146 + 15 * k, s, "d-note"))
-        arrow(f"M{cx},224 L{cx},192")
-        body.append(rect(x0 + 10, 226, 190, 44, "box", 10))
-        body.append(text(x0 + 22, 253, "Main exchanger", "d-title"))
-        arrow(f"M{cx},304 L{cx},272")
-        body.append(rect(x0 + 10, 286, 190, 40, "box box-muted", 10))
-        body.append(text(x0 + 22, 311, "Burner: gas + air", "d-note"))
-        pipe(f"M{x0 + 332},150 L{x0 + 212},150", "cold")
-        body.append(text(x0 + 214, 118, "cool water back", "d-note cool"))
-        body.append(text(x0 + 214, 133, "from the radiators", "d-note cool"))
-        pipe(f"M{x0 + 202},248 L{x0 + 318},248", "hot")
-        body.append(text(x0 + 214, 272, "hot water out to", "d-note warn"))
-        body.append(text(x0 + 214, 287, "the radiators", "d-note warn"))
+            body.append(text(ox + 12, 154 + 15 * k, s, "d-note"))
+        arrow(f"M{cx},232 L{cx},200")
+        body.append(rect(ox, 234, 186, 44, "box", 10))
+        body.append(text(ox + 12, 261, "Main exchanger", "d-title"))
+        arrow(f"M{cx},294 L{cx},280")
+        body.append(rect(ox, 296, 186, 40, "box box-muted", 10))
+        body.append(text(ox + 12, 321, "Burner: gas + air", "d-note"))
+        pipe(f"M{ox + 312},158 L{ox + 197},158", ret)
+        body.append(text(ox + 198, 126, f"{ret_word} water back", f"d-note {ret_word}"))
+        body.append(text(ox + 198, 141, "from the radiators", f"d-note {ret_word}"))
+        pipe(f"M{ox + 188},256 L{ox + 300},256", "hot")
+        body.append(text(ox + 198, 280, "hot water out to", "d-note warn"))
+        body.append(text(ox + 198, 295, "the radiators", "d-note warn"))
     svg("condensing", h, "What condensing means",
         "Two side-by-side sketches of a condensing boiler. Exhaust from the burner rises through the main heat exchanger "
         "and then the condensing exchanger, where the cooler water coming back from the radiators enters. With the return "

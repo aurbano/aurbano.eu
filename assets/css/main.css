@@ -24,6 +24,7 @@
     --chart-cool: 62 110 150;
     --chart-grey: 160 160 154;
     --chart-good: 46 140 87;
+    --chart-amber: 214 140 40;
     --chart-band-alpha: 0.24;
   }
 
@@ -49,6 +50,7 @@
       --chart-cool: 128 172 210;
       --chart-grey: 118 122 114;
       --chart-good: 110 196 140;
+      --chart-amber: 236 176 92;
       --chart-band-alpha: 0.42;
     }
   }
@@ -74,6 +76,7 @@
     --chart-cool: 128 172 210;
     --chart-grey: 118 122 114;
     --chart-good: 110 196 140;
+    --chart-amber: 236 176 92;
     --chart-band-alpha: 0.42;
   }
 
@@ -293,6 +296,10 @@
 .chart .pipe-hot { stroke: rgb(var(--chart-warm)); }
 .chart .pipe-head-cold { fill: rgb(var(--chart-cool)); }
 .chart .pipe-head-hot { fill: rgb(var(--chart-warm)); }
+.chart .d-note.warm { fill: rgb(var(--chart-amber)); }
+.chart .pipe-warm { stroke: rgb(var(--chart-amber)); }
+.chart .pipe-head-warm { fill: rgb(var(--chart-amber)); }
+.chart .panel { fill: rgb(var(--magazine-black) / 0.025); stroke: rgb(var(--magazine-black) / 0.2); stroke-width: 1.5; }
 .chart .arrow { fill: none; stroke: rgb(var(--magazine-black) / 0.55); stroke-width: 1.75; }
 .chart .arrowhead { fill: rgb(var(--magazine-black) / 0.55); }
 .chart .solid { fill: rgb(var(--c)); stroke: none; }
