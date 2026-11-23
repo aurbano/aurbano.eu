@@ -31,7 +31,7 @@ The rules are short too: read and diagnose freely, back up before anything risky
 
 Its method was the same for each problem: change one thing at a time, write down beforehand what should happen, then wait three days and check, adjusting for the weather so a cold snap doesn't look like a step backwards.
 
-Everything below comes from raw ten-second history between 10 and 19 November 2026. "Heating" means the burner was on for the radiators, not for hot water, so showers don't muddy the figures. Hours when the heating controls were offline are left out of every figure. The gas figures use hourly smart-meter readings, and sunshine and wind from the [Open-Meteo](https://open-meteo.com/) weather archive.
+Everything below comes from raw ten-second history between 10 and 23 November 2026; the results of the second change cover 16 to 19 November, before the next change began. "Heating" means the burner was on for the radiators, not for hot water, so showers don't muddy the figures. Hours when the heating controls were offline are left out of every figure. The gas figures use hourly smart-meter readings, and sunshine and wind from the [Open-Meteo](https://open-meteo.com/) weather archive.
 
 ## Problem one: a condensing boiler that wasn't condensing
 
@@ -73,9 +73,9 @@ The living room used to warm up at about 1 °C an hour with its radiator valve f
 
 {{< chart "posts/heating-with-ai/heatup.svg" "The living room warming up in the morning, measured from the moment its valve was fully open. The right-hand column gives the flow and outdoor temperature on each morning." >}}
 
-The bedroom is the real limit. Its radiator already worked far harder than the others: about 12 hours a day, against 7 for the living room and 3 for the office.
+The bedroom is the real limit. Its radiator already worked far harder than the others: about 13 hours a day, against 7 or 8 for the living room and 3 for the office.
 
-{{< chart "posts/heating-with-ai/rooms.svg" "The three rooms we heat, 10 to 18 November. The line is the room temperature, coloured and banded while its radiator valve was open, grey while it was closed." >}}
+{{< chart "posts/heating-with-ai/rooms.svg" "The three rooms we heat, 10 to 22 November. The line is the room temperature, coloured and banded while its radiator valve was open, grey while it was closed." >}}
 
 There's no standard here either, so the agent used a rule of thumb of its own: a radiator that's big enough for its room should rarely be wide open and still behind. Before the change the bedroom's was wide open and still more than half a degree below its target 13 % of the time. After, 36 %.
 
@@ -121,7 +121,7 @@ Three days later the agent ran its review, prediction by prediction.
 
 **Pauses: much longer.** This is the clearest change. There's no standard for a pause, but longer means fewer starts. The typical pause between runs went from 3.8 minutes to 9.8, so the burner now rests for ten minutes instead of lighting again almost straight away. A typical run plus a typical pause now takes about 14 minutes, which works out at about four starts an hour while it's cycling, down from nearer ten. That's back in the normal range and out of the 5-to-10 the guidance calls short-cycling, though the runs themselves are still shorter than a healthy 8 minutes.
 
-**Same heat.** Burner time per degree barely moved: 45.8 minutes a day before, 43.6 after. That's the point: the same heat, in fewer and longer pieces.
+**Same heat.** Burner time per degree barely moved: 45.8 minutes a day before, 43.5 after. That's the point: the same heat, in fewer and longer pieces.
 
 **Condensing: 90 %, right on the line.** It slipped from 93 %. Tuesday was 96 %. Wednesday dropped to 76 % because of two stretches of almost continuous firing, around midday and in the evening, that pushed the return to 56–57 °C. Long runs at high demand are where a 60 °C flow runs out of room, and they aren't what this change was about.
 
@@ -170,9 +170,9 @@ Both changes so far were about how well the boiler runs. Neither goes after the 
 
 ### What we're waiting for
 
-- **Enough complete days to judge the gas.** Each morning the agent compares the day's metered gas with what the old settings would have used in the same weather and at the same indoor temperatures, using a model it fitted on last November. A single day's prediction is typically off by about 18 %, so seeing a 6 % saving takes about a month of complete days. So far there's one, 17 November, and it came out 8 % above: inside the noise, so no verdict yet.
-- **A steadier connection to the heating controls.** On six of the first nine days they dropped offline for an hour or more, and those days can't be compared. I've moved some hardware that may have been interfering, and the agent is watching for a week to see whether that fixed it.
-- **The spare rooms.** Three rooms nobody uses (the entrance, a hobby room and the guest room) had schedules of 18 °C or more, and one of them was the warmest room in the house. I'm turning them down to 14–15 °C in the tado app. The agent's estimate is 3 to 7 kWh a day, £30–70 over a winter, rough because the rooms next door will keep them warmer than their setting. To measure it, the agent built a second model on only the three rooms we heat, since the first one would treat cooler spare rooms as a house that's less warm and give the change no credit. Cool rooms can get damp, so there's a rollback rule: if the dashboard's damp check flags any of the three rooms, or their humidity stays above 70 % (the agent's threshold, not a standard), they go back up to 16–17 °C.
+- **Enough complete days to judge the gas.** Each morning the agent compares the day's metered gas with what the old settings would have used in the same weather and at the same indoor temperatures, using a model it fitted on last November. A single day's prediction is typically off by about 18 %, so seeing a 6 % saving takes about a month of complete days. So far there are three: 17, 19 and 22 November came out 8 % and 12 % above and 5 % below, 4 % above in total. That's inside the noise, so no verdict yet.
+- **A steadier connection to the heating controls.** On six of the first nine days they dropped offline for an hour or more, and those days can't be compared. Moving some hardware that may have been interfering helped less than hoped: two of the four days since still had gaps.
+- **The spare rooms.** Three rooms nobody uses (the entrance, a hobby room and the guest room) had schedules of 18 °C or more, and one of them was the warmest room in the house. On 19 November I turned the hobby room down to 15 °C and the guest room to 14 °C; the entrance is still to do. The agent's estimate was 3 to 7 kWh a day, £30–70 over a winter, rough because the rooms next door keep them warmer than their setting: the hobby room still averaged 18 °C. To measure it, the agent built a second model on only the three rooms we heat, since the first one would treat cooler spare rooms as a house that's less warm and give the change no credit. Cool rooms can get damp, so it also set a rollback rule: if the dashboard's damp check flags any of them, or their humidity stays above 70 % (the agent's threshold, not a standard), they go back up to 16–17 °C. It fired straight away. In the four days after the change the guest room's damp check was on 90 % of the time, against 27 % the week before, and the hobby room's came on for the first time. So both go back up to 16 °C, and the saving will be smaller than the estimate.
 
 ### What we'll do after that
 
