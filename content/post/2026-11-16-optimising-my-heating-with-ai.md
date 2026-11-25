@@ -1,5 +1,5 @@
 ---
-title: I let an AI agent tune my boiler
+title: Optimising my heating with AI
 description: I know nothing about boilers. An AI agent read ten days of data from mine, found two problems, proposed a fix for each, and checked both against its own predictions.
 date: 2026-11-16
 thumbnail: ''
